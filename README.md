@@ -2,34 +2,30 @@
 Repository for RC_BENCH project
 ## Annotator Guidelines 
 
+Claim Identification Criteria
+Required Elements
+Makes a specific, testable assertion about results, methods, or contributions
+Represents a novel finding, improvement, or advancement
+Presents a clear position or conclusion
 
-Your task is to identify all statements in the text that meet the following criteria for a claim:
-        1. Makes a specific, testable assertion about results, methods, or contributions
-        2. Represents a novel finding, improvement, or advancement
-        3. Presents a clear position or conclusion.
+Important Notes
+Include both major and minor claims
+Ensure comprehensive capture of all claims
+Present each claim separately
 
+Evidence Identification
+Requirements
+Evidence must directly support or contradict the claim's specific assertion
+Must include experimental results, data, or concrete examples
+Should be traceable to specific methods, results, or discussion sections
+Cannot be sourced from abstract or introduction
 
-        1. Include both major and minor claims
-        2. Don't miss any claims
-        3. Present each claim as a separate item
-        
-
-For the given claim, identify relevant evidence that:
-        1. Directly supports or contradicts the claim's specific assertion
-        2. Is presented with experimental results, data, or concrete examples
-        3. Can be traced to specific methods, results, or discussion sections
-        4. Is not from the abstract or introduction
-
-
-Conclusion Analysis:
-
-        1 Evaluate if conclusions are justified by the evidence
-
-Format for the annotation: 
-
-        {
-            Claim_id :
-            Claim text :
-            Evidence_text :
-            Justification Conclusion:
-        }
+Conclusion Analysis
+Evaluate whether conclusions drawn are adequately justified by the presented evidence
+Annotation Format
+jsonCopy{
+    "Claim_id": "",
+    "Claim_text": "",
+    "Evidence_text": "",
+    "Justification_Conclusion": ""
+}
