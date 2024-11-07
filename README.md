@@ -1,31 +1,42 @@
 # RC_BENCH
 Repository for RC_BENCH project
-## Annotator Guidelines 
+## Annotator Guidelines
 
-Claim Identification Criteria
-Required Elements
-Makes a specific, testable assertion about results, methods, or contributions
-Represents a novel finding, improvement, or advancement
-Presents a clear position or conclusion
+### Task Description
 
-Important Notes
-Include both major and minor claims
-Ensure comprehensive capture of all claims
-Present each claim separately
+Your task is to identify all statements in the text that qualify as claims under the following criteria:
 
-Evidence Identification
-Requirements
-Evidence must directly support or contradict the claim's specific assertion
-Must include experimental results, data, or concrete examples
-Should be traceable to specific methods, results, or discussion sections
-Cannot be sourced from abstract or introduction
+1. **Specificity**: The statement makes a specific, testable assertion about results, methods, or contributions.
+2. **Novelty**: The statement represents a novel finding, improvement, or advancement.
+3. **Clarity**: The statement presents a clear position or conclusion.
 
-Conclusion Analysis
-Evaluate whether conclusions drawn are adequately justified by the presented evidence
-Annotation Format
-jsonCopy{
-    "Claim_id": "",
-    "Claim_text": "",
-    "Evidence_text": "",
-    "Justification_Conclusion": ""
+### Requirements
+
+- Include both major and minor claims.
+- Ensure no claim is overlooked.
+- Present each claim as a separate item.
+
+## Evidence Identification
+
+For each identified claim, find and document relevant evidence that:
+
+1. **Relevance**: Directly supports or contradicts the claim's specific assertion.
+2. **Concrete Support**: Is presented with experimental results, data, or concrete examples.
+3. **Traceability**: Can be traced to specific methods, results, or discussion sections in the text.
+4. **Exclusions**: Evidence must not be derived from the abstract or introduction sections of the text.
+
+## Conclusion Analysis
+
+- **Justification**: Evaluate whether the conclusions drawn in the text are justified by the evidence provided.
+
+## Annotation Format
+
+Each annotation should be formatted as follows:
+
+```json
+{
+    "Claim_id": "<unique_identifier>",
+    "Claim_text": "<text_of_the_claim>",
+    "Evidence_text": "<text_supporting_or_contradicting_the_claim>",
+    "Justification_Conclusion": "<evaluator's_comment_on_evidence_justification>"
 }
