@@ -39,7 +39,7 @@ Each annotation should be formatted as follows:
     "Claim_text": "<text_of_the_claim>",
     "Evidence_text": "<text_supporting_or_contradicting_the_claim>",
     "Justification_Conclusion": "<evaluator's_comment_on_evidence_justification>"
-}
+}```
 
 ## Folders and Files Description 
 
