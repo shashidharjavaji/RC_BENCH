@@ -42,3 +42,28 @@ Each annotation should be formatted as follows:
 }
 
 ## Folders and Files Description 
+
+For each model in `{Gemini, Claude, GPT}`, the following folder structure is maintained:
+
+### `{model}_3_prompts/`
+- Contains outputs from the 3-prompts code execution
+- Each prompt runs independently for claims, evidence, and conclusions
+
+### `{model}_one_by_one/`
+- Houses outputs from iterative building process:
+  1. Get all claims first
+  2. For each claim, fetch corresponding evidence
+  3. For each claim-evidence pair, generate conclusion
+
+### `{model}_all_at_one/`
+- Stores outputs from single-prompt execution
+- All tasks (claims, evidence, conclusions) processed in one go
+
+```
+project/
+├── {model}_3_prompts/
+├── {model}_one_by_one/
+└── {model}_all_at_one/
+```
+
+*Note: Replace `{model}` with Gemini, Claude, or GPT accordingly.*
