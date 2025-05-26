@@ -128,10 +128,10 @@ If you use RC_BENCH in your research, please cite:
 
 ```bibtex
 @article{rcbench2024,
-  title={RC_BENCH: A Benchmark for Research Claim Verification},
-  author={Author Name et al.},
-  journal={Conference/Journal Name},
-  year={2024}
+  title={Can AI Validate Science? Benchmarking LLMs for Accurate Scientific Claim -> Evidence Reasoning},
+  author={SR Javaji et al.},
+  journal={arxiv},
+  year={2025}
 }
 ```
 
