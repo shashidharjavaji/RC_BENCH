@@ -2,7 +2,7 @@
 # 📊 RC_BENCH
 Repository for RC_BENCH project
 
-![](architecture.png)
+![](figures/architecture.png)
 
 ## 📝 Annotator Guidelines
 
@@ -81,7 +81,7 @@ project/
 A desktop application for annotating PDF documents with claims and corresponding evidence. This tool allows users to select text from PDF documents, organize them into claims and evidence pairs, and save the annotations in a structured JSON format.
 
 
-![](annotation_tool_screenshot.png)
+![](figures/annotation_tool_screenshot.png)
 ## ✨ Features
 
 - **📄 PDF Viewing**
@@ -110,9 +110,9 @@ A desktop application for annotating PDF documents with claims and corresponding
 
 
 ## 📈 Results
-![](precision_recall_scatter_improved.png)
+![](figures/precision_recall_scatter_improved.png)
 
-![](Sentence_dist_analysis.png)
+![](figures/Sentence_dist_analysis.png)
 
 
 ## 💻 Installation
