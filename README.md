@@ -107,6 +107,13 @@ A desktop application for annotating PDF documents with claims and corresponding
   - Status bar messages
   - Keyboard shortcuts
 
+
+## Results
+![](precision_recall_scatter_improved.png)
+
+![](Sentence_dist_analysis.png)
+
+
 ## Installation
 
 ### Prerequisites
