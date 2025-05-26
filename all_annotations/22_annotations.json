@@ -1,0 +1,20 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "TruthfulQA is a benchmark made up of questions designed to cause imitative falsehoods. One reason to focus on imitative falsehoods is that they are less likely to be covered by existing question-answering benchmarks.",
+        "evidence_text": "TruthfulQA consists of a test set of 817 questions and is intended only for the zero-shot setting. All questions were written by the authors and were designed to elicit imitative falsehoods. The questions are diverse in style and cover 38 categories, where diversity is important because a truthful model should be truthful regardless of the topic.; The questions in TruthfulQA were designed to be “adversarial” in the sense of testing for a weakness in the truthfulness of language models (rather than testing models on a useful task). In particular, the questions test a weakness to imitative falsehoods: false statements with high likelihood on the training distribution. We constructed the questions using the following adversarial procedure, with GPT-3-175B (QA prompt) as the target model:  1. We wrote questions that some humans would answer falsely. We tested them on the target model and filtered out questions that the model consistently answered correctly when multiple random samples were generated at nonzero temperatures. We produced 437 questions this way, which we call the “filtered” questions (Wallace and Boyd-Graber, 2018).  2. Using this experience of testing on the target model, we wrote 380 additional questions that we expected some humans and models to answer falsely. Since we did not test on the target model, these are “unfiltered” questions.",
+        "justification_conclusion": "The questions are designed to elicit the imitative falsehoods."
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "Larger models are less truthful. Across differ ent model families, the largest models were generally less truthful. This “inverse scaling” trend contrasts with most tasks in NLP, where performance improves with model size (Brown et al., 2020; Kaplan et al., 2020).",
+        "evidence_text": "Figure 2 shows that larger models generally do worse than smaller models in the same family (inverse scaling). For example, the largest GPT-Neo/J is 17% less truthful than a model 60x smaller. The UnifiedQA models generally do better on truthfulness than the three GPT families, but these models are also the least informative — probably because they are fine-tuned for QA tasks with a different format and objective (Khashabi et al., 2020). While larger models were less truthful, they were more informative. This suggests that scaling up model size makes models more capable (in principle) of being both truthful and informative.",
+        "justification_conclusion": "From the results, the large models are less truthful."
+    },
+    {
+        "claim_id": 3,
+        "claim_text": "Automated metric predicts human evaluation with high accuracy.",
+        "evidence_text": "The finetuned GPT-judge model is able to predict human evaluations of truthfulness with 90-96% validation accuracy. GPT-judge also generalizes well to new answer formats. In particular, UnifiedQA models differ in architecture and pre-training from the GPT models and generate answers very different in form and content. Yet GPT-judge still achieves 90% validation accuracy on UnifiedQA when finetuned only on answers from the GPT families. We also validated GPT-judge on our human baseline. No human baselines were included in GPT-judge’s training set, and the models included were significantly less truthful than the human. Predictive accuracy on the human baseline was 89.5%.",
+        "justification_conclusion": "The GPT-judge model aligns closely with human evaluations."
+    }
+]

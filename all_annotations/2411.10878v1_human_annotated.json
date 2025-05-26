@@ -1,0 +1,42 @@
+{
+    "annotations": [
+        {
+            "claim": "This research demonstrates that fine-tuned models outperform non-fine-tuned models, with fine-tuned LLMs generating 87.6% relevant meta-analysis abstracts. ",
+            "evidences": [
+                "As shown in Table III, our approach of fine-tuning LLMs with large context dataset, MAD outperforms other methods, producing more relevant meta-analysis content and reducing unnecessary context generation.",
+                "Generated Meta-analysis Abstract Generated Context Models Human Evaluation (%) Relevant Irrelevant With RAG REL ↑ SWR ↓ IRL ↓ BLEU ↑ ROUGE ↑ BLEU ↑ ROUGE ↑ SWGT(%) ↑ Llama-2 7B 83.5 11.94 4.56 19.12 38.02 8.01 17.11 81.25 Llama-2 7B FT (Ours) 85.4 12.7 1.9 23.01 39.15 7.56 16.01 84.32 Mistral-v0.1 7B 80.5 14.1 5.13 22.42 39.41 9.01 19.11 77.19 Mistral-v0.1 7B FT (Ours) 87.6 10.4 2.1 25.46 43.22 7.01 17.42 83.23"
+            ]
+        },
+        {
+            "claim": "The relevance of the context, based on human evaluation, shows a reduction in irrelevancy from 4.56% to 1.9%.",
+            "evidences": [
+                "TABLE IV: Comparative Prompt Analysis: Demonstrating effectiveness through two different prompts, where Prompt 1 performs better than Prompt 2 in generating a more relevant meta-analysis. Prompt Evaluation Metric Llama- Mistral Llama- Mistral Ours 2 2 Ours Given a collection of abstracts from papers used in various medical fields for Relevant ↑ 83.5 80.5 85.4 87.6 meta-analysis, generate a meta-analysis abstract. Summarize the key findings and Somewhat Relevant 11.94 14.1 12.7 10.4 provide numerical values or statistical information for specific observations that ↑ are commonly reported in the provided abstracts. (Prompt 1) Irrelevant ↓ 4.56 5.13 1.9 2.1 There are given some abstracts of papers that are used for meta-analysis in different Relevant ↑ 69 78.39 72.4 82.8 medical fields. Generate a meta-analysis abstract based on the given abstracts of papers. Somewhat Relevant 12.7 16.1 20.5 14.1 Please try to provide numerical values for any specific findings that were used in most ↑ of the abstracts. (Prompt 2) Irrelevant ↓ 7.69 5.51 7.1 3.13"
+            ]
+        },
+        {
+            "claim": "our research introduces a novel approach that leverages LLMs with RAG to automate and streamline the meta-analysis process.",
+            "evidences": [
+                "Combining Fine-tuned model with RAG: Fine-tuning LLMs is highly effective for specific tasks; however, models with limited context, such as Llama-2 (7B) and Mistral-v0.1 (7B), face challenges when dealing with chunked data samples. For instance, when generating ˆyj from a particular chunk Cj i ⊆Sj, these models may lack information from otherchunks Cj i of the same dataset, MAD. RAG addresses this issue by retrieving relevant information from other chunks for the jth data sample, thereby reducing the need for extensive fine-tuning and minimizing irrelevant content. This approach involves storing each chunked test sample Cj i in a vector database. Relevant chunks are then retrieved using semantic search based on queries and the stored chunks. The retrieved content is subsequently fed into the LLMs, which process these additional contexts to generate a more accurate meta- analysis abstract.(Additional Details in the Supplementary)"
+            ]
+        },
+        {
+            "claim": "We have built a comprehensive dataset with various meta-analysis scenarios in various scientific fields, which contains the content of the meta-articles along with the content of the support papers.",
+            "evidences": [
+                "The dataset, MAD that we constructed consists of two columns: one containing meta-articles’ abstracts and the other containing the abstracts of the support articles. For exam- ple, consider the meta-article titled “Intervention methods for improving reduced heart rate variability in patients with major depressive disorder: A systematic review and meta- analysis” [20]. We used the abstract of this paper as our target meta-analysis abstract. From Table 1 of this paper, we identified that it conducted a meta-analysis of over twenty studies. We manually extracted the abstracts of these support articles by following the references listed in the table. These twenty abstracts were placed in the second column (Sj) alongside the meta-article’s abstract (yj). Essentially, the goal is for the LLM to generate a meta-analysis abstract from these support articles’ abstracts. Using this approach, we gathered 625 meta-articles from ScienceDirect, along with the abstracts of all the support articles included in that meta-analysis. In total, dataset MAD includes 6344 support articles’ abstracts and 625 meta-articles’ abstracts."
+            ]
+        },
+        {
+            "claim": "We introduce a novel loss function, Inverse Cosine Distance (ICD), specifically designed for training LLMs in large-context scenarios to handle large-data challenges.",
+            "evidences": [
+                "Inverse Cosine Distance (ICD): To support fine-tuning, a specialized training mechanism is used with the ICD loss metric. The ICD function measures the dissimilarity between the model-generated output ˆy and the ground truth y vectors, incorporating a small positive constant ϵ in the denominator to ensure numerical stability and improve the fine-tuning process. The formulation for ICD is given below: N 1 1 ICD = (1) N cosine simi(y, ˆy) + ϵ i=1 X During fine-tuning, models M processed chunked samplesCj i to produce predicted abstracts ˆyj. The ICD loss, calculated using formula 1, measured the dissimilarity between ˆyj and the ground truth abstracts yj, guiding parameter updates via backpropagation. The process, constrained by resources, was carried out for 2 epochs over 5 iterations, refining the model and improving abstract accuracy."
+            ]
+        },
+        {
+            "claim": "Our approach reduces the labor intensive aspects of meta-analysis, enabling LLMs to handle large contexts and generate structured abstracts effectively.",
+            "evidences": [
+                "This study demonstrates the effectiveness of automating meta-analysis generation using fine-tuned LLMs on exten- sive scientific datasets. Our approach significantly improved the relevance of generated meta-analysis abstracts, achieving 87.6% relevance and reducing irrelevance from 4.56% to 1.9%.",
+                "Human evaluation confirmed the improvements in model performance, particularly in maintaining the relevancy and accuracy of structured meta-analysis content."
+            ]
+        }
+    ]
+}

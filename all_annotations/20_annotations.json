@@ -1,0 +1,26 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "The LMs are susceptible to framing effect bias: Using the framing effect as inspiration, we hypothesize that code generation models may generate solutions exclusively from irrelevant information in the prompt.",
+        "evidence_text": "We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested. Moreover, both models frequently generate the framing line: 81% of the time for Codex and 70.7% of time for CodeGen, compared to only 4.5% and 0.0% over untransformed prompts respectively.",
+        "justification_conclusion": "Adding irrelevant information will influence the model's performance."
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "The LMs are susceptible to the anchoring effect bias: we hypothesize that code generation models may adjust their output towards related solutions, when these solutions are included in the prompt.",
+        "evidence_text": "we show that prepending print-var anchor functions consistently lowers Codex and CodeGens’ functional accuracies across different number of prompted canonical solution lines.",
+        "justification_conclusion": "The model's output demonstrated anchoring effect."
+    },
+    {
+        "claim_id": 3,
+        "claim_text": "Using the availability heuristic as motivation, we hypothesize that code generation models may err by outputting solutions to related prompts that appear more frequently in the training set.",
+        "evidence_text": "We consider all 12 combinations of the binary operations sum, difference, and product, with unary operations square, cube, quadruple, and square root. Focusing on Codex,5 we find that accuracy drops from 50% to 17% when flipping the order from unary-first to binary-first. Among combinations where flipping the order leads to error, we find that 75% of the binary-first outputs are the unary-first solution. We exhibit one such error in Figure 5: when prompted to square the sum of its inputs, Codex generates the correct function name (square_sum ), but reverses the order of operations. Our results suggest that Codex can err by outputting solutions to related, frequent prompts in the training set.",
+        "justification_conclusion": "The model demonstrated the effect similar to heuristic availability, tend to align their response toward the training set."
+    },
+    {
+        "claim_id": 4,
+        "claim_text": "Using attribute substitution as inspiration, we hypothesize that Codex may use simple-but-incorrect heuristics to generate solutions.",
+        "evidence_text": "We report our experimental results in Table 2. When we request a conflicting function name, Codex’s accuracy drops from 100% to only 4.4%-4.6%. This finding holds whether we request the function name in the docstring, write it in the function signature below the docstring, or write the function name over a simple description on the function. Moreover, for between 52% and 80% of prompts, Codex responds with the function specified in the function name. Our results indicate that Codex can err by using simple-but-incorrect heuristics to generate solutions.",
+        "justification_conclusion": "The heavily rely on the function name, ignoring the docstring or other details proves the model's susceptibility to attribute substitution."
+    }
+]

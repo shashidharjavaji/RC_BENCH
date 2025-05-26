@@ -1,0 +1,20 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "We demonstrate how simple, training free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks.",
+        "evidence_text": "TABLE I PERFORMANCE OF GPT-4O ON AMBIGUOUS AND DISAMBIGUATED QUESTIONS. Disamb. Disamb. Upper-bound (via GT Metric Naive via \u2018what\u2019 via context disamb. questions) Question - 0.905 0.743 0.317 coherence Naive Answer - 0.826 0.799 0.895 Overlap GT Answer 0.759 0.778 0.789 0.858 Overlap \u2191\nTABLE II PERFORMANCE OF GPT-4O-MINI ON AMBIGUOUS AND DISAMBIGUATED QUESTIONS. Disamb. Disamb. Upper-bound (via GT Metric Naive via \u2018what\u2019 via context disamb. questions) Question - 0.907 0.739 0.317 coherence Naive Answer - 0.771 0.739 0.745 Overlap GT Answer 0.692 0.707 0.71 0.783 Overlap \u2191\nInterestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free ap- proaches may be useful in improving LLM performance for ambiguous queries. Out of the two simple disambiguating methods explored, we see that disambiguation via adding context performs better for both LLMs.",
+        "justification_conclusion": "True"
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "We employed three distinct prompting strategies to generate answers from the selected LLMs: (1) a naive (or baseline) direct question-answering prompt, (2) a rephrasing strategy that attempts to add linguistic perturbation to the ambiguous question, and (3) a contextual enrichment approach that uses the model\u2019s internal knowledge to disambiguate the given question.",
+        "evidence_text": "Naive: For each question, we prompt the out-of-the-box LLM to answer it as concisely as possible to get a baseline for our experiment. Answer the question as concisely as possible with ONLY one answer without any other text: Question: {xp}\nRewrite this question replacing all questions with a what, but retain the meaning by specifying what entity or what person or what timeframe the \u201cwhat\u201d is answering. Also, specify the current year is 2018 if needed to answer a time- based question. Question: {xp}\nAdd extra information to the following question. Also specify the current month and year is January 2018, so answer questions accordingly. Your aim is to disambiguate what it is asking. Question: {xp}",
+        "justification_conclusion": "True"
+    },
+    {
+        "claim_id": 3,
+        "claim_text": "We further perform a small-scale fine-tuning to evaluate whether task-specific disambiguation fine-tuning helps to improve performance.",
+        "evidence_text": "To evaluate the performance of this fine-tuned model, we sample 1,000 ambiguous questions from the dataset at random and compare the performance between naive prompting on the 4o-mini model and naive prompting on the fine-tuned 4o-mini model. The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions. This reinforces our insight that simple training-free prompting methods for disambiguation work well in improving performance.",
+        "justification_conclusion": "True"
+    }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "We propose diagnostic criteria to identify four different prediction scenarios for factual queries that should be interpreted in separation",
+        "evidence_text": "(1) whether the prediction actually represents fact completion rather than generic language modeling; (2) whether the prediction is confident and robust to insignificant signals in the prompt; and (3) whether the prediction is based on the exact factual information expressed in the query or on heuristics triggered by surface-level cues. These criteria provide a more fine-grained testing setup compared to using a single accuracy focused criterion, as done in previous work.",
+        "justification_conclusion": "The authors provide detailed criteria for evaluating different prediction scenarios."
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "We show how a dataset previously used for LM interpretations mixes these scenarios and propose an alternative method, PRISM, for creating model-specific diagnostic datasets to support precise studies of LM behavior.",
+        "evidence_text": "To test the effects of analyzing mixed samples, we produce results for a mixture of fact completion scenarios. The combined plot of exact fact recall, heuristics recall, and guesswork samples in Figure 3e generally reproduces the same CT results as observed in previous work, and thereby supports the same conclusion, i.e. (last subject token, mid layer) MLP states are decisive (Meng et al., 2022). This indicates that model interpretations over samples mixing prediction scenarios are misleading as they may be dominated by the characteristics of the exact fact recall scenario. Potentially, this could be due to the exact fact recall samples generally corresponding to higher prediction confidences. This supports our hypothesis that previous interpretability results may have been recorded over mixtures of prediction scenarios, as we can reproduce their results with a mixture.",
+        "justification_conclusion": "The authors demonstrate that mixed samples can lead to misleading interpretations."
+    },
+    {
+        "claim_id": 3,
+        "claim_text": "Using our diagnostic datasets and the method of causal tracing (CT), we show how LM interpretations for each of the different prediction scenarios yield fundamentally different results, while interpretations of aggregations over different scenarios are dominated by the results from the exact fact recall scenario. This highlights the necessity of disentangled and precise interpretations of LMs for fact completion.",
+        "evidence_text": "Generic language modeling: Results for the generic language modeling samples in Figure 3a do not indicate any peak that is uniquely significant.; Guesswork: For the guesswork samples, the (last token, late layer) state is found to be significant. We also note an increase of AIE for the (last subject token, mid layer) MLP states.7 Apart from the last prompt token no other non-subject tokens show AIE peaks throughout any of the model layers. This trend persists for all scenarios we study.; Heuristics recall: The results for the heuristics recall samples in Figure 3c show a few peaks across model layers, all of similar strengths: last token state in late layers, subject tokens in mid layers, and subject tokens in early layers.; Exact fact recall: Exact fact recall results Figure 3d show a clear peak in AIE in (last subject token, mid layer) MLP states and all other states (last token, other subject tokens) reduce in relative effect. This is fundamentally different from the other scenarios, where this state is either found to have a low AIE or to have comparatively the same importance as other states. Thus this is the only prediction scenario that supports the same conclusion as previous work that (last subject token, mid layer) MLP states are decisive",
+        "justification_conclusion": "Different prediction scenarios yield different results in LM interpretations."
+    }
+]

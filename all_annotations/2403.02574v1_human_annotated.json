@@ -1,0 +1,30 @@
+{
+    "annotations": [
+        {
+            "claim": "In this work, we firstly focus on the independent literature summarization step and introduce ChatCite1, an LLM agent with human workflow guidance for comparative literature summary.",
+            "evidences": [
+                "The generation process guided by human work- flow is as follows: 1. The proposed work description and reference papers in the reference papers set are initially processed using the Key Element Extractor separately. 2. Iteratively generate literature summaries us- ing reference papers set. In each iteration, use the comparative summarizer to generate a comparative analysis summary. Then, use the reflective evaluator to vote on the generated candidate results, ranking the vote score and retaining the top nc results. Iterate continu- ously until all reference papers are processed.",
+                "The final output is selected based on the highest voting score among the generated related work sum- maries."
+            ]
+        },
+        {
+            "claim": "we devised a LLM-based automatic evaluation metric, G-Score, in refer to the human evalua- tion criteria.",
+            "evidences": [
+                "Evaluation Criterion: Consistency (1-5): Content consistency between the generated summary and the gold summary. The generated summary must not contain content that conflicts with the gold summary. Coherence(1-5): The quality of language coher- ence in generated summaries, which should not just be a heap of related information. Comparative (1-5): Assess the extent to whether the generated summary conducts a compara- tive analysis on references and proposed work. Whether it provides an integrated summary of simi- lar related works. Integrity (1-5): Assess if the summary covers es- sential elements: research context, reference paper summaries, past research evaluation, contributions, and innovations. Fluency (1-5): Assess the quality of the summary in terms of grammar, spelling, punctuation, word choice, and sentence structure. Cite Accuracy(1-5): Assess whether the summary correctly cites reference paper in the format ‘[Ref- erence i]’ when mention the reference paper."
+            ]
+        },
+        {
+            "claim": "The ChatCite agent outperformed other models in various dimensions in the ex- periments.",
+            "evidences": [
+                "ROUGE Metrics G-Score G-Prf. Model ROUGE-1 ROUGE-2 ROUGE-L (1-5) (%) GPT-3.5 w/zero shot 26.01 6.11 24.02 3.4102 2.21 GPT-3.5 w/few shot 25.84 6.01 23.55 3.5968 10.80 GPT-4 w/zero shot 30.02 8.03 27.97 3.5076 26.40 GPT-4 w/few shot 15.52 1.78 14.20 1.6621 0.21 LitLLM w/GPT-4 27.08 6.07 24.94 3.5448 24.51 ChatCite 25.30 6.36 23.13 4.0642 35.86 Table 1: Main Results: The results are automatically evaluated using ROUGE-1/2/L (F1) and the GPT-4.0 evaluator. G-Score represents the total score assessed by the GPT-4.0 evaluator, while G-Prf. indicates the model preferences among the five models.",
+                "5.2 Main Results We compared the performance of different base- line models on the paper test set (see Table 1). In traditional summary evaluation metrics, such as ROUGE, GPT-4.0 achieved the best results under zero-shot settings. Although ROUGE scores of ChatCite may be slightly lower than GPT-4.0 with zero-shot, its performance in quality metrics gen- erated by LLMs and the preference of LLMs is far superior to results obtained directly from other LLM baselines. Surprisingly, GPT-4.0 performed poorly in few- shot settings.It is found that influenced by exam- ples in the few-shot, resulting in irrelevant and erroneous summaries after case study. Notably, LitLLM with GPT-4.0 produced outcomes similar to GPT-4.0 in zero-shot but significantly lower than ChatCite. Therefore, we conclude that \"ChatCite performs best among LLM-based literature summarization methods, and the approach following the human workflow guidance is superior to the results ob- tained by the Chain of Thought (CoT) method.\""
+            ]
+        },
+        {
+            "claim": "• We demonstrate that LLMs with human work- flow guidance, have the ability to effectively perform comprehensive comparative summa- rization of multiple documents. Therefore, we infer that Large Language Models (LLMs) have the potential to handle more complex inferential summarization tasks.",
+            "evidences": [
+                "Implementation. In zero-shot setting, for GPT- 3.5 model, due to the limitation of the context window, a two-step approach is used for gener- ation: 1) summarizing and then generating with the prompt [ps] =\"Summarize the current article, preserving as much information as possible. Con- tent:{content}\" for summarization. For generating the related work section, we use the prompt [pg] = \"Generate the related work section based on the given target paper summary and its references sum- mary. Read the Target Paper Content: {Target}. References content: {References}\". For GPT-4.0 and LitLLM with GPT-4.0, [pg] is directly used for summarization. In the few-shot setting, we add the instruction \"Follow the writing style of the example but without including any content from the example. {Exam- ples}\" to the zero-shot prompt."
+            ]
+        }
+    ]
+}

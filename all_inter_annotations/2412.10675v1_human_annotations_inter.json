@@ -1,0 +1,48 @@
+{
+    "annotations": [
+        {
+            "claim": "We find that merely fine-tuning LLMs on a corpus of planning in- stances does not lead to robust planning skills, as indicated by poor performance on out-of-distribution test sets. ",
+            "evidences": [
+                "Longer Planning: A Drastic Decline The 'long' test set reveals a significant performance drop, particularly in the NP-hard BLOCKSWORLD domain (Chenoweth 1991), where the validity rate falls from 98.5% to 13.5%." ,
+                "Generalization to Novel Domains: A Clear Failure The fine-tuned model utterly failed to perform in the \"unseen\" and \"obfuscated\" test sets, unable to generate either valid or executable plans." ,
+                "Although the LLM performs well on in-distribution, it struggles to generalize to OOD cases. [Examples from Table 1: BLOCKSWORLD Long valid rate 13.5%, exec rate 14.0%; HANOI Unseen valid rate 0%, exec rate 35%; BLOCKSWORLD Obfuscated valid rate 0%, exec rate 0%]" 
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim": "At the same time, we find that various strategies, including chain- of-thought, do enhance the probability of a plan being exe- cutable.",
+            "evidences": [
+                "(Referring to Permutation) While this technique does not significantly improve the validity rate, it largely enhances the executability rate (see Table 2 row 2)." ,
+                "(Referring to Permutation) In particular, we observe a remarkable 75.5% score in \"unseen\" test set, while the vanilla model only got 20.1% (row 1)." ,
+                "(Referring to Self-Correction) Nevertheless, the strategy gave a slight improvement in executability rate (e.g., row 10 vs. 11), suggesting its ability to enhance the coherence of generated sequences." ,
+                "(Referring to State CoT) We observed that State CoT does not improve plan executability within the 'long' test set, yet it significantly enhances performance within the 'unseen' test set (e.g., 100% in row 4)." 
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim": "Among the strategies we evaluated, reinforcement learning with our novel ‘Longest Contiguous Common Subsequence’ reward emerged as the most effective, contributing to both plan ex- ecutability and validity. Overall",
+            "evidences": [
+                "Despite the limited training data and suboptimal rewards achieved on this subset, RL boosted the validity rate on the 'long' test set from 34.8% to 41.5% (a 6.7% increase) and the executability rate from 42.3% to 53.6% (9.0%) (see Table 2, row 10)." ,
+                "Interestingly, it also enabled the model to solve problems in the 'unseen' test set, achieving a 12.5% where it previously failed to generate any valid plans." 
+             ],
+            "justification_conclusion": "True"
+        },
+
+        {
+            "claim": "LLMs trained with self-correction can identify errors with high precision and recall but fail to effectively correct them in planning tasks.",
+            "evidences": [
+                "Results from Table 3 showed that the model is able to accurately identify errors, achieving particularly high precision (90.5%) and recall (99.2%) when all 4 strategies are combined (row 9)." ,
+                "However, the detection capability does not lead to effective correction, indicating that future research should focus on how to leverage detected errors for correction." 
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim": "State CoT improves plan executability for problems within the training distribution's length but not for longer, out-of-distribution problems.",
+            "evidences": [
+                "We observed that State CoT does not improve plan executability within the 'long' test set, yet it significantly enhances performance within the 'unseen' test set (e.g., 100% in row 4)." ,
+                "(From plan continuation experiment) Interestingly, the model employing CoT (Goal + State) demonstrates the highest performance gain when provided with the hints. Its validity rate improves dramatically from the lowest (23.8%) to the highest (54.2%) among the compared strategies." 
+            ],
+            "justification_conclusion": "True"
+        }
+    ]
+}

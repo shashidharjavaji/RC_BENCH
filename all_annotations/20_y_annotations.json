@@ -1,0 +1,27 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "Both attention and FFN layers can store knowledge, and all important neurons directly contribute to knowledge prediction are in deep layers.",
+        "evidence_text": "Both attention and FFN layers have ability to store knowledge, and all the top10 layers are in deep layers. Information with analogous semantics (e.g., language, capital, country) tends to be stored within similar layers/modules. For instance, a26,  a30, a28, and a22 in GPT2 ranks top for language,  capital and country, and a23 in Llama-7B ranks  the first for these knowledge. Data with dissimilar semantics (e.g., language, color, month) typically resides in distinct layers/modules.",
+        "justification_conclusion": "Ture. The claim is supproted by the content. Both attention and FFN layers can store knowledge, and all important neurons directly contribute to knowledge prediction are in deep layers."
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "In attention layers, knowledge with similar semantics (e.g. language, country, city) tends to be stored in the same heads. Knowledge with distinct semantics (e.g. country, color) is stored in different heads.",
+        "evidence_text": "To evaluate how much knowledge the top heads store, we intervene the top 1% heads (top7 in GPT2 and top10 in Llama) by setting the heads’ parameters to zero. Intervening each knowledge’s heads result in a MRR/probability decrease of 44.5%/53.3% in GPT2, and 32.8%/48.2% in Llama (shown in Appendix B). But semantic-unrelated knowledge only reduce 7.1%/9.5% in GPT2 and 3.8%/8.7% in Llama. Therefore, the identified knowledge heads contain much semantic-related knowledge.",
+        "justification_conclusion": "True. The claim is supproted by the content. Knowledge with similar semantics tends to be stored in the same heads, and knowledge with distinct semantics is stored in different heads."
+    },
+    {
+        "claim_id": 3,
+        "claim_text": "While numerous neurons contribute to the final prediction, intervening on a few value neurons (300) or query neurons (1000) can significantly influence the final prediction.",
+        "evidence_text": "In both models, the sum score of top200 neurons in attention layers and top100 neurons in FFN layers are similar to that of all neurons. Additionally, we intervene the top neurons to evaluate how much final predictions are affected, detailed in Appendix C. When intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama. In comparison, randomly intervening the same number of neurons only decreases 0.22%/0.14%. Hence, even though there are many neurons contribute to the final prediction, intervening a few neurons (300) affects the final prediction much. This conclusion holds significance for future studies delving into neuron-level knowledge editing.",
+        "justification_conclusion": "True. The claim is supproted by the content. While numerous neurons contribute to the final prediction, intervening on a few value neurons or query neurons can significantly influence the final prediction."
+    },
+    {
+        "claim_id": 4,
+        "claim_text": "FFN value neurons are mainly activated by medium-deep attention value neurons, while these attention neurons are mainly activated by shallow/medium FFN query neurons.",
+        "evidence_text": "The value FFN neurons are activated by last position’s residual stream. We evaluate which query layers activate the top100 FFN neurons, shown in Table 6. We also illustrate the importance of top10 important query layers in Figure 6 (GPT2) and Figure 7 (Llama). The medium-deep attention layers play large rules. Compared Figure 67 with Figure 4-5, we find that several attention query layers also contribute to final predictions (e.g. a19, a22, a26 in GPT2 and a16, a18, a19, a21  in Llama for country/capital/language). These medium-deep attention layers’ neurons are very important, working as both value and query.",
+        "justification_conclusion": "True. The claim is supproted by the content. FFN value neurons are mainly activated by medium-deep attention value neurons, while these attention neurons are mainly activated by shallow/medium FFN query neurons."
+    }
+]
+

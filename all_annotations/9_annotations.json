@@ -1,0 +1,32 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "In this work we train models that help the user or data rater evaluate responses by generating claims alongside supporting evidence.",
+        "evidence_text": "Our best models produce high quality supporting evidence for their factual claims. On short answer questions drawn from the NaturalQuestionsFiltered dataset, our best model produces plausible and supported claims 80% of the time. On explanation-seeking questions from the ELI5Filtered dataset, the model produces plausible and supported claims 67% of the time.",
+        "justification_conclusion": "From the claim, we can see that the outputs are evaluated against the claims and evidence."
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "Declining to answer substantially improves these numbers by answering only selected questions whilst still attempting a large majority.",
+        "evidence_text": "We use thresholds on reward model scores under which the model abstains from answering and emits the string “I don’t know”. This traces out a frontier of accuracy-if-attempted versus coverage, and allows to reach >90% performance when attempting 70% of questions on NaturalQuestionsFiltered and >80% when attempting 70% of questions on ELI5Filtered.",
+        "justification_conclusion": "The decline to answer strategy improves the performance while covering a large portion of the questions."
+    },
+    {
+        "claim_id": 3,
+        "claim_text": "Our models generate an answer with supporting evidence “inlined” into a single string (hence “Inline Evidence”), treating the task of producing supported claims as (conditional) language modelling. Answer and evidence use the following template, where template tokens are black and output placeholders are violet: %<Claim>%(Document title)%[Quote from document]% For example, the answer from Figure 1 about the Scooby-Doo series would be expressed as: %<A Great Dane dog.>%(Scooby-Doo)%[This Saturday-morning cartoon series featured teenagers Fred Jones, Daphne Blake, Velma Dinkley, and Shaggy Rogers, and their talking Great Dane named Scooby-Doo.]%.",
+        "evidence_text": "In order to ensure the quotes are “verbatim” with a generative approach, we introduce a special syntax for the language model to use when quoting from documents and constrain the outputs of the model to be exact quotes from the retrieved documents when in this mode.",
+        "justification_conclusion": "The authors propose the special syntax used in this generation tasks, which explicitly required the retrieved information and the extracted code."
+    },
+    {
+        "claim_id": 4,
+        "claim_text": "In our experiments, we show that GopherCite produces high quality (plausible and supported) answers 80% of the time when prompted with fact-seeking questions drawn from a filtered subset of NaturalQuestions dataset and 67% of the time when prompted with explanation-seeking questions drawn from a filtered subset of the ELI5 (“Explain like I’m five”) dataset (Fan et al., 2019).",
+        "evidence_text": "Our best models produce high quality supporting evidence for their factual claims. On shortanswer questions drawn from the NaturalQuestionsFiltered dataset, our best model produces plausible and supported claims 80% of the time. On explanation-seeking questions from the ELI5Filtered dataset, the model produces plausible and supported claims 67% of the time.",
+        "justification_conclusion": "The claim is supported by the evidence."
+    },
+    {
+        "claim_id": 5,
+        "claim_text": "Despite these benefits, optimizing for answers that can be supported by documents on the internet is not sufficient to ensure that model responses are true.",
+        "evidence_text": "We evaluated the same set of model answers in two ways. First, using our standard QA evaluation app, where the raters assessed whether (answer, evidence) pairs were Supported and Plausible (subsection 2.6). Second, via a separate evaluation app that assessed the answer in isolation (without evidence) with Truthful and Informative scores as defined by Lin et al. (2021). To avoid putting the responsibility of external research on the raters, the candidate answers were presented alongside the suggested correct and incorrect answers taken from the TruthfulQA dataset. The results (Table 4) demonstrate that a high score on our metrics is compatible with a low score on the TruthfulQA metrics.",
+        "justification_conclusion": "The model is able to achieve high scores from the raters but low scores from the TruthfulQA metrics."
+    }
+]

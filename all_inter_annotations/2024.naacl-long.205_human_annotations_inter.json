@@ -1,0 +1,67 @@
+{
+    "source_pdf": "2024.naacl-long.205.pdf",
+    "annotations": [
+        {
+            "claim": "Existing long-context benchmarks have limitations, including entangled lengths, lack of ultra-long settings (100k+), and tasks not requiring full comprehension.",
+            "evidences": [
+                "These datasets include test samples of varying lengths (from 2k to 32k+) entangled together, making it challenging to assess model capabilities across different length ranges." ,
+                "(Comparison Experiment) From the table 10, the performance of GPT-4-Turbo on BestAnswer decreases more dramatically than NarrativeQA and GovReport when text is truncated." ,
+                "Therefore, our benchmarks require more full-text comprehension than traditional QA and summarization tasks." 
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim": "Ada-LEval provides length-adaptable benchmarks (TSort, BestAnswer) requiring full-text comprehension, scalable up to 128k tokens.",
+            "evidences": [
+                "Controllable Test Cases: The length of each test case can be finely tuned by adjusting the number and length of text segments in TSort and altering the number of distractor options in BestAnswer." ,
+                "Necessity for Full-Text Comprehension: Successful completion of both tasks mandates complete reading and understanding of the provided text." ,
+                "Under ultra-long-context settings, we build test cases with 32k, 64k, and 128k tokens for both tasks." 
+            ],
+            "justification_conclusion": "True"
+        },
+         {
+            "claim": "We evaluate 4 state-of- the-art closed-source API models and 6 opensource models with Ada-LEval.",
+            "evidences": [
+                "We evaluate the following LLMs under long- context settings: 4 proprietary models: (1) GPT-4- Turbo-0125, (2) GPT-4-Turbo-1106 (3) GPT-3.5- Turbo-1106, (4) Claude-2; and 6 open-source mod- els: (5) LongChat-7b-v1.5-32k(Zheng et al., 2023), (6) ChatGLM2-6B-32k(Zeng et al., 2022), (7) ChatGLM3-6B-32k(Zeng et al., 2022), (8) Vicuna- 7b-v1.5-16k(Zheng et al., 2023), (9) Vicuna-13b- v1.5-16k(Zheng et al., 2023), (10) InternLM2- 7b(Cai et al., 2024)." 
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim": "The evaluation results demonstrate the limitations of current LLMs, especially in ultra-long-context settings.",
+            "evidences": [
+                "Our experiments on these tasks reveal critical insights. We observe a noteworthy decline in the performance of existing LLMs as text length increases, particularly in ultra-long scenarios." ,
+                "For BestAnswer, the performance of all three models fall sharply from 16k to 32k text length. Meanwhile, they can not give any correct answer when the text length is greater than 32k." ,
+                "When it comes to the ultra-long setting (32,000+ tokens), no proprietary model notably outperforms the random baseline." 
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim": "Current LLMs, including state-of-the-art proprietary models, show significant performance decline as text length increases, especially in ultra-long contexts (32k+).",
+            "evidences": [
+                "(TSort Ultra-Long) For the TSort task, GPT-4-Turbo is able to achieve a random guess level accuracy, while Claude fails to give any correct answers." ,
+                "(BestAnswer Ultra-Long) For BestAnswer, the performance of all three models fall sharply from 16k to 32k text length. Meanwhile, they can not give any correct answer when the text length is greater than 32k." ,
+                "When it comes to the ultra-long setting (32,000+ tokens), no proprietary model notably outperforms the random baseline." 
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim": "Open-source LLMs lag significantly behind proprietary models in long-context tasks, often deteriorating to random guess levels even at moderate lengths (e.g., 4k tokens).",
+            "evidences": [
+                "We conduct comprehensive experiments on multiple LLMs and find that all open-source models still lag significantly behind state-of-the-art proprietary models in terms of long context capability." ,
+                "When the input length scales to 4,000 tokens, most open-source models rapidly deteriorates to random guess level." ,
+                "(BestAnswer Results) There is a considerable performance gap between proprietary models and open-source models on BestAnswer." ,
+                "(TSort Results) Other LLMs, encompassing both proprietary models [excluding GPT-4] and open-source models, all displaying similar performance compared to random guess (even under the relative short 2k setting)." 
+            ],
+            "justification_conclusion": "True"
+        },
+  
+                                                                                                                                                                                                                                                                                                                              
+        {
+            "claim": "Scalable position embedding techniques improve long-context performance beyond the original trained window size, achieving results comparable to models explicitly trained on longer contexts.",
+            "evidences": [
+                "All methods enhance the accuracy under the 8k setting, which is beyond the original context window [of 4k]." ,
+            ],
+            "justification_conclusion": "True"
+        }
+    ]
+}

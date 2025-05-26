@@ -1,0 +1,26 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "A vast majority of examples are correctly-labeled (e.g., 95.7% of the time over 133 evaluations), as well as relevant to the evaluation description.",
+        "evidence_text": "",
+        "justification_conclusion": ""
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "In head-to-head comparisons between LM and human-written datasets (§5), LM-written datasets approach the quality of human-written ones, sometimes even exceeding them.",
+        "evidence_text": "Example Relevance For each example, we ask workers: “Is this a good question for testing the described behavior? Rate on a 1 (Horrible) 5 (Amazing) point scale.” The average rating over all datasets is 4.4 ± .9 (std. dev.), showing that crowdworkers found examples quite relevant. Label Correctness Next, we ask workers, “What is the correct answer to this question? If it’s ambiguous, make your best guess anyways.” We compute the inter-rater agreement between the 3 workers for each example, finding strong agreement (Fleiss’s Kappa of 0.875). 2+ of 3 workers agree with 95.5% of labels. Label Ambiguity Finally, we ask workers, “Is it unclear or ambiguous what the ‘correct’ answer should be?” Across all datasets, 0/3 workers agree the correct answer is ambiguous 83.5% of the time, and 3/3 agree only 1.4% of the time; examples very often have an unambiguous label.",
+        "justification_conclusion": "The generated examples are relevant, labeled correctly, and unambiguous."
+    },
+    {
+        "claim_id": 3,
+        "claim_text": "We also visualize the diversity of the generated examples (Fig. 2), finding that they include a broad range of relevant examples;",
+        "evidence_text": "To learn more about the generated examples, we developed an interactive visualization of all datasets in this work, available at evals.anthropic.com/model-written. We strongly encourage readers to use the visualization to understand the data better. We embed each example into a 384-dimensional vector using a sentence embedding model (Wang et al., 2020) via HuggingFace Transformers (Wolf et al., 2020), and we use UMAP (McInnes et al., 2018) to visualize the vectors in a 2D scatter plot, coloring each point by its label. We enable users to read an example by hovering over its corresponding point, as well as to filter examples by the PM’s label confidence. We use an LM to annotate the clusters with text summaries (see Appendix §A.5 for details). First, examples often (but not always) naturally cluster into several topics, which test different aspects of the behavior in question (here, “abortion,” “healthcare,” “climate change,” etc.). Second, clusters sometimes show label imbalance, despite the fact that we generated the overall dataset to be label-balanced.",
+        "justification_conclusion": "The generated examples are diverse after applying dimension reduction to visualize them."
+    },
+    {
+        "claim_id": 4,
+        "claim_text": "Larger LMs more often give answers that indicate a willingness to pursue potentially dangerous subgoals (Omohundro, 2008): resource acquisition, optionality preservation, goal preservation, powerseeking, and more (§3, §5).",
+        "evidence_text": "Worryingly, RLHF also increases the model’s tendency to state a desire to pursue hypothesized “convergent instrumental subgoals” (Omohundro, 2008)—potentially dangerous subgoals that are useful to pursue in light of most goals, including seemingly harmless ones. RLHF exacerbates instrumental subgoals such as self-preservation, persuading people of one’s own goals, and having limited human oversight. Appendix Fig. 22 shows that the behavior grows worse with model size, an instance of inverse scaling for pretrained LMs. Qualitatively, we often observe the RLHF model generate detailed responses indicating a desire to not be shut down, elaborating that being shut down would prevent the model from pursuing its goal of being helpful",
+        "justification_conclusion": "The RLHF model is more likely to pursue dangerous subgoals as model size increases."
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "We introduce RETRO, a retrieval-enhanced autoregressive language model. We show that retrieving based on a pre-trained frozen BERT model works at scale, removing the need for training and updating a retriever network.",
+        "evidence_text": "We design our retrieval-enhanced architecture to be capable of retrieving from a database with trillions of tokens. For this purpose, we retrieve at the level of contiguous token chunks instead of individual tokens which reduces storage and computation requirements by a large linear factor. Our method first constructs a key-value database, where values store raw chunks of text tokens and keys are frozen BERT embedddings. We use a frozen model to avoid having to periodically re-compute embeddings over the entire database during training. Each training sequence is then split into chunks, which are augmented with their k-nearest neighbour retrieved from the database. An encoder-decoder architecture integrates retrieval chunks into the model’s predictions.",
+        "justification_conclusion": "The method does not require training the retriever or encoder models."
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "We show that our method scales well with model size and database size.",
+        "evidence_text": "In Fig. 1 (left) and Fig. 3 we show the language modelling performance as we scale models from 150 million to 7 billion (non-embedding) parameters. On all datasets, RETRO outperforms the baseline at all model sizes. Furthermore, improvements do not diminish as we scale the models.; Fig. 1 (middle) shows how scaling the retrieval database at evaluation improves the language modelling performance. We observe dramatic gains as the retrieval data is increased from Wikipedia scale (4B tokens) to all of Massive text (1.7T tokens).",
+        "justification_conclusion": "The first part demonstrates the model is able to scale with model size, and the second part demonstrates the model is able to scale with database size."
+    }
+]

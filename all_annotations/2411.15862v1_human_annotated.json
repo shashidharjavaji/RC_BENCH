@@ -1,0 +1,22 @@
+{
+    "annotations": [
+        {
+            "claim": "Moreover, we find LLMs’ implicit reasoning capabilities are susceptible and un- stable, reaffirming the necessity of explicit CoT to effectively support complex tasks.",
+            "evidences": [
+                "Implicit Explicit Prompt 3-step 5-step 3-step 5-step original 85.01 53.95 100.00 100.00 reverse 70.62 13.71 100.00 100.00 divide 69.86 37.28 100.00 100.00 Table 1: The accuracy (%) of Qwen2.5-72b-instruct under different problem presentations using implicit or explicit reasoning on 3-step and 5-step problems. From the results in Table 1, we can clearly see that, compare to the original problems, the mod- ified problems significantly degrade the perfor- mance when using implicit reasoning. While the performance of explicit reasoning is always perfect. This contrast further demonstrate our inference that, in implicit reasoning, the model is actually answer- ing directly by experience and intuition, but not by reasoning step-by-step. This cause the way of implicit reasoning less robust and less reliable."
+            ]
+        },
+        {
+            "claim": "our study designs a elaborate set of experiments aimed at un- covering the implicit reasoning processes within a large model, specifically targeting the process of handling multi-step arithmetic problems without resorting to outputting explicit intermediate steps.",
+            "evidences": [
+                "To present the reasoning steps clearly, we adopt simple multi-step arithmetic problems with only addition and subtraction. Usually, when given such problems, modern LLMs will automatically use a CoT manner to address them. To investigate the process of implicit reasoning, we use prompt to force the model to give the answer without using CoT. Therefore, an example of our prompt, which is a 5-step problem, is as follows: We randomly change the value in the problem to generate 2000 different samples, and each in- termediate results are record. For example, the intermediate results of the above example should be [8, 3, 5, 10, 9], i.e. the corresponding value of E, D, C, B and A. The result of the last step is the final answer. The model will direct output the answer after our prompt, thus we take the last token of the prompt as our main research object and record its hidden states of each layers. Then, we adopt a typical linear probing method, which uses an 1-layer MLP, to predict each of the intermediate results from the hidden states. We control all of the intermediate values is within -10 to 10 so that the probe is a 21-class classifier (each value corresponds to one class). class). We use 1600 samples to train the classifier for 10 epochs and 400 samples for testing its accuracy. And respectively for each hidden state of the 20 groups, we use it as the input feature to train an individual classifier. In training and testing, we set the result of each step as the label respectively to also train an individual classifier. Therefore, we finally get 20∗num_steps classifiers. If the classi-fier of the k-th hidden state shows high accuracy in the n-th step, it represents the model has calculated the result of the n-th step in the k-th hidden state."
+            ]
+        },
+        {
+            "claim": "Our study provides critical insights into the mechanics of implicit reasoning and emphasizes the ongoing necessity for explicit CoT methodologies in enhancing LLMs ability on complex tasks.",
+            "evidences": [
+                "In this study, we investigate the mechanism of LLMs doing implicit reasoning, and get a non- trivial finding that, unlike some previous studies which envisioned implicit reasoning as a substitute for explicit reasoning, implicit reasoning cannot be on par with explicit reasoning methods because it actually does not follow a step-by-step process but just intuitively thinks of the answer, which makes it less reliable. This finding remind us that there is no free lunch, that is, under current technologi- cal conditions, there may not be a perfect solution that can make LLMs output very few tokens while keeping the accuracy on solving complex problems. When you ask LLMs to give the answer directly, you should know that it has not actually undergone a real reasoning. Scaling the test-time by using ex- plicit CoT may still be the most feasible method to further propel the capabilities of LLMs at present."
+            ]
+        }
+    ]
+}

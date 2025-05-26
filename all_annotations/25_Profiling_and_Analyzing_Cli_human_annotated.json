@@ -1,0 +1,22 @@
+{
+    "annotations": [
+        {
+            "claim": "We propose new methods to extract and profile the climate change statements from the Sixth Assessment Reports of the Intergovernmental Panel on Climate Change (IPCC). ",
+            "evidences": [
+                "This work takes the first few steps towards extracting in- formation from IPCC reports. First, we design and imple- ment a tool to extract scientific statements from IPCC Work- ing Group (WG) reports. An example of the extracted state- ments, containing its text, uncertainty (i.e., confidence and likelihood) levels, source and key terms, is shown in Fig- ure 1. Second, we present a comprehensive profile of 10,393 statements across three IPCC WG reports. Profiling these",
+                "We propose a method to automatically extract scientific statements from IPCC reports and represent each statement s as a faceted tuple: s = {t, c, l, o, w}. Here t represents the statement text; c and l represent the confidence and likelihood level associated with statement s, respectively – either of which can be absent; o specifies the source of s in the IPCC reports, including the relevant working group, chapter, and section; w refers to a set of key terms from IPCC Glossary that appear in the statement text."
+            ]
+        },
+        {
+            "claim": "We also present a few case studies centered around the glossary term “wetland”, namely linking related statements across summary sections and chapter content, finding and profiling supporting references, and compar- ing them with large language models for statement summa- rization.",
+            "evidences": [
+                "Method We select one statement s1 from the set N ′ as a case study: “Otherwise, wetland ecosystems must mi- grate either inland or upstream, or face gradual submergence in deeper, increasingly saline water (very high confidence) (Section 3.4.2.4; Andres et al., 2019; Jones et al., 2019b; Cohen et al., 2020; Mafi-Gholami et al., 2020; Magolan and Halls, 2020; Sklar et al., 2021).” This statement contains both a reference to WGII Section 3.4.2.4 and six local ci- tations. From the section content, we aim to find the evi- dence sentences that contain the citation information that the statement may refer to. In particular, we select sentences that contain at least one local citation as candidate evidence sen- tences and compute similarities between the statement and each candidate evidence sentence using the same methodol- ogy as in Case Study 1. Section 3.4.2.4 contains 21 candidate evidence sentences and their resulting similarity scores range from 0.39 to 0.69. We select the three sentences with the highest scores (details in Table 6, Appendix 5) together with the six local citations for a total of 17 supporting references to s1.",
+                "Method We focus on the question “What are the main sci- entific statements on wetland restoration in IPCC reports?” The specific LLM used was still the GPT-4 model (OpenAI 2023) and the details of the prompt given to GPT-4 are de- tailed in Appendix 6. Inspired by the pioneering work of ChatClimate (Vaghefi et al. 2023), which builds a retrieval- augmented-generation (RAG)-based conversational LLM using IPCC reports, we explored two methodologies: (1) pure zero-shot learning with GPT, where we provided the prompt directly to the model for statement extraction; and (2) RAG-based GPT, which involved enhancing the GPT- 4 model’s performance by providing the top five retrieved IPCC paragraphs relevant to the query. These paragraphs were selected based on the cosine similarity between each paragraph in our Elasticsearch database and the query. Addi- tionally, we extracted statements from our database that con- tained the key terms “wetland” and “restoration” (as shown in Table 3) for comparison."
+            ]
+        },
+        {
+            "claim": "It lays the groundwork for more advanced automated analysis of climate-related statements and broader integrative scien- tific assessments.",
+            "evidences": []
+        }
+    ]
+}

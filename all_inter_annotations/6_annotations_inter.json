@@ -1,0 +1,50 @@
+    [
+        {
+            "claim_id": 1,
+            "claim_text": "We introduce kNN-LM, an approach that extends a pre-trained LM by linearly interpolating its next word distribution with a k-nearest neighbors (kNN) model. The nearest neighbors are computed according to distance in the pre-trained embedding space and can be drawn from any text collection, including the original LM training data. This approach allows rare patterns to be memorized explicitly, rather than implicitly in model parameters.",
+            "evidence_text": [
+                "The NN-LM involves augmenting such a pre-trained LM with a nearest neighbors retrieval mech- anism, without any additional training... the k-nearest neighbors N according to a distance function d(·,·)...interpolate the nearest neighbor distribution $p_{kNN}$ with the model distribution $p_{LM}$... to produce the final kNN-LM distribution"
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "Applying our kNN augmentation to a strong WIKITEXT-103 LM using only the original dataset achieves a new stateof-the-art perplexity of 15.79 – a 2.86 point improvement over the base model (Baevski & Auli, 2019) – with no additional training.",
+            "evidence_text": [
+                "Improvements from the continous cache are additive with the kNN-LM, pushing our state-of-the-art result to 15.79, a gain of 2.86 over the base model."
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "We also show that the approach has implications for efficiently scaling up to larger training sets and allows for effective domain adaptation, by simply varying the nearest neighbor datastore. Training a model on 100-million tokens and using kNN search over a 3-billion token dataset can outperform training the same model on all 3-billion tokens, opening a new path for efficiently using large datasets in language models.",
+            "evidence_text": [
+                "However, adding nearest neigh- bors retrieval over those 3B examples to the model trained on 100M tokens improves perplexity from 19.59 to 13.73; i.e. retrieving nearest neighbors from the corpus outperforms training on it."
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "kNN-LM is particularly helpful for predicting rare patterns, like factual knowledge and names.",
+            "evidence_text": [
+                "In general, we find that examples where kNN-LM is most helpful typically contain rare patterns. Examples include factual knowledge, names, and near-duplicate sentences from the training set."
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "Learned neural representations are crucial for kNN-LM's effectiveness, as simpler n-gram model interpolation shows little benefit.",
+            "evidence_text": [
+                "Figure 7 shows little improvement from using n-gram LMs—0.2 perplexity points... This result highlights the need to use the learned representation function $f(\\cdot)$ to measure similarity between more varied contexts."
+            ],
+            "justification_conclusion": "True"
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Explicit memorization via kNN-LM improves generalization better than implicit memorization achieved by overfitting an LM.",
+            "evidence_text": [
+                "Interpolating the memorizing LM with the original LM improves validation perplexity by just 0.1 - compared to 1.9 from kNN-LM. This result suggests that although the Transformer is expressive enough to memorize all training examples, learning to do so does not result in context representations that generalize. In contrast, kNN-LM memorizes training data while improving generalization."
+            ],
+            "justification_conclusion": "True"
+        }
+    ]

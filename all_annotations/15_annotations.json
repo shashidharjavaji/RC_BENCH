@@ -1,0 +1,32 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "We present a novel finding that LLMs can reason by simple decoding changes, without the use of prompting. In contrast to prior research that focuses on refining prompts to elicit reasoning from LLMs, our work, for the first time, shows that the reasoning process can be readily elicited by simple decoding changes.",
+        "evidence_text": "Contrastingly, an intriguing phenomenon emerges when exploring alternative top-k (k > 0) tokens at the first decoding step. Continuing with greedy decoding from this point reveals natural CoT reasoning in many cases. These findings suggest that large language models possess inherent reasoning capabilities for numerous tasks following pre-training, but these abilities are obscured by the predominant use of greedy decoding. These reasoning paths can be easily uncovered by incorporating alternative decoding paths.",
+        "justification_conclusion": "The CoT path can be found if we use alternative decoding paths."
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "Our study reveals that pre-trained language models inherently possess reasoning capabilities for many tasks including math and commonsense reasoning, and existing prompting approaches mostly serve the role of bringing those inherent reasoning paths forward as the top decoding paths.",
+        "evidence_text": "CoT-decoding effectively elicits reasoning across language models. In Figure 3, we show that across three language model families, PaLM-2, Mistral and Gemma, CoT-decoding effectively elicits model’s reasoning, yielding consistent accuracy gains over both math and commonsense reasoning tasks, sometimes doubling or even tripling the performance compared to greedy decoding.",
+        "justification_conclusion": "The authors show that models with different scales are able to reason with CoT-decoding."
+    },
+    {
+        "claim_id": 3,
+        "claim_text": "We further propose CoT-decoding that reliably selects CoT-paths based on answer confidence. We find that the language model’s confidence in its final answers increases when a CoT is present in its decoding path. Leveraging this increased confidence, we propose CoT-decoding to select more reliable decoding paths, demonstrating significant improvements over greedy decoding across various reasoning benchmarks.",
+        "evidence_text": "In this section, we further show how we can reliably extract those CoT-paths during the decoding process. Table 1 illustrates that CoT paths do not consistently outrank non-CoT ones in the model’s probability assessment. Moreover, they often do not represent the predominant answer among all paths, rendering methods like self-consistency (Wang et al., 2023a) inapplicable. For instance, in the GSM8K question, the prevalent answer “60”, which aligns with the greedy decoding result, fails to serve as a reliable indicator for identifying the correct path.  Interestingly, upon examining the model’s logits, we found that the presence of a CoT path typically leads to a more confident decoding of the final answer, characterized by a significant probability disparity between the top and secondary tokens:  Δ  k,answer = 1  |answer|  ∑︁  xt ∈answer  p(x1  t | x<t) − p(x2  t | x<t).  Here x1  t and x2  t represent the top two tokens at the t-th decoding step in the k-th decoding path, chosen for their maximum post-softmax probabilities from the vocabulary, given xt being part of the answer tokens. This uncertainty measure is similar to the minimum-margin approach in (Jiang and Gupta, 2019) and in our case, the model’s overall confidence in decoding the final answer is approximated by averaging these probability differences for all relevant answer tokens xt. For example, for the GSM8K question in Table 1, given the answer “60”, we average the probability differences for all tokens in that answer, i.e., “6” and “0”.2  This method, referred to as CoT-decoding, extracts such CoT paths among the decoded paths from the model. As illustrated in Table 1, each decoding path is marked with its corresponding Δ value in blue (the answer tokens are bolded). It is evident that paths with a CoT component exhibit a significantly higher Δ, highlighting the model’s increased confidence, as opposed to paths without CoT. We also did a quantitative analysis by manually examining the first 100 questions in GSM8K, and among those, if we take the decoding path with the highest answer confidence among the top-10 decoding paths, 88% of them contain CoT paths. This show",
+        "justification_conclusion": "Authors purpose method to extract CoT paths based on answer confidence."
+    },
+    {
+        "claim_id": 4,
+        "claim_text": "LLMs indeed cannot reason if we only consider the greedy decoding path.",
+        "evidence_text": "First, we observe that models employing greedy decoding often does not contain a CoT path, opting to solve problems directly. This tendency may stem from the model’s skewed perception of problem difficulty, shaped by its pre-training on predominantly simpler questions.",
+        "justification_conclusion": "The greedy decoding path will not be the one that contains the CoT."
+    },
+    {
+        "claim_id": 5,
+        "claim_text": "CoT-decoding partially closes the reasoning gap between pre-trained and instruction-tuned models, without using any supervised data.",
+        "evidence_text": "Intriguingly, we observe that CoT-decoding enables a pre-trained model to achieve a similar performance of an instruction-tuned model: in Figure 4 (left), CoT-decoding achieves 63.2% accuracy on the pre-trained PaLM-2 Large model, close to the performance of the instruction-tuned model of the same scale at 67.8%. The results demonstrate that instruction-tuning with sufficient CoT data (Chung et al., 2022) can be partially achieved by modifying the decoding procedure within pre-trained models.",
+        "justification_conclusion": "CoT path enables the pre-trained model to achieve similar performance to the instruction-tuned model."
+    }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "we demonstrate that with the proper training setup, simply fine-tuning the question and passage encoders on existing question-passage pairs is sufficient to greatly outperform BM25.",
+        "evidence_text": "Table 2 compares different passage retrieval systems on five QA datasets, using the top-k accuracy (k ∈ {20, 100}). With the exception of SQuAD, DPR performs consistently better than BM25 on all datasets. The gap is especially large when k is small (e.g., 78.4% vs. 59.1% for top-20 accuracy on Natural Questions).",
+        "justification_conclusion": "The method outperforms BM25 on almost all datasets by a large margin."
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "Our empirical results also suggest that additional pretraining may not be needed.",
+        "evidence_text": "We explore how many training examples are needed to achieve good passage retrieval performance. Figure 1 illustrates the top-k retrieval accuracy with respect to different numbers of training examples, measured on the development set of Natural Questions. As is shown, a dense passage retriever trained using only 1,000 examples already outperforms BM25. This suggests that with a general pretrained language model, it is possible to train a high-quality dense retriever with a small number of question–passage pairs. Adding more training examples (from 1k to 59k) further improves the retrieval accuracy consistently.",
+        "justification_conclusion": "The results indicate that a relative small amount of data is able to fine-tune the pretrained model to outperform BM25, so the pretraining may not be necessary."
+    },
+    {
+        "claim_id": 3,
+        "claim_text": "In the context of open-domain question answering, a higher retrieval precision indeed translates to a higher end-to-end QA accuracy.",
+        "evidence_text": "Table 4 summarizes our final end-to-end QA results, measured by exact match with the reference answer after minor normalization as in (Chen et al., 2017; Lee et al., 2019). From the table, we can see that higher retriever accuracy typically leads to better final QA results: in all cases except SQuAD, answers extracted from the passages retrieved by DPR are more likely to be correct, compared to those from BM25.",
+        "justification_conclusion": "The better retrieval precision leads to better end-to-end QA accuracy."
+    }
+]

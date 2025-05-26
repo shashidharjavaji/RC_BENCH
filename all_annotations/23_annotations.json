@@ -1,0 +1,20 @@
+[
+    {
+        "claim_id": 1,
+        "claim_text": "We perform extensive experiments across diverse benchmarks to showcase the advantage of ReAct in a few-shot learning setup over prior approaches that perform either reasoning or action generation in isolation.",
+        "evidence_text": "ReAct outperforms Act consistently Table 1 shows HotpotQA and Fever results using PaLM540B as the base model with different prompting methods. We note that ReAct is better than Act on both tasks, demonstrating the value of reasoning to guide acting, especially for synthesizing the final answer, as shown in Figure 1 (1c-d). Fine-tuning results 3 also confirm the benefit of reasoning traces for more informed acting.",
+        "justification_conclusion": "ReAct outperforms other methods consistently."
+    },
+    {
+        "claim_id": 2,
+        "claim_text": "we present systematic ablations and analysis to understand the importance of acting in reasoning tasks, and reasoning in interactive tasks",
+        "evidence_text": "ReAct + CoT-SC perform best for prompting LLMs Also shown in Table 1, the best prompting method on HotpotQA and Fever are ReAct → CoT-SC and CoT-SC → ReAct respectively. Furthermore, Figure 2 shows how different methods perform with respect to the number of CoT-SC samples used. While two ReAct + CoT-SC methods are advantageous at one task each, they both significantly and consistently outperform CoT-SC across different number of samples, reaching CoT-SC performance with 21 samples using merely 3-5 samples. These results indicate the value of properly combining model internal knowledge and external knowledge for reasoning tasks.",
+        "justification_conclusion": "The authors conducted the ablation study to show the ReAct + CoT-SC is the best configurations."
+    },
+    {
+        "claim_id": 3,
+        "claim_text": "we analyze the limitations of ReAct under the prompting setup (i.e. limited support of reasoning and acting behaviors), and perform initial finetuning experiments showing the potential of ReAct to improve with additional training data.",
+        "evidence_text": "ReAct performs best for fine-tuning Figure 3 shows the scaling effect of prompting/finetuning four methods (Standard, CoT, Act, ReAct) on HotpotQA. With PaLM-8/62B, prompting ReAct performs worst among four methods due to the difficulty to learn both reasoning and acting from in-context examples. However, when finetuned with just 3,000 examples, ReAct becomes the best method among the four, with PaLM-8B finetuned ReAct outperforming all PaLM-62B prompting methods, and PaLM-62B finetuned ReAct outperforming all 540B prompting methods.",
+        "justification_conclusion": "Fine-tuning the ReAct improves the performance and shed light on the potential scaling effect."
+    }
+]

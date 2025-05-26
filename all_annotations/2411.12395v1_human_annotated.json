@@ -1,0 +1,32 @@
+{
+    "annotations": [
+        {
+            "claim": "We demonstrate how simple, training free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks.",
+            "evidences": [
+                "TABLE I PERFORMANCE OF GPT-4O ON AMBIGUOUS AND DISAMBIGUATED QUESTIONS. Disamb. Disamb. Upper-bound (via GT Metric Naive via ‘what’ via context disamb. questions) Question - 0.905 0.743 0.317 coherence Naive Answer - 0.826 0.799 0.895 Overlap GT Answer 0.759 0.778 0.789 0.858 Overlap ↑",
+                "TABLE II PERFORMANCE OF GPT-4O-MINI ON AMBIGUOUS AND DISAMBIGUATED QUESTIONS. Disamb. Disamb. Upper-bound (via GT Metric Naive via ‘what’ via context disamb. questions) Question - 0.907 0.739 0.317 coherence Naive Answer - 0.771 0.739 0.745 Overlap GT Answer 0.692 0.707 0.71 0.783 Overlap ↑",
+                "Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free ap- proaches may be useful in improving LLM performance for ambiguous queries. Out of the two simple disambiguating methods explored, we see that disambiguation via adding context performs better for both LLMs."
+            ]
+        },
+        {
+            "claim": "We employed three distinct prompting strategies to generate answers from the selected LLMs: (1) a naive (or baseline) direct question-answering prompt, (2) a rephrasing strategy that attempts to add linguistic perturbation to the ambiguous question, and (3) a contextual enrichment approach that uses the model’s internal knowledge to disambiguate the given question.",
+            "evidences": [
+                "Naive: For each question, we prompt the out-of-the-box LLM to answer it as concisely as possible to get a baseline for our experiment. Answer the question as concisely as possible with ONLY one answer without any other text: Question: {xp}",
+                "Rewrite this question replacing all questions with a what, but retain the meaning by specifying what entity or what person or what timeframe the “what” is answering. Also, specify the current year is 2018 if needed to answer a time- based question. Question: {xp}",
+                "Add extra information to the following question. Also specify the current month and year is January 2018, so answer questions accordingly. Your aim is to disambiguate what it is asking. Question: {xp}"
+            ]
+        },
+        {
+            "claim": "We draw comparative insights into the models’ base- line performance and examine the effect of disambiguation techniques into mitigating the inherent challenges posed by ambiguous human language.",
+            "evidences": [
+                "Problem with naive contextual enrichment: The Figures 2 and 3 show why the average is not going up when an LLM is prompted to insert context into a question. Although adding context should skew the plot 2 to the right (ie: be more similar to the ground truth), but instead its skewed to the left since its being held back every time it adds the wrong context which is not a problem when we have simply rephrased the question. Then, we take a subset of AmbigQA where the human-provided answer of a human-provided disambiguated question exactly matches the ground truth answer. Here, we see that plot 3 of contextual enrichment does skew to the right. This shows that LLMs are able to better understand certain social cues to correctly disambiguate the provided question in cases where the human annotator was able to disambiguate them as well."
+            ]
+        },
+        {
+            "claim": "We further perform a small-scale fine-tuning to evaluate whether task-specific disambiguation fine-tuning helps to improve performance.",
+            "evidences": [
+                "To evaluate the performance of this fine-tuned model, we sample 1,000 ambiguous questions from the dataset at random and compare the performance between naive prompting on the 4o-mini model and naive prompting on the fine-tuned 4o-mini model. The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions. This reinforces our insight that simple training-free prompting methods for disambiguation work well in improving performance."
+            ]
+        }
+    ]
+}

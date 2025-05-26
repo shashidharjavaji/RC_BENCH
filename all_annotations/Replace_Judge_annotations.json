@@ -1,0 +1,32 @@
+{
+    "source_pdf": "/Users/student-lab-1/Downloads/Replace_Judge.pdf",
+    "annotations": [
+        {
+            "claim": "we find that using a PoLL composed of a larger number of smaller models outperforms a single large judge exhibits less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive.",
+            "evidences": [
+                " We see that overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup ( Judge NQ TQA HPQA EM 0.651 0.827 0.662 GPT-4 0.627 0.841 0.830 CMD-R 0.734 0.902 0.815 Haiku 0.749 0.894 0.873 GPT-3.5 0.726 0.859 0.833 PoLL 0.763 0.906 0.867",
+                "At the time of writing, the cost of running our spe- cific instance of PoLL is $1.25/input11 + $4.25/out- put, whereas the cost of running GPT-4 Turbo is $10/input + $30/output. Depending on the ratio of input-to-output tokens in a given task, running the entire three model PoLL is seven to eight times less expensive than running a single GPT-4 judge. We did not run explicit latency evaluations and many factors such as model choice, serving plat- form, and more can impact speed. In general though, running a collection of smaller models in parallel (as in PoLL) is faster than a single big model. 5 C l i d Li it ti"
+            ]
+        },
+        {
+            "claim": "We show that using an instantiation of PoLL correlates better with human judgements com- pared to a single large judge (GPT-4), while being over seven times cheaper (Sections 4.1 and 4.2).",
+            "evidences": [
+                "Judge/Correlation Pearson Kendall Tau GPT-4 0.817 0.667 Haiku 0.883 0.722 GPT-3.5 0.883 0.730 CMD-R 0.817 0.676 PoLL 0.917 0.778 Table 2: Pearson and Kendall-Tau correlations between different judge models as compared to the rankings produced by the Chatbot Arena overall leaderboard."
+            ]
+        },
+        {
+            "claim": "We consider two different voting functions for aggregating scores across the judges.",
+            "evidences": [
+                "For QA datasets, we use max voting, as all judgements are binary [correct, incorrect]. For Chatbot Arena we instead use average pooling because judgements are scores ranging from 1-5 and a three judge panel often does not produce a clear majority decision4."
+            ]
+        },
+
+        {
+            "claim": "We find that PoLL is best correlated with the gold rankings, par- ticularly at the top of the ranked list as shown in Figure 2.",
+            "evidences": [
+                "We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges. GPT-3.5 has the highest spread, with a standard deviation of 6.1. We also see in Figure 4 that the highest positive delta for each individual model being scored occurs when it is judged by itself.",
+                "The ’gold’ ranking appears on the diagonal and represents the rankings from the original Chatbot Arena ELO. We find that PoLL rankings corre- late better with the ground truth, particularly at the top of the ranked list. We can clearly observe intra-model bias as the GPT-4 judge ranks another GPT-4 variant in position 2, higher than its actual position 4, which is in line with previous works that have also observed GPT-4’s preference for its own generations (Zheng et al., 2024; Panickssery et al., 2024)"
+            ]
+        }
+    ]
+}
