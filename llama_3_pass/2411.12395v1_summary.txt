@@ -1,0 +1,98 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Simple, training-free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks.
+Location: Abstract
+Type: Methodological Contribution
+Quote: Using open-domain question answering as a test case, we compare off-the-shelf and few-shot LLM performance, focusing on measuring the impact of explicit disambiguation strategies. We demonstrate how simple, training-free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks.
+
+Evidence:
+- We see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries.
+  Strength: strong
+  Location: Section V. RESULTS AND DISCUSSION
+  Limitations: Limited to GPT 4o and 4o-mini models
+  Quote: Ideally, we want higher values for this metric. Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Specific to GPT 4o and 4o-mini models, and the AmbigQA dataset
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.
+Location: Section VI. CONCLUSION AND FUTURE WORKS
+Type: Limitation
+Quote: Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting.
+
+Evidence:
+- Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting.
+  Strength: strong
+  Location: Section VI. CONCLUSION AND FUTURE WORKS
+  Limitations: Contextual enrichment's effectiveness is context-dependent
+  Quote: Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting.
+
+- Although adding context should skew the plot 2 to the right (i.e., be more similar to the ground truth), but instead its skewed to the left since its being held back every time it adds the wrong context which is not a problem when we have simply rephrased the question.
+  Strength: moderate
+  Location: Section V. RESULTS AND DISCUSSION
+  Limitations: Limited to the specific experimental setup
+  Quote: Although adding context should skew the plot 2 to the right (i.e., be more similar to the ground truth), but instead its skewed to the left since its being held back every time it adds the wrong context which is not a problem when we have simply rephrased the question.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Contextual enrichment's effectiveness is highly dependent on the context added, and may not always improve performance
+Confidence: medium
+
+==================================================
+
+Claim 3:
+Statement: Fine-tuning, at least at a small scale, does not provide any improvement in LLM performance on ambiguous questions.
+Location: Section V. RESULTS AND DISCUSSION, RQ2
+Type: Methodological Finding
+Quote: Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions. This reinforces our insight that simple training-free prompting methods for disambiguation work well in improving performance.
+
+Evidence:
+- To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626.
+  Strength: moderate
+  Location: Section V. RESULTS AND DISCUSSION, RQ2
+  Limitations: Limited to small-scale fine-tuning and GPT 4o-mini model
+  Quote: Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.
+
+Conclusion:
+Justified: True
+Robustness: low
+Limitations: Limited to small-scale fine-tuning, and may not generalize to larger fine-tuning scales or other models
+Confidence: low
+
+==================================================
+
+Claim 4:
+Statement: Simply using a lower value of temperature may not provide any benefits in LLM performance for answering ambiguous questions.
+Location: Section V. RESULTS AND DISCUSSION, RQ3
+Type: Methodological Finding
+Quote: Although lower temperature (0.2 instead of 1.0, in this case) seem to have minor improvements in some cases, the difference is not that significant. This implies simply using a lower value of temperature may not provide any benefits in LLM performance for answering ambiguous questions.
+
+Evidence:
+- We show the results for this in Figure 4: we see that although lower temperature (0.2 instead of 1.0, in this case) seem to have minor improvements in some cases, the difference is not that significant.
+  Strength: weak
+  Location: Section V. RESULTS AND DISCUSSION, RQ3
+  Limitations: Limited to the specific experimental setup and temperature values
+  Quote: This implies simply using a lower value of temperature may not provide any benefits in LLM performance for answering ambiguous questions.
+
+Conclusion:
+Justified: True
+Robustness: low
+Limitations: Specific to the temperature values tested (0.2 and 1.0), and may not generalize to other temperature values or models
+Confidence: low
+
+==================================================
+
+
+Execution Times:
+claims_analysis_time: 54.04 seconds
+evidence_analysis_time: 92.31 seconds
+conclusions_analysis_time: 31.24 seconds
+total_execution_time: 179.30 seconds

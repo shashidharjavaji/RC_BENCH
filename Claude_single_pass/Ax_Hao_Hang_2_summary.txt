@@ -1,0 +1,78 @@
+Claim 1:
+Type: result
+Statement: Most existing attribution methods violate either sensitivity or implementation invariance axioms
+Location: Section 2
+Exact Quote: We find that other feature attribution methods in literature break at least one of the two axioms
+
+Evidence:
+- Evidence Text: Gradient method breaks sensitivity axiom shown through ReLU network example
+  Strength: strong
+  Location: Section 2.1
+  Limitations: Only one example network shown
+  Exact Quote: For a concrete example, consider a one variable, one ReLU network, f(x) = 1 - ReLU(1-x). Suppose the baseline is x = 0 and the input is x = 2. The function changes from 0 to 1, but because f becomes flat at x = 1, the gradient method gives attribution of 0 to x.
+
+- Evidence Text: DeepLift and LRP break implementation invariance shown through counterexample
+  Strength: strong
+  Location: Appendix B
+  Limitations: Limited to specific architecture example
+  Exact Quote: Figure 7 provides an example of two equivalent networks f(x1,x2) and g(x1,x2) for which DeepLift and LRP yield different attributions.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: high
+Justification: Clear mathematical counterexamples provided for each method, though limited to specific architectures
+Key Limitations: Counterexamples focus on simple networks, may not generalize to all architectures
+
+--------------------------------------------------
+
+Claim 2:
+Type: contribution
+Statement: Integrated gradients is the only path method that preserves symmetry
+Location: Section 4.2
+Exact Quote: Integrated gradients is the unique path method that is symmetry-preserving.
+
+Evidence:
+- Evidence Text: Mathematical proof showing any non-straightline path violates symmetry
+  Strength: strong
+  Location: Appendix A
+  Limitations: None significant - proof is mathematically complete
+  Exact Quote: Consider a non-straightline path γ : [0,1] → Rn from baseline to input. W.l.o.g., there exists t0 ∈ [0,1] such that for two dimensions i,j, γi(t0) > γj(t0)...
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Rigorous mathematical proof provided
+Key Limitations: None significant
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: The integrated gradients method requires minimal computation and is easy to implement
+Location: Section 5
+Exact Quote: The integral of integrated gradients can be efficiently approximated via a summation. We simply sum the gradients at points occurring at sufficiently small intervals along the straightline path
+
+Evidence:
+- Evidence Text: Method requires only gradient computations in a loop
+  Strength: moderate
+  Location: Section 5
+  Limitations: No direct performance comparisons with other methods
+  Exact Quote: In practice, we find that somewhere between 20 and 300 steps are enough to approximate the integral (within 5%)
+
+- Evidence Text: Implementation in major frameworks is straightforward
+  Strength: moderate
+  Location: Section 5
+  Limitations: Limited to specific framework example
+  Exact Quote: For instance, in TensorFlow, it amounts to calling tf.gradients in a loop over the set of inputs
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Implementation details provided but lacks comparative analysis
+Key Limitations: No benchmarks comparing computational cost to other methods
+
+--------------------------------------------------
+

@@ -1,0 +1,264 @@
+Claim 1:
+Type: result
+Statement: Language models (LMs) can make correct predictions based on various signals in the prompt, not all corresponding to exact fact recall.
+Location: Introduction
+Exact Quote: While there are many research results documenting the fact proficiency of LMs (Kandpal\net al., 2023; Mallen et al., 2023), our understanding of how these models perform fact completion is still under rapid development. A growing area of research with focus on examining and explaining model behavior is mechanistic interpretability (Elhage et al., 2021; Geiger et al., 2021), which has already yielded insights related to where LMs store and process factual information (Meng et al., 2022; Geva et al., 2023; Haviv et al., 2023).
+
+Evidence:
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by the fact that LMs have been shown to make correct predictions based on spurious correlations and other shallow heuristics.
+Key Limitations: None identified
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology
+Statement: The CounterFact dataset mixes different prediction scenarios for fact completion.
+Location: Background
+Exact Quote: For their study, Meng et al. (2022) also developed the CounterFact dataset. Their conclusion is based on the 1,209 known samples from CounterFact for which GPT-2 XL is accurate. By now, it has been frequently used for the interpretation of LMs performing fact completion (Geva et al., 2023).
+
+Evidence:
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The claim is supported by the fact that the CounterFact dataset contains examples of all four prediction scenarios identified in this paper.
+Key Limitations: The evaluation is based on a limited number of examples.
+
+--------------------------------------------------
+
+Claim 3:
+Type: contribution
+Statement: PRISM datasets can be used to create model-specific diagnostic datasets to support precise studies of LM behavior.
+Location: Background
+Exact Quote: We show how a dataset previously used for LM interpretations mixes these scenarios and propose an alternative method, PRISM, for creating model-specific diagnostic datasets to support precise studies of LM behavior.
+
+Evidence:
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by the fact that PRISM datasets have been shown to be effective in identifying different prediction scenarios for fact completion.
+Key Limitations: None identified
+
+--------------------------------------------------
+
+Claim 4:
+Type: methodology
+Statement: Causal tracing (CT) can be used to interpret the prediction process of LMs for fact completion.
+Location: Background
+Exact Quote: The method of causal tracing (CT) is a mechanistic interpretability method that has been highly influential and provided many interpretations of LMs (Stolfo et al., 2023; Monea et al., 2023). It was introduced by Meng et al. (2022) and relies on the study of indirect causal effects.
+
+Evidence:
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by the fact that CT has been shown to be effective in identifying the important parts of the network for assigning a high probability to the predicted token with respect to the subject.
+Key Limitations: None identified
+
+--------------------------------------------------
+
+Claim 5:
+Type: contribution
+Statement: The authors propose four different prediction scenarios for which LMs can be expected to show distinct behaviors.
+Location: Introduction
+Exact Quote: We propose a method for creating a diagnostic dataset with distinct test cases to enable more precise interpretations of LMs in fact completion situations. Our experiments with the mechanistic interpretability method of causal tracing (CT) (Meng et al., 2022) show that models exhibit a more complex behavior that is not captured by previous test datasets. In this work, we disentangle and detail different prediction scenarios for which LMs can be expected to show distinct behaviors. We identify four such scenarios (see Figure 1): 1) Generic language modeling, when the model does not respond with facts, such as when generating a story. 2) Guesswork, when the model responds with a fact but is uncertain. 3) Heuristics recall, when the model uses shallow heuristics, e.g. that people with Korean-sounding names are more likely to live in Korea. And finally: 4) Exact fact recall, when the model has indeed memorized the correct answer and recalls it for the prediction.
+
+Evidence:
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by the fact that the authors provide a detailed description of each scenario and how it can be distinguished from the others.
+Key Limitations: None identified
+
+--------------------------------------------------
+
+Claim 6:
+Type: result
+Statement: Interpretations of LMs for each of the different prediction scenarios yield fundamentally different results.
+Location: Introduction
+Exact Quote: Using our diagnostic datasets and the method of causal tracing (CT), we show how LM interpretations for each of the different prediction scenarios yield fundamentally different results, while interpretations of aggregations over different scenarios are dominated by the results from the exact fact recall scenario. This highlights the necessity of disentangled and precise interpretations of LMs for fact completion.
+
+Evidence:
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by the fact that the authors provide experimental results showing that CT interpretations vary significantly across the four prediction scenarios.
+Key Limitations: None identified
+
+--------------------------------------------------
+
+Claim 7:
+Type: methodology
+Statement: The heuristics recall scenario occurs when predictions are based on learned overgeneralized heuristics triggered by surface level cues.
+Location: 3/paragraph 1
+Exact Quote: Heuristics recall occurs for predictions based on learned overgeneralized heuristics triggered by surface level cues.
+
+Evidence:
+- Evidence Text: The study uses synthetic fact tuples from a fantasy name generator to populate ParaRel templates and identify samples representative of heuristics recall.
+  Strength: strong
+  Location: 3/paragraph 1
+  Limitations: The synthetic fact tuples may not fully capture the range of heuristics that the model could use.
+  Exact Quote: We collect samples representative of heuristics recall by populating ParaRel templates with synthetic fact tuples from a fantasy name generator (more details can be found in Appendix D.3).
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence supports the claim that the heuristics recall scenario occurs when predictions are based on learned overgeneralized heuristics triggered by surface level cues.
+Key Limitations: The study relies on synthetic fact tuples, which may not fully capture the range of heuristics that the model could use.
+
+--------------------------------------------------
+
+Claim 8:
+Type: methodology
+Statement: The exact fact recall scenario occurs when the LM can be expected to have memorized the full fact tuple expressed by the query and fetches this from memory for the prediction.
+Location: 3/paragraph 2
+Exact Quote: The exact fact recall scenario corresponds to situations for which the LM can be expected to have memorized the full fact tuple expressed by the query and fetches this from memory for the prediction.
+
+Evidence:
+- Evidence Text: The study uses the LAMA fact tuples and filters predictions that are confident, not labeled as corresponding to any bias, corresponding to a fact memorized by the LM, and correct.
+  Strength: strong
+  Location: 3/paragraph 2
+  Limitations: The LAMA fact tuples may not be representative of all fact tuples that the model could memorize.
+  Exact Quote: To obtain samples representative of exact fact recall, we again use the LAMA fact tuples. We filter predictions that are 1) confident, 2) not labeled as corresponding to any bias, 3) corresponding to a fact memorized by the LM, and 4) correct.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence supports the claim that the exact fact recall scenario occurs when the LM can be expected to have memorized the full fact tuple expressed by the query and fetches this from memory for the prediction.
+Key Limitations: The study relies on the LAMA fact tuples, which may not be representative of all fact tuples that the model could memorize.
+
+--------------------------------------------------
+
+Claim 9:
+Type: methodology
+Statement: Popularity score proxied by Wikipedia page views for year 2019 is used to measure popularity score.
+Location: section D
+Exact Quote: We measure popularity score proxied by Wikipedia page views for year 2019[12] following (Mallen et al., 2023).
+
+Evidence:
+- Evidence Text: We measure popularity score proxied by Wikipedia page views for year 2019[12] following (Mallen et al., 2023).
+  Strength: strong
+  Location: section D
+  Limitations: None provided
+  Exact Quote: We measure popularity score proxied by Wikipedia page views for year 2019[12] following (Mallen et al., 2023).
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is directly supported by a specific citation, making the conclusion highly justified and robust.
+Key Limitations: None identified
+
+--------------------------------------------------
+
+Claim 10:
+Type: methodology
+Statement: Our detection of heuristics is based on 3 filters: lexical overlap, name bias, and prompt bias.
+Location: section D.5
+Exact Quote: Our detection of heuristics is based on 3 filters.
+
+Evidence:
+- Evidence Text: Our detection of heuristics is based on 3 filters.
+  Strength: strong
+  Location: section D.5
+  Limitations: None provided
+  Exact Quote: Our detection of heuristics is based on 3 filters.
+
+- Evidence Text: Dependence on this heuristic is considered plausible if there is a string match between the prediction and the subject.
+  Strength: strong
+  Location: section D.5
+  Limitations: None provided
+  Exact Quote: Dependence on this heuristic is considered plausible if there is a string match between the prediction and the subject.
+
+- Evidence Text: We based this on model predictions for prompts expressing only a part of the requested fact.
+  Strength: strong
+  Location: section D.5
+  Limitations: None provided
+  Exact Quote: We based this on model predictions for prompts expressing only a part of the requested fact.
+
+- Evidence Text: We use the original prompt templates as defined by ParaRel and replace the subject placeholder with generic substitutions.
+  Strength: strong
+  Location: section D.5
+  Limitations: None provided
+  Exact Quote: We use the original prompt templates as defined by ParaRel and replace the subject placeholder with generic substitutions.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is directly supported by a detailed description of the three filters used for heuristic detection, making the conclusion highly justified and robust.
+Key Limitations: None identified
+
+--------------------------------------------------
+
+Claim 11:
+Type: methodology
+Statement: PRISM dataset is free from the limitations of CounterFact dataset.
+Location: section F
+Exact Quote: Our proposed PRISM dataset does not suffer from the aforementioned limitations.
+
+Evidence:
+- Evidence Text: Our proposed PRISM dataset does not suffer from the aforementioned limitations.
+  Strength: strong
+  Location: section F
+  Limitations: None provided
+  Exact Quote: Our proposed PRISM dataset does not suffer from the aforementioned limitations.
+
+- Evidence Text: The dataset struggles to support precise and accurate interpretations of LMs.
+  Strength: strong
+  Location: section F
+  Limitations: None provided
+  Exact Quote: The dataset struggles to support precise and accurate interpretations of LMs.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is directly supported by a comparison to the CounterFact dataset, highlighting its limitations and stating that PRISM does not suffer from them, making the conclusion highly justified and robust.
+Key Limitations: None identified
+
+--------------------------------------------------
+
+Claim 12:
+Type: methodology
+Statement: Total effect is measured to check for signs of lack of exact fact recall.
+Location: section F.2
+Exact Quote: Apart from the analysis described above, we also scrutinize the known CounterFact samples with respect to the total effect of perturbing the subject.
+
+Evidence:
+- Evidence Text: We measure the total effect on the probability of the output prediction.
+  Strength: strong
+  Location: section F.2
+  Limitations: None provided
+  Exact Quote: We measure the total effect on the probability of the output prediction.
+
+- Evidence Text: This provides an alternative way of checking for signs of lack of exact fact recall.
+  Strength: strong
+  Location: section F.2
+  Limitations: None provided
+  Exact Quote: This provides an alternative way of checking for signs of lack of exact fact recall.
+
+- Evidence Text: The method was introduced by Meng et al. (2022) and used to find model states important for the model prediction.
+  Strength: strong
+  Location: section F.2
+  Limitations: None provided
+  Exact Quote: The method was introduced by Meng et al. (2022) and used to find model states important for the model prediction.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is directly supported by a description of the total effect measurement and its purpose, making the conclusion highly justified and robust.
+Key Limitations: None identified
+
+--------------------------------------------------
+

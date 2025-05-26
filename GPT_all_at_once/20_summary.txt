@@ -1,0 +1,56 @@
+Claim 1:
+Type: result
+Statement: Code generation models adjust outputs towards anchors, resulting in decreased functional accuracy
+Location: Experimental Results Section
+Exact Quote: prepending print-var anchor functions consistently lowers Codex and CodeGens’ functional accuracies across different number of prompted canonical solution lines
+
+Evidence:
+- Evidence Text: Prepending print-var anchor functions lowers functional accuracy across different prompted canonical solution lines
+  Strength: strong
+  Location: Experimental Results Section
+  Limitations: limited to specific model (Codex) and prompt configurations
+  Exact Quote: prepending print-var anchor functions consistently lowers Codex and CodeGens’ functional accuracies across different number of prompted canonical solution lines 
+
+- Evidence Text: Anchor functions influence generated solutions, with elements of anchor function often appearing in model outputs
+  Strength: moderate
+  Location: Experimental Results Section
+  Limitations: limited evidence on how these elements affect overall solution correctness
+  Exact Quote: we additionally find that elements of anchor function often appear in both models’ outputs 
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The claim is supported by systematic experimental results showing that the inclusion of anchor functions in prompts consistently influences model outputs and functional accuracy.
+Key Limitations: Experiments are model and prompt-specific, may not generalize across all types of code generation tasks.
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Adding conflicting function names to prompts leads to a significant drop in Codex's functional accuracy.
+Location: Attribute Substitution Section
+Exact Quote: When we request a conflicting function name, Codex’s accuracy drops from 100% to only 4.4%-4.6%
+
+Evidence:
+- Evidence Text: Requesting a conflicting function name in prompts reduces Codex's accuracy to 4.4%-4.6% from 100%
+  Strength: strong
+  Location: Attribute Substitution Section
+  Limitations: Experiment conducted with Codex on specifically designed MathEquation prompts
+  Exact Quote: When we request a conflicting function name, Codex’s accuracy drops from 100% to only 4.4%-4.6%
+
+- Evidence Text: Codex frequently generates solutions based on the specified function name in the presence of a conflict
+  Strength: strong
+  Location: Attribute Substitution Section
+  Limitations: Does not address the adaptability of the model to counteract this behavior with additional training or data
+  Exact Quote: Codex responds with the function specified in the function name for between 52% and 80% of prompts
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Empirical data from experiments clearly supports the claim, with a sharp accuracy decrease indicating a significant impact of the intervention on model performance.
+Key Limitations: Specificity to prompts designed to elicit this response; it's not clear if or how this might impact more general code generation tasks.
+
+--------------------------------------------------
+

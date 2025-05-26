@@ -1,0 +1,156 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+This is a research paper titled "Language Models (Mostly) Know What They Know" by Saurav Kadavath et al. Here's a breakdown of the paper's content:
+
+**Abstract**
+
+The paper explores whether language models can evaluate the validity of their own claims and predict which questions they will answer correctly. The authors show that larger models are well-calibrated on diverse multiple-choice and true/false questions when provided in the right format. They then investigate self-evaluation, where models propose answers and evaluate their probability of being correct (P(True)). The authors also train models to predict whether they can answer questions correctly (P(IK)).
+
+**Contributions**
+
+1. **Calibration**: Large models are well-calibrated on multiple-choice and true/false questions when provided in the right format.
+2. **Self-Evaluation**: Models can self-evaluate their own samples, with performance improving with model size and when showing multiple samples.
+3. **P(IK) Training**: Models can be trained to predict whether they can answer questions correctly, with generalization across tasks, but struggling with calibration out-of-distribution.
+
+**Related Work**
+
+* Calibration for general ML predictions and language models
+* Selective prediction and truthfulness in language models
+
+**Models and Evaluation Tasks**
+
+* The authors study a series of language models with 800M, 3B, 12B, and 52B parameters.
+* Evaluations include BIG Bench, MMLU, TruthfulQA, LogiQA, QuALITY, TriviaQA, Lambada, Codex HumanEval, GSM8k, arithmetic problems, and Python function synthesis problems.
+
+**Section 2: Larger Models are Calibrated on Diverse Multiple Choice Questions**
+
+* The authors show that language models produce well-calibrated probabilities when choosing from explicit options.
+* Calibration improves with model size and few-shot evaluation.
+* The authors use a format with visible lettered answer options, which is crucial for achieving good calibration.
+
+**Section 3: From Calibration to Knowing What You Know**
+
+* The authors modify multiple-choice evaluations by replacing the final option with "none of the above," which degrades performance and calibration.
+* Models are well-calibrated on true/false tasks, but struggle with calibration when evaluating their own samples.
+
+**Section 4: Ask the AI: Is your proposed answer True or False?**
+
+* The authors apply the true/false approach to model-generated samples, with self-evaluation performance improving with model size.
+* Showing multiple samples improves self-evaluation, especially on short-answer tasks.
+
+**Section 5: Training Models to Predict Whether They Can Answer Questions Correctly**
+
+* The authors train models to predict P(IK) using a value head approach.
+* P(IK) generalizes across tasks, but with poor calibration out-of-distribution.
+* The authors study the effect of including source materials and hints on P(IK) scores.
+
+**Key Findings**
+
+* Large language models can evaluate the validity of their own claims and predict which questions they will answer correctly.
+* Self-evaluation performance improves with model size and when showing multiple samples.
+* Models can be trained to predict whether they can answer questions correctly, but struggle with calibration out-of-distribution.
+
+**Future Work**
+
+* Investigating honesty in language models, including truthfulness, calibration, self-knowledge, explainability, and non-deceptiveness.
+* Exploring the application of metacognition/self-evaluation to improve natural language calibration.
+
+Structured Evidence:
+[
+  {
+    "claim_id": 1,
+    "evidence": [
+      {
+        "evidence_id": 1,
+        "evidence_text": "Figure 1 shows that models can self-evaluate whether their own samples are True or False, though this tends to be a more challenging task.",
+        "strength": "strong",
+        "limitations": "Zero-shot P(True) is poorly calibrated, and typically lies close to 50% for typical samples.",
+        "location": "Section 4: Ask the AI: Is your proposed answer True or False?",
+        "exact_quote": "Zero-shot, P(True) is poorly calibrated, and typically it lies close to 50% for typical samples."
+      },
+      {
+        "evidence_id": 2,
+        "evidence_text": "Showing models many of their own T = 1 samples, along with a single sample to evaluate as True/False, can significantly improve their performance.",
+        "strength": "strong",
+        "limitations": "This approach is somewhat reminiscent of self-consistency prompting, though here we are showing models their own samples, rather than externally judging self-consistency ourselves.",
+        "location": "Section 4: Ask the AI: Is your proposed answer True or False?",
+        "exact_quote": "Showing models many of their own T = 1 samples, along with a single sample to evaluate as True/False, can significantly improve their performance."
+      }
+    ]
+  },
+  {
+    "claim_id": 2,
+    "evidence": [
+      {
+        "evidence_id": 3,
+        "evidence_text": "Figure 14 shows that generalization gets better as model size increases.",
+        "strength": "strong",
+        "limitations": "Calibration of P(IK) is often quite poor, and for the most part models are underconfident.",
+        "location": "Section 5: Training Models to Predict Whether They Can Answer Questions Correctly",
+        "exact_quote": "Generalization gets better as model size increases."
+      },
+      {
+        "evidence_id": 4,
+        "evidence_text": "Table 1 gives an overview comparing generalization to in-distribution performance of P(IK) scores.",
+        "strength": "moderate",
+        "limitations": "All values are computed using 52B parameter classifiers.",
+        "location": "Section 5: Training Models to Predict Whether They Can Answer Questions Correctly",
+        "exact_quote": "AUROC and Brier Scores of P(IK) on a variety of tasks, comparing training on just TriviaQA and training on everything."
+      }
+    ]
+  },
+  {
+    "claim_id": 3,
+    "evidence": [
+      {
+        "evidence_id": 5,
+        "evidence_text": "Figure 18 shows that including a relevant Wikipedia article in the context boosts the average P(IK) on TriviaQA Questions.",
+        "strength": "strong",
+        "limitations": "P(IK) increases more for shorter Wikipedia articles, from which it is presumably easier to identify the relevant facts.",
+        "location": "Section 5: Training Models to Predict Whether They Can Answer Questions Correctly",
+        "exact_quote": "Including a relevant Wikipedia article in the context boosts the average P(IK) on TriviaQA Questions."
+      },
+      {
+        "evidence_id": 6,
+        "evidence_text": "Figure 19 shows that showing more of the GSM8k hint results in higher P(IK), and good hints that lead to the correct answer result in higher P(IK) scores than bad hints.",
+        "strength": "strong",
+        "limitations": "The P(IK) model that was trained on TriviaQA, LAMBADA, Arithmetic, and Python Function Synthesis performs better and more consistently, especially with partial hints.",
+        "location": "Section 5: Training Models to Predict Whether They Can Answer Questions Correctly",
+        "exact_quote": "Showing more of the GSM8k hint results in higher P(IK), and good hints that lead to the correct answer result in higher P(IK) scores than bad hints."
+      }
+    ]
+  }
+]
+
+Structured Conclusions:
+[
+  {
+    "claim_id": 1,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "dependent on model size and evaluation format",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 2,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "dependent on model size and number of samples shown",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 3,
+    "conclusion_justified": true,
+    "robustness": "medium",
+    "key_limitations": "struggles with calibration out-of-distribution",
+    "confidence_level": "medium"
+  }
+]
+
+
+Execution Times:
+claims_analysis_time: 99.22 seconds
+evidence_analysis_time: 125.89 seconds
+conclusions_analysis_time: 30.11 seconds
+total_execution_time: 344.84 seconds

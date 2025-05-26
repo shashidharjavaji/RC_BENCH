@@ -1,0 +1,138 @@
+Claim 1:
+Type: performance
+Statement: Dense Passage Retriever (DPR) outperforms BM25 by a large margin (65.2% vs. 42.9% in Top-5 accuracy)
+Location: Section 3.2
+Exact Quote: Our Dense Passage Retriever (DPR) is exceptionally strong. It not only outperforms BM25 by a large margin (65.2% vs. 42.9% in Top-5 accuracy), but also results in a substantial improvement on the end-to-end QA accuracy compared to ORQA (41.5% vs. 33.3%) in the open Natural Questions setting.
+
+Evidence:
+- Evidence Text: Top-5 accuracy: DPR 65.2% vs. BM25 42.9%
+  Strength: strong
+  Location: Table 2
+  Limitations: limited to specific datasets
+  Exact Quote: Top-20 & Top-100 retrieval accuracy on test sets, measured as the percentage of top 20/100 retrieved passages that contain the answer. Single and Multi denote that our Dense Passage Retriever (DPR) was trained using individial or combined training datasets (all the datasets excluding SQuAD).
+
+- Evidence Text: End-to-end QA accuracy: DPR 41.5% vs. ORQA 33.3%
+  Strength: strong
+  Location: Section 6.1
+  Limitations: limited to the Natural Questions dataset
+  Exact Quote: Single DPR **41.5** 56.8 34.6 25.9 29.8
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence provided shows a clear performance advantage of DPR over BM25 in both Top-5 accuracy and end-to-end QA accuracy.
+Key Limitations: The performance comparison is limited to specific datasets and may not generalize to all open-domain QA scenarios.
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology
+Statement: Additional pretraining may not be needed for dense retrieval
+Location: Section 3.2
+Exact Quote: Our empirical results also suggest that additional pretraining may not be needed.
+
+Evidence:
+- Evidence Text: Training with 1,000 examples already outperforms BM25
+  Strength: moderate
+  Location: Section 5.2
+  Limitations: limited to the Natural Questions dataset
+  Exact Quote: Figure 1 illustrates the top-k retrieval accuracy with respect to different numbers of training examples, measured on the development set of Natural Questions. As is shown, a dense passage retriever trained using only 1,000 examples already outperforms BM25.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence suggests that a dense retriever can be trained effectively with a small number of examples, indicating that additional pretraining may not be necessary.
+Key Limitations: The conclusion is based on a single dataset and may not generalize to all open-domain QA scenarios.
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: DPR trained using in-batch negative training improves results substantially
+Location: Section 5.2
+Exact Quote: We find that using a similar configuration (7 gold negative passages), in-batch negative training improves the results substantially.
+
+Evidence:
+- Evidence Text: In-batch negative training improves results
+  Strength: strong
+  Location: Table 3
+  Limitations: limited to specific datasets
+  Exact Quote: The top block is the standard 1-of-N training setting, where each question in the batch is paired with a positive passage and its own set of n negative passages (Eq. (2)). We find that the choice of negatives — random, BM25 or gold passages (positive passages from other questions) — does not impact the top-k accuracy much in this setting when k 20.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence shows that in-batch negative training improves results, but the improvement is limited to specific datasets.
+Key Limitations: The conclusion is based on a single dataset and may not generalize to all open-domain QA scenarios.
+
+--------------------------------------------------
+
+Claim 4:
+Type: performance
+Statement: DPR generalizes well to other datasets
+Location: Section 5.3
+Exact Quote: We find that DPR generalizes well, with 3-5 points loss from the best performing fine-tuned model in top-20 retrieval accuracy (69.9/86.3 vs. 75.0/89.1 for WebQuestions and TREC, respectively), while still greatly outperforming the BM25 baseline (55.0/70.9).
+
+Evidence:
+- Evidence Text: Cross-dataset generalization: DPR trained on Natural Questions and tested on WebQuestions and CuratedTREC
+  Strength: moderate
+  Location: Section 5.3
+  Limitations: limited to specific datasets
+  Exact Quote: We find that DPR generalizes well, with 3-5 points loss from the best performing fine-tuned model in top-20 retrieval accuracy (69.9/86.3 vs. 75.0/89.1 for WebQuestions and TREC, respectively), while still greatly outperforming the BM25 baseline (55.0/70.9).
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence shows that DPR generalizes well to other datasets, but the conclusion is based on a limited number of datasets.
+Key Limitations: The conclusion is based on a limited number of datasets and may not generalize to all open-domain QA scenarios.
+
+--------------------------------------------------
+
+Claim 5:
+Type: performance
+Statement: DPR-based models outperform previous state-of-the-art results on four out of the five datasets
+Location: Section 6.1
+Exact Quote: Overall, our DPR-based models outperform the previous state-of-the-art results on four out of the five datasets, with 1% to 12% absolute differences in exact match accuracy.
+
+Evidence:
+- Evidence Text: End-to-end QA accuracy comparison
+  Strength: strong
+  Location: Table 4
+  Limitations: limited to specific datasets
+  Exact Quote: Single DPR **41.5** 56.8 **42.4** 49.4 24.1
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence shows that DPR-based models outperform previous state-of-the-art results on four out of the five datasets, indicating a significant performance improvement.
+Key Limitations: The conclusion is based on a limited number of datasets and may not generalize to all open-domain QA scenarios.
+
+--------------------------------------------------
+
+Claim 6:
+Type: performance
+Statement: DPR can be combined with generation models for good performance on open-domain QA and other knowledge-intensive tasks
+Location: Section 8
+Exact Quote: Recent work (Izacard and Grave, 2020; Lewis et al., 2020b) have also shown that DPR can be combined with generation models such as BART (Lewis et al., 2020a) and T5 (Raffel et al., 2019), achieving good performance on open-domain QA and other knowledge-intensive tasks.
+
+Evidence:
+- Evidence Text: DPR combined with BART and T5
+  Strength: moderate
+  Location: Section 8
+  Limitations: limited to specific tasks and datasets
+  Exact Quote: Recent work (Izacard and Grave, 2020; Lewis et al., 2020b) have also shown that DPR can be combined with generation models such as BART (Lewis et al., 2020a) and T5 (Raffel et al., 2019), achieving good performance on open-domain QA and other knowledge-intensive tasks.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence shows that DPR can be combined with generation models for good performance on specific tasks and datasets, but the conclusion is limited to those tasks and datasets.
+Key Limitations: The conclusion is limited to specific tasks and datasets and may not generalize to all open-domain QA scenarios.
+
+--------------------------------------------------
+

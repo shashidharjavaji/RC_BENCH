@@ -1,0 +1,78 @@
+Claim 1:
+Type: performance
+Statement: PROMETHEUS performs on par with GPT-4 when evaluating with appropriate reference materials
+Location: Section 5.1
+Exact Quote: PROMETHEUS is on par with GPT-4 across all the three evaluation datasets, where PROMETHEUS obtains a 0.897 Pearson correlation, GPT-4 obtains 0.882, and GPT-3.5-Turbo obtains 0.392.
+
+Evidence:
+- Evidence Text: Pearson correlation results with human evaluators across 45 customized score rubrics
+  Strength: strong
+  Location: Section 5.1, Figure 3
+  Limitations: Limited to 45 score rubrics, may not generalize to all evaluation scenarios
+  Exact Quote: PROMETHEUS obtains a 0.897 Pearson correlation, GPT-4 obtains 0.882, and GPT-3.5-Turbo obtains 0.392
+
+- Evidence Text: Human preference of feedback quality
+  Strength: moderate
+  Location: Section 5.1, Figure 4
+  Limitations: Subjective evaluation, potential annotator bias
+  Exact Quote: PROMETHEUS is preferred over GPT-4 58.62% of the times, and over GPT-3.5-Turbo 79.57% of the times
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Multiple evaluation metrics showing comparable or better performance than GPT-4, with both correlation and human preference data
+Key Limitations: Limited test set size, specific evaluation scenarios
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology
+Statement: Including reference materials (score rubric and reference answer) is crucial for fine-grained evaluation capability
+Location: Section C.1, Table 6
+Exact Quote: Results indicate that each component contributes orthogonally to PROMETHEUS's superior evaluation performance. Especially, excluding the reference answer shows the most significant amount of performance degradation
+
+Evidence:
+- Evidence Text: Ablation study results showing performance drops
+  Strength: strong
+  Location: Table 6
+  Limitations: Limited to specific test sets
+  Exact Quote: W/O REFERENCE ANSWER 0.642, 0.626, 0.349 (Pearson correlations)
+
+- Evidence Text: Performance degradation without score rubric on Vicuna Bench
+  Strength: moderate
+  Location: Section C.2
+  Limitations: Single benchmark evaluation
+  Exact Quote: while excluding the score rubric on the FEEDBACK BENCH does not harm performance a lot, the performance drops a lot when evaluating on Vicuna Bench
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Comprehensive ablation studies showing clear performance degradation when removing reference materials
+Key Limitations: Limited test scenarios, specific model architecture
+
+--------------------------------------------------
+
+Claim 3:
+Type: performance
+Statement: PROMETHEUS can function effectively as a universal reward model
+Location: Section 6
+Exact Quote: PROMETHEUS outperforms two state-of-the-art reward models and GPT-3.5-Turbo on 2 unseen human preference datasets
+
+Evidence:
+- Evidence Text: Performance on HHH Alignment and MT Bench Human Judgment benchmarks
+  Strength: moderate
+  Location: Table 4
+  Limitations: Limited to two benchmarks, may not generalize to other preference scenarios
+  Exact Quote: PROMETHEUS 13B...81.36% 82.76% 75.41% 76.74% 79.19% 57.72%
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Outperforms baselines on standard preference benchmarks, but limited test scenarios
+Key Limitations: Only tested on two preference datasets, specific evaluation setup required
+
+--------------------------------------------------
+

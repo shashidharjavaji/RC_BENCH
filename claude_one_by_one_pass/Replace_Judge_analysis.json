@@ -1,0 +1,358 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": "Large Language Models have outpaced our abilities to accurately evaluate their quality",
+            "claim_location": "Abstract",
+            "evidence": [],
+            "evidence_locations": [],
+            "conclusion": {
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "conclusion_location": "Location not specified"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": "Using a Panel of LLm evaluators composed of smaller models outperforms a single large judge",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "PoLL achieves higher Cohen's \u03ba correlation with human judgments compared to GPT-4 and other individual models across KILT datasets",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific QA datasets and tasks",
+                    "location": "Section 4.1, Table 1",
+                    "exact_quote": "We see that overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "PoLL shows better correlation with human rankings on Chatbot Arena compared to single large judge",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Specific to chatbot evaluation context",
+                    "location": "Section 4.2, Table 2",
+                    "exact_quote": "We find that PoLL is best correlated with the gold rankings, particularly at the top of the ranked list"
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "PoLL shows smallest spread in accuracy scores relative to human annotations",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Limited to multi-hop QA datasets",
+                    "location": "Section 4.4",
+                    "exact_quote": "We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges."
+                },
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "PoLL is more cost effective than single large judge",
+                    "evidence_type": "secondary",
+                    "strength": "moderate",
+                    "limitations": "Based on specific pricing at time of writing",
+                    "location": "Section 4.5",
+                    "exact_quote": "running the entire three model PoLL is seven to eight times less expensive than running a single GPT-4 judge"
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.1, Table 1",
+                "Section 4.2, Table 2",
+                "Section 4.4",
+                "Section 4.5"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that a Panel of LLm evaluators composed of smaller models performs better than a single large judge across multiple evaluation metrics and scenarios",
+                "conclusion_justified": true,
+                "robustness_analysis": "Evidence is robust and consistent across multiple evaluation metrics (Cohen's \u03ba, Pearson correlation, Kendall Tau) and different tasks. Results are validated against human judgments and show statistical significance.",
+                "limitations": "- Limited to specific QA datasets and chatbot evaluation scenarios\n- Cost comparisons based on specific time period\n- Performance may vary with different panel compositions",
+                "conclusion_location": "Sections 4.1-4.5"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": "PoLL exhibits less intra-model bias due to its composition of disjoint model families",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The research shows intra-model bias reduction through two key results: 1) In Figure 4, each model shows highest positive delta when judged by itself, demonstrating self-bias. 2) In Figure 2 and discussion, GPT-4 judge ranks another GPT-4 variant higher than its actual position, while PoLL's rankings better match ground truth.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific evaluation scenarios (Bamboogle dataset and Chatbot Arena)",
+                    "location": "Section 4.4 Judge Bias and Consistency",
+                    "exact_quote": "We also see in Figure 4 that the highest positive delta for each individual model being scored occurs when it is judged by itself... We can clearly observe intra-model bias as the GPT-4 judge ranks another GPT-4 variant in position 2, higher than its actual position 4, which is in line with previous works that have also observed GPT-4's preference for its own generations"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "PoLL shows smallest spread in accuracy scores compared to individual judges when evaluating models",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Limited to multi-hop QA datasets",
+                    "location": "Section 4.4 Judge Bias and Consistency",
+                    "exact_quote": "We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges. GPT-3.5 has the highest spread, with a standard deviation of 6.1."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.4 Judge Bias and Consistency",
+                "Section 4.4 Judge Bias and Consistency"
+            ],
+            "conclusion": {
+                "author_conclusion": "PoLL reduces intra-model bias through its heterogeneous composition of different model families",
+                "conclusion_justified": true,
+                "robustness_analysis": "Evidence consistently shows bias reduction across different evaluation scenarios and metrics. Both quantitative (spread analysis) and qualitative (ranking comparison) measures support the conclusion",
+                "limitations": "- Limited to specific datasets and evaluation contexts\n- Bias reduction may vary with different panel compositions\n- Some measures of bias are indirect",
+                "conclusion_location": "Section 4.4"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": "PoLL is over seven times less expensive than using a single large judge",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The cost comparison shows PoLL costs $1.25/input + $4.25/output vs GPT-4 Turbo's $10/input + $30/output, making PoLL 7-8x cheaper depending on input-to-output token ratio",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Costs are subject to change, specific to token ratios, and based on pricing at time of writing",
+                    "location": "Section 4.5 Cost and Latency",
+                    "exact_quote": "At the time of writing, the cost of running our specific instance of PoLL is $1.25/input + $4.25/output, whereas the cost of running GPT-4 Turbo is $10/input + $30/output. Depending on the ratio of input-to-output tokens in a given task, running the entire three model PoLL is seven to eight times less expensive than running a single GPT-4 judge."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.5 Cost and Latency"
+            ],
+            "conclusion": {
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "conclusion_location": "Location not specified"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": "PoLL correlates better with human judgements compared to a single large judge (GPT-4)",
+            "claim_location": "Introduction",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Table 1 shows Cohen's Kappa correlation values between judges and human judgements across different QA datasets. PoLL achieves the highest correlation on NQ (0.763) and TQA (0.906), while GPT-4 shows lower correlations (0.627 and 0.841 respectively).",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific QA datasets",
+                    "location": "Section 4.1, Table 1",
+                    "exact_quote": "We see that overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "On Chatbot Arena, PoLL shows higher correlation with human rankings compared to GPT-4, with Pearson correlation of 0.917 vs 0.817 and Kendall Tau correlation of 0.778 vs 0.667",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Specific to Chatbot Arena evaluation",
+                    "location": "Section 4.2, Table 2",
+                    "exact_quote": "We find that PoLL is best correlated with the gold rankings, particularly at the top of the ranked list"
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "PoLL shows more consistent correlation with human judgments across different evaluation settings compared to GPT-4, which shows high variance in performance based on prompt changes",
+                    "evidence_type": "secondary",
+                    "strength": "moderate",
+                    "limitations": "Focused mainly on prompt engineering effects on GPT-4",
+                    "location": "Section 4.3",
+                    "exact_quote": "GPT-4 is the most powerful judge model we tested, yet it performed worse than less capable models on what is essentially a fuzzy string matching exercise"
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.1, Table 1",
+                "Section 4.2, Table 2",
+                "Section 4.3"
+            ],
+            "conclusion": {
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "conclusion_location": "Location not specified"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": "GPT-4 is a relatively weak judge in some scenarios",
+            "claim_location": "Introduction",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "GPT-4 performed poorly compared to other evaluator models on KILT QA datasets, with one of the lowest Cohen's kappa correlations with human judgments",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific QA evaluation tasks",
+                    "location": "Section 4.1 & Table 1",
+                    "exact_quote": "We see that overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "GPT-4 showed high variance in performance based on prompt changes, requiring specific instructions not to 'overthink' to achieve better results",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only tested on NQ dataset",
+                    "location": "Section 4.3 & Table 3",
+                    "exact_quote": "GPT-4 is the most powerful judge model we tested, yet it performed worse than less capable models on what is essentially a fuzzy string matching exercise. We hypothesize that may be because GPT-4 is over-reasoning and injecting too much background knowledge into determining the correctness of an answer rather than simply aligning the gold reference with the generation."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.1 & Table 1",
+                "Section 4.3 & Table 3"
+            ],
+            "conclusion": {
+                "author_conclusion": "GPT-4 performs poorly as a judge in certain scenarios, particularly showing high sensitivity to prompt engineering",
+                "conclusion_justified": true,
+                "robustness_analysis": "Evidence is consistent across multiple analyses and supported by quantitative measurements of performance variation",
+                "limitations": "- Analysis primarily focused on QA tasks\n- Limited exploration of causes for poor performance\n- Performance might be improved with better prompting",
+                "conclusion_location": "Sections 4.1 and 4.3"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": "Using a panel of heterogeneous evaluator models reduces intra-model scoring bias",
+            "claim_location": "Introduction",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Figures 3 and 4 show intra-model bias analysis comparing judge accuracy deltas vs human annotations across multi-hop datasets, with PoLL having smallest spread in scores (std dev 2.2) vs individual judges (GPT-3.5 highest at 6.1)",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to multi-hop QA datasets only",
+                    "location": "Section 4.4 Judge Bias and Consistency",
+                    "exact_quote": "We can see how the different judges score different models and how far those predictions deviate from human annotator decisions (the dotted line at 0). We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges. GPT-3.5 has the highest spread, with a standard deviation of 6.1."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Analysis of Chatbot Arena rankings shows GPT-4 judge exhibits bias by ranking another GPT-4 variant higher than its actual position",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Single example of bias reduction",
+                    "location": "Section 4.4 Judge Bias and Consistency",
+                    "exact_quote": "We can clearly observe intra-model bias as the GPT-4 judge ranks another GPT-4 variant in position 2, higher than its actual position 4, which is in line with previous works that have also observed GPT-4's preference for its own generations"
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Figure 4 shows highest positive accuracy delta occurs when models judge themselves",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to Bamboogle dataset",
+                    "location": "Section 4.4 Judge Bias and Consistency",
+                    "exact_quote": "We also see in Figure 4 that the highest positive delta for each individual model being scored occurs when it is judged by itself."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.4 Judge Bias and Consistency",
+                "Section 4.4 Judge Bias and Consistency",
+                "Section 4.4 Judge Bias and Consistency"
+            ],
+            "conclusion": {
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "conclusion_location": "Location not specified"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": "Having in-context examples improves GPT-4's performance as a judge",
+            "claim_location": "Section 4.3",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "GPT-4's performance as a judge improves with in-context examples compared to zero-shot prompting",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to KILT NQ dataset evaluation only",
+                    "location": "Section 4.3 - Judgement Variance by Prompt Changes",
+                    "exact_quote": "In all cases, having in-context examples improves the performance over zero-shot and the most effective strategy is an explicit instruction to the model not to 'overthink'"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Quantitative results showing zero-shot vs few-shot performance difference",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to one metric (Kappa correlation)",
+                    "location": "Table 3",
+                    "exact_quote": "Zero-shot: 0.518, Few-Shot Standard: 0.627"
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.3 - Judgement Variance by Prompt Changes",
+                "Table 3"
+            ],
+            "conclusion": {
+                "author_conclusion": "In-context examples improve GPT-4's performance as a judge compared to zero-shot prompting",
+                "conclusion_justified": true,
+                "robustness_analysis": "Evidence is limited but shows clear improvement in performance metrics",
+                "limitations": "- Only tested on KILT NQ dataset\n- Limited to one performance metric\n- May not generalize to other tasks or datasets",
+                "conclusion_location": "Section 4.3"
+            }
+        },
+        {
+            "claim_id": 9,
+            "claim": "PoLL has the smallest spread in scores compared to EM and individual judges",
+            "claim_location": "Section 4.4",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Analysis of score spread across different judges shows PoLL has standard deviation of 2.2 compared to higher spreads for individual judges, with GPT-3.5 having highest at 6.1",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only compares standard deviations, may not capture full distribution characteristics",
+                    "location": "Section 4.4 Judge Bias and Consistency",
+                    "exact_quote": "We can see that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges. GPT-3.5 has the highest spread, with a standard deviation of 6.1."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.4 Judge Bias and Consistency"
+            ],
+            "conclusion": {
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "conclusion_location": "Location not specified"
+            }
+        },
+        {
+            "claim_id": 10,
+            "claim": "Running the entire three model PoLL is seven to eight times less expensive than running a single GPT-4 judge",
+            "claim_location": "Section 4.5",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Cost comparison between PoLL and GPT-4",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Costs may vary over time as model pricing changes",
+                    "location": "Section 4.5 Cost and Latency",
+                    "exact_quote": "At the time of writing, the cost of running our specific instance of PoLL is $1.25/input + $4.25/output, whereas the cost of running GPT-4 Turbo is $10/input + $30/output. Depending on the ratio of input-to-output tokens in a given task, running the entire three model PoLL is seven to eight times less expensive than running a single GPT-4 judge."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.5 Cost and Latency"
+            ],
+            "conclusion": {
+                "author_conclusion": "PoLL is 7-8 times less expensive than using a single GPT-4 judge",
+                "conclusion_justified": true,
+                "robustness_analysis": "Evidence is straightforward and based on actual pricing, though subject to change",
+                "limitations": "- Costs may vary over time\n- Dependent on specific input-to-output token ratios\n- Based on pricing at time of writing",
+                "conclusion_location": "Section 4.5"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "16.74 seconds",
+        "evidence_analysis_time": "141.26 seconds",
+        "conclusions_analysis_time": "0.00 seconds",
+        "total_execution_time": "180.94 seconds"
+    }
+}

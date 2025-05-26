@@ -1,0 +1,152 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: The proposed log probability increase method outperforms seven other methods across three metrics for neuron-level knowledge attribution
+Location: Abstract
+Type: Method Performance
+Quote: Compared to seven other methods, our approach demonstrates superior performance across three metrics.
+
+Evidence:
+- Results show the method achieves best performance across MRR, probability and log probability metrics compared to 7 other methods
+  Strength: strong
+  Location: Section 4.1/Results and analysis
+  Limitations: Limited to two models (GPT2-large and Llama-7B) and six knowledge types
+  Quote: Compared with the other seven methods, our attribution method (second line) attributes more important neurons, resulting in the most significant reduction across all metrics in both GPT2 and Llama.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Limited to two specific models (GPT2-large and Llama-7B), may not generalize to other architectures
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: The authors developed a new method for identifying query neurons that activate value neurons
+Location: Abstract
+Type: Method Development
+Quote: Additionally, since most static methods typically only identify 'value neurons' directly contributing to the final prediction, we propose a method for identifying 'query neurons' which activate these 'value neurons'.
+
+Evidence:
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: No clear evidence presented in the provided text to support this specific claim
+Confidence: low
+
+==================================================
+
+Claim 3:
+Statement: Both attention and FFN layers can store knowledge, with important neurons located in deep layers
+Location: Introduction
+Type: Finding
+Quote: 1) Both attention and FFN layers can store knowledge, and all important neurons directly contribute to knowledge prediction are in deep layers.
+
+Evidence:
+- Analysis of layer importance shows top important layers are in deep layers
+  Strength: strong
+  Location: Section 4.2/Layer-level knowledge storage
+  Limitations: Analysis focused on six specific knowledge types
+  Quote: Both attention and FFN layers have ability to store knowledge, and all the top10 layers are in deep layers.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Analysis limited to six types of knowledge, may not generalize to other knowledge types
+Confidence: medium
+
+==================================================
+
+Claim 4:
+Statement: Knowledge with similar semantics is stored in the same attention heads while distinct semantic knowledge is stored in different heads
+Location: Introduction
+Type: Finding
+Quote: 2) In attention layers, knowledge with similar semantics (e.g. language, country, city) tends to be stored in the same heads. Knowledge with distinct semantics (e.g. country, color) is stored in different heads.
+
+Evidence:
+- Head-level analysis shows semantic clustering
+  Strength: strong
+  Location: Section 4.2/Head-level knowledge storage
+  Limitations: Limited to specific semantic categories tested
+  Quote: Knowledge with similar semantics is stored in the same heads (e.g. a[6]30 in GPT2 and a[12]23 in Llama)
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Limited to specific semantic categories, needs broader validation across more knowledge types
+Confidence: medium
+
+==================================================
+
+Claim 5:
+Statement: Intervening on a small number of value or query neurons can significantly impact final predictions
+Location: Introduction
+Type: Finding
+Quote: 3) While numerous neurons contribute to the final prediction, intervening on a few value neurons (300) or query neurons (1000) can significantly influence the final prediction.
+
+Evidence:
+- Intervening on small number of neurons shows large impact
+  Strength: strong
+  Location: Section 4.2/Neuron-level knowledge storage
+  Limitations: Effects measured only on MRR and probability metrics
+  Quote: When intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Impact measured on specific metrics only, other effects not analyzed
+Confidence: high
+
+==================================================
+
+Claim 6:
+Statement: FFN value neurons are mainly activated by medium-deep attention value neurons, which are activated by shallow/medium FFN query neurons
+Location: Introduction
+Type: Finding
+Quote: 4) FFN value neurons are mainly activated by medium-deep attention value neurons, while these attention neurons are mainly activated by shallow/medium FFN query neurons.
+
+Evidence:
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: No clear evidence presented in the text to support this specific claim
+Confidence: low
+
+==================================================
+
+Claim 7:
+Statement: The proposed log probability increase method achieves the best performance compared to seven other static methods under three metrics
+Location: Experiments
+Type: Method Performance
+Quote: Compared with the other seven methods, our attribution method (second line) attributes more important neurons, resulting in the most significant reduction across all metrics in both GPT2 and Llama.
+
+Evidence:
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Comparison limited to static methods only, not compared to dynamic methods
+Confidence: high
+
+==================================================
+
+Claim 8:
+Statement: The sum importance score of top200 attention neurons and top100 FFN neurons is similar to that of all neurons
+Location: Neuron-level knowledge storage
+Type: Finding
+Quote: The sum importance score of top200 attention neurons and top100 FFN neurons are similar to that of all neurons.
+
+Evidence:
+- Top neurons capture similar importance score as all neurons
+  Strength: strong
+  Location: Section 4.2/Neuron-level knowledge storage
+  Limitations: Analysis limited to specific models and knowledge types
+  Quote: The sum score of top200 neurons in attention layers and top100 neurons in FFN layers are similar to that of all neurons.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Limited to specific neuron counts, may not hold for different thresholds
+Confidence: medium
+
+==================================================
+

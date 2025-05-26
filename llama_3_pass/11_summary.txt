@@ -1,0 +1,262 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+This is a research paper on Attributed Question Answering (QA), a task that involves generating answers to questions along with attributions (i.e., sources or evidence) to support those answers. Here's a breakdown of the paper:
+
+**Main Contributions:**
+
+1. **Definition of Attributed QA**: The paper defines Attributed QA as a task where the input is a question, and the output is an (answer, attribution) pair, where the attribution provides evidence to support the answer.
+2. **Evaluation Framework**: The authors propose a reproducible evaluation framework for Attributed QA, using human annotations as a gold standard. They also introduce an automatic metric, AutoAIS, which correlates well with human judgments.
+3. **Systematic Analysis of Architectures**: The paper explores different architecture classes for Attributed QA, including Retrieve-then-read (RTR), Post-hoc retrieval, and LLM-as-retriever. They analyze the performance of these architectures using various metrics, including AIS, AutoAIS, and Exact Match.
+
+**Key Findings:**
+
+1. **RTR Achieves Strongest Performance**: RTR architectures outperform other approaches, but require large amounts of explicit supervision and can be resource-intensive.
+2. **Post-hoc Attribution is Challenging**: Post-hoc retrieval systems, which generate answers without explicit supervision, struggle with attribution, highlighting a key area for future development.
+3. **AutoAIS Correlates with Human Judgment**: AutoAIS, an automatic metric, shows strong correlation with human judgments of AIS, making it a suitable development metric.
+4. **Limitations of Reference Answer Corpora and String Matching**: The paper highlights the limitations of relying solely on reference answer corpora and string matching for evaluation, emphasizing the need for more nuanced evaluation methods.
+
+**Future Directions:**
+
+1. **Improving Post-hoc Attribution**: Developing more effective post-hoc attribution methods.
+2. **Enhancing Evaluation Metrics**: Improving AutoAIS or developing new metrics that better capture the nuances of attribution.
+3. **Exploring New Tasks and Datasets**: Applying Attributed QA to other tasks, such as long-form question answering, and exploring multilingual or multimodal attribution.
+
+**Ethical Considerations:**
+
+1. **Factuality**: The paper acknowledges the challenge of judging the factuality of claims, emphasizing the importance of attribution in allowing users to assess trustworthiness and answer scope.
+2. **Accessibility**: The authors highlight the need to make Attributed QA accessible beyond English and resource-intensive approaches.
+
+Structured Evidence:
+[
+  {
+    "claim_id": 1,
+    "evidence": [
+      {
+        "evidence_id": 1,
+        "evidence_text": "The paper defines Attributed QA as a task where the input is a question, and the output is an (answer, attribution) pair, where the attribution provides evidence to support the answer.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 3.1",
+        "exact_quote": "We assume a set, which is a fixed set of units C to which answers can be attributed. For example, might be the set of all paragraphs in some corpus C. More specifically, each c is the ID for some unit; we use text(c) to refer to the actual paragraph text for natural language datasets."
+      },
+      {
+        "evidence_id": 2,
+        "evidence_text": "The authors propose a reproducible evaluation framework for Attributed QA, using human annotations as a gold standard. They also introduce an automatic metric, AutoAIS, which correlates well with human judgments.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 3.2",
+        "exact_quote": "We consider two evaluation metrics for the Attributed QA task: first, human ratings that are the gold-standard, and second, automatic evaluation methods, which we show can be suitable in development settings."
+      },
+      {
+        "evidence_id": 3,
+        "evidence_text": "The paper explores different architecture classes for Attributed QA, including Retrieve-then-read (RTR), Post-hoc retrieval, and LLM-as-retriever.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4",
+        "exact_quote": "We now describe the different systems investigated in this paper. At a high level, they fall into the following three architecture classes, and may be differentiated in terms of the type and quantity of supervision that is used."
+      }
+    ]
+  },
+  {
+    "claim_id": 2,
+    "evidence": [
+      {
+        "evidence_id": 4,
+        "evidence_text": "RTR architectures outperform other approaches, but require large amounts of explicit supervision and can be resource-intensive.",
+        "strength": "strong",
+        "limitations": "Resource intensity",
+        "location": "Section 5.3",
+        "exact_quote": "Best RTR achieves the highest performance (p 10[\u2212][5], t = 4.55, in comparison with the best non-RTR system), despite using LLMs with relatively small numbers of parameters (using T5 XL with 3B parameters, compared to PaLM with 540B)."
+      },
+      {
+        "evidence_id": 5,
+        "evidence_text": "Post-hoc retrieval systems, which generate answers without explicit supervision, struggle with attribution, highlighting a key area for future development.",
+        "strength": "moderate",
+        "limitations": "Attribution challenges",
+        "location": "Section 5.3",
+        "exact_quote": "However, since reranking is able to find good attribution passages, this result suggests that attribution is more difficult in a post-hoc setting than in RTR, and is a key area for future development."
+      },
+      {
+        "evidence_id": 6,
+        "evidence_text": "AutoAIS, an automatic metric, shows strong correlation with human judgments of AIS, making it a suitable development metric.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 5.5",
+        "exact_quote": "Correlation between system AIS and AutoAIS scores is remarkably strong, with a Pearson coefficient of 0.96 (Figure 3)."
+      }
+    ]
+  },
+  {
+    "claim_id": 3,
+    "evidence": [
+      {
+        "evidence_id": 7,
+        "evidence_text": "The paper highlights the limitations of relying solely on reference answer corpora and string matching for evaluation, emphasizing the need for more nuanced evaluation methods.",
+        "strength": "moderate",
+        "limitations": "Evaluation limitations",
+        "location": "Section 5.5",
+        "exact_quote": "Overall, we suggest that our results point to the limitation of reference answer corpora and string matching evaluation for future research."
+      },
+      {
+        "evidence_id": 8,
+        "evidence_text": "The authors acknowledge the challenge of judging the factuality of claims, emphasizing the importance of attribution in allowing users to assess trustworthiness and answer scope.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 8",
+        "exact_quote": "We observe that it is incredibly challenging to judge whether any but the simplest claim is factual. Instead, for most questions, there will be multiple valid answers that are distinguished by nuances that can be subtle."
+      }
+    ]
+  }
+]
+
+Structured Conclusions:
+[
+  {
+    "claim_id": 1,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 2,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 3,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 4,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 5,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 6,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 7,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 8,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 9,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 10,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 11,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 12,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 13,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 14,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 15,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 16,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 17,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 18,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 19,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 20,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  }
+]
+
+
+Execution Times:
+claims_analysis_time: 81.17 seconds
+evidence_analysis_time: 163.51 seconds
+conclusions_analysis_time: 147.97 seconds
+total_execution_time: 395.13 seconds

@@ -1,0 +1,136 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Using a panel of LLMs as judges correlates better with human judgments compared to using a single LLM judge.",
+                "type": "Methodological",
+                "location": "Abstract",
+                "exact_quote": "Using a Panel of LLm evaluators (PoLL) drawn from different model families rather than a single large judge (GPT-4), show that using an instantiation of PoLL correlates better with human judgements than a single large judge (GPT-4), while being over seven times cheaper."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "In Table 1 we can see how the ratings from different evaluator judges, on different single-hop QA datasets from KILT, correlate with human judgements as measured by \u03ba. We see that overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup.",
+                    "strength": "strong",
+                    "limitations": "None mentioned",
+                    "location": "Section 4.1",
+                    "exact_quote": "In Table 1 we can see how the ratings from different evaluator judges, on different single-hop QA datasets from KILT, correlate with human judgements as measured by \u03ba. We see that overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Using a PoLL to evaluate LLM-generated text improves reliability",
+                "type": "Methodological",
+                "location": "Abstract",
+                "exact_quote": "results are more consistent across different model families"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Figures 3 and 4 show results on HotPotQA and Bamboogle. We can see how the different judges score different models and how far those predictions deviate from human annotator decisions (the dotted line at 0). We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges.",
+                    "strength": "moderate",
+                    "limitations": "The results are specific to the HotPotQA and Bamboogle datasets",
+                    "location": "Section 4.4",
+                    "exact_quote": "Figures 3 and 4 show results on HotPotQA and Bamboogle. We can see how the different judges score different models and how far those predictions deviate from human annotator decisions (the dotted line at 0). We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "GPT-4 is often overly confident and prone to hallucination when evaluating model-generated text.",
+                "type": "Performance",
+                "location": "Introduction",
+                "exact_quote": "GPT-4 is also a relatively weak judge: exhibiting high variance with minor changes to the prompt (Section 4.3)."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "GPT-4 is the most powerful judge model we tested, yet it performed worse than less capable models on what is essentially a fuzzy string matching exercise.",
+                    "strength": "strong",
+                    "limitations": "The result is specific to a fuzzy string matching exercise",
+                    "location": "Section 4.3",
+                    "exact_quote": "GPT-4 is the most powerful judge model we tested, yet it performed worse than less capable models on what is essentially a fuzzy string matching exercise."
+                },
+                {
+                    "evidence_text": "Table 3 shows results on NQ for different prompt variants with GPT-4 as judge. In all cases, having in-context examples improves the performance over zero-shot and the most effective strategy is an explicit instruction to the model not to 'overthink' and not to concern itself with the wider factuality of the answers with respect to the outside world.",
+                    "strength": "strong",
+                    "limitations": "The result is specific to the Natural Question dataset",
+                    "location": "Section 4.3",
+                    "exact_quote": "Table 3 shows results on NQ for different prompt variants with GPT-4 as judge. In all cases, having in-context examples improves the performance over zero-shot and the most effective strategy is an explicit instruction to the model not to 'overthink' and not to concern itself with the wider factuality of the answers with respect to the outside world."
+                },
+                {
+                    "evidence_text": "These changes bring the agreement level for GPT-4 up to the level of GPT-3.5 when using our few-shot standard prompt, though still below Command-R, Haiku, and PoLL.",
+                    "strength": "moderate",
+                    "limitations": "The result is specific to the NQ dataset and may not generalize",
+                    "location": "Section 4.3",
+                    "exact_quote": "These changes bring the agreement level for GPT-4 up to the level of GPT-3.5 when using our few-shot standard prompt, though still below Command-R, Haiku, and PoLL."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "",
+                "key_limitations": "GPT-4 still outperforms other models with less context",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "In some scenarios, PoLL can reduce bias in evaluations.",
+                "type": "Methodological",
+                "location": "Introduction",
+                "exact_quote": "pooling judgements across a panel of heterogenous evaluator models (Section 4.4)."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "One of the biggest motivators for replacing a single large judge with a panel of heterogeneous models is to reduce bias in evaluation.",
+                    "strength": "strong",
+                    "limitations": "None mentioned",
+                    "location": "Section 4.4",
+                    "exact_quote": "One of the biggest motivators for replacing a single large judge with a panel of heterogeneous models is to reduce bias in evaluation."
+                },
+                {
+                    "evidence_text": "To analyze to what extent this was the case, we compared the delta in absolute accuracy score for our individual judges and PoLL relative to scores by human annotators across our multi-hop datasets. Figures 3 and 4 show results on HotPotQA and Bamboogle.",
+                    "strength": "strong",
+                    "limitations": "The results are specific to the HotPotQA and Bamboogle datasets",
+                    "location": "Section 4.4",
+                    "exact_quote": "To analyze to what extent this was the case, we compared the delta in absolute accuracy score for our individual judges and PoLL relative to scores by human annotators across our multi-hop datasets. Figures 3 and 4 show results on HotPotQA and Bamboogle."
+                },
+                {
+                    "evidence_text": "We can see that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges. GPT-3.5 has the highest spread, with a standard deviation of 6.1.",
+                    "strength": "moderate",
+                    "limitations": "The results are specific to the HotPotQA and Bamboogle datasets",
+                    "location": "Section 4.4",
+                    "exact_quote": "We can see that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges. GPT-3.5 has the highest spread, with a standard deviation of 6.1."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "",
+                "key_limitations": "Only tested on KILT, HotpotQA, and Bamboogle, with limited model family",
+                "confidence_level": "medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "",
+        "total_execution_time": "182.09 seconds"
+    }
+}

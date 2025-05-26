@@ -1,0 +1,107 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: DocPrompting consistently improves NL-to-code models across multiple programming languages and model architectures
+Location: Abstract
+Type: Results/Performance
+Quote: DocPrompting consistently improves NL-to-code models: DocPrompting improves strong base models such as CodeT5 by 2.85% in pass@1 (52% relative gain) and 4.39% in pass@10 (30% relative gain) in execution-based evaluation on the popular Python CoNaLa benchmark; on a new Bash dataset tldr, DocPrompting improves CodeT5 and GPT-Neo-1.3B by up to absolute 6.9% exact match.
+
+Evidence:
+- Results showing improvements across T5, CodeT5, GPT-Neo and Codex models on both Python and Bash tasks
+  Strength: strong
+  Location: Results section 5.1-5.2
+  Limitations: Limited to two programming languages and specific benchmarks
+  Quote: DocPrompting consistently improves the base models. For example, T5+DocPrompting achieves more than twice higher accuracy in predicting the command name, more than 16 charBLEU points on the entire prediction, and almost 9% of absolute exact match gain, compared to the vanilla T5.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Results vary in magnitude across models; some improvements are modest
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: DocPrompting is the first approach to effectively leverage documentation in code generation models
+Location: Introduction
+Type: Novelty
+Quote: To the best of our knowledge, this is the first demonstration of leveraging documentation in models of code explicitly and effectively.
+
+Evidence:
+- No direct evidence proving it is first, only self-claim in introduction
+  Strength: weak
+  Location: Introduction
+  Limitations: No comparative analysis with prior documentation approaches
+  Quote: To the best of our knowledge, this is the first demonstration of leveraging documentation in models of code explicitly and effectively.
+
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: No systematic literature review or evidence showing it is first
+Confidence: low
+
+==================================================
+
+Claim 3:
+Statement: The authors introduce two new benchmarks for retrieval-based code generation
+Location: Introduction
+Type: Contribution
+Quote: we introduce two new benchmarks for retrieval-based code generation: (a) in Bash, we curate a new benchmark by crawling the tldr repository, and constructing the training/development/test splits without overlapping commands; (b) in Python, we re-split the popular CoNaLa benchmark by making every test example contain at least one Python function that is not seen in the training data.
+
+Evidence:
+- Details of new tldr benchmark and CoNaLa re-split
+  Strength: strong
+  Location: Section 4
+  Limitations: One is a re-split rather than entirely new benchmark
+  Quote: in Bash, we curate a new benchmark by crawling the tldr repository...in Python, we re-split the popular CoNaLa benchmark by making every test example contain at least one Python function that is not seen in the training data.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Re-split of existing dataset rather than fully new dataset for CoNaLa
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: DocPrompting significantly increases the n-gram overlap between input and output compared to retrieving examples
+Location: Section 7
+Type: Results/Analysis
+Quote: retrieving documentation (DocPrompting) provides much higher gains than retrieving examples (ExPrompting)
+
+Evidence:
+- Direct comparison showing higher n-gram overlap with documentation vs examples
+  Strength: strong
+  Location: Section 5.1
+  Limitations: Limited to specific n-gram sizes
+  Quote: retrieving documentation (DocPrompting) provides much higher gains than retrieving examples (ExPrompting)
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: N-gram overlap is a proxy metric, may not directly translate to code quality
+Confidence: high
+
+==================================================
+
+Claim 5:
+Statement: Documentation helps bridge the gap between natural language intent and code terminology
+Location: Section 6.1
+Type: Finding
+Quote: one of the reasons that retrieving documentation helps generating accurate code is that documentation bridges the gap between the 'intent terminology' and the 'code terminology'
+
+Evidence:
+- Analysis showing increased overlap between input and output terminology
+  Strength: strong
+  Location: Section 6.1
+  Limitations: Only analyzed n-gram overlap metrics
+  Quote: adding documentation significantly increases the overlap across n-grams, and increase, for example, the unigram overlap from 12% to 24% in tldr. That is, one of the reasons that retrieving documentation helps generating accurate code is that documentation bridges the gap between the 'intent terminology' and the 'code terminology'.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Correlation between overlap and performance does not prove causation
+Confidence: medium
+
+==================================================
+

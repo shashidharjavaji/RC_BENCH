@@ -1,0 +1,170 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Using a Panel of LLm evaluators (PoLL) correlates better with human judgments compared to a single large judge while being over 7x cheaper
+Location: Abstract
+Type: Primary result
+Quote: We show that using a Panel of LLm evaluators (PoLL) correlates better with human judgements compared to a single large judge (GPT-4), while being over seven times less expensive
+
+Evidence:
+- PoLL shows higher Cohen's kappa correlation with human judgments than GPT-4 on QA tasks while being much cheaper
+  Strength: strong
+  Location: Results section 4.1, Table 1
+  Limitations: Limited to specific QA datasets tested
+  Quote: We see that overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup
+
+- Cost comparison shows PoLL is much cheaper than GPT-4
+  Strength: strong
+  Location: Results section 4.5
+  Limitations: Costs may vary over time
+  Quote: the cost of running our specific instance of PoLL is $1.25/input + $4.25/output, whereas the cost of running GPT-4 Turbo is $10/input + $30/output
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Cost comparison is simplistic and may not account for all scenarios/implementations
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: GPT-4 is a relatively weak judge in some scenarios and shows high variance with minor prompt changes
+Location: Abstract
+Type: Finding
+Quote: In some scenarios, GPT-4 is a relatively weak judge, exhibiting high variance with minor changes to the prompt
+
+Evidence:
+- GPT-4's performance varies significantly with prompt changes on NQ dataset
+  Strength: strong
+  Location: Results section 4.3, Table 3
+  Limitations: Only tested on one dataset
+  Quote: we can see how the correlation between GPT-4 and human annotators varies as the prompt changes. In all cases, having in-context examples improves the performance over zero-shot
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Only demonstrated on NQ dataset; may not generalize to other tasks
+Confidence: medium
+
+==================================================
+
+Claim 3:
+Statement: Using multiple heterogeneous evaluator models reduces intra-model scoring bias
+Location: Abstract
+Type: Finding
+Quote: Intra-model scoring bias is reduced by pooling judgements across a panel of heterogeneous evaluator models
+
+Evidence:
+- PoLL reduces intra-model bias compared to individual judges
+  Strength: moderate
+  Location: Results section 4.4
+  Limitations: Limited to specific test cases
+  Quote: We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Limited to specific model combinations tested; may vary with different panel compositions
+Confidence: medium
+
+==================================================
+
+Claim 4:
+Statement: PoLL has the strongest correlation with human judgments across various QA tasks
+Location: Results/Correlation to Human Judgements
+Type: Result
+Quote: We see that overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup
+
+Evidence:
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: No clear evidence presented in the excerpts
+Confidence: low
+
+==================================================
+
+Claim 5:
+Statement: PoLL achieves the best correlation with human rankings on Chatbot Arena
+Location: Results/Rank Correlation on Chatbot Arena
+Type: Result
+Quote: We find that PoLL is best correlated with the gold rankings, particularly at the top of the ranked list
+
+Evidence:
+- PoLL shows highest correlation with Chatbot Arena rankings
+  Strength: strong
+  Location: Results section 4.2, Table 2
+  Limitations: Limited to one specific benchmark
+  Quote: We find that PoLL is best correlated with the gold rankings, particularly at the top of the ranked list
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Limited to one specific benchmark; may not generalize to other evaluation scenarios
+Confidence: high
+
+==================================================
+
+Claim 6:
+Statement: Having in-context examples improves GPT-4's performance as a judge
+Location: Results/Judgement Variance by Prompt Changes
+Type: Finding
+Quote: In all cases, having in-context examples improves the performance over zero-shot
+
+Evidence:
+- In-context examples improve GPT-4's judge performance
+  Strength: strong
+  Location: Results section 4.3
+  Limitations: Tested only on QA tasks
+  Quote: In all cases, having in-context examples improves the performance over zero-shot
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Only tested on specific tasks; optimal number of examples not determined
+Confidence: medium
+
+==================================================
+
+Claim 7:
+Statement: PoLL has the smallest spread in scores compared to individual judges
+Location: Results/Judge Bias and Consistency
+Type: Finding
+Quote: We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges
+
+Evidence:
+- PoLL shows smallest variance in scores compared to individual judges
+  Strength: strong
+  Location: Results section 4.4
+  Limitations: Limited to multi-hop datasets tested
+  Quote: We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges. GPT-3.5 has the highest spread, with a standard deviation of 6.1.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Limited to specific datasets tested; standard deviation of 2.2 vs 6.1 only shown for one comparison
+Confidence: medium
+
+==================================================
+
+Claim 8:
+Statement: Running PoLL is 7-8 times less expensive than running a single GPT-4 judge
+Location: Results/Cost and Latency
+Type: Cost comparison
+Quote: Depending on the ratio of input-to-output tokens in a given task, running the entire three model PoLL is seven to eight times less expensive than running a single GPT-4 judge
+
+Evidence:
+- Cost comparison shows PoLL is 7-8x cheaper than GPT-4
+  Strength: strong
+  Location: Results section 4.5
+  Limitations: Cost ratios may change over time
+  Quote: Depending on the ratio of input-to-output tokens in a given task, running the entire three model PoLL is seven to eight times less expensive than running a single GPT-4 judge
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Based on specific pricing at time of writing; may change with pricing updates or different implementations
+Confidence: high
+
+==================================================
+

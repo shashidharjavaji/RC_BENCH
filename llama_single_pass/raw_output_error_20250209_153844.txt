@@ -1,0 +1,45 @@
+**Comprehensive Evaluation of the Research Paper**
+
+**Title:** Attributed Question Answering: Evaluation and Modeling for Attributed Large Language Models
+
+**Authors:** Bernd Bohnet, Vinh Q. Tran, Pat Verga, et al.
+
+**Research Question:** How to develop attributed large language models (LLMs) that can provide evidence for their generated text, and how to evaluate their performance?
+
+**Methodology:**
+
+1. **Task Definition:** Attributed Question Answering (QA) is defined as a task where the input is a question, and the output is an (answer, attribution) pair, where the attribution is a pointer to a fixed corpus.
+2. **Evaluation Metrics:**
+	* **Human AIS (Attribution Score):** Gold-standard metric, assessed by human raters, evaluating whether the answer is attributable to the provided attribution.
+	* **AutoAIS:** Automatic metric, formulating evaluation as a Natural Language Inference task, correlating well with human AIS at the system level.
+	* **Exact Match (EM):** Measures answer string accuracy, but has limitations in evaluating attribution.
+3. **System Architectures:**
+	* **Retrieve-then-read (RTR):** Performs retrieval of relevant passages, then generates an answer and selects an attribution.
+	* **Post-hoc Retrieval:** Generates an answer using an LLM, then retrieves an attribution using the question and answer as a query.
+	* **LLM-as-retriever:** Uses an LLM to generate both an answer and a pointer to the attribution corpus.
+
+**Key Findings:**
+
+1. **Best Performing System:** RTR achieves the highest performance, but requires large amounts of explicit supervision.
+2. **Correlation between AIS and EM/AutoAIS:**
+	* **AIS and EM:** Modest correlation (0.45), highlighting EM's limitations in evaluating attribution.
+	* **AIS and AutoAIS:** Strong correlation (0.96) at the system level, making AutoAIS a suitable development metric.
+3. **Challenges and Future Directions:**
+	* **Post-hoc Attribution:** Remains challenging, but is a viable architecture for future work.
+	* **End-to-end Modeling:** Shows promise, but requires further development.
+	* **Evaluation Metrics:** AutoAIS has limitations at the instance level, and human rating data can be used to improve automatic evaluation metrics.
+
+**Claim Analysis:**
+
+| **Claim ID** | **Claim** | **Evidence** | **Evaluation** |
+| --- | --- | --- | --- |
+| 1 | Attributed QA is a crucial task for LLMs in information-seeking scenarios. | *Supporting Evidence:* Rashkin et al. (2021), Thoppilan et al. (2022), Menick et al. (2022) | *Conclusion Justified:* True, *Robustness:* High, *Justification:* Attribution allows users to assess trustworthiness and nuance, *Key Limitations:* None, *Confidence Level:* High |
+| 2 | AutoAIS is a suitable development metric for Attributed QA. | *Supporting Evidence:* Strong correlation with human AIS at the system level (0.96) | *Conclusion Justified:* True, *Robustness:* High, *Justification:* Correlation with human AIS, *Key Limitations:* Instance-level correlation is lower, *Confidence Level:* High |
+| 3 | RTR achieves the highest performance in Attributed QA. | *Supporting Evidence:* Experimental results (Table 1) | *Conclusion Justified:* True, *Robustness:* High, *Justification:* RTR's strong performance, *Key Limitations:* Requires large amounts of explicit supervision, *Confidence Level:* High |
+
+**Limitations and Future Work:**
+
+1. **Evaluation Metrics:** Improve AutoAIS's instance-level correlation and explore other automatic evaluation metrics.
+2. **End-to-end Modeling:** Develop training signals for end-to-end modeling, such as using AutoAIS as a noisy training signal.
+3. **Post-hoc Attribution:** Study the challenge of retrieval for post-hoc attribution and devise solutions.
+4. **Multilingual and Multimodal Attribution:** Evaluate Attributed QA in different languages and modalities.

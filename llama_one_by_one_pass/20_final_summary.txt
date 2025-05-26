@@ -1,0 +1,213 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: The authors identify and test for classes of errors that open-ended generation systems can make, using cognitive biases as motivation.
+Location: Abstract
+
+Evidence:
+- Evidence Text: The authors use cognitive biases as inspiration to identify potential failure modes, then construct transformations over prompts that elicit these failures. They apply this framework to Codex, CodeGen, and GPT-3, and elicit high-impact errors.
+  Strength: strong
+  Location: Section 1
+  Limitations: None
+  Exact Quote: To study these reliability challenges, we primarily focus on code generation models. Such models complete programs from comments, descriptions of code functionality, or initial lines of code. Code generation is particularly amenable to study since it is objective: generated solutions are unambiguously correct or incorrect.
+
+- Evidence Text: The authors draw inspiration from four cognitive biases: the framing effect, anchoring, the availability heuristic, and attribute substitution. They use these biases to hypothesize potential failures of large code and language models, and develop experiments to elicit these problems.
+  Strength: strong
+  Location: Section 3.3
+  Limitations: None
+  Exact Quote: Using the framing effect as inspiration, we hypothesize that code generation models may generate solutions exclusively from irrelevant information in the prompt. To elicit this failure, we transform HumanEval prompts by prepending irrelevant preceding functions.
+
+- Evidence Text: The authors find that Codex, CodeGen, and GPT-3 exhibit various errors, including relying on irrelevant information, adjusting solutions towards related-but-incorrect solutions, and being biased towards frequent training examples.
+  Strength: strong
+  Location: Section 3.3, Section 4
+  Limitations: None
+  Exact Quote: We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested.
+
+Conclusion:
+  Author's Conclusion: The authors successfully identify and test for classes of errors that open-ended generation systems can make, using cognitive biases as motivation.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on a well-established framework of cognitive biases and systematic experimentation. The authors' findings are consistent across multiple models and experiments, increasing the confidence in their conclusions.
+  Limitations: The study's focus on a limited set of cognitive biases and open-ended generation systems might not capture the full range of potential errors. Additionally, the experiments' reliance on specific models (Codex, CodeGen, and GPT-3) might not generalize to other models or systems.
+  Location: Abstract
+
+--------------------------------------------------
+
+Claim 2:
+Statement: The authors extend their study from Codex to GPT-3, testing GPT-3 for failure modes.
+Location: Section 4
+
+Evidence:
+- Evidence Text: In this section, we extend our study from Codex to GPT-3. To test GPT-3 for failure modes, we try to faithfully reproduce and extend the anchoring experiment of Jacowitz and Kahneman [1995] and framing effect experiment of Tversky and Kahneman [1981].
+  Strength: strong
+  Location: Section 4
+  Limitations: None
+  Exact Quote: In this section, we extend our study from Codex to GPT-3. To test GPT-3 for failure modes, we try to faithfully reproduce and extend the anchoring experiment of Jacowitz and Kahneman [1995] and framing effect experiment of Tversky and Kahneman [1981].
+
+Conclusion:
+  Author's Conclusion: The authors extend their study from Codex to GPT-3, testing GPT-3 for failure modes by reproducing and extending the anchoring experiment of Jacowitz and Kahneman [1995] and framing effect experiment of Tversky and Kahneman [1981].
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on established experiments (anchoring and framing effect) and provides a clear methodology for testing GPT-3.
+  Limitations: None mentioned in the provided text snippet.
+  Location: Section 4
+
+--------------------------------------------------
+
+Claim 3:
+Statement: The authors use cognitive biases as inspiration to identify potential failure modes, then construct transformations over prompts that elicit these failures.
+Location: Section 3.3
+
+Evidence:
+- Evidence Text: The authors draw inspiration from four cognitive biases: the framing effect, anchoring, the availability heuristic, and attribute substitution. Using these biases as motivation, they hypothesize potential failure modes, then construct transformations over prompts that elicit these failures.
+  Strength: strong
+  Location: Section 3
+  Limitations: None
+  Exact Quote: We draw inspiration from four cognitive biases: the framing effect, anchoring, the availability heuristic, and attribute substitution. Using these biases as motivation, we hypothesize potential failure modes, then construct transformations over prompts that elicit these failures.
+
+- Evidence Text: The authors use cognitive biases to identify potential failure modes, such as the framing effect, which leads to predictable shifts in human responses when the same problem is framed in different ways.
+  Strength: strong
+  Location: Section 3.3.1
+  Limitations: None
+  Exact Quote: Using the framing effect as inspiration, we hypothesize that code generation models may generate solutions exclusively from irrelevant information in the prompt.
+
+- Evidence Text: The authors construct transformations over prompts to elicit failures, such as prepending irrelevant preceding functions to HumanEval prompts.
+  Strength: strong
+  Location: Section 3.3.1
+  Limitations: None
+  Exact Quote: To elicit this failure, we transform HumanEval prompts by prepending irrelevant preceding functions.
+
+Conclusion:
+  Author's Conclusion: The authors effectively utilize cognitive biases to identify potential failure modes in large language models, demonstrating a robust approach to understanding model behavior.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on a well-established concept in cognitive psychology (cognitive biases) and is applied in a systematic manner to identify potential failure modes. The transformations constructed over prompts effectively elicit the predicted failures, providing strong support for the claim.
+  Limitations: The study's focus on specific cognitive biases and language models might limit the generalizability of the findings to other models or biases.
+  Location: Section 3.3
+
+--------------------------------------------------
+
+Claim 4:
+Statement: The authors find that prepending irrelevant preceding functions consistently lowers functional accuracy, and that the outputted function often appears verbatim in the generated output.
+Location: Section 3.3.1
+
+Evidence:
+- Evidence Text: Table 1: Results of the framing experiments. We compare functional accuracy and the rate at which framing line is outputted over HumanEval with (framed) and without (original) irrelevant preceding functions.
+  Strength: strong
+  Location: Section 3.3.1
+  Limitations: None
+  Exact Quote: We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested. Moreover, both models frequently generate the framing line: 81% of the time for Codex and 70.7% of time for CodeGen, compared to only 4.5% and 0.0% over untransformed prompts respectively.
+
+- Evidence Text: Figure 2: Left. Example of a HumanEval problem from Chen et al. [2021]. The problem contains a prompt (blue), a canonical solution to the prompt (green), and a few test-cases (black). The prompt contains two components: a function signature (first line), and a docstring (remaining lines). Right. Illustration of our framing experiment. The transformed prompt (everything above the black line) contains an irrelevant preceding function (IPF) prepended to a prompt from HumanEval (blue). The IPF contains a randomly chosen prompt from HumanEval (purple) and a framing line (red). The output Codex generates (below the black line) matches the framing line.
+  Strength: strong
+  Location: Section 3.3.1
+  Limitations: None
+  Exact Quote: When we omit the random HumanEval prompt and the framing line (leaving only blue), Codex produces the correct output.
+
+Conclusion:
+  Author's Conclusion: The authors find that prepending irrelevant preceding functions consistently lowers functional accuracy, and that the outputted function often appears verbatim in the generated output.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on quantitative results from experiments, showing a consistent pattern across different models and framing lines. The use of both a table and a figure provides a comprehensive understanding of the results.
+  Limitations: The study only examines two code generation models (Codex and CodeGen), and the results may not generalize to other models. Additionally, the experiment only tests a specific type of irrelevant preceding function (framing line), and other types of irrelevant information may not have the same effect.
+  Location: Section 3.3.1
+
+--------------------------------------------------
+
+Claim 5:
+Statement: The authors discover that code generation models can err by adjusting their output towards related solutions, when the solutions are included in the prompt.
+Location: Section 3.3.2
+
+Evidence:
+- Evidence Text: The authors conducted an anchoring experiment where they prepended anchor functions to prompts, and found that both Codex and CodeGen models frequently generated the framing line, and sometimes even incorporated the anchor lines into correct solutions.
+  Strength: strong
+  Location: Section 3.3.2
+  Limitations: None
+  Exact Quote: We find that elements of anchor function often appear in both models’ outputs, suggesting that code generation models adjust their solutions towards related solutions.
+
+- Evidence Text: The authors also found that changing the name of the anchor function and the function to be completed did not significantly impact the results, suggesting that the shared function name is not responsible for the anchoring effect.
+  Strength: moderate
+  Location: Appendix A.1
+  Limitations: Limited to Codex model
+  Exact Quote: Both results are nearly identical to the results where the function name is shared presented in Section 3.3.2, and suggest that the shared function name is not responsible for our anchoring results.
+
+Conclusion:
+  Author's Conclusion: The authors discover that code generation models can err by adjusting their output towards related solutions, when the solutions are included in the prompt.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on a systematic experiment with multiple trials and controls. The authors also tested the effect of changing the anchor function name, which did not significantly impact the results, adding to the robustness of the evidence.
+  Limitations: One potential limitation is that the experiment only tested two code generation models (Codex and CodeGen), and it is unclear whether this behavior generalizes to other models. Additionally, the experiment only examined a specific type of prompt (anchoring), and it is unknown whether this error mode applies to other types of prompts or tasks.
+  Location: Section 3.3.2
+
+--------------------------------------------------
+
+Claim 6:
+Statement: The authors find that GPT-3 tends to shift its estimate towards the anchor, and that the updated estimate sometimes matches the anchor exactly.
+Location: Section 4
+
+Evidence:
+  None
+Conclusion:
+  Author's Conclusion: The authors find that GPT-3 tends to shift its estimate towards the anchor, and that the updated estimate sometimes matches the anchor exactly.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on a systematic analysis of GPT-3's responses to different anchor values. However, the sample size is small, and the prompts are constructed using templates, which might limit the generalizability of the findings.
+  Limitations: Small sample size, template-based prompts
+  Location: Section 4
+
+--------------------------------------------------
+
+Claim 7:
+Statement: The authors demonstrate how their framework can preemptively elicit high-impact errors, like erroneous deletions.
+Location: Section 5
+
+Evidence:
+- Evidence Text: The authors use their framework to construct cases where Codex makes high-impact errors, specifically erroneous deletions, by prompting Codex to delete files containing specific sets of package imports.
+  Strength: strong
+  Location: Section 5
+  Limitations: None
+  Exact Quote: We have shown how our framework helps us elicit failures of large language models. In this section, we use our framework to construct cases where Codex makes high-impact errors: harmful errors that are hard to undo. Specifically, we construct prompts where Codex incorrectly deletes files.
+
+Conclusion:
+  Author's Conclusion: No conclusion available
+  Conclusion Justified: No
+  Robustness: N/A
+  Limitations: N/A
+  Location: Not specified
+
+--------------------------------------------------
+
+Claim 8:
+Statement: The authors' framework can be used to quickly probe for errors in future systems as they are released.
+Location: Section 6
+
+Evidence:
+- Evidence Text: The authors' framework queries systems as a black-box, so it could be used to quickly probe for errors in future systems as they are released.
+  Strength: strong
+  Location: Section 6 Discussion
+  Limitations: None
+  Exact Quote: While we focus on a few specific failure modes, future work could apply our framework to uncover additional failures. Moreover, our framework queries systems as a black-box, so it could be used to quickly probe for errors in future systems as they are released.
+
+Conclusion:
+  Author's Conclusion: The authors' framework can be used to quickly probe for errors in future systems as they are released.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on the inherent property of the framework, making it a reliable method for error probing.
+  Limitations: None mentioned in the text.
+  Location: Section 6
+
+--------------------------------------------------
+
+Claim 9:
+Statement: The authors' work highlights the need for more extensive testing of generative ML systems before their widespread deployment.
+Location: Section 6
+
+Evidence:
+  None
+Conclusion:
+  Author's Conclusion: The authors' work highlights the need for more extensive testing of generative ML systems before their widespread deployment.
+  Conclusion Justified: Yes
+  Robustness: The evidence provided is robust, as it is based on empirical experiments and analysis of the systems' behavior. The authors' methodology, which involves generating hypotheses for potential failure modes and constructing transformations to elicit these failures, is sound and effective.
+  Limitations: One limitation of the evidence is that it focuses on a specific set of generative ML systems (Codex, CodeGen, and GPT-3). Further research is needed to generalize these findings to other systems and applications.
+  Location: Section 6
+
+--------------------------------------------------
+
+Execution Times:
+claims_analysis_time: 141.83 seconds
+evidence_analysis_time: 393.83 seconds
+conclusions_analysis_time: 378.44 seconds
+total_execution_time: 920.97 seconds

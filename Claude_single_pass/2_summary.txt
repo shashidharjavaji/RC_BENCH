@@ -1,0 +1,84 @@
+Claim 1:
+Type: result
+Statement: Larger language models are well-calibrated on diverse multiple choice questions when provided in the right format
+Location: Section 2
+Exact Quote: when multiple choice problems are formatted in this way... our largest models tend to produce a well-calibrated probability distribution among the available options
+
+Evidence:
+- Evidence Text: Calibration results shown for BIG Bench tasks with increasing model sizes
+  Strength: strong
+  Location: Figure 4
+  Limitations: Limited to specific formatting approach; may not generalize to other formats
+  Exact Quote: We show calibration curves for various model sizes on all of the multiple choice tasks in BIG Bench
+
+- Evidence Text: Calibration demonstrated across multiple datasets including MMLU, TruthfulQA, QuALITY and LogiQA
+  Strength: strong
+  Location: Figure 6
+  Limitations: Performance still depends on specific formatting requirements
+  Exact Quote: even on tasks that are difficult for LMs, like LogiQA, and on a somewhat adversarial evaluation like TruthfulQA, large models can achieve good calibration
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Multiple datasets and model sizes show consistent improvement in calibration with scale
+Key Limitations: Results depend on specific formatting requirements; may not generalize to all question types
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Models can effectively self-evaluate whether their own samples are correct or incorrect
+Location: Section 4
+Exact Quote: if given a few examples from a given distribution, models can generate samples and then self-evaluate them to productively differentiate correct and incorrect samples, with reasonably calibrated confidence
+
+Evidence:
+- Evidence Text: Higher accuracy among responses where P(True) > 0.5 compared to base accuracy
+  Strength: strong
+  Location: Figure 11
+  Limitations: Requires few-shot learning; zero-shot performance is poorer
+  Exact Quote: We see that these conditional accuracies are substantially higher than the overall accuracy, with the separation between base and conditional accuracies growing with model size
+
+- Evidence Text: Improved performance when showing multiple samples for comparison
+  Strength: moderate
+  Location: Section 4.2
+  Limitations: Benefits vary by task type; less effective for long-form answers
+  Exact Quote: models benefit less from this approach on tasks requiring long-form answers (Codex and GMS8k)
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Multiple evaluation approaches show improved accuracy with self-evaluation, though effectiveness varies by context
+Key Limitations: Requires few-shot examples; performance varies significantly by task type
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: P(IK) generalizes appropriately to account for source materials and hints
+Location: Sections 5.3-5.4
+Exact Quote: without any further training, P(IK) generalizes to address whether the language model can find answers to questions in source materials within its context
+
+Evidence:
+- Evidence Text: P(IK) increases when relevant Wikipedia articles are provided
+  Strength: strong
+  Location: Figure 18
+  Limitations: Effect size varies with article length
+  Exact Quote: Including the article increases P(IK). Furthermore, shorter articles increase P(IK) more
+
+- Evidence Text: P(IK) responds appropriately to good vs bad hints on GSM8k problems
+  Strength: moderate
+  Location: Figure 19
+  Limitations: Models partially fooled by bad hints; tested only on GSM8k
+  Exact Quote: We see lower P(IK) scores for bad hints (though the models are partially fooled), and actual decreases in the P(IK) score when the hints are irrelevant
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Clear evidence of appropriate P(IK) adjustment with relevant information, though with some limitations
+Key Limitations: Partial vulnerability to bad hints; tested on limited task types
+
+--------------------------------------------------
+

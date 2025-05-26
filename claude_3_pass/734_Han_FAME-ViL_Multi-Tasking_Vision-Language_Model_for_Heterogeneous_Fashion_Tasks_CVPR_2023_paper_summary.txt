@@ -1,0 +1,116 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: FAME-ViL can save 61.5% of parameters over alternatives while significantly outperforming independently trained single-task models
+Location: Abstract
+Type: Results/Performance
+Quote: Extensive experiments on four fashion tasks show that our FAME-ViL can save 61.5% of parameters over alternatives, while significantly outperforming the conventional independently trained single-task models.
+
+Evidence:
+- Parameter savings of FAME-ViL quantified in ablation study
+  Strength: strong
+  Location: Section 4.2 Results Group II
+  Limitations: Parameter savings relative to baseline CLIP only
+  Quote: multi-task model with both TSA and XAA exceeds the single-task counterpart (L8 vs L4), indicating that TSA and XAA play complementary roles better in the multi-task setting
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Parameter savings shown primarily through ablation studies rather than direct industry deployment comparisons
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: FAME-ViL is the first attempt at multi-task learning for heterogeneous fashion V+L tasks
+Location: Introduction
+Type: Novelty
+Quote: To the best of our knowledge, there has been no attempt at V+L MTL for the fashion domain.
+
+Evidence:
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: No comprehensive literature review provided to prove this is the first attempt
+Confidence: low
+
+==================================================
+
+Claim 3:
+Statement: XAA enables cross-modality interaction between streams and supports multiple task modes
+Location: Introduction
+Type: Method/Architecture
+Quote: To adapt the simple two-stream architecture of CLIP to various fashion tasks, we introduce a lightweight Cross-Attention Adapter (XAA) to enable the cross-modality interaction between the two streams. It makes the model flexible to support multiple task modes
+
+Evidence:
+- XAA functionality demonstrated through experimental results
+  Strength: strong
+  Location: Section 4.2 Ablation Study
+  Limitations: Effectiveness varies by task
+  Quote: XAA gives TGIR a significant improvement, demonstrating the superiority of our layer-wise modality interaction mechanism
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Functionality shown empirically but theoretical analysis of mechanism is limited
+Confidence: medium
+
+==================================================
+
+Claim 4:
+Statement: TSA absorbs inter-task input/output format incompatibilities with lightweight per-task parameters
+Location: Introduction
+Type: Method/Architecture
+Quote: To address the negative transfer challenge, we introduce a Task-Specific Adapter (TSA) to absorb inter-task input/output format incompatibilities by introducing lightweight additional per-task parameters.
+
+Evidence:
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Specific parameter overhead of TSA not thoroughly quantified
+Confidence: medium
+
+==================================================
+
+Claim 5:
+Statement: Multi-teacher distillation effectively handles dataset imbalance and prevents negative transfer
+Location: Introduction
+Type: Method/Contribution
+Quote: For further handling the dataset imbalance problem, a multi-teacher distillation scheme is formulated for our heterogeneous MTL problem. It leverages the pre-trained per-task teachers to guide the optimization of our multi-task model, mitigating the overfitting risks of those tasks with smaller training dataset sizes.
+
+Evidence:
+- Multi-teacher distillation prevents overfitting compared to alternatives
+  Strength: strong
+  Location: Section 4.4
+  Limitations: Analysis limited to validation performance curves
+  Quote: Without MTD, the baseline MTL model is prone to overfit on TGIR after about 20k iterations due to much less training data than other tasks... our MTD yields consistent and significant performance boost per task, rendering it a more stable and effective learning strategy
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Limited to comparison with only a few alternative approaches
+Confidence: high
+
+==================================================
+
+Claim 6:
+Statement: FAME-ViL achieves state-of-the-art performance across all evaluated fashion tasks with significantly fewer parameters
+Location: Conclusions
+Type: Results/Performance
+Quote: Extensive experiments showed that our FAME-ViL achieves new state-of-the-art performance on all tasks with significantly fewer parameters.
+
+Evidence:
+- SOTA results across multiple tasks with fewer parameters
+  Strength: strong
+  Location: Section 4.1
+  Limitations: Comparison limited to specific task datasets
+  Quote: Our FAME-ViL outperforms all prior art fashion models often by a large margin, validating the performance advantages of our method over alternatives in addition to better parameter efficiency
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Performance gains vary across tasks; some improvements are modest
+Confidence: high
+
+==================================================
+

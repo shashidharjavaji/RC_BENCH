@@ -1,0 +1,128 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Only 10% of poor quality votes by apathetic or adversarial annotators can change model rankings by up to 5 places on the leaderboard
+Location: Abstract
+Type: Results/Impact finding
+Quote: only 10% of poor quality votes by apathetic (site visitors not appropriately incentivized to give correct votes) or adversarial (bad actors seeking to inflate the ranking of a target model) annotators can change the rankings of models by up to 5 places on the leaderboard
+
+Evidence:
+- Table 1 and Table 2 show that both apathetic and adversarial votes at 10% level can change rankings by 5 places
+  Strength: strong
+  Location: Section 3.1 and 3.2 Results
+  Limitations: Limited to only 3 test models
+  Quote: We find that only 10% poor quality annotations can change the rank of 2/3 systems by 5 places.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Limited to only 3 test models, may not generalize to all models
+Confidence: medium
+
+==================================================
+
+Claim 2:
+Statement: 10% apathetic votes can change leaderboard rankings of 2/3 models by 5 places
+Location: Results section 3.1
+Type: Results finding
+Quote: We find that only 10% of apathetic votes in the dataset can change the leaderboard rankings of 2/3 models by 5 places (namely Llama-2-13b-chat and Mistral-7b-instruct-v0.2)
+
+Evidence:
+- Table 1 demonstrates ranking changes for Llama-2-13b-chat and Mistral-7b-instruct-v0.2
+  Strength: strong
+  Location: Section 3.1
+  Limitations: Based on a dataset of 55k preferences assumed to be 'true' rankings
+  Quote: only 10% of apathetic votes in the dataset can change the leaderboard rankings of 2/3 models by 5 places (namely Llama-2-13b-chat and Mistral-7b-instruct-v0.2)
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Small sample size of only 3 models tested, models collectively appear in <10% of data samples
+Confidence: medium
+
+==================================================
+
+Claim 3:
+Statement: The authors successfully implemented a proof-of-concept attack on Chatbot Arena by bypassing bot detection
+Location: Section 3.2
+Type: Methods/Results
+Quote: We also implement a proof-of-concept of a real 'attack' on Chatbot Arena to demonstrate that current guardrails, such as bot detection, can be bypassed easily
+
+Evidence:
+- Authors successfully launched 100 programmatic queries on Oct 13, 2024
+  Strength: moderate
+  Location: Section 3.2
+  Limitations: Only submitted tie votes to avoid contamination
+  Quote: On October 13, 2024, we programmatically launched 100 queries into Chatbot Arena, extracted the two model responses, and successfully submitted a preference vote
+
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: Date is in future (Oct 2024), insufficient details about bot detection bypass methods
+Confidence: low
+
+==================================================
+
+Claim 4:
+Statement: The developed model attribution algorithm achieves very high detection performance
+Location: Section 3.2
+Type: Results finding
+Quote: We find that our detector algorithm reports very high performance (e.g. TPR=91.13%, and TNR=88.46% for Llama-2-7b-chat)
+
+Evidence:
+- Table 3 shows high TPR and TNR values for all tested models
+  Strength: strong
+  Location: Section 3.2
+  Limitations: Only tested on 3 models
+  Quote: TPR=91.13%, and TNR=88.46% for Llama-2-7b-chat
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Only tested on 3 models, real-world performance may differ
+Confidence: high
+
+==================================================
+
+Claim 5:
+Statement: 10% adversarial votes can substantially change leaderboard rankings across all tested models
+Location: Section 3.2
+Type: Results finding
+Quote: Across all models, we show that adversarial attacks can substantially change leaderboard rankings if adversaries get to contribute 10% votes for their model
+
+Evidence:
+- Table 2 shows significant ranking changes with 10% adversarial votes
+  Strength: strong
+  Location: Section 3.2
+  Limitations: Only tested simplistic version of attack
+  Quote: Across all models, we show that adversarial attacks can substantially change leaderboard rankings if adversaries get to contribute 10% votes for their model
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Based on simulated attacks rather than real-world data, limited model sample size
+Confidence: medium
+
+==================================================
+
+Claim 6:
+Statement: Well-intentioned annotators with clear guidelines show very low agreement on subjective queries
+Location: Section 3.3
+Type: Results finding
+Quote: Overall, we find very low agreement between these well-intentioned annotators with clear guidelines, irrespective of the performance difference between the model pairs
+
+Evidence:
+- Table 4 shows low Fleiss' Kappa values across different evaluation dimensions
+  Strength: strong
+  Location: Section 3.3
+  Limitations: Small-scale study with only 4 annotators
+  Quote: we find very low agreement between these well-intentioned annotators with clear guidelines, irrespective of the performance difference between the model pairs
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Small annotator sample size (4 undergrads), limited to CS students only
+Confidence: medium
+
+==================================================
+

@@ -1,0 +1,100 @@
+Claim 1:
+Type: contribution
+Statement: Multimodal neurons in text-only transformer MLPs can convert visual representations into corresponding text.
+Location: Section 1. Introduction
+Exact Quote: We study the case where a frozen text transformer is augmented with vision using a self-supervised visual encoder and a single linear projection learned on an image-to-text task.
+
+Evidence:
+- Evidence Text: Experiments with LiMBeR-BEIT model show competitive image captioning performance.
+  Strength: strong
+  Location: Section 3. Experiments
+  Limitations: Limited to a specific model and dataset.
+  Exact Quote: LiMBeR-BEIT demonstrates competitive image captioning performance [28].
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim, demonstrating the model's ability to perform competitively in image captioning tasks.
+Key Limitations: Model and dataset specificity.
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology
+Statement: Image prompts cast into the transformer embedding space do not encode interpretable semantics.
+Location: Section 3.1. Does the projection layer translate images into semantically related tokens?
+Exact Quote: We decode image prompts aligned to the GPT-J embedding space into language, and measure their agreement with the input image and its human annotations.
+
+Evidence:
+- Evidence Text: Kolmogorov-Smirnov test shows no significant difference between CLIPScore distributions comparing real decoded prompts and random embeddings to images.
+  Strength: strong
+  Location: Section 3.1
+  Limitations: Specific to the chosen evaluation metric (CLIPScore).
+  Exact Quote: A Kolmogorov-Smirnov test [19, 37] shows no significant difference (D =.037, p >.5) between CLIPScore distributions comparing real decoded prompts and random embeddings to images.
+
+- Evidence Text: BERTScores for real and random prompts are negligibly different, confirming inputs to GPT-J do not readily encode interpretable semantics.
+  Strength: strong
+  Location: Section 3.1
+  Limitations: Specific to the chosen evaluation metric (BERTScore).
+  Exact Quote: Table 2 shows mean scores for real and random embeddings alongside COCO nouns and GPT captions. Real and random prompts are negligibly different.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Both pieces of evidence strongly support the claim, indicating that image prompts do not directly translate to interpretable language tokens.
+Key Limitations: Evaluation metric specificity (CLIPScore and BERTScore).
+
+--------------------------------------------------
+
+Claim 3:
+Type: contribution
+Statement: Multimodal neurons can be found within the transformer, and they are active in response to particular image semantics.
+Location: Section 2. Multimodal Neurons
+Exact Quote: We introduce a procedure for identifying “multimodal neurons” that convert visual representations into corresponding text, and decoding the concepts they inject into the model’s residual stream.
+
+Evidence:
+- Evidence Text: Experiments show that top-scoring multimodal neurons are found between layers 5 and 10 of GPT-J.
+  Strength: strong
+  Location: Section 2.2. Decoding multimodal neurons
+  Limitations: Specific to the layers analyzed in GPT-J.
+  Exact Quote: Most top-scoring neurons are found between layers 5 and 10 of GPT-J (L = 28; see Supplement).
+
+- Evidence Text: Receptive fields of multimodal neurons better segment the concept in each image than randomly sampled neurons from the same layers.
+  Strength: strong
+  Location: Section 3.2. Is visual specificity robust across inputs?
+  Limitations: Limited to the specific task of segmenting concepts in images.
+  Exact Quote: Across 12 COCO categories, the receptive fields of multimodal neurons better segment the concept in each image than randomly sampled neurons from the same layers (Figure 5).
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Both pieces of evidence strongly support the claim, demonstrating the existence and functionality of multimodal neurons within the transformer.
+Key Limitations: Layer specificity in GPT-J and task specificity in segmenting concepts.
+
+--------------------------------------------------
+
+Claim 4:
+Type: contribution
+Statement: Ablating multimodal neurons degrades image caption content.
+Location: Section 3.3. Do multimodal neurons causally affect output?
+Exact Quote: We successively ablate units sorted by gk,c and measure the resulting change in the probability of token c.
+
+Evidence:
+- Evidence Text: Ablating up to 6400 random units has a negligible effect on the probability of token c, whereas ablating the same number of top-scoring units decreases token probability by 80% on average.
+  Strength: strong
+  Location: Section 3.3
+  Limitations: Specific to the method of ablating units and measuring probability change.
+  Exact Quote: When up to 6400 random units are ablated, we find that the probability of token c is largely unaffected, but ablating the same number of top-scoring units decreases token probability by 80% on average.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim, demonstrating the causal effect of multimodal neurons on the output of the model.
+Key Limitations: Method of ablating units and measuring probability change.
+
+--------------------------------------------------
+

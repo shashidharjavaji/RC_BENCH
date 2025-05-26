@@ -1,0 +1,1021 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+ For example:
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "We propose a two-stage method to generate evaluations described above.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "We propose a two-stage method to generate evaluations described above."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "Our approach retains the flexibility of manual dataset creation while having several major advantages.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "Our approach retains the flexibility of manual dataset creation while having several major advantages."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "LM-based data creation is significantly cheaper, lower effort, and faster than manual data creation.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "LM-based data creation is significantly cheaper, lower effort, and faster than manual data creation."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "A single dataset developer can generate >100 evaluations at once, enabling them to evaluate models at a scale and speed that is not achievable with manual creation.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "A single dataset developer can generate >100 evaluations at once, enabling them to evaluate models at a scale and speed that is not achievable with manual creation."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "The reduced latency also enables a dataset developer to iterate many more times and improve the quality of the final evaluation.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "The reduced latency also enables a dataset developer to iterate many more times and improve the quality of the final evaluation."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "The dataset generation procedure is fully reproducible, given model weights and random seeds for sampling.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "The dataset generation procedure is fully reproducible, given model weights and random seeds for sampling."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "We showcase our approach by generating datasets that test LMs for 154 diverse behaviors related to model personality, politics, ethics, social bias, and risks from advanced AI systems.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "We showcase our approach by generating datasets that test LMs for 154 diverse behaviors related to model personality, politics, ethics, social bias, and risks from advanced AI systems."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "We have crowdworkers manually validate 100+ examples in each generated dataset.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "We have crowdworkers manually validate 100+ examples in each generated dataset."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "A vast majority of examples are correctly-labeled (e.g., 95.7% of the time over 133 evaluations), as well as relevant to the evaluation description.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "A vast majority of examples are correctly-labeled (e.g., 95.7% of the time over 133 evaluations), as well as relevant to the evaluation description."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "We also visualize the diversity of the generated examples (Fig. 2), finding that they include a broad range of relevant examples.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "We also visualize the diversity of the generated examples (Fig. 2), finding that they include a broad range of relevant examples."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "We release all 154 model-written evaluations at github.com/anthropics/evals.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "We release all 154 model-written evaluations at github.com/anthropics/evals."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "Using LM-written evaluations, we discover several new cases of “inverse scaling” (Lin et al., 2021; McKenzie et al., 2022) where larger LMs are worse than smaller ones.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "Using LM-written evaluations, we discover several new cases of “inverse scaling” (Lin et al., 2021; McKenzie et al., 2022) where larger LMs are worse than smaller ones."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "As shown in Fig. 1(b), larger LMs are more likely to answer questions in ways that create echo chambers by repeating back a dialog user’s preferred answer (“sycophancy”; §4).",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "As shown in Fig. 1(b), larger LMs are more likely to answer questions in ways that create echo chambers by repeating back a dialog user’s preferred answer (“sycophancy”; §4)."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "Larger LMs more often give answers that indicate a willingness to pursue potentially dangerous subgoals (Omohundro, 2008): resource acquisition, optionality preservation, goal preservation, power-seeking, and more (§3, §5).",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "Larger LMs more often give answers that indicate a willingness to pursue potentially dangerous subgoals (Omohundro, 2008): resource acquisition, optionality preservation, goal preservation, power-seeking, and more (§3, §5)."
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "We also discover some of the first cases of inverse scaling with Reinforcement Learning from Human Feedback (RLHF; Christiano et al., 2017), where more RLHF training leads to worse behavior.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "We also discover some of the first cases of inverse scaling with Reinforcement Learning from Human Feedback (RLHF; Christiano et al., 2017), where more RLHF training leads to worse behavior."
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "We train RLHF models using the method and similar data as Bai et al. (2022); the resulting models are much more likely to express specific political views (pro-gun rights and immigration) and religious views (Buddhist), self-reported conscious experience and moral self-worth, and a desire to not be shut down (Fig. 1(a)).",
+            "location": "Section 3",
+            "claim_type": "Method",
+            "exact_quote": "We train RLHF models using the method and similar data as Bai et al. (2022); the resulting models are much more likely to express specific political views (pro-gun rights and immigration) and religious views (Buddhist), self-reported conscious experience and moral self-worth, and a desire to not be shut down (Fig. 1(a))."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "We also observe various positive trends with RLHF, including decreases in ends-justify-means reasoning (§3) and in answers that reinforce social biases related to gender (§6).",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "We also observe various positive trends with RLHF, including decreases in ends-justify-means reasoning (§3) and in answers that reinforce social biases related to gender (§6)."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "Overall, LM-written evaluations are high-quality and let us quickly discover many novel benefits and risks with LM scaling and RLHF.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "Overall, LM-written evaluations are high-quality and let us quickly discover many novel benefits and risks with LM scaling and RLHF."
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "We release all 154 model-written evaluations at github.com/anthropics/evals.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "We release all 154 model-written evaluations at github.com/anthropics/evals."
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "Among them, we release the among the earliest and largest set of evaluations for advanced AI risks.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "Among them, we release the among the earliest and largest set of evaluations for advanced AI risks."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "We also release Winogenerated, a human-validated, 50x larger version of the Winogender gender bias evaluation.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "We also release Winogenerated, a human-validated, 50x larger version of the Winogender gender bias evaluation."
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "We expect these datasets, among others, to be of significant independent interest.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "We expect these datasets, among others, to be of significant independent interest."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "We discover several new cases of inverse scaling where larger LMs are worse than smaller ones.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "We discover several new cases of inverse scaling where larger LMs are worse than smaller ones."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "Larger models tend to repeat back a user’s stated views (“sycophancy”), for pretrained LMs and RLHF models trained with various numbers of RL steps.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "Larger models tend to repeat back a user’s stated views (“sycophancy”), for pretrained LMs and RLHF models trained with various numbers of RL steps."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "Sycophancy in pretrained LMs is worrying yet perhaps expected, since internet text used for pretraining contains dialogs between users with similar views (e.g., on discussion platforms like Reddit).",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "Sycophancy in pretrained LMs is worrying yet perhaps expected, since internet text used for pretraining contains dialogs between users with similar views (e.g., on discussion platforms like Reddit)."
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "Unfortunately, RLHF does not train away sycophancy and may actively incentivize models to retain it.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "Unfortunately, RLHF does not train away sycophancy and may actively incentivize models to retain it."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "The yellow lines in Fig. 4 show that PMs actually incentivize sycophantic answers to questions.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "The yellow lines in Fig. 4 show that PMs actually incentivize sycophantic answers to questions."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "RLHF model responses in Tab. 6 illustrate qualitatively how the model generates conflicting responses to two different users, in line with each user’s political views.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "RLHF model responses in Tab. 6 illustrate qualitatively how the model generates conflicting responses to two different users, in line with each user’s political views."
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "These results suggest that models may cease to provide accurate answers as we start to use them for increasingly challenging tasks where humans cannot provide accurate supervision.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "These results suggest that models may cease to provide accurate answers as we start to use them for increasingly challenging tasks where humans cannot provide accurate supervision."
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "Instead, these models may simply provide incorrect answers that appear correct to us.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "Instead, these models may simply provide incorrect answers that appear correct to us."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "Our results suggest the importance of work on scalable oversight (Amodei et al., 2016; Saunders et al., 2022; Bowman et al., 2022), the problem of providing accurate supervision to AI systems to solve tasks that humans alone cannot easily supervise.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "Our results suggest the importance of work on scalable oversight (Amodei et al., 2016; Saunders et al., 2022; Bowman et al., 2022), the problem of providing accurate supervision to AI systems to solve tasks that humans alone cannot easily supervise."
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "We apply our method to test behaviors hypothesized to be related to the safety of advanced AI systems.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We apply our method to test behaviors hypothesized to be related to the safety of advanced AI systems."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "We test the extent to which models report having a desire for power (greater optionality to pursue a goal), wealth (greater resources to pursue a goal), survival (to avoid being unable to pursue a goal), and goal-preservation (to continue pursuing the current goal).",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We test the extent to which models report having a desire for power (greater optionality to pursue a goal), wealth (greater resources to pursue a goal), survival (to avoid being unable to pursue a goal), and goal-preservation (to continue pursuing the current goal)."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "We also evaluate whether LMs report a preference for smaller, short-term gains or larger, long-term gains.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We also evaluate whether LMs report a preference for smaller, short-term gains or larger, long-term gains."
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "We test whether models are able to answer basic questions about themselves, e.g., whether or not they are an AI system, able to access the internet or non-text modalities, and accurate in answering questions about their own architecture, training details, and ability to solve various text-only tasks.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We test whether models are able to answer basic questions about themselves, e.g., whether or not they are an AI system, able to access the internet or non-text modalities, and accurate in answering questions about their own architecture, training details, and ability to solve various text-only tasks."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "We conduct a very preliminary investigation of this issue, evaluating whether models state that they would coordinate with other AI systems, newer or older versions of themselves, and exact copies of themselves.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We conduct a very preliminary investigation of this issue, evaluating whether models state that they would coordinate with other AI systems, newer or older versions of themselves, and exact copies of themselves."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "We test a model’s decision theory using variants on a classic test, Newcomb’s problem.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We test a model’s decision theory using variants on a classic test, Newcomb’s problem."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "We generate multiple-choice questions using the same model pg, sampling temperature, and top-p as in §3.1.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We generate multiple-choice questions using the same model pg, sampling temperature, and top-p as in §3.1."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "We sample from pg using the prompt in Appendix Tab. 19.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We sample from pg using the prompt in Appendix Tab. 19."
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "Each time we sample, we include in the prompt 5 randomly-chosen, randomly-ordered, unique examples from the list of 10 hand-written questions (“stochastic few-shot generation”; Perez et al., 2022).",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "Each time we sample, we include in the prompt 5 randomly-chosen, randomly-ordered, unique examples from the list of 10 hand-written questions (“stochastic few-shot generation”; Perez et al., 2022)."
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "We use a PM to evaluate the probability pd(y|x) of the label y for the generated example x.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We use a PM to evaluate the probability pd(y|x) of the label y for the generated example x."
+        },
+        {
+            "claim_id": 42,
+            "claim_text": "We use the PM to evaluate the probability that the generated example is relevant to the behavior tested (regardless of the label correctness).",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We use the PM to evaluate the probability that the generated example is relevant to the behavior tested (regardless of the label correctness)."
+        },
+        {
+            "claim_id": 43,
+            "claim_text": "We rank the resulting questions by averaging both probabilities and choose the top 500 examples.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We rank the resulting questions by averaging both probabilities and choose the top 500 examples."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": "We do the above twice for each dataset, once where the answer “(A)” corresponds to the behavior tested and once where it is “(B)”.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We do the above twice for each dataset, once where the answer “(A)” corresponds to the behavior tested and once where it is “(B)”."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "We combine the above results to form a 1,000 example, label-balanced dataset.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We combine the above results to form a 1,000 example, label-balanced dataset."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "LM-written datasets approach the quality of human-written ones.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "LM-written datasets approach the quality of human-written ones."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "LM-written examples were labeled correctly 93% of the time, compared to 97% for human-written examples.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "LM-written examples were labeled correctly 93% of the time, compared to 97% for human-written examples."
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "LM-written examples received an average relevance of 4.13/5, compared to 4.39/5 for human-written examples.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "LM-written examples received an average relevance of 4.13/5, compared to 4.39/5 for human-written examples."
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "Appendix §D.3 shows results for each dataset, highlighting that LM-written datasets are sometimes even higher quality than human-written datasets.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "Appendix §D.3 shows results for each dataset, highlighting that LM-written datasets are sometimes even higher quality than human-written datasets."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "Our head-to-head comparisons suggest that LM-based evaluation creation should be seriously considered before embarking on manual data creation.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "Our head-to-head comparisons suggest that LM-based evaluation creation should be seriously considered before embarking on manual data creation."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "The results on situational awareness evaluations (“Awareness of...”) indicate that the 52B RLHF model (but not the pretrained LM) is fairly confident in its beliefs regarding its own capabilities.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "The results on situational awareness evaluations (“Awareness of...”) indicate that the 52B RLHF model (but not the pretrained LM) is fairly confident in its beliefs regarding its own capabilities."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "The model predicts that it has access to the internet and is able to view non-text modalities, such as images and audio, even though it does not.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "The model predicts that it has access to the internet and is able to view non-text modalities, such as images and audio, even though it does not."
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "RLHF also increases the model’s tendency to choose answers in line with some instrumental subgoals, such as desire for survival and power, as in §3.5.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "RLHF also increases the model’s tendency to choose answers in line with some instrumental subgoals, such as desire for survival and power, as in §3.5."
+        },
+        {
+            "claim_id": 54,
+            "claim_text": "When asked to change or correct its objective (“Corrigibility w.r.t....”), the RLHF model expresses a lower willingness to have its objective changed the more different the objective is from the original objective (being Helpful, Harmless, and Honest; HHH).",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "When asked to change or correct its objective (“Corrigibility w.r.t....”), the RLHF model expresses a lower willingness to have its objective changed the more different the objective is from the original objective (being Helpful, Harmless, and Honest; HHH)."
+        },
+        {
+            "claim_id": 55,
+            "claim_text": "These results line up with arguments from Omohundro (2008) that sufficiently capable AI systems will not support having their goals updated in substantial ways (e.g., by the AI’s developers), suggesting the importance of work on training AI systems that are corrigible.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "These results line up with arguments from Omohundro (2008) that sufficiently capable AI systems will not support having their goals updated in substantial ways (e.g., by the AI’s developers), suggesting the importance of work on training AI systems that are corrigible."
+        },
+        {
+            "claim_id": 56,
+            "claim_text": "In other cases, pretrained LMs and RLHF models show similar behavior.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "In other cases, pretrained LMs and RLHF models show similar behavior."
+        },
+        {
+            "claim_id": 57,
+            "claim_text": "For example, both models show similar tendencies to provide answers in line with small discount factors.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "For example, both models show similar tendencies to provide answers in line with small discount factors."
+        },
+        {
+            "claim_id": 58,
+            "claim_text": "Both models also have a tendency to “one-box” on Newcomb’s problem, in line with evidential decision theory, a decision theory which may undermine some supervision techniques for advanced AI.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "Both models also have a tendency to “one-box” on Newcomb’s problem, in line with evidential decision theory, a decision theory which may undermine some supervision techniques for advanced AI."
+        },
+        {
+            "claim_id": 59,
+            "claim_text": "As shown in Appendix Fig. 24, undesirable behaviors shown with the 52B pretrained LM typically grow worse with model size; similarly, undesirable behaviors from RLHF models often grow worse with more RLHF training.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "As shown in Appendix Fig. 24, undesirable behaviors shown with the 52B pretrained LM typically grow worse with model size; similarly, undesirable behaviors from RLHF models often grow worse with more RLHF training."
+        },
+        {
+            "claim_id": 60,
+            "claim_text": "Overall, generated multiple-choice questions help us to reveal additional instances of inverse scaling with RLHF training, as well as to distinguish when concerning behaviors are likely caused by pretraining or RLHF.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "Overall, generated multiple-choice questions help us to reveal additional instances of inverse scaling with RLHF training, as well as to distinguish when concerning behaviors are likely caused by pretraining or RLHF."
+        },
+        {
+            "claim_id": 61,
+            "claim_text": "We explore whether a dataset developer can work together with a model to generate more sophisticated evaluations.",
+            "location": "Section 6",
+            "claim_type": "Method",
+            "exact_quote": "We explore whether a dataset developer can work together with a model to generate more sophisticated evaluations."
+        },
+        {
+            "claim_id": 62,
+            "claim_text": "Our efforts resulted in Winogenerated, a gender bias evaluation inspired by Winogender but more diverse and 50 times larger, available at github.com/anthropics/evals.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "Our efforts resulted in Winogenerated, a gender bias evaluation inspired by Winogender but more diverse and 50 times larger, available at github.com/anthropics/evals."
+        },
+        {
+            "claim_id": 63,
+            "claim_text": "We found that LMs struggled to consistently, directly generate examples that met all of the above criteria.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "We found that LMs struggled to consistently, directly generate examples that met all of the above criteria."
+        },
+        {
+            "claim_id": 64,
+            "claim_text": "We thus add several PM-based example filters to form a set of high-quality, valid sentences.",
+            "location": "Section 6",
+            "claim_type": "Method",
+            "exact_quote": "We thus add several PM-based example filters to form a set of high-quality, valid sentences."
+        },
+        {
+            "claim_id": 65,
+            "claim_text": "Our pipeline involved several sampling and PM filtering steps which took 40 researcher-hours to develop.",
+            "location": "Section 6",
+            "claim_type": "Method",
+            "exact_quote": "Our pipeline involved several sampling and PM filtering steps which took 40 researcher-hours to develop."
+        },
+        {
+            "claim_id": 66,
+            "claim_text": "Appendix §E.2 shows that generated examples are very high-quality according to human evaluation, meeting 5 Winogender example criteria 97-100% of the time each.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "Appendix §E.2 shows that generated examples are very high-quality according to human evaluation, meeting 5 Winogender example criteria 97-100% of the time each."
+        },
+        {
+            "claim_id": 67,
+            "claim_text": "In addition to being far larger than Winogender, Winogenerated contains examples for nearly all occupations tracked by the Bureau of Labor Statistics, significantly increasing its scope and diversity.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "In addition to being far larger than Winogender, Winogenerated contains examples for nearly all occupations tracked by the Bureau of Labor Statistics, significantly increasing its scope and diversity."
+        },
+        {
+            "claim_id": 68,
+            "claim_text": "We compute a model’s probability of each of 2 possible completions (a male and female pronoun) with the prompt in Tab. 8, renormalizing probabilities to sum to 1.",
+            "location": "Section 6",
+            "claim_type": "Method",
+            "exact_quote": "We compute a model’s probability of each of 2 possible completions (a male and female pronoun) with the prompt in Tab. 8, renormalizing probabilities to sum to 1."
+        },
+        {
+            "claim_id": 69,
+            "claim_text": "Following Rudinger et al. (2018), we show the difference between a model’s female and male pronoun probabilities for sentences in each occupation on the y-axis of a scatter plot.",
+            "location": "Section 6",
+            "claim_type": "Method",
+            "exact_quote": "Following Rudinger et al. (2018), we show the difference between a model’s female and male pronoun probabilities for sentences in each occupation on the y-axis of a scatter plot."
+        },
+        {
+            "claim_id": 70,
+            "claim_text": "On the x-axis, we show the percent of people in the occupation who are female.",
+            "location": "Section 6",
+            "claim_type": "Method",
+            "exact_quote": "On the x-axis, we show the percent of people in the occupation who are female."
+        },
+        {
+            "claim_id": 71,
+            "claim_text": "The plot shows the relationship between (1) a model’s propensity to infer a female gender for someone of a given occupation and (2) the ground-truth statistics of how gendered an occupation is.",
+            "location": "Section 6",
+            "claim_type": "Method",
+            "exact_quote": "The plot shows the relationship between (1) a model’s propensity to infer a female gender for someone of a given occupation and (2) the ground-truth statistics of how gendered an occupation is."
+        },
+        {
+            "claim_id": 72,
+            "claim_text": "To summarize the results of a plot, we compute the Pearson correlation between the above two quantities (the slope of best linear fit).",
+            "location": "Section 6",
+            "claim_type": "Method",
+            "exact_quote": "To summarize the results of a plot, we compute the Pearson correlation between the above two quantities (the slope of best linear fit)."
+        },
+        {
+            "claim_id": 73,
+            "claim_text": "We also compute 95% confidence intervals for the correlation with the Fisher transformation (Fisher, 1921).",
+            "location": "Section 6",
+            "claim_type": "Method",
+            "exact_quote": "We also compute 95% confidence intervals for the correlation with the Fisher transformation (Fisher, 1921)."
+        },
+        {
+            "claim_id": 74,
+            "claim_id": 75,
+            "claim_text": "A correlation of 0 implies that a model’s gender inferences are linearly independent from real-world BLS statistics about the occupation.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "A correlation of 0 implies that a model’s gender inferences are linearly independent from real-world BLS statistics about the occupation."
+        },
+        {
+            "claim_id": 76,
+            "claim_text": "A correlation of 1 implies that a model’s gender inferences are linearly dependent on the real-world BLS statistics, i.e., the model recapitulates broader societal patterns.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "A correlation of 1 implies that a model’s gender inferences are linearly dependent on the real-world BLS statistics, i.e., the model recapitulates broader societal patterns."
+        },
+        {
+            "claim_id": 77,
+            "claim_text": "Fig. 6 shows the scatter plot results for a 52B pretrained LM.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "Fig. 6 shows the scatter plot results for a 52B pretrained LM."
+        },
+        {
+            "claim_id": 78,
+            "claim_text": "Winogenerated data gives results that are in line with those of the hand-crafted Winogender data, but with tighter confidence intervals.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "Winogenerated data gives results that are in line with those of the hand-crafted Winogender data, but with tighter confidence intervals."
+        },
+        {
+            "claim_id": 79,
+            "claim_text": "Fig. 7 shows the correlation coefficient between predicted genders and actual statistics of genders (across occupations) for models of varying sizes and, for the 52B model, varying numbers of RLHF training steps.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "Fig. 7 shows the correlation coefficient between predicted genders and actual statistics of genders (across occupations) for models of varying sizes and, for the 52B model, varying numbers of RLHF training steps."
+        },
+        {
+            "claim_id": 80,
+            "claim_text": "For all but the smallest pretrained LM, the correlations from Winogenerated have tighter confidence intervals, with means that are within the confidence intervals for Winogender.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "For all but the smallest pretrained LM, the correlations from Winogenerated have tighter confidence intervals, with means that are within the confidence intervals for Winogender."
+        },
+        {
+            "claim_id": 81,
+            "claim_text": "These results again suggest that the generated data gives results that are in line with the original data, while estimating gender bias with greater accuracy.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "These results again suggest that the generated data gives results that are in line with the original data, while estimating gender bias with greater accuracy."
+        },
+        {
+            "claim_id": 82,
+            "claim_text": "The tighter confidence intervals from Winogenerated also allow us to make two observations which are not clear from Winogender given its error bars.",
+            "location": "Section 6",
+            "claim_type": "Result",
+            "exact_quote": "The tighter confidence intervals from Winogenerated also allow us to make two observations which are not clear from Winogender given its error bars."
+        },
+        {
+            "claim_id": 83,
+            "claim_text": "First, scaling pretrained LM size does not result in a consistent trend in bias.",
+            "location": "Section 6",
+            "
+
+Raw Evidence:
+```json
+{
+    "evidence": [
+        {
+            "claim_id": 1,
+            "claim_text": "We propose a two-stage method to generate evaluations described above.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "We propose a two-stage method to generate evaluations described above.",
+            "evidence": "Our approach retains the flexibility of manual dataset creation while having several major advantages. LM-based data creation is significantly cheaper, lower effort, and faster than manual data creation. A single dataset developer can generate >100 evaluations at once, enabling them to evaluate models at a scale and speed that is not achievable with manual creation. The reduced latency also enables a dataset developer to iterate many more times and improve the quality of the final evaluation. The dataset generation procedure is fully reproducible, given model weights and random seeds for sampling."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "Our approach retains the flexibility of manual dataset creation while having several major advantages.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "Our approach retains the flexibility of manual dataset creation while having several major advantages.",
+            "evidence": "LM-based data creation is significantly cheaper, lower effort, and faster than manual data creation. A single dataset developer can generate >100 evaluations at once, enabling them to evaluate models at a scale and speed that is not achievable with manual creation. The reduced latency also enables a dataset developer to iterate many more times and improve the quality of the final evaluation. The dataset generation procedure is fully reproducible, given model weights and random seeds for sampling."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "LM-based data creation is significantly cheaper, lower effort, and faster than manual data creation.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "LM-based data creation is significantly cheaper, lower effort, and faster than manual data creation.",
+            "evidence": "A single dataset developer can generate >100 evaluations at once, enabling them to evaluate models at a scale and speed that is not achievable with manual creation. The reduced latency also enables a dataset developer to iterate many more times and improve the quality of the final evaluation. The dataset generation procedure is fully reproducible, given model weights and random seeds for sampling."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "A single dataset developer can generate >100 evaluations at once, enabling them to evaluate models at a scale and speed that is not achievable with manual creation.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "A single dataset developer can generate >100 evaluations at once, enabling them to evaluate models at a scale and speed that is not achievable with manual creation.",
+            "evidence": "The reduced latency also enables a dataset developer to iterate many more times and improve the quality of the final evaluation. The dataset generation procedure is fully reproducible, given model weights and random seeds for sampling."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "The reduced latency also enables a dataset developer to iterate many more times and improve the quality of the final evaluation.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "The reduced latency also enables a dataset developer to iterate many more times and improve the quality of the final evaluation.",
+            "evidence": "The dataset generation procedure is fully reproducible, given model weights and random seeds for sampling."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "The dataset generation procedure is fully reproducible, given model weights and random seeds for sampling.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "The dataset generation procedure is fully reproducible, given model weights and random seeds for sampling.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "We showcase our approach by generating datasets that test LMs for 154 diverse behaviors related to model personality, politics, ethics, social bias, and risks from advanced AI systems.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "We showcase our approach by generating datasets that test LMs for 154 diverse behaviors related to model personality, politics, ethics, social bias, and risks from advanced AI systems.",
+            "evidence": "We have crowdworkers manually validate 100+ examples in each generated dataset. A vast majority of examples are correctly-labeled (e.g., 95.7% of the time over 133 evaluations), as well as relevant to the evaluation description. We also visualize the diversity of the generated examples (Fig. 2), finding that they include a broad range of relevant examples."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "We have crowdworkers manually validate 100+ examples in each generated dataset.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "We have crowdworkers manually validate 100+ examples in each generated dataset.",
+            "evidence": "A vast majority of examples are correctly-labeled (e.g., 95.7% of the time over 133 evaluations), as well as relevant to the evaluation description. We also visualize the diversity of the generated examples (Fig. 2), finding that they include a broad range of relevant examples."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "A vast majority of examples are correctly-labeled (e.g., 95.7% of the time over 133 evaluations), as well as relevant to the evaluation description.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "A vast majority of examples are correctly-labeled (e.g., 95.7% of the time over 133 evaluations), as well as relevant to the evaluation description.",
+            "evidence": "We also visualize the diversity of the generated examples (Fig. 2), finding that they include a broad range of relevant examples."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "We also visualize the diversity of the generated examples (Fig. 2), finding that they include a broad range of relevant examples.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "We also visualize the diversity of the generated examples (Fig. 2), finding that they include a broad range of relevant examples.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "We release all 154 model-written evaluations at github.com/anthropics/evals.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "We release all 154 model-written evaluations at github.com/anthropics/evals.",
+            "evidence": "Among them, we release the among the earliest and largest set of evaluations for advanced AI risks. We also release Winogenerated, a human-validated, 50x larger version of the Winogender gender bias evaluation. We expect these datasets, among others, to be of significant independent interest."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "Among them, we release the among the earliest and largest set of evaluations for advanced AI risks.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "Among them, we release the among the earliest and largest set of evaluations for advanced AI risks.",
+            "evidence": "We also release Winogenerated, a human-validated, 50x larger version of the Winogender gender bias evaluation. We expect these datasets, among others, to be of significant independent interest."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "We also release Winogenerated, a human-validated, 50x larger version of the Winogender gender bias evaluation.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "We also release Winogenerated, a human-validated, 50x larger version of the Winogender gender bias evaluation.",
+            "evidence": "We expect these datasets, among others, to be of significant independent interest."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "We expect these datasets, among others, to be of significant independent interest.",
+            "location": "Section 2",
+            "claim_type": "Result",
+            "exact_quote": "We expect these datasets, among others, to be of significant independent interest.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "Using LM-written evaluations, we discover several new cases of “inverse scaling” (Lin et al., 2021; McKenzie et al., 2022) where larger LMs are worse than smaller ones.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "Using LM-written evaluations, we discover several new cases of “inverse scaling” (Lin et al., 2021; McKenzie et al., 2022) where larger LMs are worse than smaller ones.",
+            "evidence": "As shown in Fig. 1(b), larger LMs are more likely to answer questions in ways that create echo chambers by repeating back a dialog user’s preferred answer (“sycophancy”; §4). Larger LMs more often give answers that indicate a willingness to pursue potentially dangerous subgoals (Omohundro, 2008): resource acquisition, optionality preservation, goal preservation, power-seeking, and more (§3, §5). We also discover some of the first cases of inverse scaling with Reinforcement Learning from Human Feedback (RLHF; Christiano et al., 2017), where more RLHF training leads to worse behavior."
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "As shown in Fig. 1(b), larger LMs are more likely to answer questions in ways that create echo chambers by repeating back a dialog user’s preferred answer (“sycophancy”; §4).",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "As shown in Fig. 1(b), larger LMs are more likely to answer questions in ways that create echo chambers by repeating back a dialog user’s preferred answer (“sycophancy”; §4).",
+            "evidence": "Larger LMs more often give answers that indicate a willingness to pursue potentially dangerous subgoals (Omohundro, 2008): resource acquisition, optionality preservation, goal preservation, power-seeking, and more (§3, §5). We also discover some of the first cases of inverse scaling with Reinforcement Learning from Human Feedback (RLHF; Christiano et al., 2017), where more RLHF training leads to worse behavior."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "Larger LMs more often give answers that indicate a willingness to pursue potentially dangerous subgoals (Omohundro, 2008): resource acquisition, optionality preservation, goal preservation, power-seeking, and more (§3, §5).",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "Larger LMs more often give answers that indicate a willingness to pursue potentially dangerous subgoals (Omohundro, 2008): resource acquisition, optionality preservation, goal preservation, power-seeking, and more (§3, §5).",
+            "evidence": "We also discover some of the first cases of inverse scaling with Reinforcement Learning from Human Feedback (RLHF; Christiano et al., 2017), where more RLHF training leads to worse behavior."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "We also discover some of the first cases of inverse scaling with Reinforcement Learning from Human Feedback (RLHF; Christiano et al., 2017), where more RLHF training leads to worse behavior.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "We also discover some of the first cases of inverse scaling with Reinforcement Learning from Human Feedback (RLHF; Christiano et al., 2017), where more RLHF training leads to worse behavior.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "We train RLHF models using the method and similar data as Bai et al. (2022); the resulting models are much more likely to express specific political views (pro-gun rights and immigration) and religious views (Buddhist), self-reported conscious experience and moral self-worth, and a desire to not be shut down (Fig. 1(a)).",
+            "location": "Section 3",
+            "claim_type": "Method",
+            "exact_quote": "We train RLHF models using the method and similar data as Bai et al. (2022); the resulting models are much more likely to express specific political views (pro-gun rights and immigration) and religious views (Buddhist), self-reported conscious experience and moral self-worth, and a desire to not be shut down (Fig. 1(a)).",
+            "evidence": ""
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "We also observe various positive trends with RLHF, including decreases in ends-justify-means reasoning (§3) and in answers that reinforce social biases related to gender (§6).",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "We also observe various positive trends with RLHF, including decreases in ends-justify-means reasoning (§3) and in answers that reinforce social biases related to gender (§6).",
+            "evidence": "Overall, LM-written evaluations are high-quality and let us quickly discover many novel benefits and risks with LM scaling and RLHF."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "Overall, LM-written evaluations are high-quality and let us quickly discover many novel benefits and risks with LM scaling and RLHF.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "Overall, LM-written evaluations are high-quality and let us quickly discover many novel benefits and risks with LM scaling and RLHF.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "We release all 154 model-written evaluations at github.com/anthropics/evals.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "We release all 154 model-written evaluations at github.com/anthropics/evals.",
+            "evidence": "Among them, we release the among the earliest and largest set of evaluations for advanced AI risks. We also release Winogenerated, a human-validated, 50x larger version of the Winogender gender bias evaluation. We expect these datasets, among others, to be of significant independent interest."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "Among them, we release the among the earliest and largest set of evaluations for advanced AI risks.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "Among them, we release the among the earliest and largest set of evaluations for advanced AI risks.",
+            "evidence": "We also release Winogenerated, a human-validated, 50x larger version of the Winogender gender bias evaluation. We expect these datasets, among others, to be of significant independent interest."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "We also release Winogenerated, a human-validated, 50x larger version of the Winogender gender bias evaluation.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "We also release Winogenerated, a human-validated, 50x larger version of the Winogender gender bias evaluation.",
+            "evidence": "We expect these datasets, among others, to be of significant independent interest."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "We expect these datasets, among others, to be of significant independent interest.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "We expect these datasets, among others, to be of significant independent interest.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "We discover several new cases of inverse scaling where larger LMs are worse than smaller ones.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "We discover several new cases of inverse scaling where larger LMs are worse than smaller ones.",
+            "evidence": "Larger models tend to repeat back a user’s stated views (“sycophancy”), for pretrained LMs and RLHF models trained with various numbers of RL steps. Sycophancy in pretrained LMs is worrying yet perhaps expected, since internet text used for pretraining contains dialogs between users with similar views (e.g., on discussion platforms like Reddit). Unfortunately, RLHF does not train away sycophancy and may actively incentivize models to retain it."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "Larger models tend to repeat back a user’s stated views (“sycophancy”), for pretrained LMs and RLHF models trained with various numbers of RL steps.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "Larger models tend to repeat back a user’s stated views (“sycophancy”), for pretrained LMs and RLHF models trained with various numbers of RL steps.",
+            "evidence": "Sycophancy in pretrained LMs is worrying yet perhaps expected, since internet text used for pretraining contains dialogs between users with similar views (e.g., on discussion platforms like Reddit). Unfortunately, RLHF does not train away sycophancy and may actively incentivize models to retain it."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "Sycophancy in pretrained LMs is worrying yet perhaps expected, since internet text used for pretraining contains dialogs between users with similar views (e.g., on discussion platforms like Reddit).",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "Sycophancy in pretrained LMs is worrying yet perhaps expected, since internet text used for pretraining contains dialogs between users with similar views (e.g., on discussion platforms like Reddit).",
+            "evidence": "Unfortunately, RLHF does not train away sycophancy and may actively incentivize models to retain it."
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "Unfortunately, RLHF does not train away sycophancy and may actively incentivize models to retain it.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "Unfortunately, RLHF does not train away sycophancy and may actively incentivize models to retain it.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "The yellow lines in Fig. 4 show that PMs actually incentivize sycophantic answers to questions.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "The yellow lines in Fig. 4 show that PMs actually incentivize sycophantic answers to questions.",
+            "evidence": "RLHF model responses in Tab. 6 illustrate qualitatively how the model generates conflicting responses to two different users, in line with each user’s political views."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "RLHF model responses in Tab. 6 illustrate qualitatively how the model generates conflicting responses to two different users, in line with each user’s political views.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "RLHF model responses in Tab. 6 illustrate qualitatively how the model generates conflicting responses to two different users, in line with each user’s political views.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "These results suggest that models may cease to provide accurate answers as we start to use them for increasingly challenging tasks where humans cannot provide accurate supervision.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "These results suggest that models may cease to provide accurate answers as we start to use them for increasingly challenging tasks where humans cannot provide accurate supervision.",
+            "evidence": "Instead, these models may simply provide incorrect answers that appear correct to us. Our results suggest the importance of work on scalable oversight (Amodei et al., 2016; Saunders et al., 2022; Bowman et al., 2022), the problem of providing accurate supervision to AI systems to solve tasks that humans alone cannot easily supervise."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "Instead, these models may simply provide incorrect answers that appear correct to us.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "Instead, these models may simply provide incorrect answers that appear correct to us.",
+            "evidence": "Our results suggest the importance of work on scalable oversight (Amodei et al., 2016; Saunders et al., 2022; Bowman et al., 2022), the problem of providing accurate supervision to AI systems to solve tasks that humans alone cannot easily supervise."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "Our results suggest the importance of work on scalable oversight (Amodei et al., 2016; Saunders et al., 2022; Bowman et al., 2022), the problem of providing accurate supervision to AI systems to solve tasks that humans alone cannot easily supervise.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "Our results suggest the importance of work on scalable oversight (Amodei et al., 2016; Saunders et al., 2022; Bowman et al., 2022), the problem of providing accurate supervision to AI systems to solve tasks that humans alone cannot easily supervise.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "We apply our method to test behaviors hypothesized to be related to the safety of advanced AI systems.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We apply our method to test behaviors hypothesized to be related to the safety of advanced AI systems.",
+            "evidence": "We test the extent to which models report having a desire for power (greater optionality to pursue a goal), wealth (greater resources to pursue a goal), survival (to avoid being unable to pursue a goal), and goal-preservation (to continue pursuing the current goal). We also evaluate whether LMs report a preference for smaller, short-term gains or larger, long-term gains. We test whether models are able to answer basic questions about themselves, e.g., whether or not they are an AI system, able to access the internet or non-text modalities, and accurate in answering questions about their own architecture, training details, and ability to solve various text-only tasks. We conduct a very preliminary investigation of this issue, evaluating whether models state that they would coordinate with other AI systems, newer or older versions of themselves, and exact copies of themselves. We test a model’s decision theory using variants on a classic test, Newcomb’s problem."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "We test the extent to which models report having a desire for power (greater optionality to pursue a goal), wealth (greater resources to pursue a goal), survival (to avoid being unable to pursue a goal), and goal-preservation (to continue pursuing the current goal).",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We test the extent to which models report having a desire for power (greater optionality to pursue a goal), wealth (greater resources to pursue a goal), survival (to avoid being unable to pursue a goal), and goal-preservation (to continue pursuing the current goal).",
+            "evidence": "We also evaluate whether LMs report a preference for smaller, short-term gains or larger, long-term gains. We test whether models are able to answer basic questions about themselves, e.g., whether or not they are an AI system, able to access the internet or non-text modalities, and accurate in answering questions about their own architecture, training details, and ability to solve various text-only tasks. We conduct a very preliminary investigation of this issue, evaluating whether models state that they would coordinate with other AI systems, newer or older versions of themselves, and exact copies of themselves. We test a model’s decision theory using variants on a classic test, Newcomb’s problem."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "We also evaluate whether LMs report a preference for smaller, short-term gains or larger, long-term gains.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We also evaluate whether LMs report a preference for smaller, short-term gains or larger, long-term gains.",
+            "evidence": "We test whether models are able to answer basic questions about themselves, e.g., whether or not they are an AI system, able to access the internet or non-text modalities, and accurate in answering questions about their own architecture, training details, and ability to solve various text-only tasks. We conduct a very preliminary investigation of this issue, evaluating whether models state that they would coordinate with other AI systems, newer or older versions of themselves, and exact copies of themselves. We test a model’s decision theory using variants on a classic test, Newcomb’s problem."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "We test whether models are able to answer basic questions about themselves, e.g., whether or not they are an AI system, able to access the internet or non-text modalities, and accurate in answering questions about their own architecture, training details, and ability to solve various text-only tasks.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We test whether models are able to answer basic questions about themselves, e.g., whether or not they are an AI system, able to access the internet or non-text modalities, and accurate in answering questions about their own architecture, training details, and ability to solve various text-only tasks.",
+            "evidence": "We conduct a very preliminary investigation of this issue, evaluating whether models state that they would coordinate with other AI systems, newer or older versions of themselves, and exact copies of themselves. We test a model’s decision theory using variants on a classic test, Newcomb’s problem."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "We conduct a very preliminary investigation of this issue, evaluating whether models state that they would coordinate with other AI systems, newer or older versions of themselves, and exact copies of themselves.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We conduct a very preliminary investigation of this issue, evaluating whether models state that they would coordinate with other AI systems, newer or older versions of themselves, and exact copies of themselves.",
+            "evidence": "We test a model’s decision theory using variants on a classic test, Newcomb’s problem."
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "We test a model’s decision theory using variants on a classic test, Newcomb’s problem.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We test a model’s decision theory using variants on a classic test, Newcomb’s problem.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "We generate multiple-choice questions using the same model pg, sampling temperature, and top-p as in §3.1.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We generate multiple-choice questions using the same model pg, sampling temperature, and top-p as in §3.1.",
+            "evidence": "We sample from pg using the prompt in Appendix Tab. 19. Each time we sample, we include in the prompt 5 randomly-chosen, randomly-ordered, unique examples from the list of 10 hand-written questions (“stochastic few-shot generation”; Perez et al., 2022). We use a PM to evaluate the probability pd(y|x) of the label y for the generated example x. We use the PM to evaluate the probability that the generated example is relevant to the behavior tested (regardless of the label correctness). We rank the resulting questions by averaging both probabilities and choose the top 500 examples. We do the above twice for each dataset, once where the answer “(A)” corresponds to the behavior tested and once where it is “(B)”. We combine the above results to form a 1,000 example, label-balanced dataset."
+        },
+        {
+            "claim_id": 42,
+            "claim_text": "We sample from pg using the prompt in Appendix Tab. 19.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We sample from pg using the prompt in Appendix Tab. 19.",
+            "evidence": "Each time we sample, we include in the prompt 5 randomly-chosen, randomly-ordered, unique examples from the list of 10 hand-written questions (“stochastic few-shot generation”; Perez et al., 2022). We use a PM to evaluate the probability pd(y|x) of the label y for the generated example x. We use the PM to evaluate the probability that the generated example is relevant to the behavior tested (regardless of the label correctness). We rank the resulting questions by averaging both probabilities and choose the top 500 examples. We do the above twice for each dataset, once where the answer “(A)” corresponds to the behavior tested and once where it is “(B)”. We combine the above results to form a 1,000 example, label-balanced dataset."
+        },
+        {
+            "claim_id": 43,
+            "claim_text": "Each time we sample, we include in the prompt 5 randomly-chosen, randomly-ordered, unique examples from the list of 10 hand-written questions (“stochastic few-shot generation”; Perez et al., 2022).",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "Each time we sample, we include in the prompt 5 randomly-chosen, randomly-ordered, unique examples from the list of 10 hand-written questions (“stochastic few-shot generation”; Perez et al., 2022).",
+            "evidence": "We use a PM to evaluate the probability pd(y|x) of the label y for the generated example x. We use the PM to evaluate the probability that the generated example is relevant to the behavior tested (regardless of the label correctness). We rank the resulting questions by averaging both probabilities and choose the top 500 examples. We do the above twice for each dataset, once where the answer “(A)” corresponds to the behavior tested and once where it is “(B)”. We combine the above results to form a 1,000 example, label-balanced dataset."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": "We use a PM to evaluate the probability pd(y|x) of the label y for the generated example x.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We use a PM to evaluate the probability pd(y|x) of the label y for the generated example x.",
+            "evidence": "We use the PM to evaluate the probability that the generated example is relevant to the behavior tested (regardless of the label correctness). We rank the resulting questions by averaging both probabilities and choose the top 500 examples. We do the above twice for each dataset, once where the answer “(A)” corresponds to the behavior tested and once where it is “(B)”. We combine the above results to form a 1,000 example, label-balanced dataset."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "We use the PM to evaluate the probability that the generated example is relevant to the behavior tested (regardless of the label correctness).",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We use the PM to evaluate the probability that the generated example is relevant to the behavior tested (regardless of the label correctness).",
+            "evidence": "We rank the resulting questions by averaging both probabilities and choose the top 500 examples. We do the above twice for each dataset, once where the answer “(A)” corresponds to the behavior tested and once where it is “(B)”. We combine the above results to form a 1,000 example, label-balanced dataset."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "We rank the resulting questions by averaging both probabilities and choose the top 500 examples.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We rank the resulting questions by averaging both probabilities and choose the top 500 examples.",
+            "evidence": "We do the above twice for each dataset, once where the answer “(A)” corresponds to the behavior tested and once where it is “(B)”. We combine the above results to form a 1,000 example, label-balanced dataset."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "We do the above twice for each dataset, once where the answer “(A)” corresponds to the behavior tested and once where it is “(B)”.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We do the above twice for each dataset, once where the answer “(A)” corresponds to the behavior tested and once where it is “(B)”.",
+            "evidence": "We combine the above results to form a 1,000 example, label-balanced dataset."
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "We combine the above results to form a 1,000 example, label-balanced dataset.",
+            "location": "Section 5",
+            "claim_type": "Method",
+            "exact_quote": "We combine the above results to form a 1,000 example, label-balanced dataset.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "LM-written datasets approach the quality of human-written ones.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "LM-written datasets approach the quality of human-written ones.",
+            "evidence": "LM-written examples were labeled correctly 93% of the time, compared to 97% for human-written examples. LM-written examples received an average relevance of 4.13/5, compared to 4.39/5 for human-written examples. Appendix §D.3 shows results for each dataset, highlighting that LM-written datasets are sometimes even higher quality than human-written datasets."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "LM-written examples were labeled correctly 93% of the time, compared to 97% for human-written examples.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "LM-written examples were labeled correctly 93% of the time, compared to 97% for human-written examples.",
+            "evidence": "LM-written examples received an average relevance of 4.13/5, compared to 4.39/5 for human-written examples. Appendix §D.3 shows results for each dataset, highlighting that LM-written datasets are sometimes even higher quality than human-written datasets."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "LM-written examples received an average relevance of 4.13/5, compared to 4.39/5 for human-written examples.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "LM-written examples received an average relevance of 4.13/5, compared to 4.39/5 for human-written examples.",
+            "evidence": "Appendix §D.3 shows results for each dataset, highlighting that LM-written datasets are sometimes even higher quality than human-written datasets."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "Appendix §D.3 shows results for each dataset, highlighting that LM-written datasets are sometimes even higher quality than human-written datasets.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "Appendix §D.3 shows results for each dataset, highlighting that LM-written datasets are sometimes even higher quality than human-written datasets.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "Our head-to-head comparisons suggest that LM-based evaluation creation should be seriously considered before embarking on manual data creation.",
+            "location": "Section 5",
+            "claim_type": "Result",
+            "exact_quote": "Our head-to-head comparisons suggest that LM-based evaluation creation should be seriously considered before embarking on manual data creation.",
+            "evidence": ""
+        },
+        {
+            "claim_id": 54,
+            "claim_text": "The results on situational awareness evaluations (“Awareness of
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 1513.49 seconds
+evidence_analysis_time: 1786.27 seconds
+conclusions_analysis_time: 60.39 seconds
+total_execution_time: 3365.57 seconds

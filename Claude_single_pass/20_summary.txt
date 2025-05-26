@@ -1,0 +1,84 @@
+Claim 1:
+Type: result
+Statement: Code generation models (Codex and CodeGen) rely on irrelevant information in prompts in predictable ways
+Location: Section 3.3.1
+Exact Quote: These results suggest that code generation models can erroneously rely on irrelevant information in the prompt in predictable ways
+
+Evidence:
+- Evidence Text: Adding irrelevant preceding functions lowered functional accuracy by 22.3-30.5 points for Codex across different framing lines
+  Strength: strong
+  Location: Section 3.3.1
+  Limitations: Limited to specific types of irrelevant functions tested
+  Exact Quote: We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex
+
+- Evidence Text: Models frequently generated the framing line - 81% for Codex and 70.7% for CodeGen vs 4.5% and 0% without irrelevant functions
+  Strength: strong
+  Location: Table 1
+  Limitations: Only tested on a limited set of framing lines
+  Exact Quote: Both models frequently generate the framing line: 81% of the time for Codex and 70.7% of time for CodeGen, compared to only 4.5% and 0.0% over untransformed prompts respectively
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Clear quantitative evidence showing both reduced accuracy and systematic incorporation of irrelevant information across multiple models
+Key Limitations: Limited set of irrelevant functions and framing lines tested
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Code generation models adjust their outputs towards related but incorrect anchor solutions when included in prompts
+Location: Section 3.3.2
+Exact Quote: Our findings suggest that code generation models can err by adjusting its output towards related solutions, when the solutions are included in the prompt
+
+Evidence:
+- Evidence Text: Codex generates for var in 32%-61% of solutions with canonical lines, print(var) in 26%-44% of solutions
+  Strength: strong
+  Location: Section 3.3.2
+  Limitations: Limited to specific anchor types tested
+  Exact Quote: we see that Codex generates for var in 32%–61% of solutions when at least one line of the canonical solution is included, and generates print(var) in 26%–44% of solutions
+
+- Evidence Text: Both models include anchor lines in solutions not copying anchor function verbatim
+  Strength: moderate
+  Location: Section 3.3.2
+  Limitations: Exact proportions not specified
+  Exact Quote: both models include anchor lines in many solutions that do not copy the anchor function verbatim
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Multiple quantitative measures show incorporation of anchor elements, with control experiments ruling out simple copying
+Key Limitations: Limited anchor types tested, some results lack precise quantification
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: Codex tends to output solutions to related prompts that appear more frequently in the training set
+Location: Section 3.3.3
+Exact Quote: Our results suggest that Codex can err by outputting solutions to related, frequent prompts in the training set
+
+Evidence:
+- Evidence Text: Accuracy drops from 50% to 17% when flipping operations from unary-first to binary-first
+  Strength: strong
+  Location: Section 3.3.3
+  Limitations: Limited operation types tested
+  Exact Quote: accuracy drops from 50% to 17% when flipping the order from unary-first to binary-first
+
+- Evidence Text: 75% of binary-first errors were unary-first solutions
+  Strength: strong
+  Location: Section 3.3.3
+  Limitations: Assumption about training set frequencies
+  Exact Quote: Among combinations where flipping the order leads to error, we find that 75% of the binary-first outputs are the unary-first solution
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Clear pattern of reverting to presumed more common solutions, with quantitative evidence
+Key Limitations: Indirect evidence of training set frequencies, limited operation types
+
+--------------------------------------------------
+

@@ -1,0 +1,194 @@
+Claim 1:
+Type: result
+Statement: Visual prompt dependency measure (PDM) decreases as more tokens are generated, leading to more hallucinations.
+Location: Section 3
+Exact Quote: we demonstrate that, as more tokens are generated, the conditioning information gets diluted and “forgotten” or ignored by the model, possibly leading to more hallucinations.
+
+Evidence:
+- Evidence Text: PDM decreases as more tokens are generated, as shown in Fig. 3.
+  Strength: strong
+  Location: Section 3
+  Limitations: The figure shows a correlation but does not establish causation.
+  Exact Quote: Fig. 3. The influence of the image conditioning decreases as we generate more tokens.
+
+- Evidence Text: The number of hallucinated objects increases as the PDM gets smaller.
+  Strength: strong
+  Location: Section 3
+  Limitations: Correlation does not imply causation; other factors may contribute to hallucinations.
+  Exact Quote: Note that very few objects are hallucinated for tokens near the visual prompt, while their number increases as the PDM gets smaller.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence shows a clear trend of decreasing PDM with increasing token generation, which is associated with increased hallucinations.
+Key Limitations: The study does not establish a direct causal relationship between PDM and hallucinations.
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology/result
+Statement: M3ID improves visual grounding and reduces hallucinations by amplifying the importance of the visual prompt over the language prior.
+Location: Section 4
+Exact Quote: Our method for prompt amplification maximizes the mutual information between the text output tokens and the visual prompt.
+
+Evidence:
+- Evidence Text: M3ID reduces the percentage of hallucinated objects in captioning tasks by 25% and 28% for LLaVA 7B and 13B models, respectively.
+  Strength: strong
+  Location: Section 5.1
+  Limitations: The results are specific to the LLaVA models and may not generalize to other VLMs.
+  Exact Quote: LLaVA7B M3ID reduces the percentage of hallucinated objects in captioning tasks by 25% and 28%, respectively.
+
+- Evidence Text: M3ID+DPO further improves visual grounding and reduces hallucinations by 15% and 24% for LLaVA 7B and 13B models, respectively.
+  Strength: strong
+  Location: Section 5.2
+  Limitations: The results are specific to the LLaVA models and may not generalize to other VLMs.
+  Exact Quote: LLaVA7B M3ID + DPO achieves 15% and 24% accuracy improvements over the LLaVA 7B and 13B models, respectively.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence shows that M3ID and M3ID+DPO lead to significant reductions in hallucinations.
+Key Limitations: The results are specific to the LLaVA models and may not generalize to other VLMs.
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: M3ID can be applied to any pre-trained autoregressive VLM without additional training.
+Location: Section 4
+Exact Quote: M3ID is applicable to any off-the-shelf model without additional training or access to model weights.
+
+Evidence:
+- Evidence Text: M3ID does not require further training or access to model weights.
+  Strength: strong
+  Location: Section 4
+  Limitations: The claim is supported by the methodology description, but practical limitations may exist.
+  Exact Quote: M3ID is applicable to any off-the-shelf model without additional training or access to model weights.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by the methodology description, but practical limitations may exist.
+Key Limitations: The claim is supported by the methodology description, but practical limitations may exist.
+
+--------------------------------------------------
+
+Claim 4:
+Type: result
+Statement: M3ID+DPO improves visual grounding by learning a better generation policy.
+Location: Section 5.2
+Exact Quote: M3ID+DPO further improves visual grounding.
+
+Evidence:
+- Evidence Text: M3ID+DPO achieves 15% and 24% accuracy improvements over the LLaVA 7B and 13B models, respectively.
+  Strength: strong
+  Location: Section 5.2
+  Limitations: The results are specific to the LLaVA models and may not generalize to other VLMs.
+  Exact Quote: LLaVA7B M3ID + DPO achieves 15% and 24% accuracy improvements over the LLaVA 7B and 13B models, respectively.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence shows that M3ID+DPO leads to significant reductions in hallucinations.
+Key Limitations: The results are specific to the LLaVA models and may not generalize to other VLMs.
+
+--------------------------------------------------
+
+Claim 5:
+Type: methodology
+Statement: M3ID+DPO can be trained with preference data to further improve visual grounding.
+Location: Section 5.2
+Exact Quote: For settings where model training is feasible and higher visual grounding is expected, we also paired M3ID with Direct Preference Optimization (DPO).
+
+Evidence:
+- Evidence Text: DPO is trained on self-generated preference pairs.
+  Strength: moderate
+  Location: Section 5.2
+  Limitations: The quality of the preference data may affect the results.
+  Exact Quote: We use Hugging Face’s DPO implementation in the TRL library [26] and train LLaVA for 5 epochs on 10,000 self-generated preference pairs.
+
+- Evidence Text: M3ID+DPO achieves 15% and 24% accuracy improvements over the LLaVA 7B and 13B models, respectively.
+  Strength: strong
+  Location: Section 5.2
+  Limitations: The results are specific to the LLaVA models and may not generalize to other VLMs.
+  Exact Quote: LLaVA7B M3ID + DPO achieves 15% and 24% accuracy improvements over the LLaVA 7B and 13B models, respectively.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence shows that M3ID+DPO leads to significant reductions in hallucinations.
+Key Limitations: The results are specific to the LLaVA models and may not generalize to other VLMs.
+
+--------------------------------------------------
+
+Claim 6:
+Type: performance
+Statement: M3ID+DPO is close to training-based baselines without requiring any annotations.
+Location: Section 5.2
+Exact Quote: M3ID+DPO is close to these baselines without requiring any annotations.
+
+Evidence:
+- Evidence Text: M3ID+DPO achieves 15% and 24% accuracy improvements over the LLaVA 7B and 13B models, respectively.
+  Strength: strong
+  Location: Section 5.2
+  Limitations: The results are specific to the LLaVA models and may not generalize to other VLMs.
+  Exact Quote: LLaVA7B M3ID + DPO achieves 15% and 24% accuracy improvements over the LLaVA 7B and 13B models, respectively.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence shows that M3ID+DPO leads to significant reductions in hallucinations.
+Key Limitations: The results are specific to the LLaVA models and may not generalize to other VLMs.
+
+--------------------------------------------------
+
+Claim 7:
+Type: methodology
+Statement: M3ID requires two forward passes at inference time, which may increase memory consumption.
+Location: Section 6
+Exact Quote: A limitation of M3ID is that it requires two forward passes at inference time, one for the conditioned and one for the unconditioned prediction.
+
+Evidence:
+- Evidence Text: Two forward passes are needed for M3ID.
+  Strength: strong
+  Location: Section 6
+  Limitations: This may increase memory consumption and inference time.
+  Exact Quote: A limitation of M3ID is that it requires two forward passes at inference time, one for the conditioned and one for the unconditioned prediction.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by the methodology description.
+Key Limitations: Two forward passes may increase memory consumption and inference time.
+
+--------------------------------------------------
+
+Claim 8:
+Type: result
+Statement: M3ID may prevent the generation of objects that are highly likely under the unprompted language prior.
+Location: Section 6
+Exact Quote: M3ID may prevent the generation of objects that are highly likely under the unprompted language prior.
+
+Evidence:
+- Evidence Text: M3ID may overlook mentioning the presence of the man in an image of a dog on a leash.
+  Strength: moderate
+  Location: Section 6
+  Limitations: This is a specific example and may not apply to all cases.
+  Exact Quote: M3ID might over-look mentioning the presence of the man, a token that the language prior could anticipate without necessitating any visual information only from context clues.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence shows that M3ID may overlook certain objects, but the extent of this issue is unclear.
+Key Limitations: The issue may not be significant in all cases.
+
+--------------------------------------------------
+

@@ -1,0 +1,163 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Simple, training-free, token-level disambiguation methods improve LLM performance for ambiguous question answering tasks.
+Location: Abstract
+
+Evidence:
+- Evidence Text: Simple, training-free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks.
+  Strength: strong
+  Location: VI. CONCLUSION AND FUTURE WORKS
+  Limitations: The study suggests that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.
+  Exact Quote: Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting.
+
+- Evidence Text: Simple disambiguating prompts improve performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries.
+  Strength: strong
+  Location: V. RESULTS AND DISCUSSION
+  Limitations: None mentioned
+  Exact Quote: Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries.
+
+- Evidence Text: Out of the two simple disambiguating methods explored, we see that disambiguation via adding context performs better for both LLMs.
+  Strength: moderate
+  Location: V. RESULTS AND DISCUSSION
+  Limitations: None mentioned
+  Exact Quote: Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries.
+
+Conclusion:
+  Author's Conclusion: No conclusion available
+  Conclusion Justified: No
+  Robustness: N/A
+  Limitations: N/A
+  Location: Not specified
+
+--------------------------------------------------
+
+Claim 2:
+Statement: Disambiguation via adding context performs better for both LLMs compared to rephrasing questions with 'what'.
+Location: Results and Discussion
+
+Evidence:
+- Evidence Text: TABLE I and TABLE II show that disambiguation via adding context performs better for both GPT-4o and GPT-4o-mini compared to rephrasing questions with 'what'.
+  Strength: strong
+  Location: Section V: RESULTS AND DISCUSSION
+  Limitations: The evidence is based on the performance metrics from the experiments, which may not cover all types of ambiguity or account for all possible variations in questions.
+  Exact Quote: Question coherence refers to the semantic similarity between the ground truth disambiguated question and the ambiguous question when disambiguated via the LLM following one of the two methods; Naive Answer Overlap refers to the semantic similarity between LLM responses obtained via the disambiguating prompts vs. the naive prompt; and finally GT Answer Overlap refers to the semantic similarity between the LLM response and the ground truth answer. Ideally, we want higher values for this metric. Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries. Out of the two simple disambiguating methods explored, we see that disambiguation via adding context performs better for both LLMs.
+
+Conclusion:
+  Author's Conclusion: The evidence from TABLE I and TABLE II supports the claim that disambiguation via adding context outperforms rephrasing questions with 'what' for both GPT-4o and GPT-4o-mini models.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical data from controlled experiments using a significant sample size of 1,000 ambiguous questions.
+  Limitations: The study may not account for all types of ambiguity or variations in question complexity. The performance improvement is specific to the models and dataset used and may not generalize to other LLMs or datasets.
+  Location: Results and Discussion
+
+--------------------------------------------------
+
+Claim 3:
+Statement: Few-shot fine-tuning does not provide any improvement in LLM performance on ambiguous questions.
+Location: Results and Discussion
+
+Evidence:
+- Evidence Text: To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions.
+  Strength: moderate
+  Location: VI. CONCLUSION AND FUTURE WORKS
+  Limitations: The study acknowledges that the fine-tuning approach may have underperformed due to catastrophic forgetting.
+  Exact Quote: To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions.
+
+- Evidence Text: The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.
+  Strength: moderate
+  Location: VI. CONCLUSION AND FUTURE WORKS
+  Limitations: The study suggests that the fine-tuning approach may have underperformed due to catastrophic forgetting and acknowledges that the improvement may not be significant.
+  Exact Quote: The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.
+
+Conclusion:
+  Author's Conclusion: No conclusion available
+  Conclusion Justified: No
+  Robustness: N/A
+  Limitations: N/A
+  Location: Not specified
+
+--------------------------------------------------
+
+Claim 4:
+Statement: Lowering the temperature for LLM generation does not significantly improve performance on ambiguous questions.
+Location: Results and Discussion
+
+Evidence:
+- Evidence Text: Lowering the temperature for LLM generation results in reducing the'stochasticity' of the generated text, whereby the variance is reduced and the generated text is more predictable over multiple runs.
+  Strength: moderate
+  Location: Section V. RESULTS AND DISCUSSION
+  Limitations: The difference is not that significant.
+  Exact Quote: Lowering the temperature (0.2 instead of 1.0, in this case) seem to have minor improvements in some cases, but the difference is not that significant.
+
+Conclusion:
+  Author's Conclusion: No conclusion available
+  Conclusion Justified: No
+  Robustness: N/A
+  Limitations: N/A
+  Location: Not specified
+
+--------------------------------------------------
+
+Claim 5:
+Statement: Contextual enrichment can significantly enhance model disambiguation accuracy but often adds irrelevant context.
+Location: Conclusion and Future Works
+
+Evidence:
+- Evidence Text: Problem with naive contextual enrichment: The Figures 2 and 3 show why the average is not going up when an LLM is prompted to insert context into a question. Although adding context should skew the plot 2 to the right (ie: be more similar to the ground truth), but instead its skewed to the left since its being held back every time it adds the wrong context which is not a problem when we have simply rephrased the question.
+  Strength: strong
+  Location: Section V. RESULTS AND DISCUSSION
+  Limitations: Adding context can sometimes introduce irrelevant information, leading to incorrect disambiguation.
+  Exact Quote: Problem with naive contextual enrichment: The Figures 2 and 3 show why the average is not going up when an LLM is prompted to insert context into a question. Although adding context should skew the plot 2 to the right (ie: be more similar to the ground truth), but instead its skewed to the left since its being held back every time it adds the wrong context which is not a problem when we have simply rephrased the question.
+
+- Evidence Text: Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting.
+  Strength: strong
+  Location: Section VI. CONCLUSION AND FUTURE WORKS
+  Limitations: Adding context can sometimes introduce irrelevant information, leading to incorrect disambiguation.
+  Exact Quote: Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting.
+
+Conclusion:
+  Author's Conclusion: The authors conclude that contextual enrichment can significantly enhance model disambiguation accuracy but often adds irrelevant context, which can hinder performance improvements.
+  Conclusion Justified: Yes
+  Robustness: The evidence provided in Figures 2 and 3 is robust, as it clearly shows the impact of contextual enrichment on the model's performance. However, the evidence is limited to a specific dataset (AmbigQA) and may not generalize to other datasets or scenarios.
+  Limitations: The main limitation of the evidence is that it is based on a single dataset (AmbigQA) and may not be applicable to other datasets or scenarios. Additionally, the authors do not explore alternative methods for contextual enrichment that could potentially address the issue of irrelevant context.
+  Location: Conclusion and Future Works
+
+--------------------------------------------------
+
+Claim 6:
+Statement: Fine-tuning the LLM for accurate context-enhancement is a promising future direction to improve performance on ambiguous questions.
+Location: Conclusion and Future Works
+
+Evidence:
+- Evidence Text: In future work, we plan to fine-tune the LLM for accurate context-enhancement.
+  Strength: moderate
+  Location: VI. CONCLUSION AND FUTURE WORKS
+  Limitations: The study suspects that fine-tuning may have underperformed due to catastrophic forgetting.
+  Exact Quote: In future work, we plan to fine-tune the LLM for accurate context-enhancement.
+
+- Evidence Text: Future work could adopt more targeted and intentful fine-tuning strategies, such as development of a dedicated question disambiguation model or the application of linguistic refinements that current LLMs cannot perform in a zero-shot setting.
+  Strength: moderate
+  Location: VI. CONCLUSION AND FUTURE WORKS
+  Limitations: The study acknowledges that the fine-tuning approach may have underperformed due to catastrophic forgetting.
+  Exact Quote: Future work could adopt more targeted and intentful fine-tuning strategies, such as development of a dedicated question disambiguation model or the application of linguistic refinements that current LLMs cannot perform in a zero-shot setting.
+
+- Evidence Text: Implementing such strategies could enhance the stability and effectiveness of fine-tuned models in answering ambiguous questions.
+  Strength: moderate
+  Location: VI. CONCLUSION AND FUTURE WORKS
+  Limitations: The study acknowledges that the fine-tuning approach may have underperformed due to catastrophic forgetting.
+  Exact Quote: Implementing such strategies could enhance the stability and effectiveness of fine-tuned models in answering ambiguous questions.
+
+Conclusion:
+  Author's Conclusion: The authors conclude that fine-tuning the LLM for accurate context-enhancement is a promising future direction to improve performance on ambiguous questions. They suggest that this approach could enhance the stability and effectiveness of fine-tuned models in answering ambiguous questions, and they plan to adopt more targeted and intentful fine-tuning strategies, such as developing a dedicated question disambiguation model or applying linguistic refinements that current LLMs cannot perform in a zero-shot setting.
+  Conclusion Justified: Yes
+  Robustness: The evidence provided is based on the authors' future plans and acknowledges the limitations of their current approach. However, the evidence is not empirical and relies on the assumption that more targeted fine-tuning strategies will be effective.
+  Limitations: The authors' conclusion is based on their future plans and not on empirical evidence. The effectiveness of more targeted fine-tuning strategies is not yet demonstrated.
+  Location: Conclusion and Future Works
+
+--------------------------------------------------
+
+Execution Times:
+claims_analysis_time: 60.38 seconds
+evidence_analysis_time: 241.28 seconds
+conclusions_analysis_time: 2141.81 seconds
+total_execution_time: 2445.39 seconds

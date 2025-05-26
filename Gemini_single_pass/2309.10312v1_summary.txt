@@ -1,0 +1,154 @@
+Claim 1:
+Type: result
+Statement: GPT-4 explanations are not well aligned with neuron activations and should not be solely depended upon for downstream tasks.
+Location: 3.4 Discussion
+Exact Quote: Our experimental results show that the Bills et al. 2023 explanations are not well aligned with neuron activations; with an F1 score around 0.6 across 300 of the top-scoring explanations, it seems as though it would be risky to depend on these explanations for downstream tasks.
+
+Evidence:
+- Evidence Text: F1 score of 0.6 for GPT-4 explanations across 300 top-scoring explanations
+  Strength: strong
+  Location: 3.3 Results
+  Limitations: Only 300 explanations were evaluated, results may not generalize to all explanations.
+  Exact Quote: Results over 300 neuron explanations are shown in Table 1. For single neuron without probing, the GPT-4 explanations have a mean F1 score of 0.56 (with a precision of 0.64 and a recall of 0.50), whereas the random baseline has a F1 score of zero.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The F1 score is a widely used metric for evaluating the performance of classification models, and a score of 0.6 indicates that the model is performing better than random guessing but is not highly accurate.
+Key Limitations: The evaluation was conducted on a limited number of explanations, and the results may not generalize to all possible explanations.
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: High GPT-4 scores do not guarantee high-quality explanations.
+Location: 3.4 Discussion
+Exact Quote: There is no inconsistency here, though, and indeed it is easy to show that a high GPT-4 score does not guarantee a faithful explanation.
+
+Evidence:
+- Evidence Text: An unfaithful explanation with a precision of 0.50 can still have a perfect GPT-4 score with high probability.
+  Strength: strong
+  Location: 3.4 Discussion
+  Limitations: The example provided is simplistic and may not reflect the complexity of real-world explanations.
+  Exact Quote: Consider an unfaithful explanation E = year 2000 and 2001 of a neuron a that only activates on “2000”. When sampling the 10 examples from a corpus that has n% examples containing “2001” (a Type I error) is 1 (1 − n%)[5] n%. For any large corpus, n% could be extremely small due to a long tail distribution, which means the GPT-4 score is insensitive to Type I errors.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The example provided demonstrates that it is possible for an explanation to have a high GPT-4 score but still be of low quality.
+Key Limitations: The example provided is simplistic and may not reflect the complexity of real-world explanations.
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: The observational testing regime used in this study is more reliable than the GPT-4 simulation.
+Location: 3.4 Discussion
+Exact Quote: This example shows two things: (i) high correlation scores from GPT-4 simulations do not guarantee high-quality explanations, and (ii) our observational testing regime is more reliable, provided the chosen experimental datasets have the potential to diagnose both Type I and Type II errors.
+
+Evidence:
+- Evidence Text: Observational testing regime directly samples different instances from the set denoted by the explanation, making it less susceptible to Type I errors.
+  Strength: strong
+  Location: 3.4 Discussion
+  Limitations: The observational testing regime may be more computationally expensive than the GPT-4 simulation.
+  Exact Quote: In contrast, our precision metric can capture Type I errors by directly sampling different instances from E, such that 50% test examples should contain “2001”.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The observational testing regime directly samples different instances from the set denoted by the explanation, making it less susceptible to Type I errors.
+Key Limitations: The observational testing regime may be more computationally expensive than the GPT-4 simulation.
+
+--------------------------------------------------
+
+Claim 4:
+Type: result
+Statement: Neurons in the middle and later layers only show causal effects on model behaviors after aggregating over multiple consecutive layers.
+Location: section 4.4
+Exact Quote: Neurons in the middle and later layers only show causal effects on model behaviors after aggregating over multiple consecutive layers.
+
+Evidence:
+- Evidence Text: The high IIA@100 suggests that MLP layer neurons, when evaluated as a whole, have strong causal effects on model behavior, especially in the first layer.
+  Strength: strong
+  Location: section 4.4
+  Limitations: None
+  Exact Quote: The high IIA@100 suggests that MLP layer neurons, when evaluated as a whole, have strong causal effects on model behavior, especially in the first layer.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim that neurons in the middle and later layers only show causal effects on model behaviors after aggregating over multiple consecutive layers.
+Key Limitations: None
+
+--------------------------------------------------
+
+Claim 5:
+Type: result
+Statement: GPT-4 generated explanations have similar causal effects as the random baseline on most tasks.
+Location: section 4.4
+Exact Quote: GPT-4 generated explanations have similar causal effects as the random baseline on most tasks.
+
+Evidence:
+- Evidence Text: The only exception is the explanation for neurons related to numerical expressions, which has higher IIA than the random baseline, but still far below the token-activation correlation baseline.
+  Strength: strong
+  Location: section 4.4
+  Limitations: None
+  Exact Quote: The only exception is the explanation for neurons related to numerical expressions, which has higher IIA than the random baseline, but still far below the token-activation correlation baseline.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim that GPT-4 generated explanations have similar causal effects as the random baseline on most tasks.
+Key Limitations: None
+
+--------------------------------------------------
+
+Claim 6:
+Type: methodology
+Statement: Natural languages are characterized by vagueness, ambiguity, and context dependence.
+Location: section 5.1
+Exact Quote: However, natural languages are characterized by vagueness, ambiguity, and context dependence.
+
+Evidence:
+- Evidence Text: These properties actually work in concert to facilitate the expressivity of language: vagueness and ambiguity allow words and phrases to be used flexibly, and context dependence means that people can coordinate on specific meanings using context
+  Strength: moderate
+  Location: section 5.1
+  Limitations: This evidence only partially supports the claim, as it does not provide any examples of how these properties work in concert to facilitate the expressivity of language.
+  Exact Quote: These properties actually work in concert to facilitate the expressivity of language: vagueness and ambiguity allow words and phrases to be used flexibly, and context dependence means that people can coordinate on specific meanings using context
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence moderately supports the claim that natural languages are characterized by vagueness, ambiguity, and context dependence.
+Key Limitations: The evidence does not provide any examples of how these properties work in concert to facilitate the expressivity of language.
+
+--------------------------------------------------
+
+Claim 7:
+Type: methodology
+Statement: We should not limit ourselves to neurons located in particular parts of the network.
+Location: section 5.2
+Exact Quote: We should not limit ourselves to neurons located in particular parts of the network.
+
+Evidence:
+- Evidence Text: While Bills et al. (2023) choose to analyze neurons in the MLP layers, attention heads and residual streams can also be used as different level of abstractions to understand model behaviors
+  Strength: strong
+  Location: section 5.2
+  Limitations: None
+  Exact Quote: While Bills et al. (2023) choose to analyze neurons in the MLP layers, attention heads and residual streams can also be used as different level of abstractions to understand model behaviors
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim that we should not limit ourselves to neurons located in particular parts of the network.
+Key Limitations: None
+
+--------------------------------------------------
+

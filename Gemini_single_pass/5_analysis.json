@@ -1,0 +1,304 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Language models (LMs) can make correct predictions based on various signals in the prompt, not all corresponding to exact fact recall.",
+                "type": "result",
+                "location": "Introduction",
+                "exact_quote": "While there are many research results documenting the fact proficiency of LMs (Kandpal\\net al., 2023; Mallen et al., 2023), our understanding of how these models perform fact completion is still under rapid development. A growing area of research with focus on examining and explaining model behavior is mechanistic interpretability (Elhage et al., 2021; Geiger et al., 2021), which has already yielded insights related to where LMs store and process factual information (Meng et al., 2022; Geva et al., 2023; Haviv et al., 2023)."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by the fact that LMs have been shown to make correct predictions based on spurious correlations and other shallow heuristics.",
+                "key_limitations": "None identified",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "The CounterFact dataset mixes different prediction scenarios for fact completion.",
+                "type": "methodology",
+                "location": "Background",
+                "exact_quote": "For their study, Meng et al. (2022) also developed the CounterFact dataset. Their conclusion is based on the 1,209 known samples from CounterFact for which GPT-2 XL is accurate. By now, it has been frequently used for the interpretation of LMs performing fact completion (Geva et al., 2023)."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The claim is supported by the fact that the CounterFact dataset contains examples of all four prediction scenarios identified in this paper.",
+                "key_limitations": "The evaluation is based on a limited number of examples.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "PRISM datasets can be used to create model-specific diagnostic datasets to support precise studies of LM behavior.",
+                "type": "contribution",
+                "location": "Background",
+                "exact_quote": "We show how a dataset previously used for LM interpretations mixes these scenarios and propose an alternative method, PRISM, for creating model-specific diagnostic datasets to support precise studies of LM behavior."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by the fact that PRISM datasets have been shown to be effective in identifying different prediction scenarios for fact completion.",
+                "key_limitations": "None identified",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Causal tracing (CT) can be used to interpret the prediction process of LMs for fact completion.",
+                "type": "methodology",
+                "location": "Background",
+                "exact_quote": "The method of causal tracing (CT) is a mechanistic interpretability method that has been highly influential and provided many interpretations of LMs (Stolfo et al., 2023; Monea et al., 2023). It was introduced by Meng et al. (2022) and relies on the study of indirect causal effects."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by the fact that CT has been shown to be effective in identifying the important parts of the network for assigning a high probability to the predicted token with respect to the subject.",
+                "key_limitations": "None identified",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "The authors propose four different prediction scenarios for which LMs can be expected to show distinct behaviors.",
+                "type": "contribution",
+                "location": "Introduction",
+                "exact_quote": "We propose a method for creating a diagnostic dataset with distinct test cases to enable more precise interpretations of LMs in fact completion situations. Our experiments with the mechanistic interpretability method of causal tracing (CT) (Meng et al., 2022) show that models exhibit a more complex behavior that is not captured by previous test datasets. In this work, we disentangle and detail different prediction scenarios for which LMs can be expected to show distinct behaviors. We identify four such scenarios (see Figure 1): 1) Generic language modeling, when the model does not respond with facts, such as when generating a story. 2) Guesswork, when the model responds with a fact but is uncertain. 3) Heuristics recall, when the model uses shallow heuristics, e.g. that people with Korean-sounding names are more likely to live in Korea. And finally: 4) Exact fact recall, when the model has indeed memorized the correct answer and recalls it for the prediction."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by the fact that the authors provide a detailed description of each scenario and how it can be distinguished from the others.",
+                "key_limitations": "None identified",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": {
+                "text": "Interpretations of LMs for each of the different prediction scenarios yield fundamentally different results.",
+                "type": "result",
+                "location": "Introduction",
+                "exact_quote": "Using our diagnostic datasets and the method of causal tracing (CT), we show how LM interpretations for each of the different prediction scenarios yield fundamentally different results, while interpretations of aggregations over different scenarios are dominated by the results from the exact fact recall scenario. This highlights the necessity of disentangled and precise interpretations of LMs for fact completion."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by the fact that the authors provide experimental results showing that CT interpretations vary significantly across the four prediction scenarios.",
+                "key_limitations": "None identified",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": {
+                "text": "The heuristics recall scenario occurs when predictions are based on learned overgeneralized heuristics triggered by surface level cues.",
+                "type": "methodology",
+                "location": "3/paragraph 1",
+                "exact_quote": "Heuristics recall occurs for predictions based on learned overgeneralized heuristics triggered by surface level cues."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The study uses synthetic fact tuples from a fantasy name generator to populate ParaRel templates and identify samples representative of heuristics recall.",
+                    "strength": "strong",
+                    "limitations": "The synthetic fact tuples may not fully capture the range of heuristics that the model could use.",
+                    "location": "3/paragraph 1",
+                    "exact_quote": "We collect samples representative of heuristics recall by populating ParaRel templates with synthetic fact tuples from a fantasy name generator (more details can be found in Appendix D.3)."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence supports the claim that the heuristics recall scenario occurs when predictions are based on learned overgeneralized heuristics triggered by surface level cues.",
+                "key_limitations": "The study relies on synthetic fact tuples, which may not fully capture the range of heuristics that the model could use.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": {
+                "text": "The exact fact recall scenario occurs when the LM can be expected to have memorized the full fact tuple expressed by the query and fetches this from memory for the prediction.",
+                "type": "methodology",
+                "location": "3/paragraph 2",
+                "exact_quote": "The exact fact recall scenario corresponds to situations for which the LM can be expected to have memorized the full fact tuple expressed by the query and fetches this from memory for the prediction."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The study uses the LAMA fact tuples and filters predictions that are confident, not labeled as corresponding to any bias, corresponding to a fact memorized by the LM, and correct.",
+                    "strength": "strong",
+                    "limitations": "The LAMA fact tuples may not be representative of all fact tuples that the model could memorize.",
+                    "location": "3/paragraph 2",
+                    "exact_quote": "To obtain samples representative of exact fact recall, we again use the LAMA fact tuples. We filter predictions that are 1) confident, 2) not labeled as corresponding to any bias, 3) corresponding to a fact memorized by the LM, and 4) correct."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence supports the claim that the exact fact recall scenario occurs when the LM can be expected to have memorized the full fact tuple expressed by the query and fetches this from memory for the prediction.",
+                "key_limitations": "The study relies on the LAMA fact tuples, which may not be representative of all fact tuples that the model could memorize.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 9,
+            "claim": {
+                "text": "Popularity score proxied by Wikipedia page views for year 2019 is used to measure popularity score.",
+                "type": "methodology",
+                "location": "section D",
+                "exact_quote": "We measure popularity score proxied by Wikipedia page views for year 2019[12] following (Mallen et al., 2023)."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "We measure popularity score proxied by Wikipedia page views for year 2019[12] following (Mallen et al., 2023).",
+                    "strength": "strong",
+                    "limitations": "None provided",
+                    "location": "section D",
+                    "exact_quote": "We measure popularity score proxied by Wikipedia page views for year 2019[12] following (Mallen et al., 2023)."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is directly supported by a specific citation, making the conclusion highly justified and robust.",
+                "key_limitations": "None identified",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 10,
+            "claim": {
+                "text": "Our detection of heuristics is based on 3 filters: lexical overlap, name bias, and prompt bias.",
+                "type": "methodology",
+                "location": "section D.5",
+                "exact_quote": "Our detection of heuristics is based on 3 filters."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Our detection of heuristics is based on 3 filters.",
+                    "strength": "strong",
+                    "limitations": "None provided",
+                    "location": "section D.5",
+                    "exact_quote": "Our detection of heuristics is based on 3 filters."
+                },
+                {
+                    "evidence_text": "Dependence on this heuristic is considered plausible if there is a string match between the prediction and the subject.",
+                    "strength": "strong",
+                    "limitations": "None provided",
+                    "location": "section D.5",
+                    "exact_quote": "Dependence on this heuristic is considered plausible if there is a string match between the prediction and the subject."
+                },
+                {
+                    "evidence_text": "We based this on model predictions for prompts expressing only a part of the requested fact.",
+                    "strength": "strong",
+                    "limitations": "None provided",
+                    "location": "section D.5",
+                    "exact_quote": "We based this on model predictions for prompts expressing only a part of the requested fact."
+                },
+                {
+                    "evidence_text": "We use the original prompt templates as defined by ParaRel and replace the subject placeholder with generic substitutions.",
+                    "strength": "strong",
+                    "limitations": "None provided",
+                    "location": "section D.5",
+                    "exact_quote": "We use the original prompt templates as defined by ParaRel and replace the subject placeholder with generic substitutions."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is directly supported by a detailed description of the three filters used for heuristic detection, making the conclusion highly justified and robust.",
+                "key_limitations": "None identified",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 11,
+            "claim": {
+                "text": "PRISM dataset is free from the limitations of CounterFact dataset.",
+                "type": "methodology",
+                "location": "section F",
+                "exact_quote": "Our proposed PRISM dataset does not suffer from the aforementioned limitations."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Our proposed PRISM dataset does not suffer from the aforementioned limitations.",
+                    "strength": "strong",
+                    "limitations": "None provided",
+                    "location": "section F",
+                    "exact_quote": "Our proposed PRISM dataset does not suffer from the aforementioned limitations."
+                },
+                {
+                    "evidence_text": "The dataset struggles to support precise and accurate interpretations of LMs.",
+                    "strength": "strong",
+                    "limitations": "None provided",
+                    "location": "section F",
+                    "exact_quote": "The dataset struggles to support precise and accurate interpretations of LMs."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is directly supported by a comparison to the CounterFact dataset, highlighting its limitations and stating that PRISM does not suffer from them, making the conclusion highly justified and robust.",
+                "key_limitations": "None identified",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 12,
+            "claim": {
+                "text": "Total effect is measured to check for signs of lack of exact fact recall.",
+                "type": "methodology",
+                "location": "section F.2",
+                "exact_quote": "Apart from the analysis described above, we also scrutinize the known CounterFact samples with respect to the total effect of perturbing the subject."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "We measure the total effect on the probability of the output prediction.",
+                    "strength": "strong",
+                    "limitations": "None provided",
+                    "location": "section F.2",
+                    "exact_quote": "We measure the total effect on the probability of the output prediction."
+                },
+                {
+                    "evidence_text": "This provides an alternative way of checking for signs of lack of exact fact recall.",
+                    "strength": "strong",
+                    "limitations": "None provided",
+                    "location": "section F.2",
+                    "exact_quote": "This provides an alternative way of checking for signs of lack of exact fact recall."
+                },
+                {
+                    "evidence_text": "The method was introduced by Meng et al. (2022) and used to find model states important for the model prediction.",
+                    "strength": "strong",
+                    "limitations": "None provided",
+                    "location": "section F.2",
+                    "exact_quote": "The method was introduced by Meng et al. (2022) and used to find model states important for the model prediction."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is directly supported by a description of the total effect measurement and its purpose, making the conclusion highly justified and robust.",
+                "key_limitations": "None identified",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "745.18 seconds",
+        "total_sleep_time": "630.00 seconds",
+        "actual_processing_time": "115.18 seconds",
+        "total_execution_time": "748.42 seconds"
+    }
+}

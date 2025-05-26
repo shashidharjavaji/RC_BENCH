@@ -1,0 +1,81 @@
+Claim 1:
+Type: performance
+Statement: kNN-LM achieves state-of-the-art performance on WIKITEXT-103
+Location: Section 4.1
+Exact Quote: kNN-LM improves perplexity on WIKITEXT-103 from 18.65 (Baevski & Auli, 2019) to a new state-of-the-art of 16.12
+
+Evidence:
+- Evidence Text: Experimental results showing perplexity improvement
+  Strength: strong
+  Location: Table 1
+  Limitations: Limited to one dataset
+  Exact Quote: Base LM (Baevski & Auli, 2019) 17.96 18.65 247M
++kNN-LM 16.06 16.12 247M
+
+- Evidence Text: Additional improvement with continuous cache
+  Strength: strong
+  Location: Table 1
+  Limitations: None noted
+  Exact Quote: +kNN-LM + Continuous Cache 15.81 15.79 247M
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Results clearly show improvement over previous SOTA with multiple configurations
+Key Limitations: Limited to one benchmark dataset
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Retrieving nearest neighbors from a large corpus outperforms training on it
+Location: Section 4.2
+Exact Quote: retrieving nearest neighbors from the corpus outperforms training on it
+
+Evidence:
+- Evidence Text: Experimental comparison on WIKI-3B
+  Strength: strong
+  Location: Table 3
+  Limitations: Single dataset comparison
+  Exact Quote: WIKI-3B - 16.11 15.17
+WIKI-100M WIKI-3B 14.61 13.73
+
+- Evidence Text: Performance with different datastore sizes
+  Strength: strong
+  Location: Figure 2
+  Limitations: Limited to specific model architecture
+  Exact Quote: using only 1.6B examples for the datastore already surpasses the performance of the model trained on all of WIKI-3B
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Multiple experiments with different configurations support the claim
+Key Limitations: Limited to specific model architecture and dataset
+
+--------------------------------------------------
+
+Claim 3:
+Type: contribution
+Statement: kNN-LM enables effective domain adaptation without additional training
+Location: Section 4.3
+Exact Quote: Adding kNN search over BOOKS to the WIKI-3B model reduces perplexity by 14 points (to 20.47), demonstrating that kNN-LM allows a single model to be useful in multiple domains
+
+Evidence:
+- Evidence Text: Domain adaptation experimental results
+  Strength: strong
+  Location: Table 4
+  Limitations: Tested only on one domain pair
+  Exact Quote: WIKI-3B - 37.13 34.84
+WIKI-3B BOOKS 24.85 20.47
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Shows clear improvement in domain adaptation
+Key Limitations: Limited evaluation across different domain pairs
+
+--------------------------------------------------
+

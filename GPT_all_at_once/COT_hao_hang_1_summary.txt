@@ -1,0 +1,72 @@
+Claim 1:
+Type: performance
+Statement: Chain-of-thought prompting does not positively impact performance for small models, and only yields performance gains when used with models of approximately 100B parameters.
+Location: Section 3.2 Results
+Exact Quote: chain-of-thought prompting does not positively impact performance for small models, and only yields performance gains when used with models of ~100B parameters.
+
+Evidence:
+- Evidence Text: Models of smaller scale produced fluent but illogical chains of thought, leading to lower performance than standard prompting.
+  Strength: moderate
+  Location: Section 3.2 Results
+  Limitations: Evaluation is qualitative and might not account for all factors influencing smaller models' performance.
+  Exact Quote: models of smaller scale produced fluent but illogical chains of thought, leading to lower performance than standard prompting.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Experimental results demonstrate model scale is crucial for benefiting from chain-of-thought prompting, but assessment primarily relies on qualitative analysis.
+Key Limitations: Analysis lacks a quantitative breakdown of performance across varying model sizes; relies on observational data without controlled comparisons.
+
+--------------------------------------------------
+
+Claim 2:
+Type: performance
+Statement: Chain-of-thought prompting yields substantial performance improvements on challenging math problems as the model scale increases.
+Location: Section 3.2 Results
+Exact Quote: Chain-of-thought prompting yields substantial performance improvements on challenging math problems as the model scale increases.
+
+Evidence:
+- Evidence Text: With chain-of-thought prompting, PaLM 540B achieved 56.9% solve rate on GSM8K, demonstrating substantial gains over standard prompting for large models.
+  Strength: strong
+  Location: Table 1 in Appendix B
+  Limitations: Performance gains are specific to highly scaled models and may not generalize across different tasks or smaller models.
+  Exact Quote: Chain of thought 56.9 (+39.0) [...] for PaLM 540B
+
+- Evidence Text: Adding an external calculator to the chain-of-thought prompting setup further enhances performance, reaching 69.3% solve rate on MAWPS with LaMDA 137B.
+  Strength: moderate
+  Location: Table 1 in Appendix B
+  Limitations: Specific to arithmetic reasoning tasks, and the boost from using an external calculator may vary across different datasets.
+  Exact Quote: Chain of thought + ext. calc 69.3 for LaMDA 137B on MAWPS
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Empirical data supports the claim with substantial performance gains observed for large models utilizing chain-of-thought prompting across multiple datasets.
+Key Limitations: Findings may not extend to non-arithmetic tasks or models smaller than 100B parameters.
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: Chain-of-thought prompting exhibits potential application across a wide range of tasks including math word problems, commonsense reasoning, and symbolic manipulation.
+Location: Section 4 Conclusion
+Exact Quote: Broadening the range of reasoning tasks that language models can perform will hopefully inspire further work on language-based approaches to reasoning.
+
+Evidence:
+- Evidence Text: Experiments showcase how chain-of-thought prompting aided in achieving new state-of-the-art performance on GSM8K, and indicating broader applicability beyond arithmetic reasoning.
+  Strength: moderate
+  Location: Section 3.2 and 5 Symbolic reasoning
+  Limitations: Empirical support is focused on reasoning-based tasks; broader applicability may require further empirical validation.
+  Exact Quote: For instance, prompting a PaLM 540B with just eight chain-of-thought exemplars achieves state-of-the-art accuracy on the GSM8K
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Experimental findings illustrate the method's versatility and applicability to various reasoning tasks, though broader empirical exploration is needed for non-reasoning contexts.
+Key Limitations: Lack of evidence for utility in non-reasoning tasks; conclusions drawn from reasoning-focused experiments.
+
+--------------------------------------------------
+

@@ -1,0 +1,104 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Fine-tuning LLMs solely on planning problems and solutions does not lead to robust planning skills, shown by poor performance on out-of-distribution test sets",
+                "type": "result",
+                "location": "Introduction & Results sections",
+                "exact_quote": "We challenge the claim that fine-tuning LLMs simply on datasets containing problem contexts and reference plans acquire robust planning skills, by demonstrating their failure on OOD test sets."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Performance drop in long planning problems, particularly in BLOCKSWORLD domain",
+                    "strength": "strong",
+                    "limitations": "Limited to specific domains tested",
+                    "location": "Section 4.1",
+                    "exact_quote": "The 'long' test set reveals a significant performance drop, particularly in the NP-hard BLOCKSWORLD domain, where the validity rate falls from 98.5% to 13.5%."
+                },
+                {
+                    "evidence_text": "Complete failure on unseen and obfuscated domains",
+                    "strength": "strong",
+                    "limitations": "Only tested on two unseen domains",
+                    "location": "Section 4.1",
+                    "exact_quote": "The fine-tuned model utterly failed to perform in the 'unseen' and 'obfuscated' test sets, unable to generate either valid or executable plans."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Multiple test conditions consistently show performance degradation on OOD cases",
+                "key_limitations": "Limited number of domains tested",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Chain-of-thought prompting improves plan executability even if not directly improving validity rates",
+                "type": "result",
+                "location": "Introduction",
+                "exact_quote": "We show that strategies like CoT lead to incremental improvements in plan quality by enhancing plan executability, even if they do not directly increase validity rates."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "State CoT improves executability in unseen test set",
+                    "strength": "moderate",
+                    "limitations": "Limited to short plans",
+                    "location": "Section 4.5",
+                    "exact_quote": "State CoT does not improve plan executability within the 'long' test set, yet it significantly enhances performance within the 'unseen' test set (e.g., 100% in row 4)"
+                },
+                {
+                    "evidence_text": "CoT shows highest performance gain with hints",
+                    "strength": "moderate",
+                    "limitations": "Only tested with partial plan hints",
+                    "location": "Section 4.6",
+                    "exact_quote": "the model employing CoT (Goal + State) demonstrates the highest performance gain when provided with the hints. Its validity rate improves dramatically from the lowest (23.8%) to the highest (54.2%) among the compared strategies"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Shows improvements in specific scenarios but effectiveness varies by context",
+                "key_limitations": "Benefits mainly limited to shorter plans and when hints are provided",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Reinforcement learning with LCCS reward is the most effective strategy for improving planning capabilities",
+                "type": "result",
+                "location": "Introduction & Results",
+                "exact_quote": "RL with our proposed 'LCCS' reward emerges as the most effective strategy. In particular, it improves plan validity by 7% and executability by 9% in longer planning problems."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Performance improvements on long test set",
+                    "strength": "strong",
+                    "limitations": "Tested on limited portion of dataset",
+                    "location": "Section 4.7",
+                    "exact_quote": "RL boosted the validity rate on the 'long' test set from 34.8% to 41.5% (a 6.7% increase) and the executability rate from 42.3% to 53.6% (9.0%)"
+                },
+                {
+                    "evidence_text": "Enabled solving previously unsolvable problems",
+                    "strength": "strong",
+                    "limitations": "Still low absolute performance",
+                    "location": "Section 4.7",
+                    "exact_quote": "it also enabled the model to solve problems in the 'unseen' test set, achieving a 12.5% where it previously failed to generate any valid plans"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Consistent improvements across multiple metrics and test conditions",
+                "key_limitations": "Limited training data used for RL, still relatively low absolute performance",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "23.28 seconds",
+        "total_execution_time": "28.13 seconds"
+    }
+}

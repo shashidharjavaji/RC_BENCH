@@ -1,0 +1,331 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: The model achieved high performance across all domains in in-distribution tests, mirroring the positive result reported by PlanGPT (Rossetti et al. 2024).
+Location: Section 4.1
+
+Evidence:
+- Evidence Text: Table 1 presents the performance of our fine-tuned LLM on the vanilla corpus. The model indeed achieved high performance across all domains in in-distribution tests, mirroring the positive result reported by PlanGPT (Rossetti et al. 2024).
+  Strength: strong
+  Location: Section 4.1
+  Limitations: None
+  Exact Quote: Table 1 presents the performance of our fine-tuned LLM on the vanilla corpus. The model indeed achieved high performance across all domains in in-distribution tests, mirroring the positive result reported by PlanGPT (Rossetti et al. 2024).
+
+Conclusion:
+  Author's Conclusion: The model achieved high performance across all domains in in-distribution tests, mirroring the positive result reported by PlanGPT (Rossetti et al. 2024).
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on quantitative metrics (validity and executability rates) and covers all domains in the in-distribution tests. The results are also consistent with previous research (PlanGPT), which adds to the credibility of the evidence.
+  Limitations: None apparent, as the evidence is based on a comprehensive evaluation across all domains in the in-distribution tests.
+  Location: Section 4.1
+
+--------------------------------------------------
+
+Claim 2:
+Statement: The model utterly failed to perform in the “unseen” and “obfuscated” test sets, unable to generate either valid or executable plans.
+Location: Section 4.1
+
+Evidence:
+- Evidence Text: The LLM planner had no exposure to the obfuscated domain during training. Our results showed that achieved 0% validity and executability rates on the obfuscated test set.
+  Strength: strong
+  Location: Appendix C.2
+  Limitations: None
+  Exact Quote: The LLM planner had no exposure to the obfuscated domain during training. Our results showed that achieved 0% validity and executability rates on the obfuscated test set.
+
+Conclusion:
+  Author's Conclusion: The model utterly failed to perform in the “unseen” and “obfuscated” test sets, unable to generate either valid or executable plans.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on direct performance metrics (validity and executability rates) that are commonly used to evaluate planning models. The fact that the model had no exposure to the obfuscated domain during training further strengthens the conclusion, as it eliminates potential biases from prior knowledge.
+  Limitations: None identified, as the evidence directly supports the claim without any apparent flaws or gaps.
+  Location: Section 4.1
+
+--------------------------------------------------
+
+Claim 3:
+Statement: The model tends to ignore the obfuscated domain context and instead produced actions from the original Blocksworld domain.
+Location: Section C.2
+
+Evidence:
+- Evidence Text: The LLM planner had no exposure to the obfuscated domain during training. Our results showed that achieved 0% validity and executability rates on the obfuscated test set. Upon examining the generated plans, we discovered an intriguing pattern: the model tends to ignore the obfuscated domain context and instead produced actions from the original Blocksworld domain.
+  Strength: strong
+  Location: Section C.2 Obfuscated Prompts: BLOCKSWORLD
+  Limitations: None
+  Exact Quote: The LLM planner had no exposure to the obfuscated domain during training. Our results showed that achieved 0% validity and executability rates on the obfuscated test set. Upon examining the generated plans, we discovered an intriguing pattern: the model tends to ignore the obfuscated domain context and instead produced actions from the original Blocksworld domain.
+
+Conclusion:
+  Author's Conclusion: The model tends to ignore the obfuscated domain context and instead produced actions from the original Blocksworld domain.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on the model's performance on a test set with no prior exposure to the obfuscated domain. The consistent pattern of ignoring the obfuscated context and generating actions from the original domain strengthens the conclusion.
+  Limitations: The analysis is limited to the specific Blocksworld domain and obfuscated context. Further research is needed to generalize this behavior across other domains and obfuscation methods.
+  Location: Section C.2
+
+--------------------------------------------------
+
+Claim 4:
+Statement: The model is able to identify errors in a high precision and recall rate, but fails to correct them effectively.
+Location: Section D
+
+Evidence:
+- Evidence Text: The model is able to identify errors in a high precision and recall rate, but fails to correct them effectively. This is evident from the probing tests results (Table 3) which show that the model achieves high precision (90.5%) and recall (99.2%) when all four strategies are combined (row 9). However, the detection capability does not lead to effective correction, indicating that future research should focus on how to leverage detected errors for correction.
+  Strength: strong
+  Location: Section 4.4
+  Limitations: None
+  Exact Quote: The model is able to identify errors in a high precision and recall rate, but fails to correct them effectively.
+
+Conclusion:
+  Author's Conclusion: The model is able to identify errors in a high precision and recall rate, but fails to correct them effectively.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on quantitative results from probing tests, which provide a clear measure of the model's performance. The high precision and recall rates demonstrate the model's ability to identify errors, while the lack of effective correction highlights a limitation in its ability to leverage this capability.
+  Limitations: The probing tests only evaluated the model's ability to identify errors in a specific context, and it is unclear whether this capability generalizes to other domains or tasks. Additionally, the tests only assessed the model's ability to correct errors in a limited number of attempts, and it is unknown whether the model would be able to correct errors with more attempts or different correction strategies.
+  Location: Section D
+
+--------------------------------------------------
+
+Claim 5:
+Statement: The model is unable to effectively correct its mistakes due to its inability to accurately parse the initial state.
+Location: Section D
+
+Evidence:
+- Evidence Text: The model fails to identify the next step in the plan sequence, as it does not acknowledge the presence of the green block in the scene.
+  Strength: strong
+  Location: Section D
+  Limitations: None
+  Exact Quote: Upon examining the visualization, it becomes evident that the next action should be to unstack the black block from the green block. Instead, the model does not acknowledge the presence of the green block in the scene.
+
+- Evidence Text: The model attempts to continue manipulating the blue block but quickly realizes this approach is incorrect, leading it to generate a [WRONG] token.
+  Strength: strong
+  Location: Section D
+  Limitations: None
+  Exact Quote: As a result, the LLM attempts to continue manipulating the blue block but quickly realizes this approach is incorrect, leading it to generate a [WRONG] token.
+
+- Evidence Text: A possible remedy for this issue is to introduce a more sophisticated mechanism that allows external expert to provide detailed feedback on why the model’s action is incorrect, enabling the model to learn from its mistakes more effectively.
+  Strength: moderate
+  Location: Section D
+  Limitations: This is a proposed solution and not direct evidence
+  Exact Quote: A possible remedy for this issue is to introduce a more sophisticated mechanism that allows external expert to provide detailed feedback on why the model’s action is incorrect, enabling the model to learn from its mistakes more effectively.
+
+Conclusion:
+  Author's Conclusion: The model is unable to effectively correct its mistakes due to its inability to accurately parse the initial state.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on specific examples and observations of the model's behavior. The analysis of the model's actions and the proposed remedy for its limitations strengthen the conclusion.
+  Limitations: The conclusion is limited to the specific context of the BLOCKSWORLD problem and may not generalize to other planning domains or scenarios.
+  Location: Section D
+
+--------------------------------------------------
+
+Claim 6:
+Statement: The model’s goal satisfiability rate decreases across various strategies, indicating that the strategies focus on sequential consistency due to the nature of autoregressive models and prioritize less on goal satisfiability.
+Location: Section G
+
+Evidence:
+- Evidence Text: Table 5: The results show a slight decrease in the goal satisfiability rate across the different strategies.
+  Strength: strong
+  Location: Table 5
+  Limitations: None
+  Exact Quote: The results show a slight decrease in the goal satisfiability rate across the different strategies.
+
+- Evidence Text: We observed a decrease in the goal satisfiability rate across various strategies.
+  Strength: strong
+  Location: Section 5
+  Limitations: None
+  Exact Quote: We observed a decrease in the goal satisfiability rate across various strategies.
+
+- Evidence Text: This result is reasonable, as improvements in both the executability and goal satisfiability rates would naturally lead to an increase in the final validity rate, which is not the case in our experiments.
+  Strength: moderate
+  Location: Section 5
+  Limitations: Assumes a relationship between goal satisfiability, executability, and validity rates
+  Exact Quote: This result is reasonable, as improvements in both the executability and goal satisfiability rates would naturally lead to an increase in the final validity rate, which is not the case in our experiments.
+
+Conclusion:
+  Author's Conclusion: The model’s goal satisfiability rate decreases across various strategies, indicating that the strategies focus on sequential consistency due to the nature of autoregressive models and prioritize less on goal satisfiability.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical results from Table 5, which shows a consistent trend across different strategies. However, the analysis could be strengthened by considering additional metrics or evaluating the model's performance on more diverse test sets.
+  Limitations: The analysis is limited to the specific test sets and strategies evaluated in the study. Further research could explore the generalizability of these findings to other autoregressive models and planning tasks.
+  Location: Section G
+
+--------------------------------------------------
+
+Claim 7:
+Statement: The State CoT strategy shows the most significant drop in goal satisfiability rate, primarily due to its focus on maintaining the state transition consistency of the generated plans.
+Location: Section G
+
+Evidence:
+- Evidence Text: Table 5: The results show a slight decrease in the goal satisfiability rate across the different strategies. This indicates that the strategies do focus on the sequential consistency due to the nature of autoregressive models and prioritize less on the goal satisfiability.
+  Strength: strong
+  Location: Table 5
+  Limitations: None
+  Exact Quote: Table 5: The results show a slight decrease in the goal satisfiability rate across the different strategies. This indicates that the strategies do focus on the sequential consistency due to the nature of autoregressive models and prioritize less on the goal satisfiability.
+
+- Evidence Text: Specifically, the State CoT strategy shows the most significant drop, primarily due to its focus on maintaining the state transition consistency of the generated plans.
+  Strength: strong
+  Location: Section 5
+  Limitations: None
+  Exact Quote: Specifically, the State CoT strategy shows the most significant drop, primarily due to its focus on maintaining the state transition consistency of the generated plans.
+
+Conclusion:
+  Author's Conclusion: The State CoT strategy shows the most significant drop in goal satisfiability rate, primarily due to its focus on maintaining the state transition consistency of the generated plans.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on quantitative data from Table 5, which provides a clear comparison of goal satisfiability rates across different strategies. The data consistently shows a decrease in goal satisfiability rate for the State CoT strategy, supporting the claim.
+  Limitations: The analysis is limited to the provided data and may not generalize to other planning tasks or models. Additionally, the conclusion relies on the assumption that the State CoT strategy's focus on state transition consistency is the primary cause of the drop in goal satisfiability rate.
+  Location: Section G
+
+--------------------------------------------------
+
+Claim 8:
+Statement: The goal satisfiability metric fails to account for the characteristics of end-to-end plan generation in autoregressive language models.
+Location: Section G
+
+Evidence:
+- Evidence Text: The sequential nature of autoregressive language models allows them to generate plans one token at a time, moving from left to right, similar to the forward progression of a plan sequence.
+  Strength: strong
+  Location: Section 5
+  Limitations: None
+  Exact Quote: The sequential nature of autoregressive language models allows them to generate plans one token at a time, moving from left to right, similar to the forward progression of a plan sequence.
+
+- Evidence Text: Each new prediction by nature aims to maintain consistency with preceding ones.
+  Strength: strong
+  Location: Section 5
+  Limitations: None
+  Exact Quote: Each new prediction by nature aims to maintain consistency with preceding ones.
+
+- Evidence Text: This inherently prioritizes local state transition coherence over goal satisfaction, just like how forward progression in a plan sequence will not jump to the goal state without ensuring the coherence of the preceding actions.
+  Strength: strong
+  Location: Section 5
+  Limitations: None
+  Exact Quote: This inherently prioritizes local state transition coherence over goal satisfaction, just like how forward progression in a plan sequence will not jump to the goal state without ensuring the coherence of the preceding actions.
+
+- Evidence Text: Existing strategies, particularly State CoT, often emphasize the consistency of the local step transitions, therefore, pursuing goal satisfiability before ensuring executability conflicts with the idea of producing a plan sequence in a left-to-right manner.
+  Strength: strong
+  Location: Section 5
+  Limitations: None
+  Exact Quote: Existing strategies, particularly State CoT, often emphasize the consistency of the local step transitions, therefore, pursuing goal satisfiability before ensuring executability conflicts with the idea of producing a plan sequence in a left-to-right manner.
+
+- Evidence Text: The results of the goal satisfiability rate are shown in Table 5, which indicates a decrease in the goal satisfiability rate across various strategies.
+  Strength: moderate
+  Location: Table 5
+  Limitations: The results are based on a specific experiment and may not be generalizable to all autoregressive language models.
+  Exact Quote: The results of the goal satisfiability rate are shown in Table 5.
+
+Conclusion:
+  Author's Conclusion: The goal satisfiability metric fails to account for the characteristics of end-to-end plan generation in autoregressive language models.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on the fundamental characteristics of autoregressive language models and their implications on plan generation. The alignment between the evidence and conclusion is strong, as it directly addresses the limitations of the goal satisfiability metric in the context of autoregressive models.
+  Limitations: The analysis primarily focuses on the limitations of autoregressive language models and the goal satisfiability metric. It does not explore potential modifications to the metric or the models that could mitigate these limitations.
+  Location: Section G
+
+--------------------------------------------------
+
+Claim 9:
+Statement: The end-to-end left-to-right plan generation paradigm lacks mechanisms for looking ahead to future states and conducting backward searches, undermining the model’s ability to generate a valid plan.
+Location: Section G
+
+Evidence:
+- Evidence Text: The sequential nature of autoregressive language models allows them to generate plans one token at a time, moving from left to right, similar to the forward progression of a plan sequence.
+  Strength: strong
+  Location: Section 5, Discussion
+  Limitations: None
+  Exact Quote: The sequential nature of autoregressive language models allows them to generate plans one token at a time, moving from left to right, similar to the forward progression of a plan sequence.
+
+- Evidence Text: Each new prediction by nature aims to maintain consistency with preceding ones.
+  Strength: strong
+  Location: Section 5, Discussion
+  Limitations: None
+  Exact Quote: Each new prediction by nature aims to maintain consistency with preceding ones.
+
+- Evidence Text: This inherently prioritizes local state transition coherence over goal satisfaction, just like how forward progression in a plan sequence will not jump to the goal state without ensuring the coherence of the preceding actions.
+  Strength: strong
+  Location: Section 5, Discussion
+  Limitations: None
+  Exact Quote: This inherently prioritizes local state transition coherence over goal satisfaction, just like how forward progression in a plan sequence will not jump to the goal state without ensuring the coherence of the preceding actions.
+
+- Evidence Text: Therefore, we say that the goal satisfiability metric fails to account for the characteristics of end-to-end plan generation in autoregressive language models.
+  Strength: strong
+  Location: Section 5, Discussion
+  Limitations: None
+  Exact Quote: Therefore, we say that the goal satisfiability metric fails to account for the characteristics of end-to-end plan generation in autoregressive language models.
+
+Conclusion:
+  Author's Conclusion: The end-to-end left-to-right plan generation paradigm lacks mechanisms for looking ahead to future states and conducting backward searches, undermining the model’s ability to generate a valid plan.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it directly relates to the fundamental characteristics of autoregressive language models and their implications on plan generation. The explanation is clear and logically sound, making the conclusion well-supported.
+  Limitations: The analysis primarily focuses on the limitations of autoregressive language models in the context of plan generation. It might not fully generalize to other applications or models that incorporate different architectures or mechanisms for planning.
+  Location: Section G
+
+--------------------------------------------------
+
+Claim 10:
+Statement: RL emerges as the most effective strategy in this end-to-end paradigm, enhancing both the validity and executability rates on longer problems.
+Location: Section 5
+
+Evidence:
+- Evidence Text: RL notably improves the performance under our end-to-end planning paradigm, especially on longer problems. Note that the model was trained on 10% of the ‘long’ test set with the proposed LCCS-based reward model, and evaluated on the 90% of the ‘long’ test set and other OOD test sets.
+  Strength: strong
+  Location: Section 4.7
+  Limitations: Limited training data and suboptimal rewards
+  Exact Quote: RL notably improves the performance under our end-to-end planning paradigm, especially on longer problems.
+
+- Evidence Text: Despite the limited training data and suboptimal rewards achieved on this subset, RL boosted the validity rate on the ‘long’ test set from 34.8% to 41.5% (a 6.7% increase) and the executability rate from 42.3% to 53.6% (9.0%)
+  Strength: strong
+  Location: Section 4.7
+  Limitations: None
+  Exact Quote: Despite the limited training data and suboptimal rewards achieved on this subset, RL boosted the validity rate on the ‘long’ test set from 34.8% to 41.5% (a 6.7% increase) and the executability rate from 42.3% to 53.6% (9.0%)
+
+- Evidence Text: Interestingly, it also enabled the model to solve problems in the ‘unseen’ test set, achieving a 12.5% where it previously failed to generate any valid plans.
+  Strength: moderate
+  Location: Section 4.7
+  Limitations: Only a single test set
+  Exact Quote: Interestingly, it also enabled the model to solve problems in the ‘unseen’ test set, achieving a 12.5% where it previously failed to generate any valid plans.
+
+Conclusion:
+  Author's Conclusion: RL is the most effective strategy in the end-to-end planning paradigm, enhancing both validity and executability rates on longer problems.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on quantitative metrics (validity and executability rates) and demonstrates a consistent improvement across different test sets (long, unseen, and obfuscated). The use of a proposed LCCS-based reward model further strengthens the evidence.
+  Limitations: The study's focus on the end-to-end planning paradigm might limit the generalizability of the findings to other planning paradigms. Additionally, the limited training data for RL might not fully capture its potential.
+  Location: Section 5
+
+--------------------------------------------------
+
+Claim 11:
+Statement: The vanilla model and RL model demonstrate the most significant improvements when utilizing multiple sampling.
+Location: Section F
+
+Evidence:
+- Evidence Text: Table 4: Pass@k validity rates for different strategies across test sets. Results show consistent improvements for ‘long’ test sets as k increases, while ‘unseen’ and ‘obfuscated’ sets show no significant gains. Notably, the vanilla (1) and RL (10) strategies demonstrate the highest performance gains with multiple sampling
+  Strength: strong
+  Location: Table 4
+  Limitations: None
+  Exact Quote: Table 4: Pass@k validity rates for different strategies across test sets. Results show consistent improvements for ‘long’ test sets as k increases, while ‘unseen’ and ‘obfuscated’ sets show no significant gains. Notably, the vanilla (1) and RL (10) strategies demonstrate the highest performance gains with multiple sampling
+
+Conclusion:
+  Author's Conclusion: The vanilla model and RL model demonstrate the most significant improvements when utilizing multiple sampling.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on quantitative metrics (pass@k validity rates) and covers various test sets ('long', 'unseen', and 'obfuscated'). The improvements observed are consistent across different values of k, adding to the strength of the evidence.
+  Limitations: The analysis is limited to the specific test sets and models evaluated. Further research is needed to generalize these findings to other planning domains and LLM architectures.
+  Location: Section F
+
+--------------------------------------------------
+
+Claim 12:
+Statement: Strategies that increase the response length, such as incorporating Chain of Thought prompts, cannot benefit from multiple sampling.
+Location: Section F
+
+Evidence:
+- Evidence Text: Table 4: Pass@k validity rates for different strategies across test sets. Results show consistent improvements for ‘long’ test sets as k increases, while ‘unseen’ and ‘obfuscated’ sets show no significant gains. Notably, the vanilla (1) and RL (10) strategies demonstrate the highest performance gains with multiple sampling
+  Strength: strong
+  Location: Section 5, Table 4
+  Limitations: None
+  Exact Quote: Results show consistent improvements for ‘long’ test sets as k increases, while ‘unseen’ and ‘obfuscated’ sets show no significant gains.
+
+Conclusion:
+  Author's Conclusion: Strategies that increase the response length, such as incorporating Chain of Thought prompts, cannot benefit from multiple sampling.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on a comprehensive evaluation of pass@k validity rates across various test sets and strategies. The results consistently show that strategies with longer response lengths do not benefit from multiple sampling, providing strong support for the claim.
+  Limitations: The analysis is limited to the specific test sets and strategies evaluated in the study. Further research is needed to confirm whether this finding generalizes to other response length-increasing strategies and test sets.
+  Location: Section F
+
+--------------------------------------------------
+
+Execution Times:
+claims_analysis_time: 207.92 seconds
+evidence_analysis_time: 686.21 seconds
+conclusions_analysis_time: 614.54 seconds
+total_execution_time: 1512.15 seconds

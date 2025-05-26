@@ -1,0 +1,72 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Even among the top 0.6% of neurons considered well-explained by GPT-4, the explanations have poor faithfulness with low precision and recall scores",
+                "type": "result",
+                "location": "Introduction section",
+                "exact_quote": "In the observational mode, we find that even among the top 0.6% of neurons which are considered well-explained by GPT-4's own assessment, the explanation is far from faithful; construed as predictions about neuron activations, GPT-4 generated explanations achieve a precision of 0.64 and a recall of 0.50."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "F1 scores of 0.56 for single neurons without probing",
+                    "strength": "strong",
+                    "limitations": "Limited to GPT-2 XL model only",
+                    "location": "Results section 3.3",
+                    "exact_quote": "For single neuron without probing, the GPT-4 explanations have a mean F1 score of 0.56 (with a precision of 0.64 and a recall of 0.50), whereas the random baseline has a F1 score of zero."
+                },
+                {
+                    "evidence_text": "Demonstration that high GPT-4 scores don't guarantee faithful explanations",
+                    "strength": "moderate",
+                    "limitations": "Based on theoretical example",
+                    "location": "Discussion section 3.4",
+                    "exact_quote": "Consider an unfaithful explanation E = year 2000 and 2001 of a neuron a that only activates on \"2000\". When sampling the 10 examples from a corpus that has n% examples containing \"2001\", the probability of having at least one example containing \"2001\" (a Type I error) is 1-(1-n%)[5] \u2248 5n%."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by both empirical results showing low F1 scores and theoretical demonstration of how high GPT-4 scores can coexist with unfaithful explanations",
+                "key_limitations": "Study limited to GPT-2 XL model, may not generalize to other architectures",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "There is no evidence that neurons are causal mediators of the concepts denoted by GPT-4's explanations",
+                "type": "result",
+                "location": "Introduction section",
+                "exact_quote": "In the intervention mode, the picture is more worrisome: we are unable to find evidence that neurons are causal mediators of the concepts denoted by the explanations."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "GPT-4 explanations perform similar to random baseline in intervention tests",
+                    "strength": "strong",
+                    "limitations": "Limited set of test tasks",
+                    "location": "Results section 4.3",
+                    "exact_quote": "GPT-4 generated explanations have similar causal effects as the random baseline on most tasks."
+                },
+                {
+                    "evidence_text": "Token-activation correlation baseline outperforms GPT-4 explanations",
+                    "strength": "strong",
+                    "limitations": "May not cover all possible intervention scenarios",
+                    "location": "Results section 4.3",
+                    "exact_quote": "In terms of the IIA ranking, we have: token-activation correlation baseline \u226b GPT-4 explanation \u2248 random baseline"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Multiple evaluation tasks consistently show GPT-4 explanations performing no better than random in identifying causal relationships",
+                "key_limitations": "Limited set of intervention tasks, may not cover all possible causal relationships",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "30.36 seconds",
+        "total_execution_time": "34.65 seconds"
+    }
+}

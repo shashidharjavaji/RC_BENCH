@@ -1,0 +1,116 @@
+Claim 1:
+Type: performance
+Statement: Simple, training-free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks.
+Location: Introduction
+Exact Quote: We demonstrate how simple, training-free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks.
+
+Evidence:
+- Evidence Text: Experiments on two state-of-the-art LLMs with a publicly available ambiguous question-answering dataset show that simple disambiguating prompts improve performance over the naive setting.
+  Strength: strong
+  Location: Results and Discussion
+  Limitations: The study is limited to two LLMs and may not generalize to other models.
+  Exact Quote: Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries.
+
+- Evidence Text: Disambiguation via adding context performs better for both LLMs.
+  Strength: moderate
+  Location: Results and Discussion
+  Limitations: The performance improvement is model-specific and may not apply to all LLMs.
+  Exact Quote: Out of the two simple disambiguating methods explored, we see that disambiguation via adding context performs better for both LLMs.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence shows that simple disambiguating prompts improve performance for the two LLMs tested.
+Key Limitations: The findings may not generalize to all LLMs.
+
+--------------------------------------------------
+
+Claim 2:
+Type: performance
+Statement: Few-shot fine-tuning does not provide any improvement in LLM performance on ambiguous questions.
+Location: Results and Discussion
+Exact Quote: To evaluate whether small scale fine-tuning helps, we perform few-shot fine-tuning on GPT 4o-mini [7]. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API [8] which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. To evaluate the performance of this fine-tuned model, we sample 1,000 ambiguous questions from the dataset at random and compare the performance between naive prompting on the 4o-mini model and naive prompting on the fine-tuned 4o-mini model. The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.
+
+Evidence:
+- Evidence Text: GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626.
+  Strength: strong
+  Location: Results and Discussion
+  Limitations: The improvement is minimal and may not be statistically significant.
+  Exact Quote: The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence shows that fine-tuning does not improve performance on ambiguous questions.
+Key Limitations: The improvement is minimal and may not be statistically significant.
+
+--------------------------------------------------
+
+Claim 3:
+Type: performance
+Statement: Lowering the temperature for LLM generation results in minor improvements in performance on ambiguous questions.
+Location: Results and Discussion
+Exact Quote: Lowering the temperature (0.2 instead of 1.0, in this case) seem to have minor improvements in some cases, but the difference is not that significant.
+
+Evidence:
+- Evidence Text: Lower temperature (0.2 instead of 1.0) seems to have minor improvements in some cases.
+  Strength: weak
+  Location: Results and Discussion
+  Limitations: The improvement is minor and not statistically significant.
+  Exact Quote: Lowering the temperature (0.2 instead of 1.0, in this case) seem to have minor improvements in some cases, but the difference is not that significant.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: low
+Confidence Level: medium
+Justification: The evidence shows that lowering the temperature has minor effects on performance.
+Key Limitations: The improvement is minor and not statistically significant.
+
+--------------------------------------------------
+
+Claim 4:
+Type: performance
+Statement: Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.
+Location: Conclusion and Future Works
+Exact Quote: Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting.
+
+Evidence:
+- Evidence Text: The average length of the question with added context was 126.90 words, which is approximately 14.2 times longer than the original question.
+  Strength: moderate
+  Location: Methodology and Experimental Settings
+  Limitations: The study does not provide a direct measure of the relevance of the added context.
+  Exact Quote: For our random sample of 1,000 questions in these experiments, the average length of the question with added context was 126.90 words, which is approximately 14.2 times longer than the original question.
+
+- Evidence Text: Adding context skews the plot 2 to the left, indicating that the model often adds wrong context.
+  Strength: moderate
+  Location: Results and Discussion
+  Limitations: The study does not provide a direct measure of the relevance of the added context.
+  Exact Quote: Problem with naive contextual enrichment: The Figures 2 and 3 show why the average is not going up when an LLM is prompted to insert context into a question.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence shows that contextual enrichment can improve performance, but it often adds irrelevant context.
+Key Limitations: The study does not provide a direct measure of the relevance of the added context.
+
+--------------------------------------------------
+
+Claim 5:
+Type: methodology
+Statement: Future work will fine-tune the LLM for accurate context-enhancement.
+Location: Conclusion and Future Works
+Exact Quote: In future work, we plan to fine-tune the LLM for accurate context-enhancement.
+
+Evidence:
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is a future direction and does not require evidence.
+Key Limitations: N/A
+
+--------------------------------------------------
+

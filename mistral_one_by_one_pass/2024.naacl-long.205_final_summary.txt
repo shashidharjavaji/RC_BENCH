@@ -1,0 +1,571 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+ For example:
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "The large language model (LLM) community has shown increasing interest in enhancing LLMs’ capability to handle extremely long documents.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "The large language model (LLM) community has shown increasing interest in enhancing LLMs’ capability to handle extremely long documents."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "Existing long-text evaluation benchmarks, such as L-Eval and LongBench, construct long-text test sets based on open-source datasets, focusing mainly on QA and summarization tasks.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "Existing long-text evaluation benchmarks, such as L-Eval and LongBench, construct long-text test sets based on open-source datasets, focusing mainly on QA and summarization tasks."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "These datasets include test samples of varying lengths (from 2k to 32k+) entangled together, making it challenging to assess model capabilities across different length ranges.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "These datasets include test samples of varying lengths (from 2k to 32k+) entangled together, making it challenging to assess model capabilities across different length ranges."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "Moreover, they do not cover the ultralong settings (100k+ tokens) that the latest LLMs claim to achieve.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "Moreover, they do not cover the ultralong settings (100k+ tokens) that the latest LLMs claim to achieve."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "In this paper, we introduce Ada-LEval, a length-adaptable benchmark for evaluating the long-context understanding of LLMs.",
+            "location": "Abstract",
+            "claim_type": "Contribution",
+            "exact_quote": "In this paper, we introduce Ada-LEval, a length-adaptable benchmark for evaluating the long-context understanding of LLMs."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Ada-LEval includes two challenging subsets, TSort and BestAnswer, which enable a more reliable evaluation of LLMs’ long context capabilities.",
+            "location": "Abstract",
+            "claim_type": "Contribution",
+            "exact_quote": "Ada-LEval includes two challenging subsets, TSort and BestAnswer, which enable a more reliable evaluation of LLMs’ long context capabilities."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "These benchmarks support intricate manipulation of the length of test cases, and can easily produce text samples up to 128k tokens.",
+            "location": "Abstract",
+            "claim_type": "Contribution",
+            "exact_quote": "These benchmarks support intricate manipulation of the length of test cases, and can easily produce text samples up to 128k tokens."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "We evaluate 4 state-of-the-art closed-source API models and 6 open-source models with Ada-LEval.",
+            "location": "Abstract",
+            "claim_type": "Method",
+            "exact_quote": "We evaluate 4 state-of-the-art closed-source API models and 6 open-source models with Ada-LEval."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "The evaluation results demonstrate the limitations of current LLMs, especially in ultra-long-context settings.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "The evaluation results demonstrate the limitations of current LLMs, especially in ultra-long-context settings."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "Our code is available at https://github.com/open-compass/Ada-LEval.",
+            "location": "Abstract",
+            "claim_type": "Contribution",
+            "exact_quote": "Our code is available at https://github.com/open-compass/Ada-LEval."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "Large Language Models (LLMs), typically based on large transformers trained on vast corpus, have shown exceptional abilities in memorization, comprehension, and reasoning.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Large Language Models (LLMs), typically based on large transformers trained on vast corpus, have shown exceptional abilities in memorization, comprehension, and reasoning."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "A critical factor that affects LLM performance is the ‘context window’ - the number of tokens an LLM can process simultaneously.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "A critical factor that affects LLM performance is the ‘context window’ - the number of tokens an LLM can process simultaneously."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "This window’s size is pivotal in handling lengthy texts.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "This window’s size is pivotal in handling lengthy texts."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "Since the debut of ChatGPT with a 2,000-token window in November 2022, significant efforts have been made in this domain, including more efficient attention mechanisms, scalable position embeddings, and quantization techniques.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Since the debut of ChatGPT with a 2,000-token window in November 2022, significant efforts have been made in this domain, including more efficient attention mechanisms, scalable position embeddings, and quantization techniques."
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "As of December 2023, several LLMs claim to achieve context windows up to hundreds of thousands of tokens.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "As of December 2023, several LLMs claim to achieve context windows up to hundreds of thousands of tokens."
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "This includes both proprietary models like GPT-4 Turbo (128,000 tokens), Claude-2.1 (200,000 tokens), and Moonshot AI (200,000 Chinese characters), and open-source models such as ChatGLM-32k (Zeng et al., 2022) and LongChat-32k (Li* et al., 2023).",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "This includes both proprietary models like GPT-4 Turbo (128,000 tokens), Claude-2.1 (200,000 tokens), and Moonshot AI (200,000 Chinese characters), and open-source models such as ChatGLM-32k (Zeng et al., 2022) and LongChat-32k (Li* et al., 2023)."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "This expansion significantly enhances the potential for processing extensive documents.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "This expansion significantly enhances the potential for processing extensive documents."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "Nevertheless, the effectiveness of these long-context LLMs in managing long texts remains an area ripe for exploration and assessment.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Nevertheless, the effectiveness of these long-context LLMs in managing long texts remains an area ripe for exploration and assessment."
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "Alongside the evolution of LLMs, a wide range of benchmarks have emerged for capability assessment.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Alongside the evolution of LLMs, a wide range of benchmarks have emerged for capability assessment."
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "Most of those benchmarks utilize short questions or instructions, making them unsuitable for evaluating LLMs’ long-context capabilities.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Most of those benchmarks utilize short questions or instructions, making them unsuitable for evaluating LLMs’ long-context capabilities."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "While a few benchmarks do focus on assessing specific long-context abilities like summarization, question-answering (QA), and continue writing.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "While a few benchmarks do focus on assessing specific long-context abilities like summarization, question-answering (QA), and continue writing."
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "Comprehensive long-document evaluations have been limited.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Comprehensive long-document evaluations have been limited."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "Recent benchmarks such as SCROLLS (Shaham et al., 2022), L-Eval (An et al., 2023) and LongBench (Bai et al., 2023) have started to address this gap by including a suite of long-document tasks, aiming for a more holistic assessment of LLMs’ long-context understanding.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Recent benchmarks such as SCROLLS (Shaham et al., 2022), L-Eval (An et al., 2023) and LongBench (Bai et al., 2023) have started to address this gap by including a suite of long-document tasks, aiming for a more holistic assessment of LLMs’ long-context understanding."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "Despite these advancements, three significant limitations persist in existing benchmarks: Firstly, the ultra-long setting (32,000 tokens or longer) is scarcely represented, limiting insights into LLM performance in extreme context lengths.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Despite these advancements, three significant limitations persist in existing benchmarks: Firstly, the ultra-long setting (32,000 tokens or longer) is scarcely represented, limiting insights into LLM performance in extreme context lengths."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "Secondly, the integration of test samples of varying lengths within these benchmarks complicates the evaluation of LLMs across different length ranges.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Secondly, the integration of test samples of varying lengths within these benchmarks complicates the evaluation of LLMs across different length ranges."
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "Lastly, the focus on traditional tasks such as question-answering and summarization often does not necessitate comprehensive content understanding by LLMs, as many questions in these tasks do not require full-text comprehension.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Lastly, the focus on traditional tasks such as question-answering and summarization often does not necessitate comprehensive content understanding by LLMs, as many questions in these tasks do not require full-text comprehension."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "This highlights the need for more targeted benchmarks that can rigorously evaluate the deep and complete understanding of long-form content by LLMs.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "This highlights the need for more targeted benchmarks that can rigorously evaluate the deep and complete understanding of long-form content by LLMs."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "To this end, we introduce Ada-LEval, a pioneering benchmark to assess the long-context capabilities with length-adaptable questions.",
+            "location": "Introduction",
+            "claim_type": "Contribution",
+            "exact_quote": "To this end, we introduce Ada-LEval, a pioneering benchmark to assess the long-context capabilities with length-adaptable questions."
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "Ada-LEval comprises two challenging tasks: TSort, which involves arranging text segments in the correct order, and BestAnswer, which requires choosing the best answer of a question among multiple candidates.",
+            "location": "Introduction",
+            "claim_type": "Contribution",
+            "exact_quote": "Ada-LEval comprises two challenging tasks: TSort, which involves arranging text segments in the correct order, and BestAnswer, which requires choosing the best answer of a question among multiple candidates."
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "Both tasks feature the following advantages: 1. Controllable Test Cases: The length of each test case can be finely tuned - by adjusting the number and length of text segments in TSort and altering the number of distractor options in BestAnswer.",
+            "location": "Introduction",
+            "claim_type": "Contribution",
+            "exact_quote": "Both tasks feature the following advantages: 1. Controllable Test Cases: The length of each test case can be finely tuned - by adjusting the number and length of text segments in TSort and altering the number of distractor options in BestAnswer."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "2. Necessity for Full-Text Comprehension: Successful completion of both tasks mandates complete reading and understanding of the provided text.",
+            "location": "Introduction",
+            "claim_type": "Contribution",
+            "exact_quote": "2. Necessity for Full-Text Comprehension: Successful completion of both tasks mandates complete reading and understanding of the provided text."
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "3. Precise Accuracy Measurement: The design of these tasks allows for unambiguous accuracy calculation.",
+            "location": "Introduction",
+            "claim_type": "Contribution",
+            "exact_quote": "3. Precise Accuracy Measurement: The design of these tasks allows for unambiguous accuracy calculation."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "TSort has a definitive ‘correct’ order, whereas in BestAnswer, the annotated responses by the questioner serve as definitive answers.",
+            "location": "Introduction",
+            "claim_type": "Contribution",
+            "exact_quote": "TSort has a definitive ‘correct’ order, whereas in BestAnswer, the annotated responses by the questioner serve as definitive answers."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "Our experiments on these tasks reveal critical insights.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Our experiments on these tasks reveal critical insights."
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "We observe a noteworthy decline in the performance of existing LLMs as text length increases, particularly in ultra-long scenarios.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "We observe a noteworthy decline in the performance of existing LLMs as text length increases, particularly in ultra-long scenarios."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "Furthermore, our ablation study uncovers several shortcomings in current LLMs, including limited instruction following over extended texts and pronounced input order bias.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Furthermore, our ablation study uncovers several shortcomings in current LLMs, including limited instruction following over extended texts and pronounced input order bias."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "Additionally, we explore various scalable position embedding techniques aimed at enlarging the context window of LLMs.",
+            "location": "Introduction",
+            "claim_type": "Method",
+            "exact_quote": "Additionally, we explore various scalable position embedding techniques aimed at enlarging the context window of LLMs."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "Our findings indicate that models equipped with those techniques show improved performance over the standard models, and the performance is comparable to their counterparts trained on longer contexts.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Our findings indicate that models equipped with those techniques show improved performance over the standard models, and the performance is comparable to their counterparts trained on longer contexts."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "To address the complexities introduced by the increased text length in language models, researchers have developed a range of innovative techniques.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "To address the complexities introduced by the increased text length in language models, researchers have developed a range of innovative techniques."
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "These methodologies primarily focus on the following key areas: more efficient attention mechanisms, divide-and-conquer paradigms, and scalable position embedding techniques.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "These methodologies primarily focus on the following key areas: more efficient attention mechanisms, divide-and-conquer paradigms, and scalable position embedding techniques."
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "Notable advancements in attention mechanisms within Transformers have been achieved by several studies.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Notable advancements in attention mechanisms within Transformers have been achieved by several studies."
+        },
+        {
+            "claim_id": 42,
+            "claim_text": "A key development in this area is Flash Attention, which streamlines the attention process by circumventing the need to read and write the attention matrix across different memory tiers.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "A key development in this area is Flash Attention, which streamlines the attention process by circumventing the need to read and write the attention matrix across different memory tiers."
+        },
+        {
+            "claim_id": 43,
+            "claim_text": "This approach results in faster processing and reduced memory usage compared to traditional attention methods.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "This approach results in faster processing and reduced memory usage compared to traditional attention methods."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": "In LongNet, Ding et al. (2023) introduces Dilated Attention, which reduces the computation complexity of attention to nearly linear and scales to 1 billion tokens.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "In LongNet, Ding et al. (2023) introduces Dilated Attention, which reduces the computation complexity of attention to nearly linear and scales to 1 billion tokens."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "However, Liu et al. (2023a) identified a limitation where these mechanisms tend to falter with the middle portions of long texts.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "However, Liu et al. (2023a) identified a limitation where these mechanisms tend to falter with the middle portions of long texts."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "In exploring alternatives to conventional long-text modeling, several studies have adopted a segmented approach to manage extensive content.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "In exploring alternatives to conventional long-text modeling, several studies have adopted a segmented approach to manage extensive content."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "WebGPT (Nakano et al., 2021) addresses long-form QA by interacting with a text-based web-browsing environment.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "WebGPT (Nakano et al., 2021) addresses long-form QA by interacting with a text-based web-browsing environment."
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "PEARL (Sun et al., 2023) introduces a framework that prompts LLMs to generate and execute plans for tackling complex long-text reasoning tasks.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "PEARL (Sun et al., 2023) introduces a framework that prompts LLMs to generate and execute plans for tackling complex long-text reasoning tasks."
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "Chen et al. (2023a) constructs a memory tree with the summarization of document segments and navigates on the memory tree to answer the original question.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Chen et al. (2023a) constructs a memory tree with the summarization of document segments and navigates on the memory tree to answer the original question."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "Scalable position embeddings have been instrumental in extending the context window of LLMs.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Scalable position embeddings have been instrumental in extending the context window of LLMs."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "RoPE (Su et al., 2021) utilizes a rotation matrix to enhance positional information, integrating explicit relative position dependencies into the self-attention mechanism.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "RoPE (Su et al., 2021) utilizes a rotation matrix to enhance positional information, integrating explicit relative position dependencies into the self-attention mechanism."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "ALiBi (Press et al., 2021) does not add position embeddings to word embeddings, instead applying a linearly decreasing penalty to attention scores based on key-query distances.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "ALiBi (Press et al., 2021) does not add position embeddings to word embeddings, instead applying a linearly decreasing penalty to attention scores based on key-query distances."
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "Position Interpolation (Chen et al., 2023b) adopts a different strategy by linearly scaling down input position indices to align with preset context window sizes, requiring few fine-tuning steps.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Position Interpolation (Chen et al., 2023b) adopts a different strategy by linearly scaling down input position indices to align with preset context window sizes, requiring few fine-tuning steps."
+        },
+        {
+            "claim_id": 54,
+            "claim_text": "NTK-aware Scaled RoPE[1] and ReRoPE (Su, 2023) further combine the benefits of position interpolation and length extrapolation methods without any fine-tuning steps.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "NTK-aware Scaled RoPE[1] and ReRoPE (Su, 2023) further combine the benefits of position interpolation and length extrapolation methods without any fine-tuning steps."
+        },
+        {
+            "claim_id": 55,
+            "claim_text": "Building on advancements in long-context techniques, several long-context LLMs are developed and released.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Building on advancements in long-context techniques, several long-context LLMs are developed and released."
+        },
+        {
+            "claim_id": 56,
+            "claim_text": "Llama 2 (Touvron et al., 2023) integrates RoPE to expand its context window to 4,000 tokens.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Llama 2 (Touvron et al., 2023) integrates RoPE to expand its context window to 4,000 tokens."
+        },
+        {
+            "claim_id": 57,
+            "claim_text": "Vicuna-v1.5 (Zheng et al., 2023) further extends this capability by fine-tuning Llama 2 on high-quality, extensive conversations, successfully increasing the context window to 16,000 tokens.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Vicuna-v1.5 (Zheng et al., 2023) further extends this capability by fine-tuning Llama 2 on high-quality, extensive conversations, successfully increasing the context window to 16,000 tokens."
+        },
+        {
+            "claim_id": 58,
+            "claim_text": "Longchat (Li* et al., 2023) models condense RoPE to utilize model weights learned in the pretraining stage.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Longchat (Li* et al., 2023) models condense RoPE to utilize model weights learned in the pretraining stage."
+        },
+        {
+            "claim_id": 59,
+            "claim_text": "ChatGLM2-32k (Zeng et al., 2022) is trained on a 32,000-token context length using position interpolation, showcasing the scalability of this technique.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "ChatGLM2-32k (Zeng et al., 2022) is trained on a 32,000-token context length using position interpolation, showcasing the scalability of this technique."
+        },
+        {
+            "claim_id": 60,
+            "claim_text": "The domain of proprietary language models has seen even more significant advancements in long-context modeling, stepped into the ultra-long context field.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "The domain of proprietary language models has seen even more significant advancements in long-context modeling, stepped into the ultra-long context field."
+        },
+        {
+            "claim_id": 61,
+            "claim_text": "GPT-4-Turbo (OpenAI, 2023) notably extends its context window to an impressive 128,000 tokens.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "GPT-4-Turbo (OpenAI, 2023) notably extends its context window to an impressive 128,000 tokens."
+        },
+        {
+            "claim_id": 62,
+            "claim_text": "In a similar vein, Claude-2 and Claude2.1 have achieved context lengths of 100,000 and 200,000 tokens respectively.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "In a similar vein, Claude-2 and Claude2.1 have achieved context lengths of 100,000 and 200,000 tokens respectively."
+        },
+        {
+            "claim_id": 63,
+            "claim_text": "This expansion allows them to process vast quantities of information, such as hundreds of pages of technical documentation or entire books.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "This expansion allows them to process vast quantities of information, such as hundreds of pages of technical documentation or entire books."
+        },
+        {
+            "claim_id": 64,
+            "claim_text": "Kimi Chat, developed by Moonshot.ai, claims to handle up to 200,000 Chinese characters.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Kimi Chat, developed by Moonshot.ai, claims to handle up to 200,000 Chinese characters."
+        },
+        {
+            "claim_id": 65,
+            "claim_text": "However, no existing dataset can evaluate the capability in tackling such long texts.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "However, no existing dataset can evaluate the capability in tackling such long texts."
+        },
+        {
+            "claim_id": 66,
+            "claim_text": "Efforts to evaluate the long-context capabilities of language models have been intensifying, with a focus primarily on traditional question-answering (QA) and summarization tasks.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Efforts to evaluate the long-context capabilities of language models have been intensifying, with a focus primarily on traditional question-answering (QA) and summarization tasks."
+        },
+        {
+            "claim_id": 67,
+            "claim_text": "NarrativeQA (Koˇcisky et al., 2018) offers a question-answering dataset built on the entire books from Project Gutenberg and movie transcripts.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "NarrativeQA (Koˇcisky et al., 2018) offers a question-answering dataset built on the entire books from Project Gutenberg and movie transcripts."
+        },
+        {
+            "claim_id": 68,
+            "claim_text": "GovReport (Huang et al., 2021) provides a dataset comprising national policy issues, each accompanied by an expert-written summary, thus testing models’ ability to distill complex, lengthy documents into concise summaries.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "GovReport (Huang et al., 2021) provides a dataset comprising national policy issues, each accompanied by an expert-written summary, thus testing models’ ability to distill complex, lengthy documents into concise summaries."
+        },
+        {
+            "claim_id": 69,
+            "claim_text": "Based on existing long-context benchmarks, SCROLLS(Shaham et al., 2022) introduces a suite of datasets that requires models to process and reason over long contexts.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Based on existing long-context benchmarks, SCROLLS(Shaham et al., 2022) introduces a suite of datasets that requires models to process and reason over long contexts."
+        },
+        {
+            "claim_id": 70,
+            "claim_text": "Concurrently, L-Eval (An et al., 2023) and LongBench (Bai et al., 2023) are designed for comprehensive evaluation of long-context capabilities of LLMs.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Concurrently, L-Eval (An et al., 2023) and LongBench (Bai et al., 2023) are designed for comprehensive evaluation of long-context capabilities of LLMs."
+        },
+        {
+            "claim_id": 71,
+            "claim_text": "L-Eval offers a collection of long documents across different domains and provides both close-ended and open-ended tasks.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "L-Eval offers a collection of long documents across different domains and provides both close-ended and open-ended tasks."
+        },
+        {
+            "claim_id": 72,
+            "claim_text": "LongBench is a bilingual long context benchmark covering six task categories.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "LongBench is a bilingual long context benchmark covering six task categories."
+        },
+        {
+            "claim_id": 73,
+            "claim_text": "Most tasks in these benchmarks are traditional QA and summarization with fixed document, questions and answers.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Most tasks in these benchmarks are traditional QA and summarization with fixed document, questions and answers."
+        },
+        {
+            "claim_id": 74,
+            "claim_text": "They are inflexible on text length (up to 32,000 tokens), which fall short of adapting to ultra-long context evaluation.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "They are inflexible on text length (up to 32,000 tokens), which fall short of adapting to ultra-long context evaluation."
+        },
+        {
+            "claim_id": 75,
+            "claim_text": "Additionally, LongBench uses mostly open-ended tasks with traditional F1 and ROUGE metric that may not align well with human judgments.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "Additionally, LongBench uses mostly open-ended tasks with traditional F1 and ROUGE metric that may not align well with human judgments."
+        },
+        {
+            "claim_id": 76,
+            "claim_text": "In contrast, our benchmarks support length-adaptable evaluation, provide sufficient cases and evaluate models using accuracy metrics, avoiding inconsistencies with human evaluation.",
+            "location": "Related Work",
+            "claim_type": "Observation",
+            "exact_quote": "In contrast, our benchmarks support length-adaptable evaluation, provide sufficient cases and evaluate models using accuracy metrics, avoiding inconsistencies with human evaluation."
+        },
+        {
+            "claim_id": 77,
+            "claim_text": "We adopt the GPT-4 tokenizer CL100K to calculate token numbers.",
+            "location": "3.1 Task Definition",
+            "claim_type": "Method",
+            "exact_quote": "We adopt the GPT-4 tokenizer CL100K to calculate token numbers."
+        },
+        {
+            "claim_id": 78,
+            "claim_text": "We use a subset of all built cases for evaluation.",
+            "location": "3.1 Task Definition",
+            "claim_type": "Method",
+            "exact_quote": "We use a subset of all built cases for evaluation."
+        },
+        {
+            "claim_id": 79,
+            "claim_text": "TSort provides LLMs with N shuffled text segments, extracted from contiguous chapters of a long book.",
+            "location": "3.1 Task Definition",
+            "claim_type": "Observation",
+            "exact_quote": "TSort provides LLMs with N shuffled text segments,
+
+Raw Evidence:
+
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 339.76 seconds
+evidence_analysis_time: 1.92 seconds
+conclusions_analysis_time: 1.92 seconds
+total_execution_time: 347.24 seconds

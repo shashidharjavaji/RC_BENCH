@@ -1,0 +1,200 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: LLMs cannot plan or self-verify by themselves
+Location: Abstract
+Type: Limitation
+Quote: We argue that auto-regressive LLMs cannot, by themselves, do planning or self-verification
+
+Evidence:
+- Results in the autonomous mode are pretty bleak. On average, only about 12% of the plans that the best LLM (GPT-4) generates are actually executable without errors and goal-reaching.
+  Strength: strong
+  Location: Section 2.1
+  Limitations: Limited to the specific LLM (GPT-4) and planning problem instances
+  Quote: Results in the autonomous mode are pretty bleak. On average, only about 12% of the plans that the best LLM (GPT-4) generates are actually executable without errors and goal-reaching.
+
+- Two of our studies–one on plan verification (Valmeekam et al., 2023a) and the other on CSP verification (Stechly et al., 2023) seem to throw cold water on this optimism.
+  Strength: moderate
+  Location: Section 2.2
+  Limitations: Limited to specific studies and types of verification
+  Quote: Two of our studies–one on plan verification (Valmeekam et al., 2023a) and the other on CSP verification (Stechly et al., 2023) seem to throw cold water on this optimism.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: autonomous mode, specific planning tasks
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: LLMs can play a variety of constructive roles in solving planning tasks
+Location: Introduction
+Type: Contribution
+Quote: Accordingly, we propose a general “LLM-Modulo” framework
+
+Evidence:
+- The LLM-Modulo framework, where LLMs act as idea generators and various external critics that specialize in different aspects, critique the candidate plan.
+  Strength: strong
+  Location: Section 3
+  Limitations: Dependent on the effectiveness of the external critics
+  Quote: The LLM-Modulo framework, where LLMs act as idea generators and various external critics that specialize in different aspects, critique the candidate plan.
+
+- LLMs can play multiple roles in planning, including guessing candidate plans, converting those plans into syntactic forms, helping end users flesh out incomplete specifications, and helping expert users acquire domain models.
+  Strength: moderate
+  Location: Section 3.4
+  Limitations: Limited to the specific roles identified
+  Quote: LLMs can play multiple roles in planning, including guessing candidate plans, converting those plans into syntactic forms, helping end users flesh out incomplete specifications, and helping expert users acquire domain models.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: within the LLM-Modulo framework, with external critics
+Confidence: high
+
+==================================================
+
+Claim 3:
+Statement: LLMs cannot generate executable plans in autonomous mode
+Location: 2.1. LLMs cannot generate executable plans in autonomous mode
+Type: Limitation
+Quote: Despite initial claims about the planning capabilities of LLMs, several recent studies confirm that LLMs are not actually able to generate executable plans when they are used in autonomous modes
+
+Evidence:
+- Results in the autonomous mode are pretty bleak. On average, only about 12% of the plans that the best LLM (GPT-4) generates are actually executable without errors and goal-reaching.
+  Strength: strong
+  Location: Section 2.1
+  Limitations: Limited to the specific LLM (GPT-4) and planning problem instances
+  Quote: Results in the autonomous mode are pretty bleak. On average, only about 12% of the plans that the best LLM (GPT-4) generates are actually executable without errors and goal-reaching.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: autonomous mode, specific planning tasks
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: LLMs cannot verify plans and thus cannot improve by self-critiquing
+Location: 2.2. LLMs cannot verify plans and thus cannot improve by self-critiquing
+Type: Limitation
+Quote: There still exists considerable optimism that even if LLMs can’t generate correct solutions in one go, their accuracy might improve in an iterative prompting regime
+
+Evidence:
+- Two of our studies–one on plan verification (Valmeekam et al., 2023a) and the other on CSP verification (Stechly et al., 2023) seem to throw cold water on this optimism.
+  Strength: moderate
+  Location: Section 2.2
+  Limitations: Limited to specific studies and types of verification
+  Quote: Two of our studies–one on plan verification (Valmeekam et al., 2023a) and the other on CSP verification (Stechly et al., 2023) seem to throw cold water on this optimism.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: self-critiquing, iterative prompting
+Confidence: high
+
+==================================================
+
+Claim 5:
+Statement: LLMs can be used as approximate knowledge sources for planning tasks
+Location: 2.3. Analyzing Claims to the Contrary in the Literature
+Type: Contribution
+Quote: The fact that LLMs are often good at extracting planning knowledge can indeed be gainfully leveraged
+
+Evidence:
+- LLMs can be a rich source of approximate models of world/domain dynamics and user preferences, as long as the humans (and any specialized critics) in the loop verify and refine those models, and give them over to model-based solvers.
+  Strength: moderate
+  Location: Section 2.3
+  Limitations: Dependent on human verification and refinement
+  Quote: LLMs can be a rich source of approximate models of world/domain dynamics and user preferences, as long as the humans (and any specialized critics) in the loop verify and refine those models, and give them over to model-based solvers.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: with human verification and refinement
+Confidence: high
+
+==================================================
+
+Claim 6:
+Statement: The LLM-Modulo framework can improve planning performance
+Location: 3. LLM-Modulo Framework for Robust Planning
+Type: Contribution
+Quote: We propose a general “LLM-Modulo” framework, which combines the strengths of LLMs with external model-based verifiers in a tighter bi-directional interaction regime
+
+Evidence:
+- Our preliminary results on adapting LLM-Modulo framework to this benchmark are reported in (Gundawar et al., 2024). The benchmark’s authors test LLMs across a variety of prompt engineering techniques including Chain of Thought and ReAct, reporting that–on GPT-3.5-Turbo–the current best strategies only manage a startlingly low 0.7% performance rate!
+  Strength: moderate
+  Location: Section 4
+  Limitations: Limited to the specific benchmark and LLM (GPT-3.5-Turbo)
+  Quote: Our preliminary results on adapting LLM-Modulo framework to this benchmark are reported in (Gundawar et al., 2024). The benchmark’s authors test LLMs across a variety of prompt engineering techniques including Chain of Thought and ReAct, reporting that–on GPT-3.5-Turbo–the current best strategies only manage a startlingly low 0.7% performance rate!
+
+- Our preliminary results show (see Figure 5; additional results in (Gundawar et al., 2024)) that LLM-Modulo based agentification with automated critics in the loop significantly improves the performance (6x of baselines) even with a limit of 10 back prompting cycles, and weaker models such as GPT-3.5turbo.
+  Strength: strong
+  Location: Section 4
+  Limitations: Limited to the specific benchmark and LLMs (GPT-3.5-Turbo and GPT-3.5turbo)
+  Quote: Our preliminary results show (see Figure 5; additional results in (Gundawar et al., 2024)) that LLM-Modulo based agentification with automated critics in the loop significantly improves the performance (6x of baselines) even with a limit of 10 back prompting cycles, and weaker models such as GPT-3.5turbo.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: within the LLM-Modulo framework, with automated critics
+Confidence: high
+
+==================================================
+
+Claim 7:
+Statement: The LLM-Modulo framework can be applied to various planning and reasoning tasks
+Location: 5. Related Work
+Type: Contribution
+Quote: While we focused on PDDL planning tasks for the sake of concreteness, we believe that the essence of LLM-Modulo framework is equally applicable to other scenarios involving planning and reasoning
+
+Evidence:
+- While we focused on PDDL planning tasks for the sake of concreteness, we believe that the essence of LLM-Modulo framework is equally applicable to other scenarios involving planning and reasoning–such as Reinforcement Learning with Simulators.
+  Strength: moderate
+  Location: Section 5
+  Limitations: Limited to the authors' belief and not explicitly demonstrated
+  Quote: While we focused on PDDL planning tasks for the sake of concreteness, we believe that the essence of LLM-Modulo framework is equally applicable to other scenarios involving planning and reasoning–such as Reinforcement Learning with Simulators.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: generalizability to other planning and reasoning tasks
+Confidence: medium
+
+==================================================
+
+Claim 8:
+Statement: The LLM-Modulo framework can be used for robust planning in travel planning
+Location: 4. Two Case Studies of LLM-Modulo
+Type: Application
+Quote: Our preliminary results on adapting LLM-Modulo framework to this benchmark are reported in (Gundawar et al., 2024)
+
+Evidence:
+- Our preliminary results on adapting LLM-Modulo framework to this benchmark are reported in (Gundawar et al., 2024). The benchmark’s authors test LLMs across a variety of prompt engineering techniques including Chain of Thought and ReAct, reporting that–on GPT-3.5-Turbo–the current best strategies only manage a startlingly low 0.7% performance rate!
+  Strength: moderate
+  Location: Section 4
+  Limitations: Limited to the specific benchmark and LLM (GPT-3.5-Turbo)
+  Quote: Our preliminary results on adapting LLM-Modulo framework to this benchmark are reported in (Gundawar et al., 2024). The benchmark’s authors test LLMs across a variety of prompt engineering techniques including Chain of Thought and ReAct, reporting that–on GPT-3.5-Turbo–the current best strategies only manage a startlingly low 0.7% performance rate!
+
+- Our preliminary results show (see Figure 5; additional results in (Gundawar et al., 2024)) that LLM-Modulo based agentification with automated critics in the loop significantly improves the performance (6x of baselines) even with a limit of 10 back prompting cycles, and weaker models such as GPT-3.5turbo.
+  Strength: strong
+  Location: Section 4
+  Limitations: Limited to the specific benchmark and LLMs (GPT-3.5-Turbo and GPT-3.5turbo)
+  Quote: Our preliminary results show (see Figure 5; additional results in (Gundawar et al., 2024)) that LLM-Modulo based agentification with automated critics in the loop significantly improves the performance (6x of baselines) even with a limit of 10 back prompting cycles, and weaker models such as GPT-3.5turbo.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: within the LLM-Modulo framework, with automated critics, in travel planning
+Confidence: high
+
+==================================================
+
+
+Execution Times:
+claims_analysis_time: 101.33 seconds
+evidence_analysis_time: 307.95 seconds
+conclusions_analysis_time: 67.51 seconds
+total_execution_time: 479.09 seconds

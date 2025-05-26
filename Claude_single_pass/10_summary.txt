@@ -1,0 +1,84 @@
+Claim 1:
+Type: performance
+Statement: kNN-Prompt significantly outperforms baseline models on zero-shot tasks
+Location: Results section (Section 4)
+Exact Quote: kNN-Prompt outperforms all baselines in all tasks, improving over the base LM by 13.4% on average
+
+Evidence:
+- Evidence Text: Comprehensive results across 9 tasks showing consistent improvements
+  Strength: strong
+  Location: Table 2
+  Limitations: Limited to GPT-2 family models only
+  Exact Quote: kNN-Prompt 55.6 53.5 51.0 80.6 84.2 84.3 78.2 60.0 78.8 69.6
+
+- Evidence Text: Detailed ablation studies showing contribution of each component
+  Strength: strong
+  Location: Table 5
+  Limitations: Some combinations of components not tested
+  Exact Quote: LM+kNN+Fuzzy+PMI (kNN-Prompt) 69.6 +13.4
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Comprehensive evaluation across multiple tasks with clear performance improvements and ablation studies
+Key Limitations: Limited to GPT-2 models, may not generalize to other architectures
+
+--------------------------------------------------
+
+Claim 2:
+Type: contribution
+Statement: kNN-Prompt enables effective domain adaptation without additional training
+Location: Section 5
+Exact Quote: kNN-Prompt performs comparably with DAPT. Specifically, kNN-Prompt slightly outperforms DAPT on CR and MR
+
+Evidence:
+- Evidence Text: Comparison with DAPT across multiple domains
+  Strength: moderate
+  Location: Table 4
+  Limitations: Limited number of domains tested
+  Exact Quote: kNN-prompt 84.3 60.0 78.2, DAPT (LM + PMI) 84.1 61.1 77.8
+
+- Evidence Text: Analysis of datastore size and domain specificity effects
+  Strength: strong
+  Location: Section 5
+  Limitations: Trade-off between datastore size and computational costs not fully explored
+  Exact Quote: For CR, using 6M tokens of domain-specific data outperforms using our 465M token heterogeneous corpus
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Shows comparable performance to DAPT without training, supported by detailed analysis
+Key Limitations: Limited domain testing, computational costs not fully addressed
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: Fuzzy verbalizers are essential for leveraging the kNN distribution effectively
+Location: Section 6
+Exact Quote: adding kNN to LM gives trivial improvement (+0.4%), but much greater once we add fuzzy verbalizers on top of them (+10.3%)
+
+Evidence:
+- Evidence Text: Coverage improvement statistics
+  Strength: strong
+  Location: Section 6
+  Limitations: May depend on specific verbalizer choices
+  Exact Quote: across all tasks, an output label receives nonzero probability under the kNN distribution in kNN-LM only 45.8% of the time. With fuzzy verbalizers, this increases to 78%
+
+- Evidence Text: Ablation study results
+  Strength: strong
+  Location: Table 5
+  Limitations: Interaction effects between components not fully explored
+  Exact Quote: LM+Fuzzy+PMI 67.1 +10.9, LM+kNN+Fuzzy 66.5 +10.3
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Clear evidence from multiple analyses showing importance of fuzzy verbalizers
+Key Limitations: Specific verbalizer choices may affect results
+
+--------------------------------------------------
+

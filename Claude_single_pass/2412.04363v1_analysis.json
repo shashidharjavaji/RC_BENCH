@@ -1,0 +1,97 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Small fractions (10%) of poor quality judgments from apathetic or adversarial voting can substantially impact model rankings on Chatbot Arena",
+                "type": "result",
+                "location": "Section 3.1 and 3.2",
+                "exact_quote": "We find that only 10% of apathetic votes in the dataset can change the leaderboard rankings of 2/3 models by 5 places"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Experimental results showing rank changes with 10% apathetic votes",
+                    "strength": "strong",
+                    "limitations": "Limited to 3 test models only",
+                    "location": "Table 1",
+                    "exact_quote": "10% poor quality annotations can change the rank of 2/3 systems by 5 places"
+                },
+                {
+                    "evidence_text": "Experimental results showing rank changes with adversarial votes",
+                    "strength": "strong",
+                    "limitations": "Assumes adversaries can get 10% of total votes",
+                    "location": "Table 2",
+                    "exact_quote": "Across all models, we show that adversarial attacks can substantially change leaderboard rankings if adversaries get to contribute 10% votes for their model"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Clear experimental evidence showing impact on rankings, though limited to small set of test models",
+                "key_limitations": "Small test set of models, assumes ability to get 10% vote share",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Simple model attribution algorithms can effectively detect target model outputs to enable adversarial voting",
+                "type": "methodology",
+                "location": "Section 3.2",
+                "exact_quote": "We find that our detector algorithm reports very high performance (e.g. TPR=91.13%, and TNR=88.46% for Llama-2-7b-chat)"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Detection performance metrics across 3 models",
+                    "strength": "strong",
+                    "limitations": "Only tested on 3 models, requires access to model logits",
+                    "location": "Table 3",
+                    "exact_quote": "TPR=91.13%, and TNR=88.46% for Llama-2-7b-chat"
+                },
+                {
+                    "evidence_text": "Proof-of-concept attack on live platform",
+                    "strength": "moderate",
+                    "limitations": "Only demonstrated vote submission, not manipulation",
+                    "location": "Section 3.2",
+                    "exact_quote": "We programmatically launched 100 queries into Chatbot Arena, extracted the two model responses, and successfully submitted a preference vote"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "High detection performance demonstrated but with important limitations",
+                "key_limitations": "Requires model access, limited test set, proof-of-concept only demonstrated submission not manipulation",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Even well-incentivized annotators show low agreement on subjective prompts",
+                "type": "result",
+                "location": "Section 3.3",
+                "exact_quote": "Overall, we find very low agreement between these well-intentioned annotators with clear guidelines, irrespective of the performance difference between the model pairs"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Inter-annotator agreement scores across evaluation dimensions",
+                    "strength": "moderate",
+                    "limitations": "Small study with only 4 annotators",
+                    "location": "Table 4",
+                    "exact_quote": "Fleiss' Kappa between four annotators on different evaluation axis"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "low",
+                "justification": "Shows low agreement but from very limited annotator pool",
+                "key_limitations": "Very small annotator sample size, limited prompt types tested",
+                "confidence_level": "low"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "23.08 seconds",
+        "total_execution_time": "25.10 seconds"
+    }
+}

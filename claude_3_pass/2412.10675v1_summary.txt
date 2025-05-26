@@ -1,0 +1,170 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Merely fine-tuning LLMs on datasets containing problem contexts and reference plans does not lead to robust planning skills
+Location: Abstract
+Type: Main finding
+Quote: We find that merely fine-tuning LLMs on a corpus of planning instances does not lead to robust planning skills, as indicated by poor performance on out-of-distribution test sets.
+
+Evidence:
+- Model performs poorly on longer out-of-distribution test cases despite high in-distribution performance
+  Strength: strong
+  Location: Section 4.1
+  Limitations: Limited to specific test domains
+  Quote: The 'long' test set reveals a significant performance drop, particularly in the NP-hard BLOCKSWORLD domain (Chenoweth 1991), where the validity rate falls from 98.5% to 13.5%
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Only tested on a specific set of planning domains; may not generalize to all planning tasks
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: Chain-of-thought strategies enhance plan executability despite not improving validity rates
+Location: Abstract
+Type: Main finding
+Quote: At the same time, we find that various strategies, including chain-of-thought, do enhance the probability of a plan being executable. This indicates progress towards better plan quality, despite not directly enhancing the final validity rate.
+
+Evidence:
+- State CoT improves executability rate in unseen test set
+  Strength: moderate
+  Location: Section 4.4
+  Limitations: Only works for shorter plans
+  Quote: State CoT does not improve plan executability within the 'long' test set, yet it significantly enhances performance within the 'unseen' test set (e.g., 100% in row 4)
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Improvement limited to specific test conditions; lack of comprehensive ablation studies across all domains
+Confidence: medium
+
+==================================================
+
+Claim 3:
+Statement: Reinforcement learning with LCCS reward is the most effective strategy for improving plan generation
+Location: Abstract/Introduction
+Type: Main finding
+Quote: Among the strategies we evaluated, reinforcement learning with our novel 'Longest Contiguous Common Subsequence' reward emerged as the most effective, contributing to both plan executability and validity.
+
+Evidence:
+- RL improved both validity and executability rates significantly
+  Strength: strong
+  Location: Section 4.7
+  Limitations: Tested on limited subset of data
+  Quote: RL boosted the validity rate on the 'long' test set from 34.8% to 41.5% (a 6.7% increase) and the executability rate from 42.3% to 53.6% (9.0%)
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Limited training data (10% of test set); specific reward function design may not be optimal
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: The study achieves comparable performance to PlanGPT using only 5.7% of their training data
+Location: Section 4.1
+Type: Result
+Quote: Remarkably, we attain comparable performance using only 5.7% of their training data and a more complex input format expressed in natural language, suggesting not only better data efficiency but also better capability to process less structured data than previously anticipated.
+
+Evidence:
+- Comparable results with much less training data
+  Strength: moderate
+  Location: Section 4.1
+  Limitations: Direct comparison metrics not fully detailed
+  Quote: Remarkably, we attain comparable performance using only 5.7% of their training data and a more complex input format expressed in natural language
+
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: Direct comparison metrics not clearly presented; different evaluation conditions
+Confidence: low
+
+==================================================
+
+Claim 5:
+Statement: Permutation augmentation enables the model to effectively parse unseen problem content
+Location: Section 4.2
+Type: Finding
+Quote: This high performance suggests that permutation augmentation enables the model to effectively parse unseen problem content, which includes unseen actions, predicates and objects.
+
+Evidence:
+- Permutation improved executability on unseen problems
+  Strength: moderate
+  Location: Section 4.2
+  Limitations: Limited to executability metric
+  Quote: we observe a remarkable 75.5% score in 'unseen' test set, while the vanilla model only got 20.1% (row 1)
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Only shows improvement in executability, not validity; limited to specific test scenarios
+Confidence: medium
+
+==================================================
+
+Claim 6:
+Statement: Goal CoT is the only strategy that hinders planning performance among OOD cases
+Location: Section 4.3
+Type: Finding
+Quote: Goal CoT is the only strategy that hinders planning performance among OOD cases, showing no improvement whatsoever
+
+Evidence:
+- Goal CoT shows consistent performance decline
+  Strength: strong
+  Location: Section 4.3
+  Limitations: Reasons for decline may vary
+  Quote: Goal CoT is the only strategy that hinders planning performance among OOD cases, showing no improvement whatsoever (see Table 2 row 3, 5, 7, 9)
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Reasons for performance decline could be implementation-specific
+Confidence: high
+
+==================================================
+
+Claim 7:
+Statement: Self-correction learning improves error detection but not error correction
+Location: Section 4.4
+Type: Finding
+Quote: Results from Table 3 showed that the model is able to accurately identify errors, achieving particularly high precision (90.5%) and recall (99.2%) when all 4 strategies are combined (row 9). However, the detection capability does not lead to effective correction
+
+Evidence:
+- High error detection accuracy but poor correction
+  Strength: strong
+  Location: Section 4.4
+  Limitations: Based on specific probing tests
+  Quote: Results from Table 3 showed that the model is able to accurately identify errors, achieving particularly high precision (90.5%) and recall (99.2%)... However, the detection capability does not lead to effective correction
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Error detection metrics may not capture all types of errors; specific to the implemented correction mechanism
+Confidence: high
+
+==================================================
+
+Claim 8:
+Statement: RL training improves performance more than supervised fine-tuning on the same data
+Location: Section 4.7
+Type: Result
+Quote: These results suggest that RL fosters more comprehensive planning skills compared to supervised fine-tuning (SFT), aligning with the findings of Liu et al. (2024).
+
+Evidence:
+- Direct comparison shows RL outperforms SFT
+  Strength: strong
+  Location: Section 4.7
+  Limitations: Tested on specific subset
+  Quote: However, the outcomes were not as promising as those achieved with RL, as demonstrated in Figure 6. These results suggest that RL fosters more comprehensive planning skills compared to supervised fine-tuning (SFT)
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Limited comparison on specific test set; may not generalize to other training configurations
+Confidence: medium
+
+==================================================
+

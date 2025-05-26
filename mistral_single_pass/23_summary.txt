@@ -1,0 +1,154 @@
+Claim 1:
+Type: contribution
+Statement: ReAct is a novel paradigm that synergizes reasoning and acting in language models for general task solving.
+Location: Introduction
+Exact Quote: In this work, we present ReAct, a general paradigm to combine reasoning and acting with language models for solving diverse language reasoning and decision making tasks.
+
+Evidence:
+- Evidence Text: ReAct prompts LLMs to generate both verbal reasoning traces and actions pertaining to a task in an interleaved manner, which allows the model to perform dynamic reasoning to create, maintain, and adjust high-level plans for acting (reason to act), while also interact with the external environments (e.g. Wikipedia) to incorporate additional information into reasoning (act to reason).
+  Strength: strong
+  Location: Introduction
+  Limitations: none
+  Exact Quote: ReAct prompts LLMs to generate both verbal reasoning traces and actions pertaining to a task in an interleaved manner, which allows the model to perform dynamic reasoning to create, maintain, and adjust high-level plans for acting (reason to act), while also interact with the external environments (e.g. Wikipedia) to incorporate additional information into reasoning (act to reason).
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by a detailed description of the ReAct paradigm and its integration of reasoning and acting.
+Key Limitations: none
+
+--------------------------------------------------
+
+Claim 2:
+Type: performance
+Statement: ReAct outperforms Act consistently on both HotpotQA and Fever.
+Location: Section 3.3
+Exact Quote: ReAct outperforms Act consistently on both HotpotQA and Fever.
+
+Evidence:
+- Evidence Text: Table 1 shows HotpotQA and Fever results using PaLM-540B as the base model with different prompting methods. We note that ReAct is better than Act on both tasks, demonstrating the value of reasoning to guide acting, especially for synthesizing the final answer.
+  Strength: strong
+  Location: Section 3.3
+  Limitations: none
+  Exact Quote: Table 1 shows HotpotQA and Fever results using PaLM-540B as the base model with different prompting methods. We note that ReAct is better than Act on both tasks, demonstrating the value of reasoning to guide acting, especially for synthesizing the final answer.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by empirical results showing ReAct's superior performance over Act.
+Key Limitations: none
+
+--------------------------------------------------
+
+Claim 3:
+Type: performance
+Statement: ReAct + CoT-SC performs best for prompting LLMs.
+Location: Section 3.3
+Exact Quote: The best prompting method on HotpotQA and Fever are ReAct CoT-SC and CoT-SC ReAct respectively.
+
+Evidence:
+- Evidence Text: Figure 2 shows how different methods perform with respect to the number of CoT-SC samples used. While two ReAct + CoT-SC methods are advantageous at one task each, they both significantly and consistently outperform CoT-SC across different number of samples, reaching CoT-SC performance with 21 samples using merely 3-5 samples.
+  Strength: strong
+  Location: Section 3.3
+  Limitations: none
+  Exact Quote: Figure 2 shows how different methods perform with respect to the number of CoT-SC samples used. While two ReAct + CoT-SC methods are advantageous at one task each, they both significantly and consistently outperform CoT-SC across different number of samples, reaching CoT-SC performance with 21 samples using merely 3-5 samples.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by empirical results showing the superiority of ReAct + CoT-SC over CoT-SC.
+Key Limitations: none
+
+--------------------------------------------------
+
+Claim 4:
+Type: performance
+Statement: ReAct performs best for fine-tuning.
+Location: Section 3.3
+Exact Quote: Figure 3 shows the scaling effect of prompting/finetuning four methods (Standard, CoT, Act, ReAct) on HotPotQA with ReAct (ours) and baselines.
+
+Evidence:
+- Evidence Text: With PaLM-8/62B, prompting ReAct performs worst among four methods due to the difficulty to learn both reasoning and acting from in-context examples. However, when finetuned with just 3,000 examples, ReAct becomes the best method among the four, with PaLM-8B finetuned ReAct outperforming all PaLM-62B prompting methods, and PaLM-62B finetuned ReAct outperforming all 540B prompting methods.
+  Strength: strong
+  Location: Section 3.3
+  Limitations: none
+  Exact Quote: With PaLM-8/62B, prompting ReAct performs worst among four methods due to the difficulty to learn both reasoning and acting from in-context examples. However, when finetuned with just 3,000 examples, ReAct becomes the best method among the four, with PaLM-8B finetuned ReAct outperforming all PaLM-62B prompting methods, and PaLM-62B finetuned ReAct outperforming all 540B prompting methods.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by empirical results showing ReAct's superior performance in fine-tuning.
+Key Limitations: none
+
+--------------------------------------------------
+
+Claim 5:
+Type: performance
+Statement: ReAct outperforms Act on both ALFWorld and WebShop.
+Location: Section 4
+Exact Quote: ReAct outperforms Act on both ALFWorld and WebShop.
+
+Evidence:
+- Evidence Text: On ALFWorld, the best ReAct trial achieves an average success rate of 71%, significantly outperforming the best Act (45%) and BUTLER (37%) trials. In fact, even the worse ReAct trial (48%) beats the best trial of both methods. Moreover, the advantage of ReAct over Act is consistent across six controlled trials, with relative performance gain ranging from 33% to 90% and averaging 62%.
+  Strength: strong
+  Location: Section 4
+  Limitations: none
+  Exact Quote: On ALFWorld, the best ReAct trial achieves an average success rate of 71%, significantly outperforming the best Act (45%) and BUTLER (37%) trials. In fact, even the worse ReAct trial (48%) beats the best trial of both methods. Moreover, the advantage of ReAct over Act is consistent across six controlled trials, with relative performance gain ranging from 33% to 90% and averaging 62%.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by empirical results showing ReAct's superior performance over Act on both ALFWorld and WebShop.
+Key Limitations: none
+
+--------------------------------------------------
+
+Claim 6:
+Type: performance
+Statement: ReAct obtains up-to-date knowledge on HotpotQA.
+Location: Section A.2
+Exact Quote: Only ReAct is able to obtain the up-to-date answer thanks to real-world web interaction plus reasoning.
+
+Evidence:
+- Evidence Text: During trajectory inspection, we also find that sometimes ReAct does not agree with dataset labels as the labels themselves could be outdated. For example, as shown in Figure 4, the question asks about the size of a hotel, which increased from the HotpotQA construction time. While Standard and CoT give wrong answers due to hallucination, Act fails despite the access of real-world web interaction, due to a lack of reasoning to guide how to interact with the Internet for QA. Only ReAct is able to retrieve up-to-date information from the Internet and provide a reasonable answer.
+  Strength: strong
+  Location: Section A.2
+  Limitations: none
+  Exact Quote: During trajectory inspection, we also find that sometimes ReAct does not agree with dataset labels as the labels themselves could be outdated. For example, as shown in Figure 4, the question asks about the size of a hotel, which increased from the HotpotQA construction time. While Standard and CoT give wrong answers due to hallucination, Act fails despite the access of real-world web interaction, due to a lack of reasoning to guide how to interact with the Internet for QA. Only ReAct is able to retrieve up-to-date information from the Internet and provide a reasonable answer.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by empirical results showing ReAct's ability to obtain up-to-date knowledge.
+Key Limitations: none
+
+--------------------------------------------------
+
+Claim 7:
+Type: methodology
+Statement: ReAct allows for human-in-the-loop behavior correction.
+Location: Section A.3
+Exact Quote: Figure 5 shows that by simply removing a hallucinating sentence in Act 17 and adding some hints in Act 23, ReAct can be made to change its behavior drastically to align with these human thought edits and succeed in the task.
+
+Evidence:
+- Evidence Text: Figure 5 shows that by simply removing a hallucinating sentence in Act 17 and adding some hints in Act 23, ReAct can be made to change its behavior drastically to align with these human thought edits and succeed in the task.
+  Strength: strong
+  Location: Section A.3
+  Limitations: none
+  Exact Quote: Figure 5 shows that by simply removing a hallucinating sentence in Act 17 and adding some hints in Act 23, ReAct can be made to change its behavior drastically to align with these human thought edits and succeed in the task.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by empirical results showing ReAct's ability to allow for human-in-the-loop behavior correction.
+Key Limitations: none
+
+--------------------------------------------------
+

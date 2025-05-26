@@ -1,0 +1,84 @@
+Claim 1:
+Type: performance
+Statement: The proposed log probability increase method outperforms seven other static attribution methods across three metrics
+Location: Section 4.1
+Exact Quote: Compared with seven other static methods, our method achieves the best performance on three metrics
+
+Evidence:
+- Evidence Text: Results showing lowest MRR, probability and log probability scores after neuron intervention
+  Strength: strong
+  Location: Table 2
+  Limitations: Only tested on two models and six knowledge types
+  Exact Quote: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama-7B.
+
+- Evidence Text: Systematic comparison against 7 baseline methods
+  Strength: strong
+  Location: Section 4.1
+  Limitations: Limited to static attribution methods only
+  Exact Quote: We compare our method with seven static methods. We use each method to attribute the FFN neurons with top10 scores for the correct knowledge token w.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Results consistently show superior performance across multiple metrics and models with clear quantitative evidence
+Key Limitations: Limited scope of evaluation (2 models, 6 knowledge types, static methods only)
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Both attention and FFN layers can store knowledge and important neurons directly contributing to knowledge prediction are in deep layers
+Location: Section 1, Introduction
+Exact Quote: Both attention and FFN layers can store knowledge, and all important neurons directly contribute to knowledge prediction are in deep layers.
+
+Evidence:
+- Evidence Text: Analysis of neuron distribution across layers
+  Strength: strong
+  Location: Figure 2/4/5
+  Limitations: May not generalize to all types of knowledge
+  Exact Quote: The neurons attributed by probability increase are on deepest layers (23th-31th), while other two methods can attribute neurons among 17th to 31th layers.
+
+- Evidence Text: Layer-level importance scores
+  Strength: moderate
+  Location: Table 3
+  Limitations: Aggregate metrics may mask individual variations
+  Exact Quote: We compute the sum of importance score of each attention and FFN layer in GPT2 (G-A, G-F) and Llama (L-A, L-F)
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Multiple analyses consistently show knowledge storage in both layer types and deep layer importance
+Key Limitations: Limited knowledge types tested, may not generalize to all neural architectures
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: Intervening on a small number of neurons (300 value neurons or 1000 query neurons) can significantly influence the final prediction
+Location: Section 4.2
+Exact Quote: When intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+Evidence:
+- Evidence Text: Intervention results on value neurons
+  Strength: strong
+  Location: Table 13
+  Limitations: Only tested on specific knowledge types
+  Exact Quote: The MRR score and probability score decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama
+
+- Evidence Text: Intervention results on query neurons
+  Strength: strong
+  Location: Table 7
+  Limitations: Limited to top neurons only
+  Exact Quote: When intervening top1000 shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in Llama)
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Consistent large effects observed across models with clear quantitative evidence
+Key Limitations: Limited knowledge types and models tested
+
+--------------------------------------------------
+

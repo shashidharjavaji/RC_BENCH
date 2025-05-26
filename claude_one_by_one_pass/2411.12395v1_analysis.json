@@ -1,0 +1,286 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": "Simple, training-free, token-level disambiguation methods can effectively improve LLM performance for ambiguous question answering tasks",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "For both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, with disambiguation via context performing better for both LLMs",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only tested on two LLM variants",
+                    "location": "Results and Discussion section, RQ1 findings",
+                    "exact_quote": "Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries. Out of the two simple disambiguating methods explored, we see that disambiguation via adding context performs better for both LLMs."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Fine-tuning experiments showed no improvement over simple prompting methods",
+                    "strength": "moderate",
+                    "limitations": "Only tested small-scale fine-tuning on GPT 4o-mini",
+                    "location": "Results and Discussion section, RQ2 findings",
+                    "exact_quote": "The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions. This reinforces our insight that simple training-free prompting methods for disambiguation work well in improving performance."
+                }
+            ],
+            "evidence_locations": [
+                "Results and Discussion section, RQ1 findings",
+                "Results and Discussion section, RQ2 findings"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that simple prompt-based disambiguation methods can improve LLM performance on ambiguous questions without requiring additional training, with context-based disambiguation showing particular promise when implemented correctly.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence shows consistent patterns across two different LLM variants (GPT-4o and GPT-4o-mini), with quantitative metrics supporting the improvements. The methodology is systematic, using a substantial dataset (1000 questions) and multiple evaluation metrics including semantic similarity measures. The comparison against both naive prompting and fine-tuning provides good triangulation of results.",
+                "limitations": "1. Limited to only two variants of GPT models from same family\n2. Fine-tuning experiments were limited in scope and only tested on GPT-4o-mini\n3. Context-based disambiguation showed inconsistent results depending on question type\n4. No testing on open-source models or other LLM architectures\n5. Potential dataset limitations as only tested on AmbigQA subset",
+                "conclusion_location": "Abstract and Section VI (Conclusion and Future Works)"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": "Using disambiguating prompts improves LLM performance over naive settings for both GPT-4o and GPT-4o-mini",
+            "claim_location": "Results and Discussion - RQ1",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "GPT-4o showed improvement in GT Answer Overlap from 0.759 (naive) to 0.778 (what-based disambiguation) and 0.789 (context-based disambiguation)",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to two specific disambiguation methods",
+                    "location": "Section V Results and Discussion, RQ1 discussion",
+                    "exact_quote": "we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Results shown in Tables I and II demonstrate improved GT Answer Overlap scores for both models when using disambiguation methods",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Performance gains are relatively modest",
+                    "location": "Section V Results and Discussion, Tables I and II",
+                    "exact_quote": "GPT-4o GT Answer Overlap: Naive (0.759) vs What (0.778) vs Context (0.789)\nGPT-4o-mini GT Answer Overlap: Naive (0.692) vs What (0.707) vs Context (0.71)"
+                }
+            ],
+            "evidence_locations": [
+                "Section V Results and Discussion, RQ1 discussion",
+                "Section V Results and Discussion, Tables I and II"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that simple disambiguating prompts improve performance over naive settings for both GPT-4o and GPT-4o-mini, with context-based disambiguation performing better than what-based disambiguation methods",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust in several ways: 1) Results are consistent across two different LLM models 2) Two different disambiguation methods were tested 3) Clear metrics (GT Answer Overlap) were used for evaluation 4) Results are presented in detailed tables with multiple evaluation metrics. However, the improvements shown are relatively modest in magnitude.",
+                "limitations": "1) Only two specific disambiguation methods were tested 2) Performance gains are relatively small in magnitude 3) The study used a subset of 1000 questions which may affect generalizability 4) No statistical significance testing is reported 5) The context-based method shows issues with adding irrelevant context in some cases",
+                "conclusion_location": "Section V Results and Discussion, RQ1 discussion and Tables I and II"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": "Disambiguation via adding context performs better than disambiguation via 'what' rephrasing for both tested LLMs",
+            "claim_location": "Results and Discussion - RQ1",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "For GPT-4o, disambiguation via context achieves 0.789 GT Answer Overlap compared to 0.778 for 'what' rephrasing",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results shown only for a random sample of 1000 questions",
+                    "location": "Section V (Results and Discussion), Table I",
+                    "exact_quote": "GT Answer Overlap \u2191 [Naive: 0.759, what: 0.778, context: 0.789]"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "For GPT-4o-mini, disambiguation via context achieves 0.71 GT Answer Overlap compared to 0.707 for 'what' rephrasing",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results shown only for a random sample of 1000 questions",
+                    "location": "Section V (Results and Discussion), Table II",
+                    "exact_quote": "GT Answer Overlap \u2191 [Naive: 0.692, what: 0.707, context: 0.71]"
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_type": "primary",
+                    "evidence_text": "Direct statement in results confirming context performs better for both LLMs",
+                    "strength": "strong",
+                    "limitations": "None stated",
+                    "location": "Section V (Results and Discussion), RQ1 paragraph",
+                    "exact_quote": "Out of the two simple disambiguating methods explored, we see that disambiguation via adding context performs better for both LLMs."
+                }
+            ],
+            "evidence_locations": [
+                "Section V (Results and Discussion), Table I",
+                "Section V (Results and Discussion), Table II",
+                "Section V (Results and Discussion), RQ1 paragraph"
+            ],
+            "conclusion": {
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "conclusion_location": "Location not specified"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": "Small-scale fine-tuning does not improve LLM performance on ambiguous questions",
+            "claim_location": "Results and Discussion - RQ2",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Fine-tuning on 50 question-answer pairs showed worse performance compared to baseline",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only tested on small-scale fine-tuning (50 examples) and only on GPT-4o-mini model",
+                    "location": "Section V. Results and Discussion - RQ2",
+                    "exact_quote": "The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "secondary",
+                    "evidence_text": "The underperformance may be due to catastrophic forgetting",
+                    "strength": "moderate",
+                    "limitations": "Presented as a hypothesis rather than empirically tested",
+                    "location": "Limitations section",
+                    "exact_quote": "Additionally, we suspect that our fine-tuning approach may have underperformed due to catastrophic forgetting"
+                }
+            ],
+            "evidence_locations": [
+                "Section V. Results and Discussion - RQ2",
+                "Limitations section"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that small-scale fine-tuning does not provide improvement in LLM performance on ambiguous questions, suggesting that simple training-free prompting methods for disambiguation work better",
+                "conclusion_justified": false,
+                "robustness_analysis": "The evidence has significant weaknesses in terms of robustness: (1) Only tested on GPT-4o-mini, not the larger GPT-4o model (2) Very limited fine-tuning dataset of just 50 examples (3) No ablation studies or controls for catastrophic forgetting (4) No statistical significance testing reported (5) No comparison against other fine-tuning approaches or scales",
+                "limitations": [
+                    "1. Extremely small fine-tuning dataset (50 examples)",
+                    "2. Only tested on one model variant (GPT-4o-mini)",
+                    "3. Potential catastrophic forgetting not controlled for",
+                    "4. No exploration of different fine-tuning approaches",
+                    "5. No statistical analysis of results",
+                    "6. No investigation of optimal fine-tuning dataset size"
+                ],
+                "conclusion_location": "Section V. Results and Discussion - RQ2"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": "Using lower temperature values does not significantly improve LLM performance on ambiguous questions",
+            "claim_location": "Results and Discussion - RQ3",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The study empirically compared performance with temperature values of 0.2 vs 1.0 and found only minor improvements in some cases that weren't significant",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only tested two specific temperature values (0.2 and 1.0)",
+                    "location": "Section V (Results and Discussion), RQ3 discussion",
+                    "exact_quote": "we see that although lower temperature (0.2 instead of 1.0, in this case) seem to have minor improvements in some cases, the difference is not that significant. This implies simply using a lower value of temperature may not provide any benefits in LLM performance for answering ambiguous questions."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Visual evidence showing minimal difference between high and low temperature performance",
+                    "strength": "strong",
+                    "limitations": "Details of the visualization not fully explained",
+                    "location": "Section V, Figure 4",
+                    "exact_quote": "Figure 4: Comparison of GT Answer Overlap for GPT 4o and 4o-mini for both high and low temperatures. High = 1.0, low = 0.2. Higher overlap scores are better."
+                }
+            ],
+            "evidence_locations": [
+                "Section V (Results and Discussion), RQ3 discussion",
+                "Section V, Figure 4"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that using lower temperature values (0.2 vs 1.0) for LLM generation does not provide significant benefits in improving LLM performance when answering ambiguous questions.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is relatively robust as it includes both empirical testing and visualization support. The study used consistent methodology across temperature settings and tested on the same dataset. However, robustness could be improved by testing more temperature values across the possible range (0-2) and providing more detailed statistical analysis of the differences.",
+                "limitations": "1. Only two specific temperature values were tested (0.2 and 1.0), leaving gaps in understanding performance at other temperatures\n2. Limited details about the statistical significance of observed differences\n3. Visualization details and metrics not fully explained\n4. No explanation of why these specific temperature values were chosen\n5. No control for other potential confounding variables",
+                "conclusion_location": "Section V (Results and Discussion), RQ3 subsection and Figure 4"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": "LLMs better understand social cues for disambiguation in cases where human annotators were also able to successfully disambiguate",
+            "claim_location": "Results and Discussion - Problem with naive contextual enrichment",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Analysis of plots showing improved performance when using subset of data where human annotators successfully disambiguated questions",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Only shown through comparative plot analysis, specific numerical results not provided",
+                    "location": "Section V: Results and Discussion",
+                    "exact_quote": "Then, we take a subset of AmbigQA where the human-provided answer of a human-provided disambiguated question exactly matches the ground truth answer. Here, we see that plot 3 of contextual enrichment does skew to the right. This shows that LLMs are able to better understand certain social cues to correctly disambiguate the provided question in cases where the human annotator was able to disambiguate them as well."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Comparison of model behavior with contextual enrichment between full dataset and human-disambiguated subset",
+                    "strength": "moderate",
+                    "limitations": "Specific performance metrics not provided",
+                    "location": "Section V: Results and Discussion",
+                    "exact_quote": "Although adding context should skew the plot 2 to the right (ie: be more similar to the ground truth), but instead its skewed to the left since its being held back every time it adds the wrong context which is not a problem when we have simply rephrased the question."
+                }
+            ],
+            "evidence_locations": [
+                "Section V: Results and Discussion",
+                "Section V: Results and Discussion"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that LLMs show better performance in understanding and resolving ambiguity when working with cases that human annotators were also able to successfully disambiguate, as demonstrated through comparative plot analysis showing improved performance on this subset",
+                "conclusion_justified": false,
+                "robustness_analysis": "The evidence's robustness is limited. The analysis relies mainly on visual interpretation of plots rather than rigorous statistical testing. The comparison between full dataset and human-disambiguated subset provides some insight, but without detailed metrics or controlled experiments testing social cue understanding specifically, the evidence base is not strong enough to fully support the claimed relationship",
+                "limitations": [
+                    "1. Lack of quantitative performance metrics",
+                    "2. No statistical significance testing provided",
+                    "3. No clear definition or measurement of 'social cues'",
+                    "4. Potential selection bias in human-disambiguated subset",
+                    "5. Limited analysis of causal relationship between human disambiguation ability and LLM performance",
+                    "6. No control experiments isolating social cue understanding"
+                ],
+                "conclusion_location": "Section V: Results and Discussion - Problem with naive contextual enrichment"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": "Contextual enrichment can enhance model disambiguation accuracy but often fails due to addition of irrelevant context",
+            "claim_location": "Conclusion",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Adding context improves performance over naive baseline but not as much as expected due to irrelevant context issues",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Analysis is limited to subset of data where human disambiguation matched ground truth",
+                    "location": "Section V: Results and Discussion",
+                    "exact_quote": "Problem with naive contextual enrichment: The Figures 2 and 3 show why the average is not going up when an LLM is prompted to insert context into a question. Although adding context should skew the plot 2 to the right (ie: be more similar to the ground truth), but instead its skewed to the left since its being held back every time it adds the wrong context which is not a problem when we have simply rephrased the question."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Contextual enrichment works better on subset where human disambiguation matches ground truth",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Only tested on specific subset of data",
+                    "location": "Section V: Results and Discussion",
+                    "exact_quote": "Then, we take a subset of AmbigQA where the human-provided answer of a human-provided disambiguated question exactly matches the ground truth answer. Here, we see that plot 3 of contextual enrichment does skew to the right. This shows that LLMs are able to better understand certain social cues to correctly disambiguate the provided question in cases where the human annotator was able to disambiguate them as well."
+                }
+            ],
+            "evidence_locations": [
+                "Section V: Results and Discussion",
+                "Section V: Results and Discussion"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that while contextual enrichment has potential to improve disambiguation accuracy, its effectiveness is limited by the tendency to add irrelevant context that cannot be fixed through prompting. However, when applied to cases where human disambiguators were successful, the method shows more promise.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence shows moderate robustness through: 1) Quantitative comparison of different disambiguation approaches 2) Analysis on both full dataset and specific subsets 3) Consistent experimental methodology across different models (GPT-4o and GPT-4o-mini). However, the evidence would be stronger with more detailed analysis of why contextual enrichment fails in certain cases.",
+                "limitations": "Key limitations include: 1) Analysis primarily focused on subset of data where human disambiguation matched ground truth 2) Limited explanation of what constitutes 'irrelevant context' 3) Lack of detailed error analysis for failed cases 4) No clear metrics for measuring context relevance 5) Results may not generalize beyond the specific models tested",
+                "conclusion_location": "Section VI: Conclusion and Future Works"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "18.84 seconds",
+        "evidence_analysis_time": "66.40 seconds",
+        "conclusions_analysis_time": "80.82 seconds",
+        "total_execution_time": "168.34 seconds"
+    }
+}

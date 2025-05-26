@@ -1,0 +1,381 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Integrated gradients satisfy an axiom called completeness that the attributions add up to the difference between the output of F at the input x and the baseline x[\u2032].",
+                "type": "methodology",
+                "location": "Section 2",
+                "exact_quote": "(x[\u2032]+\u2202x\u03b1\u00d7i(x\u2212x[\u2032]))_ _d\u03b1_\\n_\u03b1=0_\\n(1)\\n**Axiom: Completeness.** Integrated gradients satisfy an\\naxiom called completeness that the attributions add up to\\nthe difference between the output of F at the input x and\\nthe baseline x[\u2032]."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "\u03a3[n]i=1[IntegratedGrads]i[(][x][) =][ F] [(][x][)][ \u2212] _[F]_ [(][x][\u2032][)]",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "Section 2",
+                    "exact_quote": "\u03a3[n]i=1[IntegratedGrads]i[(][x][) =][ F] [(][x][)][ \u2212] _[F]_ [(][x][\u2032][)]"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence provided is a mathematical equation that demonstrates the completeness property of integrated gradients.",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Integrated gradients satisfies Sensitivity(a) because Completeness implies Sensitivity(a) and is thus a strengthening of the Sensitivity(a) axiom.",
+                "type": "methodology",
+                "location": "Section 2",
+                "exact_quote": "This is formalized by the proposition below, which instantiates the fundamental theorem of calculus for path integrals.\\n\\n**Proposition 1. If F : R[n]** _\u2192_ R is differentiable almost\\n_everywhere_ [1] _then_\\n\\n\u03a3[n]i=1[IntegratedGrads]i[(][x][) =][ F] [(][x][)][ \u2212] _[F]_ [(][x][\u2032][)]\\n\\nFor most deep networks, it is possible to choose a baseline such that the prediction at the baseline is near zero\\n(F (x[\u2032]) 0). (For image models, the black image base_\u2248_line indeed satisfies this property.) In such cases, there is\\nan intepretation of the resulting attributions that ignores the\\nbaseline and amounts to distributing the output to the individual input features.\\n\\n**Remark 2. Integrated gradients satisfies Sensivity(a) be-**\\n_cause Completeness implies Sensivity(a) and is thus a_ \\n_strengthening of the Sensitivity(a) axiom. This is because_ \\n_Sensitivity(a) refers to a case where the baseline and the_ \\n_input differ only in one variable, for which Completeness_ \\n_asserts that the difference in the two output values is equal_ \\n_to the attribution to this variable. Attributions generated_ \\n_by integrated gradients satisfy Implementation Invariance_ \\n_since they are based only on the gradients of the function_ \\n_represented by the network._"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Sensitivity(a) refers to a case where the baseline and the input differ only in one variable, for which Completeness asserts that the difference in the two output values is equal to the attribution to this variable.",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "Section 2",
+                    "exact_quote": "Sensitivity(a) refers to a case where the baseline and the input differ only in one variable, for which Completeness asserts that the difference in the two output values is equal to the attribution to this variable."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence provided clearly states that Completeness implies Sensitivity(a), making integrated gradients a strengthening of the Sensitivity(a) axiom.",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Integrated gradients is the unique path method that is symmetry-preserving.",
+                "type": "methodology",
+                "location": "Section 4.2",
+                "exact_quote": "**Theorem 1. Integrated gradients is the unique path**\\n_method that is symmetry-preserving."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The proof is provided in Appendix A.",
+                    "strength": "strong",
+                    "limitations": "The proof is not provided in the current text, so its validity cannot be assessed.",
+                    "location": "Section 4.2",
+                    "exact_quote": "The proof is provided in Appendix A."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "low",
+                "justification": "While the claim states that integrated gradients is the unique symmetry-preserving path method, the proof is not provided in the current text, making it difficult to assess the validity of this claim.",
+                "key_limitations": "Lack of proof in the provided text",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Integrated gradients can be efficiently approximated via a summation.",
+                "type": "methodology",
+                "location": "section/paragraph 5",
+                "exact_quote": "The integral of integrated gradients can be efficiently approximated via a summation."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "medium",
+                "justification": "The claim is made without providing any supporting evidence or explanation.",
+                "key_limitations": "Lack of explanation and evidence.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Integrated gradients are better at reflecting distinctive features of the input image than gradients at the actual image.",
+                "type": "result",
+                "location": "section/paragraph 6.1",
+                "exact_quote": "Notice that the visualizations obtained from integrated gradients are better at reflecting distinctive features of the image."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "medium",
+                "justification": "The claim is made without providing any supporting evidence or explanation.",
+                "key_limitations": "Lack of explanation and evidence.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": {
+                "text": "Integrated gradients are localized to a few pixels that seem to be lesions in the retina.",
+                "type": "result",
+                "location": "section/paragraph 6.2",
+                "exact_quote": "Notice that integrated gradients are localized to a few pixels that seem to be lesions in the retina."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "medium",
+                "justification": "The claim is made without providing any supporting evidence or explanation.",
+                "key_limitations": "Lack of explanation and evidence.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": {
+                "text": "Attributions from integrated gradients largely agree with commonly used rules for question classification.",
+                "type": "result",
+                "location": "section/paragraph 6.3",
+                "exact_quote": "Notice that the attributions largely agree with commonly used rules, for e.g., \u201chow many\u201d indicates a numeric seeking question."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "medium",
+                "justification": "The claim is made without providing any supporting evidence or explanation.",
+                "key_limitations": "Lack of explanation and evidence.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": {
+                "text": "Integrated gradients can identify novel question classification rules.",
+                "type": "result",
+                "location": "section/paragraph 6.3",
+                "exact_quote": "In addition, attributions help identify novel question classification rules, for e.g., questions containing \u201ctotal number\u201d are seeking numeric answers."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "medium",
+                "justification": "The claim is made without providing any supporting evidence or explanation.",
+                "key_limitations": "Lack of explanation and evidence.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 9,
+            "claim": {
+                "text": "Integrated gradients can identify undesirable correlations in question classification models.",
+                "type": "result",
+                "location": "section/paragraph 6.3",
+                "exact_quote": "Attributions also point out undesirable correlations, for e.g., \u201ccharles\u201d is used as trigger for a yes/no question."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "medium",
+                "justification": "The claim is made without providing any supporting evidence or explanation.",
+                "key_limitations": "Lack of explanation and evidence.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 10,
+            "claim": {
+                "text": "Integrated gradients can be used to align output tokens in a neural machine translation system with input tokens.",
+                "type": "result",
+                "location": "section/paragraph 6.4",
+                "exact_quote": "We attribute the output probability of every output token (in form of wordpieces) to the input tokens. Such attributions \u201calign\u201d the output sentence with the input sentence."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "medium",
+                "justification": "The claim is made without providing any supporting evidence or explanation.",
+                "key_limitations": "Lack of explanation and evidence.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 11,
+            "claim": {
+                "text": "Integrated gradients can identify the contributions of each feature in a chemistry model.",
+                "type": "result",
+                "location": "section/paragraph 6.5",
+                "exact_quote": "Since integrated gradients add up to the final prediction score (see Proposition 1), the magnitudes can be use for accounting the contributions of each feature."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "medium",
+                "justification": "The claim is made without providing any supporting evidence or explanation.",
+                "key_limitations": "Lack of explanation and evidence.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 12,
+            "claim": {
+                "text": "Integrated gradients helped identify an anomaly in the W1N2 architecture.",
+                "type": "result",
+                "location": "section/paragraph 6.5",
+                "exact_quote": "On applying the integrated gradients method to this network, we found that several atoms in the same molecule received identical attribution despite being bonded to different atoms."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "medium",
+                "justification": "The claim is made without providing any supporting evidence or explanation.",
+                "key_limitations": "Lack of explanation and evidence.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 13,
+            "claim": {
+                "text": "Our technique can be implemented using a few calls to the gradients operator, can be applied to a variety of deep networks, and has a strong theoretical justification.",
+                "type": "methodology",
+                "location": "Conclusion",
+                "exact_quote": "It can be implemented using a few calls to the gradients operator, can be applied to a variety of deep networks, and has a strong theoretical justification."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "low",
+                "justification": "The claim is not supported by any evidence in the provided text.",
+                "key_limitations": "Lack of experimental results or data to support the claim.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 14,
+            "claim": {
+                "text": "Without the axiomatic approach it is hard to tell whether the attribution method is affected by data artifacts, network\u2019s artifacts or artifacts of the method.",
+                "type": "methodology",
+                "location": "Conclusion",
+                "exact_quote": "Without the axiomatic approach it is hard to tell whether the attribution method is affected by data artifacts, network\u2019s artifacts or artifacts of the method."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The claim is supported by the fact that the axiomatic approach can rule out artifacts of the method.",
+                "key_limitations": "The claim does not provide specific examples or experimental results to support the statement.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 15,
+            "claim": {
+                "text": "Integrated gradients is a method that attributes the prediction of a deep network to its inputs.",
+                "type": "methodology",
+                "location": "Conclusion",
+                "exact_quote": "Integrated gradients that attributes the prediction of a deep network to its inputs."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "low",
+                "justification": "The claim is not supported by any evidence in the provided text.",
+                "key_limitations": "Lack of experimental results or data to support the claim.",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 16,
+            "claim": {
+                "text": "The axiomatic approach can rule out artifacts of the last type.",
+                "type": "methodology",
+                "location": "Conclusion",
+                "exact_quote": "The axiomatic approach rules out artifacts of the last type."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The claim is supported by the fact that the axiomatic approach can rule out artifacts of the method.",
+                "key_limitations": "The claim does not provide specific examples or experimental results to support the statement.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 17,
+            "claim": {
+                "text": "For a fixed value of x1 greater than 1, the output of the network f decreases linearly as x2 increases from 0 to x1 - 1.",
+                "type": "result",
+                "location": "part 5",
+                "exact_quote": "For a fixed value of x1 greater than 1, the output decreases linearly as x2 increases from 0 to x1 1."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "This result is illustrated in Figure 7 of the paper.",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "part 5",
+                    "exact_quote": "nsider the network f (x1, x2) from Figure 7."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by strong evidence from the paper.",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 18,
+            "claim": {
+                "text": "For all inputs, Deconvolutional networks and Guided back-propagation result in zero attribution for x2.",
+                "type": "result",
+                "location": "part 5",
+                "exact_quote": "Yet, for all inputs, De_\u2212_convolutional networks and Guided back-propagation results in zero attribution for x2."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "This result is due to the fact that for all inputs, the back-propagated signal received at the node ReLU(x2) is negative and is therefore not back-propagated through the ReLU operation.",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "part 5",
+                    "exact_quote": "This happens because for all inputs the back-propagated signal received at the node ReLU(x2) is negative and is therefore not back-propagated through the ReLU operation (per the rules of deconvolution and guided back-propagation; see (Springenberg et al., 2014) for details)."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by strong evidence from the paper.",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 19,
+            "claim": {
+                "text": "As a result, the feature x2 receives zero attribution, despite the network\u2019s output being sensitive to it.",
+                "type": "result",
+                "location": "part 5",
+                "exact_quote": "As a result, the feature x2 receives zero attribution despite the network\u2019s output being sensitive to it."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "This is because the ReLU operation effectively discards all negative values from the back-propagated signal.",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "part 5",
+                    "exact_quote": "As a result, the feature x2 receives zero attribution despite the network\u2019s output being sensitive to it."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by strong evidence from the paper.",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "520.76 seconds",
+        "total_sleep_time": "450.00 seconds",
+        "actual_processing_time": "70.76 seconds",
+        "total_execution_time": "523.25 seconds"
+    }
+}

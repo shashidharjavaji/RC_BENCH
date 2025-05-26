@@ -1,0 +1,164 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Large language models can reason effectively without prompting by simply altering the decoding process.",
+                "location": "Abstract",
+                "type": "Novel Finding",
+                "exact_quote": "Our study takes a novel approach by asking: Can LLMs reason effectively without prompting? Our findings reveal that, intriguingly, CoT reasoning paths can be elicited from pre-trained LLMs by simply altering the decoding process."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Table 1 shows example decoding paths across math (GSM8K) and commonsense reasoning (year parity) tasks, where alternative top-\ud835\udc58 tokens at the first decoding step reveal natural CoT reasoning in many cases.",
+                    "strength": "strong",
+                    "limitations": "Limited to specific tasks and models",
+                    "location": "Section 2.1",
+                    "exact_quote": "LLMs indeed cannot reason if we only consider the greedy decoding path. However, when we consider alternative top-\ud835\udc58 (\ud835\udc58> 0) tokens at the first decoding step, an intriguing phenomenon emerges..."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Figure 2 highlights the impact of alternative token consideration in subsequent decoding steps, showing that early branching significantly enhances the diversity of potential paths.",
+                    "strength": "moderate",
+                    "limitations": "Limited to specific tasks and models",
+                    "location": "Section 2.1",
+                    "exact_quote": "Conversely, later-stage branching is significantly influenced by previously generated tokens."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 1,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "CoT-decoding can reliably extract CoT-paths based on answer confidence.",
+                "location": "Section 2.2",
+                "type": "Methodological Advancement",
+                "exact_quote": "We find that the language model\u2019s confidence in its final answers increases when a CoT is present in its decoding path. Leveraging this increased confidence, we propose CoT-decoding to select more reliable decoding paths, demonstrating significant improvements over greedy decoding across various reasoning benchmarks."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Table 1 illustrates that CoT paths do not consistently outrank non-CoT ones in the model\u2019s probability assessment, but the presence of a CoT path correlates with increased model confidence in decoding its final answer.",
+                    "strength": "strong",
+                    "limitations": "Limited to specific tasks and models",
+                    "location": "Section 2.2",
+                    "exact_quote": "Interestingly, upon examining the model\u2019s logits, we found that the presence of a CoT path typically leads to a more confident decoding of the final answer..."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 2,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "CoT-decoding effectively elicits reasoning across multiple language model families and model scales.",
+                "location": "Section 3.1",
+                "type": "Novel Finding",
+                "exact_quote": "Across three language model families, PaLM-2, Mistral and Gemma, CoT-decoding effectively elicits model\u2019s reasoning, yielding consistent accuracy gains over both math and commonsense reasoning tasks, sometimes doubling or even tripling the performance compared to greedy decoding."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "Figure 3 shows that across three language model families (PaLM-2, Mistral, and Gemma), CoT-decoding effectively elicits model\u2019s reasoning, yielding consistent accuracy gains over both math and commonsense reasoning tasks.",
+                    "strength": "strong",
+                    "limitations": "Limited to specific tasks and models",
+                    "location": "Section 3.1",
+                    "exact_quote": "CoT-decoding effectively elicits reasoning across language models."
+                },
+                {
+                    "evidence_id": 5,
+                    "evidence_text": "Table 4 compares popular decoding baselines on the Mistral-7B pre-trained model, showing that CoT-decoding is the only decoding strategy that significantly enhances language models\u2019 reasoning.",
+                    "strength": "strong",
+                    "limitations": "Limited to specific tasks and models",
+                    "location": "Section 3.1",
+                    "exact_quote": "CoT-decoding is the only decoding strategy that can significantly enhance language models\u2019 reasoning."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 3,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "CoT-decoding partially closes the reasoning gap between pre-trained and instruction-tuned models without using any supervised data.",
+                "location": "Section 3.1",
+                "type": "Novel Finding",
+                "exact_quote": "Intriguingly, we observe that CoT-decoding enables a pre-trained model to achieve a similar performance of an instruction-tuned model: in Figure 4 (left), CoT-decoding achieves 63.2% accuracy on the pre-trained PaLM-2 Large model, close to the performance of the instruction-tuned model of the same scale at 67.8%."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 6,
+                    "evidence_text": "Figure 4 shows that CoT-decoding enhances reasoning across different model scales over the PaLM-2 model family, with significant accuracy gains on GSM8K and year parity tasks.",
+                    "strength": "strong",
+                    "limitations": "Limited to specific tasks and models",
+                    "location": "Section 3.1",
+                    "exact_quote": "CoT-decoding reliably improves reasoning performance across model scales (PaLM-2)."
+                },
+                {
+                    "evidence_id": 7,
+                    "evidence_text": "Table 5 shows that CoT-decoding can further improve the instruction-tuned model (Mistral-7B), achieving a similar performance to the pre-trained model with CoT-decoding.",
+                    "strength": "moderate",
+                    "limitations": "Limited to specific tasks and models",
+                    "location": "Section 3.1",
+                    "exact_quote": "CoT-decoding partially closes the reasoning gap between pre-trained and instruction-tuned models."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 4,
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "key_limitations": "Dependence on specific model families and tasks",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "CoT-decoding can be combined with CoT-prompting to yield even larger reasoning gains.",
+                "location": "Section 3.3",
+                "type": "Methodological Advancement",
+                "exact_quote": "We further show that CoT-decoding can be easily combined with CoT-prompting, yielding even larger reasoning gains over multiple language models (Table 7)."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 8,
+                    "evidence_text": "Table 7 shows that combining CoT-decoding with zero-shot CoT-prompting can further boost the reasoning performance on both models (Mistral-7B and PaLM-2 Large).",
+                    "strength": "strong",
+                    "limitations": "Limited to specific tasks and models",
+                    "location": "Section 3.3",
+                    "exact_quote": "Adding CoT-decoding on top of zero-shot CoT-prompting can further boost the reasoning performance."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 5,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "104.41 seconds",
+        "evidence_analysis_time": "161.38 seconds",
+        "conclusions_analysis_time": "45.11 seconds",
+        "total_execution_time": "314.44 seconds"
+    }
+}

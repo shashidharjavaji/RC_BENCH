@@ -1,0 +1,180 @@
+ ```json
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Original BERT layers fail to improve the performance of sentence embeddings.",
+                "type": "methodology/result",
+                "location": "Section 3",
+                "exact_quote": "We compare different pre-trained models (bert-base-uncased, bert-base-cased and roberta-base) in combination with different sentence embedding methods (last layer average, averaging of last hidden layer tokens as sentence embeddings and static token embeddings, directly averaging of static token embeddings). We list the spearman correlation and sentence level anisotropy of each combination in Table 1."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Table 1 shows BERT layers in bert-base-uncased and roberta-base significantly harm the sentence embeddings performance.",
+                    "strength": "strong",
+                    "limitations": "The table only shows the performance of specific models and does not generalize to all possible configurations.",
+                    "location": "Section 3",
+                    "exact_quote": "Table 1 shows the BERT layers in bert-base-uncased and roberta-base significantly harm the sentence embeddings performance."
+                },
+                {
+                    "evidence_text": "Even in bert-base-cased, the gain of BERT layers is trivial with only 0.28 improvement.",
+                    "strength": "moderate",
+                    "limitations": "The improvement is minimal and may not be significant in practical applications.",
+                    "location": "Section 3",
+                    "exact_quote": "Even in bert-base-cased, the gain of BERT layers is trivial with only 0.28 improvement."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence from Table 1 clearly shows that BERT layers do not significantly improve the performance of sentence embeddings.",
+                "key_limitations": "The evidence is limited to specific models and may not generalize to other configurations.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Static token embeddings are biased by token frequency, subwords in WordPiece, and case sensitivity.",
+                "type": "methodology/result",
+                "location": "Section 3",
+                "exact_quote": "We observe that the token embeddings is not only biased by token frequency, but also subwords in WordPiece (Wu et al., 2016) and case sensitive."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The token embeddings can be roughly divided into three regions according to the subword and case biases.",
+                    "strength": "moderate",
+                    "limitations": "The visualization does not provide quantitative measures of bias.",
+                    "location": "Section 3",
+                    "exact_quote": "The token embeddings can be roughly divided into three regions according to the subword and case biases."
+                },
+                {
+                    "evidence_text": "The static token embeddings of bert-base-uncased are highly anisotropic.",
+                    "strength": "moderate",
+                    "limitations": "Anisotropy is only one aspect of bias, and other factors may also contribute.",
+                    "location": "Section 3",
+                    "exact_quote": "We find only bert-base-uncased’s static token embeddings is highly anisotropic."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The evidence from Table 2 and the visualization supports the claim of bias in static token embeddings.",
+                "key_limitations": "The evidence is limited to specific models and may not generalize to other configurations.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Prompt-based sentence embeddings can avoid embedding bias and utilize the original BERT layers.",
+                "type": "methodology/result",
+                "location": "Section 4",
+                "exact_quote": "By reformulating the sentence embedding task as the mask language task, we can effectively use original BERT layers by leveraging the large-scale knowledge."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Using the hidden vector of [MASK] token as sentence representation.",
+                    "strength": "moderate",
+                    "limitations": "This method may not capture the full context of the sentence.",
+                    "location": "Section 4.1",
+                    "exact_quote": "One method is to use the hidden vector of [MASK] token as sentence representation."
+                },
+                {
+                    "evidence_text": "The prompt-based method can avoid embedding bias and utilize the original BERT layers.",
+                    "strength": "moderate",
+                    "limitations": "The effectiveness of this method may depend on the choice of prompts.",
+                    "location": "Section 4",
+                    "exact_quote": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The evidence from Section 4 supports the claim that prompt-based sentence embeddings can avoid embedding bias and utilize the original BERT layers.",
+                "key_limitations": "The effectiveness of this method may depend on the choice of prompts.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Prompt-based contrastive learning with template denoising significantly shortens the gap between unsupervised and supervised methods.",
+                "type": "methodology/result",
+                "location": "Section 5",
+                "exact_quote": "Prompt-based contrastive learning with template denoising significantly shortens the gap between the unsupervised and supervised methods."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The results of fine-tuned BERT are shown in Table 6.",
+                    "strength": "strong",
+                    "limitations": "The results are limited to specific models and may not generalize to other configurations.",
+                    "location": "Section 5",
+                    "exact_quote": "The results of fine-tuned BERT are shown in Table 6."
+                },
+                {
+                    "evidence_text": "The results of fine-tuned RoBERTa are shown in Table 6.",
+                    "strength": "strong",
+                    "limitations": "The results are limited to specific models and may not generalize to other configurations.",
+                    "location": "Section 5",
+                    "exact_quote": "The results of fine-tuned RoBERTa are shown in Table 6."
+                },
+                {
+                    "evidence_text": "The results of fine-tuned SRoBERTa are shown in Table 15.",
+                    "strength": "strong",
+                    "limitations": "The results are limited to specific models and may not generalize to other configurations.",
+                    "location": "Section 5",
+                    "exact_quote": "The results of fine-tuned SRoBERTa are shown in Table 15."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence from Tables 6 and 15 supports the claim that prompt-based contrastive learning with template denoising significantly shortens the gap between unsupervised and supervised methods.",
+                "key_limitations": "The results are limited to specific models and may not generalize to other configurations.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Prompt-based contrastive learning with template denoising achieves state-of-the-art results in both unsupervised and supervised settings.",
+                "type": "performance",
+                "location": "Section 5",
+                "exact_quote": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The results of fine-tuned BERT are shown in Table 6.",
+                    "strength": "strong",
+                    "limitations": "The results are limited to specific models and may not generalize to other configurations.",
+                    "location": "Section 5",
+                    "exact_quote": "The results of fine-tuned BERT are shown in Table 6."
+                },
+                {
+                    "evidence_text": "The results of fine-tuned RoBERTa are shown in Table 6.",
+                    "strength": "strong",
+                    "limitations": "The results are limited to specific models and may not generalize to other configurations.",
+                    "location": "Section 5",
+                    "exact_quote": "The results of fine-tuned RoBERTa are shown in Table 6."
+                },
+                {
+                    "evidence_text": "The results of fine-tuned SRoBERTa are shown in Table 15.",
+                    "strength": "strong",
+                    "limitations": "The results are limited to specific models and may not generalize to other configurations.",
+                    "location": "Section 5",
+                    "exact_quote": "The results of fine-tuned SRoBERTa are shown in Table 15."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence from Tables 6 and 15 supports the claim that prompt-based contrastive learning with template denoising achieves state-of-the-art results in both unsupervised and supervised settings.",
+                "key_limitations": "The results are limited to specific models and may not generalize to other configurations.",
+                "confidence_level": "high"
+            }
+        }
+    ]
+}
+```

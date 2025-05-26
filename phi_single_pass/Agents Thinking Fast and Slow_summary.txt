@@ -1,0 +1,150 @@
+Claim 1:
+Type: methodology
+Statement: The Talker-Reasoner architecture divides the agent into two agents: a fast and intuitive Talker agent and a slower and deliberative Reasoner agent.
+Location: Section 3.1
+Exact Quote: We divide the agent into two agents: a fast and intuitive Talker agent and a slower and deliberative Reasoner agent.
+
+Evidence:
+- Evidence Text: The Talker agent is implemented via a Gemini 1.5 Flash model, conditioned on the instructions, the context including the last user utterance, and the latest available belief state stored in mem.
+  Strength: moderate
+  Location: Section 4.2
+  Limitations: The implementation details provided are limited to the Talker agent, and the Reasoner agent's implementation is not explicitly described.
+  Exact Quote: We implemented the Talker via a Gemini 1.5 Flash [31] model, conditioned on the instructions, the context including the last user utterance, and the latest available belief state stored in mem.
+
+- Evidence Text: The Reasoner agent is implemented with hierarchical models and a JSON/XML schema for belief modeling.
+  Strength: moderate
+  Location: Section 4.2
+  Limitations: The implementation details provided are limited to the Reasoner agent, and the Talker agent's implementation is not explicitly described.
+  Exact Quote: The Reasoner agent is implemented with hierarchical models and a JSON/XML schema for belief modeling.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided supports the claim that the Talker-Reasoner architecture divides the agent into two agents with different functionalities.
+Key Limitations: The evidence provided does not fully describe the implementation of both agents.
+
+--------------------------------------------------
+
+Claim 2:
+Type: performance
+Statement: The Talker agent is fast and conversational, minimizing latency.
+Location: Section 3.2.1
+Exact Quote: The Talker is supposed to be fast and conversational, minimizing latency.
+
+Evidence:
+- Evidence Text: The Talker uses the latest available belief state from memory, rather than waiting for the Reasoner to finish its thinking process.
+  Strength: moderate
+  Location: Section 4.3.1
+  Limitations: The evidence provided does not directly measure the latency of the Talker agent.
+  Exact Quote: The Talker uses the latest available belief state from memory, rather than waiting for the Reasoner to finish its thinking process.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided supports the claim that the Talker agent is designed to minimize latency.
+Key Limitations: The evidence provided does not directly measure the latency of the Talker agent.
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: The Reasoner agent enables complex problem solving, deliberate belief forming, and choice making.
+Location: Section 3.2.2
+Exact Quote: The Reasoner agent enables complex problem solving, deliberate belief forming, and choice making.
+
+Evidence:
+- Evidence Text: The Reasoner agent performs multi-step reasoning and planning, entailing series of calls to different tools or databases for external knowledge fetching.
+  Strength: moderate
+  Location: Section 3.2.2
+  Limitations: The evidence provided does not directly measure the complexity of the problem solving or the quality of the belief forming.
+  Exact Quote: The Reasoner performs multi-step reasoning and planning, entailing series of calls to different tools or databases for external knowledge fetching.
+
+- Evidence Text: The Reasoner agent infers and updates beliefs about the state of the world, which can combine multiple intermediate results of multi-step reasoning.
+  Strength: moderate
+  Location: Section 3.2.2
+  Limitations: The evidence provided does not directly measure the quality of the belief forming.
+  Exact Quote: The Reasoner agent infers and updates beliefs about the state of the world, which can combine multiple intermediate results of multi-step reasoning.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided supports the claim that the Reasoner agent enables complex problem solving, deliberate belief forming, and choice making.
+Key Limitations: The evidence provided does not directly measure the complexity of the problem solving or the quality of the belief forming.
+
+--------------------------------------------------
+
+Claim 4:
+Type: result
+Statement: The Talker-Reasoner architecture was instantiated and validated in a sleep coaching use case.
+Location: Section 4
+Exact Quote: We instantiated and validated the Talker-Reasoner dual-agent architecture in a sleep coaching use case.
+
+Evidence:
+- Evidence Text: The sleep coaching Talker agent encodes expert knowledge about sleep obtained from clinical experts in a set of instructions.
+  Strength: moderate
+  Location: Section 4.2
+  Limitations: The evidence provided does not directly measure the effectiveness of the sleep coaching Talker agent.
+  Exact Quote: We encode expert knowledge about sleep obtained from clinical experts in a set of instructions that describe the agent’s constitution.
+
+- Evidence Text: The sleep coaching Reasoner agent explicitly models beliefs about the user.
+  Strength: moderate
+  Location: Section 4.2
+  Limitations: The evidence provided does not directly measure the effectiveness of the sleep coaching Reasoner agent.
+  Exact Quote: The sleep coaching Reasoner agent explicitly models beliefs about the user.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided supports the claim that the Talker-Reasoner architecture was instantiated and validated in a sleep coaching use case.
+Key Limitations: The evidence provided does not directly measure the effectiveness of the Talker-Reasoner architecture in the sleep coaching use case.
+
+--------------------------------------------------
+
+Claim 5:
+Type: performance
+Statement: The Talker-Reasoner architecture can be effective for tasks where the Talker is sufficient even if it operates with an older belief state.
+Location: Section 4.3.1
+Exact Quote: The asynchronous approach can be effective for tasks where the Talker is sufficient even if it operates with an older belief state.
+
+Evidence:
+- Evidence Text: The Talker can successfully carry out the conversation without the need for the Reasoner to finish the belief updating in the 'understanding' coaching phase.
+  Strength: moderate
+  Location: Section 4.3.1
+  Limitations: The evidence provided does not directly measure the effectiveness of the Talker agent in other coaching phases.
+  Exact Quote: The Talker can successfully carry out the conversation without the need for the Reasoner to finish the belief updating.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided supports the claim that the Talker-Reasoner architecture can be effective for tasks where the Talker is sufficient even if it operates with an older belief state.
+Key Limitations: The evidence provided does not directly measure the effectiveness of the Talker agent in other coaching phases.
+
+--------------------------------------------------
+
+Claim 6:
+Type: performance
+Statement: The Talker-Reasoner architecture can be effective for tasks where the Reasoner must update its belief state before the Talker proceeds in complex problem-solving scenarios.
+Location: Section 4.3.1
+Exact Quote: However, the Reasoner must update its belief state before the Talker proceeds in complex problem-solving scenarios.
+
+Evidence:
+- Evidence Text: The Talker waits for the Reasoner to finish when the coaching phase is 'planning'.
+  Strength: moderate
+  Location: Section 4.3.1
+  Limitations: The evidence provided does not directly measure the effectiveness of the Talker-Reasoner architecture in other coaching phases.
+  Exact Quote: The Talker waits for the Reasoner to finish when the coaching phase is 'planning'.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided supports the claim that the Talker-Reasoner architecture can be effective for tasks where the Reasoner must update its belief state before the Talker proceeds in complex problem-solving scenarios.
+Key Limitations: The evidence provided does not directly measure the effectiveness of the Talker-Reasoner architecture in other coaching phases.
+
+--------------------------------------------------
+

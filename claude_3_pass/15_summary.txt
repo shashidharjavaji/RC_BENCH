@@ -1,0 +1,149 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: CoT reasoning paths can be elicited from pre-trained LLMs by altering the decoding process rather than using prompting
+Location: Abstract
+Type: Novel finding/methodology
+Quote: Our findings reveal that, intriguingly, CoT reasoning paths can be elicited from pre-trained LLMs by simply altering the decoding process.
+
+Evidence:
+- Alternative decoding paths reveal natural CoT reasoning on GSM8K and year parity tasks
+  Strength: strong
+  Location: Section 2.1
+  Limitations: Limited to specific examples and tasks
+  Quote: Contrastingly, an intriguing phenomenon emerges when exploring alternative top-𝑘 (𝑘> 0) tokens at the first decoding step. Continuing with greedy decoding from this point reveals natural CoT reasoning in many cases.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Limited to specific reasoning tasks tested (GSM8K and year parity)
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: The presence of a CoT in the decoding path correlates with higher confidence in the model's decoded answer
+Location: Abstract
+Type: Novel finding
+Quote: Moreover, we observe that the presence of a CoT in the decoding path correlates with a higher confidence in the model's decoded answer.
+
+Evidence:
+- Quantitative analysis shows high correlation between answer confidence and CoT paths
+  Strength: strong
+  Location: Section 2.2
+  Limitations: Analysis limited to first 100 GSM8K questions
+  Quote: among those, if we take the decoding path with the highest answer confidence among the top-10 decoding paths, 88% of them contain CoT paths
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Correlation shown primarily through manual examination of 100 questions
+Confidence: medium
+
+==================================================
+
+Claim 3:
+Statement: Pre-trained language models inherently possess reasoning capabilities that are obscured by standard greedy decoding
+Location: Section 2.1
+Type: Novel finding
+Quote: These findings suggest that large language models possess inherent reasoning capabilities for numerous tasks following pre-training, but these abilities are obscured by the predominant use of greedy decoding.
+
+Evidence:
+- Experimental results show poor performance with greedy decoding but improved results with alternative paths
+  Strength: strong
+  Location: Section 2.1
+  Limitations: Focused on specific reasoning tasks
+  Quote: First, we observe that models employing greedy decoding often does not contain a CoT path... these findings suggest that large language models possess inherent reasoning capabilities for numerous tasks following pre-training, but these abilities are obscured by the predominant use of greedy decoding
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: May not generalize to all types of reasoning tasks
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: CoT-decoding effectively improves reasoning performance across multiple language model families and scales
+Location: Section 3.1
+Type: Results/Performance
+Quote: CoT-decoding effectively elicits reasoning across language models. In Figure 3, we show that across three language model families, PaLM-2, Mistral and Gemma, CoT-decoding effectively elicits model's reasoning, yielding consistent accuracy gains over both math and commonsense reasoning tasks
+
+Evidence:
+- Results show consistent improvements across PaLM-2, Mistral and Gemma models
+  Strength: strong
+  Location: Section 3.1/Figure 3
+  Limitations: Limited to three model families
+  Quote: across three language model families, PaLM-2, Mistral and Gemma, CoT-decoding effectively elicits model's reasoning, yielding consistent accuracy gains over both math and commonsense reasoning tasks
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Limited to three model families, may not generalize to all architectures
+Confidence: high
+
+==================================================
+
+Claim 5:
+Statement: CoT-decoding can partially close the reasoning gap between pre-trained and instruction-tuned models without supervised data
+Location: Section 3.1
+Type: Performance improvement
+Quote: CoT-decoding enables a pre-trained model to achieve a similar performance of an instruction-tuned model: in Figure 4 (left), CoT-decoding achieves 63.2% accuracy on the pre-trained PaLM-2 Large model, close to the performance of the instruction-tuned model of the same scale at 67.8%
+
+Evidence:
+- CoT-decoding achieves comparable performance to instruction-tuned model on PaLM-2 Large
+  Strength: moderate
+  Location: Section 3.1
+  Limitations: Only shown for one model size/type
+  Quote: CoT-decoding achieves 63.2% accuracy on the pre-trained PaLM-2 Large model, close to the performance of the instruction-tuned model of the same scale at 67.8%
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Demonstrated primarily on PaLM-2 Large, may not generalize to other models
+Confidence: medium
+
+==================================================
+
+Claim 6:
+Statement: CoT-decoding can improve instruction-tuned models beyond their baseline performance
+Location: Section 3.1
+Type: Performance improvement
+Quote: More interestingly, we observe that CoT-decoding can further improve the instruction-tuned model
+
+Evidence:
+- Results show improvements on instruction-tuned Mistral-7B model
+  Strength: moderate
+  Location: Table 5
+  Limitations: Only demonstrated on one model
+  Quote: CoT-decoding improves both pre-trained and instruction-tuned Mistral-7B models
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Shown mainly on Mistral-7B, improvement magnitude varies by task
+Confidence: medium
+
+==================================================
+
+Claim 7:
+Statement: The presence of correct CoT paths depends on task difficulty levels and correlates with task prominence in pre-training distribution
+Location: Section 3.2
+Type: Finding/Analysis
+Quote: The presence of correct CoT paths depends on the task difficulty levels and correlates with task prominence in the pre-training distribution.
+
+Evidence:
+- Analysis of difficulty levels shows varying performance and presence of CoT paths
+  Strength: strong
+  Location: Section 3.2
+  Limitations: Limited set of synthetic tasks tested
+  Quote: models can generate the correct CoT paths when the solution involves at most 1 or 2 step knowledge manipulation, and the model starts to struggle with generating the correct CoT-paths when the steps become 3 or more
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Difficulty levels are somewhat subjective, correlation with pre-training distribution not directly measured
+Confidence: medium
+
+==================================================
+

@@ -1,0 +1,256 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": "The authors identify two fundamental axioms for attribution methods: Sensitivity and Implementation Invariance",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The authors define and demonstrate Sensitivity(a) axiom through a concrete example of a one variable ReLU network, showing how gradient methods violate this axiom",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Example is for a simple one-variable network",
+                    "location": "Section 2.1",
+                    "exact_quote": "For a concrete example, consider a one variable, one ReLU network, f(x) = 1 - ReLU(1-x). Suppose the baseline is x = 0 and the input is x = 2. The function changes from 0 to 1, but because f becomes flat at x = 1, the gradient method gives attribution of 0 to x."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "The Implementation Invariance axiom is demonstrated through analysis of DeepLift and LRP methods, showing how they violate this axiom with specific counterexamples",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Based on theoretical analysis rather than empirical results",
+                    "location": "Section 2.2",
+                    "exact_quote": "Methods like LRP and DeepLift replace gradients with discrete gradients and still use a modified form of backpropagation to compose discrete gradients into attributions. Unfortunately, the chain rule does not hold for discrete gradients in general."
+                }
+            ],
+            "evidence_locations": [
+                "Section 2.1",
+                "Section 2.2"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that Sensitivity and Implementation Invariance are fundamental requirements for attribution methods that previous approaches fail to satisfy",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is primarily theoretical rather than empirical, but the mathematical proofs and counterexamples are rigorous and clearly demonstrate the violations. The axioms are well-defined and their importance is logically argued.",
+                "limitations": "The examples used are relatively simple network architectures. More complex real-world scenarios may present additional challenges not covered by the theoretical analysis.",
+                "conclusion_location": "Sections 2.1 and 2.2"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": "Most known attribution methods do not satisfy the identified axioms",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Shows that gradients violate the Sensitivity axiom through a concrete counterexample of a one-variable ReLU network",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Example is for a simple network",
+                    "location": "Section 2.1",
+                    "exact_quote": "Gradients violate Sensitivity(a): For a concrete example, consider a one variable, one ReLU network, f(x) = 1 - ReLU(1-x). Suppose the baseline is x = 0 and the input is x = 2. The function changes from 0 to 1, but because f becomes flat at x = 1, the gradient method gives attribution of 0 to x."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Shows DeepLift and LRP violate Implementation Invariance through concrete counterexample",
+                    "strength": "strong",
+                    "limitations": "Example is for specific network architecture",
+                    "location": "Appendix B",
+                    "exact_quote": "Figure 7 provides an example of two equivalent networks f(x1,x2) and g(x1,x2) for which DeepLift and LRP yield different attributions."
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_type": "primary",
+                    "evidence_text": "Shows Deconvolution and Guided backpropagation violate Sensitivity through counterexample",
+                    "strength": "strong",
+                    "limitations": "Example is for specific network type",
+                    "location": "Appendix B",
+                    "exact_quote": "For a fixed value of x1 greater than 1, the output decreases linearly as x2 increases from 0 to x1-1. Yet, for all inputs, Deconvolutional networks and Guided back-propagation results in zero attribution for x2."
+                }
+            ],
+            "evidence_locations": [
+                "Section 2.1",
+                "Appendix B",
+                "Appendix B"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that existing attribution methods (gradients, DeepLift, LRP, Deconvolution, Guided backpropagation) fail to satisfy at least one of the fundamental axioms",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence consists of mathematical proofs and concrete counterexamples that clearly demonstrate the violations. While theoretical in nature, the proofs are rigorous and the examples are verifiable.",
+                "limitations": "The counterexamples are based on relatively simple network architectures. The analysis could be strengthened with examples from more complex, real-world networks.",
+                "conclusion_location": "Section 2 and Appendix B"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": "The authors propose a new attribution method called Integrated Gradients that requires no network modification and is simple to implement",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The integrated gradients implementation requires only calling gradients in a loop with simple computations",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Requires sufficiently small intervals in approximation",
+                    "location": "Section 5: Computing Integrated Gradients",
+                    "exact_quote": "Notice that the approximation simply involves computing the gradient in a for loop which should be straightforward and efficient in most deep learning frameworks. For instance, in TensorFlow, it amounts to calling tf.gradients in a loop over the set of inputs (i.e., x[\u2032] + k/m \u00d7 (x \u2212 x[\u2032]) for k = 1,..., m), which could also be batched."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Method demonstrated on multiple different types of networks without modification",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Sample size of networks tested not specified",
+                    "location": "Section 6: Applications",
+                    "exact_quote": "The integrated gradients technique is applicable to a variety of deep networks. Here, we apply it to two image models, two natural language models, and a chemistry model."
+                }
+            ],
+            "evidence_locations": [
+                "Section 5: Computing Integrated Gradients",
+                "Section 6: Applications"
+            ],
+            "conclusion": {
+                "author_conclusion": "Integrated Gradients is a simple, implementation-friendly attribution method that requires no network modification",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence includes both theoretical description and practical demonstrations across multiple network types. The implementation details are clear and verifiable.",
+                "limitations": "While demonstrated on multiple networks, the exact number of test cases is not specified. Performance characteristics and computational overhead are not comprehensively analyzed.",
+                "conclusion_location": "Section 5 and Section 6"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": "Path methods are the only attribution methods that satisfy Implementation Invariance, Sensitivity(b), Linearity and Completeness",
+            "claim_location": "Section 4.1",
+            "evidence": [],
+            "evidence_locations": [],
+            "conclusion": {
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "conclusion_location": "Location not specified"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": "Integrated gradients is the unique path method that is symmetry-preserving",
+            "claim_location": "Section 4.2",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_type": "primary",
+                    "evidence_text": "Mathematical proof showing that non-straightline paths violate symmetry preservation",
+                    "strength": "strong",
+                    "limitations": "Proof is theoretical rather than empirical",
+                    "location": "Appendix A. Proof of Theorem 1",
+                    "exact_quote": "Consider a non-straightline path \u03b3 : [0, 1] \u2192 R[n] from baseline to input. W.l.o.g., there exists t0 \u2208 [0, 1] such that for two dimensions i, j, \u03b3i(t0) > \u03b3j(t0)... Integrating, it follows that xj gets a larger attribution than xi, contradiction."
+                }
+            ],
+            "evidence_locations": [
+                "Appendix A. Proof of Theorem 1"
+            ],
+            "conclusion": {
+                "author_conclusion": "Integrated gradients is the only path method that preserves symmetry",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence consists of a formal mathematical proof that demonstrates the uniqueness property. The proof is rigorous and follows logical mathematical principles.",
+                "limitations": "The proof is purely theoretical and could benefit from empirical validation in practical applications",
+                "conclusion_location": "Section 4.2 and Appendix A"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": "Deconvolution networks, and Guided back-propagation violate Sensitivity(a)",
+            "claim_location": "Section 2.1",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The authors provide a concrete counterexample showing Deconvolution and Guided backpropagation break sensitivity using network f(x1,x2) where for fixed x1>1, output decreases linearly with x2 but attribution for x2 is always zero",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Example is based on a simple network architecture",
+                    "location": "Appendix B",
+                    "exact_quote": "Now we leverage the above example to show that Deconvolution and Guided back-propagation break sensitivity. Consider the network f(x1,x2) from Figure 7. For a fixed value of x1 greater than 1, the output decreases linearly as x2 increases from 0 to x1-1. Yet, for all inputs, Deconvolutional networks and Guided back-propagation results in zero attribution for x2. This happens because for all inputs the back-propagated signal received at the node ReLU(x2) is negative and is therefore not back-propagated through the ReLU operation"
+                }
+            ],
+            "evidence_locations": [
+                "Appendix B"
+            ],
+            "conclusion": {
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "conclusion_location": "Location not specified"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": "The integrated gradients method can be efficiently approximated via summation",
+            "claim_location": "Section 5",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The paper demonstrates that integrated gradients can be approximated via summation with 20-300 steps being sufficient for most applications",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Specific number of steps needed may vary by application, approximation has some error (within 5%)",
+                    "location": "Section 5: Computing Integrated Gradients",
+                    "exact_quote": "In practice, we find that somewhere between 20 and 300 steps are enough to approximate the integral (within 5%); we recommend that developers check that the attributions approximately adds up to the difference beween the score at the input and that at the baseline (cf. Proposition 1), and if not increase the step-size m."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "The paper provides a specific formula for the approximation calculation",
+                    "strength": "strong",
+                    "limitations": "Requires computing gradients in a loop",
+                    "location": "Section 5: Computing Integrated Gradients",
+                    "exact_quote": "The integral of integrated gradients can be efficiently approximated via a summation. We simply sum the gradients at points occurring at sufficiently small intervals along the straightline path from the baseline x[\u2032] to the input x."
+                }
+            ],
+            "evidence_locations": [
+                "Section 5: Computing Integrated Gradients",
+                "Section 5: Computing Integrated Gradients"
+            ],
+            "conclusion": {
+                "author_conclusion": "Integrated gradients can be efficiently approximated through a simple summation requiring only 20-300 steps",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence includes both theoretical formulation and practical validation across different applications. The approximation error is quantified (within 5%).",
+                "limitations": "The optimal number of steps may vary by application. The approximation introduces some error and the computational overhead for different network sizes is not fully analyzed.",
+                "conclusion_location": "Section 5"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": "Methods like LRP and DeepLift break Implementation Invariance",
+            "claim_location": "Section 2.2",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The paper provides a concrete example showing two functionally equivalent networks where DeepLift and LRP yield different attributions",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific network architecture example",
+                    "location": "Appendix B & Figure 7",
+                    "exact_quote": "Figure 7 provides an example of two equivalent networks f(x1, x2) and g(x1, x2) for which DeepLift and LRP yield different attributions... For the network f(x1, x2) at input x1=3, x2=1, DeepLift and LRP give attributions x1=1.5, x2=-0.5 while for the equivalent network g(x1, x2) they give different attributions x1=2, x2=-1"
+                }
+            ],
+            "evidence_locations": [
+                "Appendix B & Figure 7"
+            ],
+            "conclusion": {
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "conclusion_location": "Location not specified"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "15.24 seconds",
+        "evidence_analysis_time": "55.15 seconds",
+        "conclusions_analysis_time": "0.00 seconds",
+        "total_execution_time": "91.14 seconds"
+    }
+}

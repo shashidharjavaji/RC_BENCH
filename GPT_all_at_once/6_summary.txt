@@ -1,0 +1,50 @@
+Claim 1:
+Type: performance
+Statement: kNN-LM improves perplexity on WIKITEXT-103 from 18.65 to a new state-of-the-art of 16.12.
+Location: Section 4.1
+Exact Quote: kNN-LM improves perplexity on WIKITEXT-103 from 18.65 (Baevski & Auli, 2019) to a new state-of-the-art of 16.12.
+
+Evidence:
+- Evidence Text: kNN-LM achieves better performance on the validation set of the same dataset, showing improved perplexity scores.
+  Strength: strong
+  Location: Section 4.1, Tables 1 & 5
+  Limitations: Limited to the WIKITEXT-103 dataset without cross-dataset validation.
+  Exact Quote: kNN-LM improves perplexity on WIKITEXT-103 from 18.65 to a new state-of-the-art of 16.12.
+
+- Evidence Text: Combination with continuous cache model further improves result to 15.79, a gain of 2.86 over the base model.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: Results are cumulative with another technique; the individual contribution of kNN-LM may be difficult to isolate.
+  Exact Quote: Improvements from the continuous cache are additive with the kNN-LM, pushing our state-of-the-art result to 15.79, a gain of 2.86 over the base model.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Evidence supports the claim of improved perplexity on a standard dataset. However, robustness is medium due to lack of cross-dataset validation and the intertwined effect of another technique (continuous cache)
+Key Limitations: Evidence is based on a single dataset and includes results from a combination of techniques.
+
+--------------------------------------------------
+
+Claim 2:
+Type: performance
+Statement: Retrieving nearest neighbors from a corpus can outperform training directly on it.
+Location: Section 4.2
+Exact Quote: Retrieving nearest neighbors from the corpus outperforms training on it.
+
+Evidence:
+- Evidence Text: Adding nearest neighbors retrieval over 3B examples to the model trained on 100M tokens improves perplexity from 19.59 to 13.73.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: Applies specifically to models trained on smaller datasets with augmentation from larger datasets.
+  Exact Quote: Adding nearest neighbors retrieval over those 3B examples to the model trained on 100M tokens improves perplexity from 19.59 to 13.73.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Direct experimental data supports the efficacy of kNN-LM augmentation over traditional training, showing significant improvements with retrieval from large corpus.
+Key Limitations: Specific to conditions where augmentation of smaller trained models with larger datastores is possible.
+
+--------------------------------------------------
+

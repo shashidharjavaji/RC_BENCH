@@ -1,0 +1,88 @@
+Claim 1:
+Type: performance
+Statement: Intermediate layers consistently outperform the final layer across different architectures for downstream tasks
+Location: Section 4.1
+Exact Quote: Our findings indicate that intermediate layers consistently outperform the final layer across all three architectures (Table 1). Selecting the best-performing intermediate layer yields at least a 2% improvement in average accuracy compared to using the last layer.
+
+Evidence:
+- Evidence Text: Performance comparison across models showing improvement with intermediate layers
+  Strength: strong
+  Location: Table 1
+  Limitations: Limited to three specific architectures
+  Exact Quote: LLM2Vec 8B: 64.7% vs 66.8%, Pythia 410M: 49.8% vs 53.3%, Mamba 130M: 46.9% vs 50.9%
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Clear quantitative evidence across multiple models showing consistent improvement
+Key Limitations: Limited model selection, specific task types
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Transformer architectures show more pronounced changes in representation quality metrics compared to SSMs
+Location: Section 4.3.1
+Exact Quote: Overall, these metric shifts are more pronounced in Pythia than in Mamba, suggesting that Pythia undergoes stronger representational transformations at intermediate depths.
+
+Evidence:
+- Evidence Text: Comparison of entropy and LiDAR metrics
+  Strength: moderate
+  Location: Section 4.3.1
+  Limitations: Based on specific metrics that may not capture all aspects of representation quality
+  Exact Quote: For entropy and LiDAR, Pythia shows a pronounced decrease at intermediate layers, suggesting greater information compression and consolidation. In contrast, Mamba maintains more stable values
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Multiple metrics show consistent pattern, supported by visualization
+Key Limitations: Limited to specific metrics, potential confounding variables
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: There is a negative correlation between intermediate-layer entropy and MMLU performance in Llama3
+Location: Section 4.2
+Exact Quote: the correlation between intermediate-layer entropy and MMLU performance in Llama3 is strongly negative (-0.43 between the second and later layers)
+
+Evidence:
+- Evidence Text: Performance comparison between Llama3-8B and Mamba2-8B
+  Strength: moderate
+  Location: Section 4.2
+  Limitations: Correlation does not imply causation, limited to two models
+  Exact Quote: Llama3 achieves 63.85±0.38% accuracy, far surpassing Mamba2's 26.76±0.37%
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Clear correlation demonstrated with specific numbers
+Key Limitations: Limited model comparison, correlation may not indicate causation
+
+--------------------------------------------------
+
+Claim 4:
+Type: result
+Statement: Most significant changes in representation quality occur in intermediate layers during training
+Location: Section 4.3.2
+Exact Quote: The results show that the most significant changes occur in the intermediate layers. As training progresses, prompt entropy in these layers decreases, indicating that the model is learning to compress and abstract input information more efficiently.
+
+Evidence:
+- Evidence Text: Analysis of metrics across training checkpoints
+  Strength: moderate
+  Location: Section 4.3.2
+  Limitations: May not capture all aspects of training dynamics
+  Exact Quote: The metrics for the earliest layers remain relatively stable throughout training
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Consistent pattern observed across training progression
+Key Limitations: Limited metrics used, specific training conditions
+
+--------------------------------------------------
+

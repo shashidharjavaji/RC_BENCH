@@ -1,0 +1,78 @@
+Claim 1:
+Type: result
+Statement: Current LLMs demonstrate significant performance degradation as text length increases, particularly in ultra-long scenarios
+Location: Introduction
+Exact Quote: Our experiments on these tasks reveal critical insights. We observe a noteworthy decline in the performance of existing LLMs as text length increases, particularly in ultra-long scenarios.
+
+Evidence:
+- Evidence Text: GPT-4-Turbo performance on TSort drops from 18.5% at 2k tokens to 6.0% at 128k tokens
+  Strength: strong
+  Location: Results section, Table 6
+  Limitations: Limited sample size for ultra-long evaluations (50 test cases)
+  Exact Quote: GPT-4-Turbo-1106 6.0 6.0 6.0 (for 32k, 64k, 128k settings)
+
+- Evidence Text: GPT-4-Turbo performance on BestAnswer drops from 74% at 1k tokens to 0% at 128k tokens
+  Strength: strong
+  Location: Results section, Table 6
+  Limitations: Limited sample size for ultra-long evaluations
+  Exact Quote: GPT-4-Turbo-1106 16.0 0.0 0.0 (for 32k, 64k, 128k settings)
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Consistent performance degradation shown across multiple models and both benchmark tasks
+Key Limitations: Limited test cases for ultra-long settings due to API costs
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Open-source models lag significantly behind proprietary models in long context capability
+Location: Conclusion section
+Exact Quote: We conduct comprehensive experiments on multiple LLMs and find that all open-source models still lag significantly behind state-of-the-art proprietary models in terms of long context capability.
+
+Evidence:
+- Evidence Text: Best open-source model performance on BestAnswer at 16k tokens is ~1% vs 44.5% for GPT-4
+  Strength: strong
+  Location: Results section, Table 3
+  Limitations: Different sample sizes used for evaluation between open source and proprietary models
+  Exact Quote: GPT-4-Turbo-0125 44.5... InternLM2-7b 0.8 (for 16k setting)
+
+- Evidence Text: Open source models show performance close to random baseline on TSort
+  Strength: strong
+  Location: Results section, Table 2
+  Limitations: Instruction following issues may affect performance metrics
+  Exact Quote: Random Guess 4.2... InternLM2-7b 4.3 (for 16k setting)
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Clear and consistent performance gap shown across multiple tasks and settings
+Key Limitations: Different evaluation protocols used for different model types
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: Scalable position embeddings improve long-context modeling capability while maintaining short-context performance
+Location: Ablation Study section
+Exact Quote: Our findings indicate that scalable position embeddings do improve the long-context modeling capability. All methods enhance the accuracy under the 8k setting, which is beyond the original context window. Concurrently, the model performance under short settings (1k, e.g.) is basically retained.
+
+Evidence:
+- Evidence Text: ReRoPE maintains 39.6% accuracy at 1k while improving 8k performance from 0% to 2.3%
+  Strength: moderate
+  Location: Results section, Table 9
+  Limitations: Relatively small improvements in absolute terms
+  Exact Quote: ReRoPE 39.6/39.6... 2.3/3.2 (for 1k and 8k settings)
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Results show maintained short-context performance with improved long-context capability, though improvements are modest
+Key Limitations: Limited evaluation on only one model family (Vicuna)
+
+--------------------------------------------------
+

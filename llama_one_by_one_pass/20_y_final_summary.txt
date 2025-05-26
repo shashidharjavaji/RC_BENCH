@@ -1,0 +1,199 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: The proposed method achieves the best performance across all metrics in both GPT2 and Llama.
+Location: Section 4.1
+
+Evidence:
+- Evidence Text: The results of the original model (first line) and eight attribution methods are shown in Table 2. In comparison with the other seven methods, our attribution method (second line) attributes more important neurons, resulting in the most significant reduction across all metrics in both GPT2 and Llama.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: None
+  Exact Quote: In comparison with the other seven methods, our attribution method (second line) attributes more important neurons, resulting in the most significant reduction across all metrics in both GPT2 and Llama.
+
+Conclusion:
+  Author's Conclusion: The proposed method achieves the best performance across all metrics in both GPT2 and Llama.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on a comprehensive comparison with multiple attribution methods across two different models (GPT2 and Llama), providing a strong indication of the proposed method's effectiveness.
+  Limitations: The evaluation is limited to the specific metrics (MRR, prob, and logp) and models (GPT2 and Llama) used in the study. Further research could explore additional metrics and models to reinforce the conclusion.
+  Location: Section 4.1
+
+--------------------------------------------------
+
+Claim 2:
+Statement: The log probability increase method can identify important neurons in both medium-deep layers and very deep layers.
+Location: Section 4.1
+
+Evidence:
+- Evidence Text: The curve of log probability increase exhibits an approximately linear shape from 0 to 40 segments, while the curve of probability increase shows a linear trend from 40 to 60 segments. This observation elucidates the findings in Figure 2: employing probability increase is more inclined to attribute neurons in the deepest layers, whereas log probability increase tends to attribute neurons in medium-deep layers. Despite the slower slope of the log probability increase curve in very deep layers, it still effectively attributes neurons in very deep layers (as depicted in Figure 2).
+  Strength: strong
+  Location: Section 4.1
+  Limitations: None
+  Exact Quote: The curve of log probability increase exhibits an approximately linear shape from 0 to 40 segments, while the curve of probability increase shows a linear trend from 40 to 60 segments.
+
+Conclusion:
+  Author's Conclusion: The log probability increase method can identify important neurons in both medium-deep layers and very deep layers.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on the analysis of the curves of log probability increase and probability increase, which provides a clear understanding of the method's behavior.
+  Limitations: The analysis is limited to the specific models (GPT2-large and Llama-7B) and datasets used in the study. Further research is needed to generalize the findings to other models and datasets.
+  Location: Section 4.1
+
+--------------------------------------------------
+
+Claim 3:
+Statement: The shallow and medium FFN neurons are important for activating the attention "value neurons".
+Location: Section 4.2
+
+Evidence:
+- Evidence Text: The medium-deep attention layers play large rules. Compared Figure 6-7 with Figure 4-5, we find that several attention "query layers" also contribute to final predictions (e.g. a19, a22, a26 in GPT2 and a16, a18, a19, a21 in Llama for country/capital/language).
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None
+  Exact Quote: The medium-deep attention layers play large rules. Compared Figure 6-7 with Figure 4-5, we find that several attention "query layers" also contribute to final predictions (e.g. a19, a22, a26 in GPT2 and a16, a18, a19, a21 in Llama for country/capital/language).
+
+- Evidence Text: When intervening top1000 shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in Llama).
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None
+  Exact Quote: When intervening top1000 shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in Llama).
+
+- Evidence Text: Then we count the number of query-value (both in top1000 query and top1000 value) and query-only (only in top1000 query) FFN neurons, shown in Figure 8. In both models, the number of query-only neurons, which is much larger than that of query-value neurons, starts to drop at 60% layer.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None
+  Exact Quote: Then we count the number of query-value (both in top1000 query and top1000 value) and query-only (only in top1000 query) FFN neurons, shown in Figure 8. In both models, the number of query-only neurons, which is much larger than that of query-value neurons, starts to drop at 60% layer.
+
+Conclusion:
+  Author's Conclusion: The shallow and medium FFN neurons are important for activating the attention "value neurons".
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical results from intervening neurons and analyzing the importance of different layers. However, the analysis could be strengthened by exploring more models and knowledge types.
+  Limitations: The study focuses on specific models (GPT2 and Llama) and knowledge types, which might not be representative of all language models or knowledge domains.
+  Location: Section 4.2
+
+--------------------------------------------------
+
+Claim 4:
+Statement: The proposed method can locate the important query neurons in these layers.
+Location: Section 4.2
+
+Evidence:
+- Evidence Text: When intervening top1000 shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in Llama), shown in Table 7.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None
+  Exact Quote: When intervening top1000 shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in Llama), shown in Table 7.
+
+Conclusion:
+  Author's Conclusion: The proposed method can locate the important query neurons in these layers.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical results from two different models (GPT2 and Llama), showing consistent outcomes. The large drop in MRR and probability scores (92%/95% in GPT2 and 87%/95% in Llama) suggests a strong correlation between the identified neurons and the model's performance.
+  Limitations: The analysis is limited to the specific models (GPT2 and Llama) and the defined task. Further research is needed to generalize the findings to other models and tasks.
+  Location: Section 4.2
+
+--------------------------------------------------
+
+Claim 5:
+Statement: The number of query-only neurons, which is much larger than that of query-value neurons, starts to drop at 60% layer.
+Location: Section 4.2
+
+Evidence:
+- Evidence Text: In both models, the number of query-only neurons, which is much larger than that of query-value neurons, starts to drop at 60% layer.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None
+  Exact Quote: In both models, the number of query-only neurons, which is much larger than that of query-value neurons, starts to drop at 60% layer.
+
+Conclusion:
+  Author's Conclusion: The number of query-only neurons, which is much larger than that of query-value neurons, starts to drop at 60% layer.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical data from two different models (GPT2 and Llama), and the trend is consistent across both models.
+  Limitations: The analysis is limited to the specific models (GPT2 and Llama) and the layer structure might differ in other models.
+  Location: Section 4.2
+
+--------------------------------------------------
+
+Claim 6:
+Statement: The proposed method can identify the important "value neurons" in both attention and FFN layers.
+Location: Section 4.2
+
+Evidence:
+- Evidence Text: The MRR score and probability score decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama.
+  Strength: strong
+  Location: Table 13
+  Limitations: None
+  Exact Quote: The MRR score and probability score decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama.
+
+Conclusion:
+  Author's Conclusion: The proposed method can identify the important 'value neurons' in both attention and FFN layers.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on quantitative metrics (MRR score and probability score) and demonstrates a clear and significant impact of the proposed method on the model's performance.
+  Limitations: The analysis is limited to the specific models (GPT2 and Llama) and knowledge types evaluated in the study. Further research is needed to generalize the findings to other models and knowledge types.
+  Location: Section 4.2
+
+--------------------------------------------------
+
+Claim 7:
+Statement: The shallow and medium FFN layers play larger roles than attention layers for every knowledge.
+Location: Section 4.2
+
+Evidence:
+- Evidence Text: We evaluate which layers have large inner product with top200 attention neurons, shown in Table 14. For every knowledge, the shallow and medium FFN layers play larger roles than attention layers.
+  Strength: strong
+  Location: Section D
+  Limitations: None
+  Exact Quote: For every knowledge, the shallow and medium FFN layers play larger roles than attention layers.
+
+Conclusion:
+  Author's Conclusion: The shallow and medium FFN layers play larger roles than attention layers for every knowledge.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on a comprehensive evaluation of inner product scores across all knowledge types, providing a clear and consistent pattern that supports the claim. The use of top200 attention neurons ensures that the analysis focuses on the most relevant neurons, adding to the robustness of the evidence.
+  Limitations: The analysis might be limited to the specific models (GPT2 and Llama) and knowledge types evaluated. Further research could explore if this pattern holds across other models and knowledge domains.
+  Location: Section 4.2
+
+--------------------------------------------------
+
+Claim 8:
+Statement: The proposed method can be used to identify important neurons and edit them to change the models' outputs.
+Location: Section 6
+
+Evidence:
+- Evidence Text: A potential risk of our work is that people can utilize our method to identify important neurons and edit them to change the models' outputs.
+  Strength: strong
+  Location: Section 6: Limitations
+  Limitations: Depends on how people utilize our method
+  Exact Quote: A potential risk of our work is that people can utilize our method to identify important neurons and edit them to change the models' outputs.
+
+Conclusion:
+  Author's Conclusion: The proposed method can be used to identify important neurons and edit them to change the models' outputs.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on the direct application of the proposed method, which is a key aspect of the research. However, the actual impact of such editing on the models' behavior and potential misuse is not extensively explored in the provided text.
+  Limitations: The text does not delve into the ethical implications, potential misuse scenarios, or the long-term effects of editing neurons in this context.
+  Location: Section 6
+
+--------------------------------------------------
+
+Claim 9:
+Statement: The proposed method can be used to reduce hallucinations, toxicity, and bias in LLMs by identifying and intervening/editing these neurons.
+Location: Section 6
+
+Evidence:
+- Evidence Text: A potential risk of our work is that people can utilize our method to identify important neurons and edit them to change the models’ outputs. For instance, if they identify the toxicity neurons and gender bias neurons and increase these neurons’ coefficient scores, the model will be more likely to generate toxicity and gender bias words.
+  Strength: weak
+  Location: Section 6: Limitations
+  Limitations: Depends on how people utilize the method
+  Exact Quote: A potential risk of our work is that people can utilize our method to identify important neurons and edit them to change the models’ outputs.
+
+Conclusion:
+  Author's Conclusion: The proposed method can be used to reduce hallucinations, toxicity, and bias in LLMs by identifying and intervening/editing these neurons.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it directly addresses the potential for the method to influence the model's outputs, which is a key aspect of reducing hallucinations, toxicity, and bias.
+  Limitations: The conclusion assumes the method's effectiveness in reducing hallucinations, toxicity, and bias without providing explicit experimental results to support this claim.
+  Location: Section 6
+
+--------------------------------------------------
+
+Execution Times:
+claims_analysis_time: 124.13 seconds
+evidence_analysis_time: 322.50 seconds
+conclusions_analysis_time: 360.45 seconds
+total_execution_time: 811.30 seconds

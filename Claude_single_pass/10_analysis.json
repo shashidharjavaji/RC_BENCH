@@ -1,0 +1,104 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "kNN-Prompt significantly outperforms baseline models on zero-shot tasks",
+                "type": "performance",
+                "location": "Results section (Section 4)",
+                "exact_quote": "kNN-Prompt outperforms all baselines in all tasks, improving over the base LM by 13.4% on average"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Comprehensive results across 9 tasks showing consistent improvements",
+                    "strength": "strong",
+                    "limitations": "Limited to GPT-2 family models only",
+                    "location": "Table 2",
+                    "exact_quote": "kNN-Prompt 55.6 53.5 51.0 80.6 84.2 84.3 78.2 60.0 78.8 69.6"
+                },
+                {
+                    "evidence_text": "Detailed ablation studies showing contribution of each component",
+                    "strength": "strong",
+                    "limitations": "Some combinations of components not tested",
+                    "location": "Table 5",
+                    "exact_quote": "LM+kNN+Fuzzy+PMI (kNN-Prompt) 69.6 +13.4"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Comprehensive evaluation across multiple tasks with clear performance improvements and ablation studies",
+                "key_limitations": "Limited to GPT-2 models, may not generalize to other architectures",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "kNN-Prompt enables effective domain adaptation without additional training",
+                "type": "contribution",
+                "location": "Section 5",
+                "exact_quote": "kNN-Prompt performs comparably with DAPT. Specifically, kNN-Prompt slightly outperforms DAPT on CR and MR"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Comparison with DAPT across multiple domains",
+                    "strength": "moderate",
+                    "limitations": "Limited number of domains tested",
+                    "location": "Table 4",
+                    "exact_quote": "kNN-prompt 84.3 60.0 78.2, DAPT (LM + PMI) 84.1 61.1 77.8"
+                },
+                {
+                    "evidence_text": "Analysis of datastore size and domain specificity effects",
+                    "strength": "strong",
+                    "limitations": "Trade-off between datastore size and computational costs not fully explored",
+                    "location": "Section 5",
+                    "exact_quote": "For CR, using 6M tokens of domain-specific data outperforms using our 465M token heterogeneous corpus"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Shows comparable performance to DAPT without training, supported by detailed analysis",
+                "key_limitations": "Limited domain testing, computational costs not fully addressed",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Fuzzy verbalizers are essential for leveraging the kNN distribution effectively",
+                "type": "methodology",
+                "location": "Section 6",
+                "exact_quote": "adding kNN to LM gives trivial improvement (+0.4%), but much greater once we add fuzzy verbalizers on top of them (+10.3%)"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Coverage improvement statistics",
+                    "strength": "strong",
+                    "limitations": "May depend on specific verbalizer choices",
+                    "location": "Section 6",
+                    "exact_quote": "across all tasks, an output label receives nonzero probability under the kNN distribution in kNN-LM only 45.8% of the time. With fuzzy verbalizers, this increases to 78%"
+                },
+                {
+                    "evidence_text": "Ablation study results",
+                    "strength": "strong",
+                    "limitations": "Interaction effects between components not fully explored",
+                    "location": "Table 5",
+                    "exact_quote": "LM+Fuzzy+PMI 67.1 +10.9, LM+kNN+Fuzzy 66.5 +10.3"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Clear evidence from multiple analyses showing importance of fuzzy verbalizers",
+                "key_limitations": "Specific verbalizer choices may affect results",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "25.64 seconds",
+        "total_execution_time": "28.06 seconds"
+    }
+}

@@ -1,0 +1,151 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Simple training-free token-level disambiguation methods can effectively improve LLM performance for ambiguous question answering tasks",
+                "location": "Abstract",
+                "type": "Main finding",
+                "exact_quote": "We demonstrate how simple, training-free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks."
+            },
+            "evidence": [],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Limited to specific disambiguation methods tested, may not generalize to all token-level methods",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Using disambiguating prompts improves performance over naive settings for both GPT 4o and 4o-mini",
+                "location": "Results and Discussion",
+                "type": "Empirical finding",
+                "exact_quote": "Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Using simple disambiguating prompts improves performance over naive setting as shown by GT Answer Overlap scores",
+                    "strength": "strong",
+                    "limitations": "Limited to two specific LLM models",
+                    "location": "Results and Discussion - RQ1, Tables I and II",
+                    "exact_quote": "GT Answer Overlap for GPT-4o: Naive=0.759, What=0.778, Context=0.789; For GPT-4o-mini: Naive=0.692, What=0.707, Context=0.71"
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Results specific to GPT models tested, magnitude of improvement varies",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Disambiguation via adding context performs better than disambiguation via 'what' rephrasing for both LLMs",
+                "location": "Results and Discussion",
+                "type": "Comparative finding",
+                "exact_quote": "Out of the two simple disambiguating methods explored, we see that disambiguation via adding context performs better for both LLMs."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Context disambiguation shows higher GT Answer Overlap compared to 'what' rephrasing for both models",
+                    "strength": "moderate",
+                    "limitations": "Difference is small and context method has known issues with irrelevant additions",
+                    "location": "Results and Discussion - RQ1, Tables I and II",
+                    "exact_quote": "Out of the two simple disambiguating methods explored, we see that disambiguation via adding context performs better for both LLMs."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Context method shows inconsistent performance based on question type",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Small-scale fine-tuning does not improve LLM performance on ambiguous questions",
+                "location": "Results and Discussion",
+                "type": "Negative finding",
+                "exact_quote": "Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Fine-tuning experiment shows worse performance compared to base model",
+                    "strength": "moderate",
+                    "limitations": "Only tested on GPT-4o-mini with small sample size of 50 questions",
+                    "location": "Results and Discussion - RQ2",
+                    "exact_quote": "The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": false,
+                "robustness": "low",
+                "limitations": "Only tested with 50 examples, potential catastrophic forgetting noted by authors",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Using lower temperature values does not significantly improve LLM performance on ambiguous questions",
+                "location": "Results and Discussion",
+                "type": "Negative finding",
+                "exact_quote": "This implies simply using a lower value of temperature may not provide any benefits in LLM performance for answering ambiguous questions."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Lower temperature shows minimal improvement in performance",
+                    "strength": "moderate",
+                    "limitations": "Only tested two temperature values",
+                    "location": "Results and Discussion - RQ3",
+                    "exact_quote": "we see that although lower temperature (0.2 instead of 1.0, in this case) seem to have minor improvements in some cases, the difference is not that significant"
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Only tested temperature values of 0.2 vs 1.0, other values not explored",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": {
+                "text": "LLMs show better disambiguation performance for questions that human annotators were also able to disambiguate clearly",
+                "location": "Results and Discussion",
+                "type": "Correlation finding",
+                "exact_quote": "This shows that LLMs are able to better understand certain social cues to correctly disambiguate the provided question in cases where the human annotator was able to disambiguate them as well."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Context enrichment performs better on subset where human disambiguations match ground truth",
+                    "strength": "strong",
+                    "limitations": "Analysis limited to specific subset of data",
+                    "location": "Results and Discussion - Problem with naive contextual enrichment",
+                    "exact_quote": "when we took a subset of AmbigQA where the human-provided answer of a human-provided disambiguated question provided matches the ground truth, adding context to those questions increases the accuracy of the model"
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Selection bias in subset analysis, correlation vs causation not established",
+                "confidence_level": "medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "12.27 seconds",
+        "evidence_analysis_time": "13.71 seconds",
+        "conclusions_analysis_time": "7.04 seconds",
+        "total_execution_time": "35.14 seconds"
+    }
+}

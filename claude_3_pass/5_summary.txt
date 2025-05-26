@@ -1,0 +1,137 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Previous interpretations of language models for fact completion miss important distinctions in how these models process factual information
+Location: Abstract
+Type: Problem identification
+Quote: Previous interpretations of language models (LMs) miss important distinctions in how these models process factual information.
+
+Evidence:
+- The CounterFact dataset analysis reveals 510 samples likely rely on heuristics and 365 samples have low popularity scores unlikely to be memorized, yet these distinctions were not made in previous work
+  Strength: strong
+  Location: Section 3
+  Limitations: Analysis limited to one dataset
+  Quote: This is motivated by an inspection of the 1,209 samples from CounterFact which reveals 510 samples likely to rely on heuristics and 365 samples to have a low popularity scores and thus be unlikely to have been memorized
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Analysis focused on one dataset (CounterFact) only
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: There are four distinct prediction scenarios for which language models show different behaviors in fact completion tasks
+Location: Abstract
+Type: Research finding
+Quote: These scenarios correspond to different levels of model reliability and types of information being processed—some being less desirable for factual predictions.
+
+Evidence:
+- The paper identifies and demonstrates four scenarios through diagnostic criteria: generic language modeling, guesswork, heuristics recall, and exact fact recall, with examples of each in Table 2
+  Strength: strong
+  Location: Section 3, Table 2
+  Limitations: Examples only shown for GPT-2 XL
+  Quote: Samples from PRISM for GPT-2 XL designed to trigger different prediction scenarios. Conf(idence) measures how often the prediction was made, pop(ularity) measures page view rate and bias indicates detected bias when applicable.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Examples provided but limited empirical validation of scenario distinctness
+Confidence: medium
+
+==================================================
+
+Claim 3:
+Statement: The PRISM method allows construction of datasets with examples of each prediction scenario based on diagnostic criteria
+Location: Abstract/Introduction
+Type: Methodological contribution
+Quote: To facilitate precise interpretations of LMs for fact completion, we propose a model-specific recipe called PRISM for constructing datasets with examples of each scenario based on a set of diagnostic criteria.
+
+Evidence:
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: No clear evidence provided in the extract for this specific claim
+Confidence: low
+
+==================================================
+
+Claim 4:
+Statement: Causal tracing produces different results for each prediction scenario, but aggregations may only represent results from the scenario with strongest signal
+Location: Abstract
+Type: Research finding
+Quote: We apply a popular interpretability method, causal tracing (CT), to the four prediction scenarios and find that while CT produces different results for each scenario, aggregations over a set of mixed examples may only represent the results from the scenario with the strongest measured signal.
+
+Evidence:
+- Causal tracing analysis shows different patterns for each scenario, with exact fact recall showing clear peak in MLP states while other scenarios show different patterns
+  Strength: strong
+  Location: Section 4.2
+  Limitations: Initial analysis done only on GPT-2 XL
+  Quote: Exact fact recall results Figure 3d show a clear peak in AIE in (last subject token, mid layer) MLP states and all other states (last token, other subject tokens) reduce in relative effect. This is fundamentally different from the other scenarios
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Analysis may be model-specific (tested on limited set of models)
+Confidence: high
+
+==================================================
+
+Claim 5:
+Statement: The CounterFact dataset mixes different prediction scenarios and is unsuitable for precise interpretations
+Location: Section 3
+Type: Research finding
+Quote: These issues make the CounterFact dataset unsuitable for precise and comprehensive interpretations of LMs.
+
+Evidence:
+- Analysis of CounterFact shows mixing of scenarios with 510 samples using heuristics, 478 exact recall, and 365 samples with low probability of being memorized
+  Strength: strong
+  Location: Appendix F.1
+  Limitations: Not all samples could be definitively categorized
+  Quote: We find a total of 510 samples that may correspond to heuristics recall...approximately 478 samples in CounterFact may correspond to exact fact recall
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Analysis assumes popularity scores accurately reflect memorization
+Confidence: high
+
+==================================================
+
+Claim 6:
+Statement: Different prediction scenarios yield distinct causal tracing results when studied in isolation
+Location: Section 5 (Conclusion)
+Type: Research finding
+Quote: We find that different prediction scenarios yield distinct CT results if studied in isolation.
+
+Evidence:
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: No clear evidence provided in the extract for this specific claim
+Confidence: low
+
+==================================================
+
+Claim 7:
+Statement: Causal tracing results are not representative of the dataset as a whole if it contains examples of different prediction scenarios
+Location: Section 5 (Conclusion)
+Type: Research finding
+Quote: Consequently, CT results are not representative of the dataset as a whole if it contains examples of different prediction scenarios.
+
+Evidence:
+- Combined analysis of different scenarios shows results dominated by exact fact recall pattern, masking different patterns from other scenarios
+  Strength: strong
+  Location: Section 4.2
+  Limitations: Initial analysis focused on GPT-2 XL
+  Quote: This indicates that model interpretations over samples mixing prediction scenarios are misleading as they may be dominated by the characteristics of the exact fact recall scenario
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: May be specific to causal tracing method, other analysis methods not tested
+Confidence: medium
+
+==================================================
+

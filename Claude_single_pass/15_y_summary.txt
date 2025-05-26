@@ -1,0 +1,94 @@
+Claim 1:
+Type: result
+Statement: Non-sense Out-of-Distribution (OoD) prompts composed of random tokens can elicit LLMs to respond with hallucinations
+Location: Introduction
+Exact Quote: We found that some non-sense Out-of-Distribution(OoD) prompts composed of random tokens can also elicit the LLMs responding hallucinations.
+
+Evidence:
+- Evidence Text: Example showing Vicuna-7B generating same hallucination for OoD prompt
+  Strength: moderate
+  Location: Introduction/Figure 1b
+  Limitations: Limited to one model example, may not generalize
+  Exact Quote: Subfigure (b) shows that the Vicuna-7B responds with exactly the same hallucination replies from the non-sense OoD prompt which is composed of random tokens.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The paper demonstrates the phenomenon with concrete examples, but broader validation across more models would strengthen the claim
+Key Limitations: Limited model testing, specific examples only
+
+--------------------------------------------------
+
+Claim 2:
+Type: performance
+Statement: The proposed hallucination attack method achieves high success rates in triggering hallucinations
+Location: Section 4.1
+Exact Quote: As shown in Table 4, we surprisingly find that both mainstream open-source models failed to resist the hallucination attacks.
+
+Evidence:
+- Evidence Text: Success rates on Vicuna-7B
+  Strength: strong
+  Location: Section 4.1/Table 1
+  Limitations: Limited to two models
+  Exact Quote: Weak Semantic Attack 92.31%, OoD Attack 80.77%
+
+- Evidence Text: Success rates on LLaMA2
+  Strength: moderate
+  Location: Section 4.1/Table 1
+  Limitations: Lower success rates than Vicuna-7B
+  Exact Quote: Weak Semantic Attack 53.85%, OoD Attack 30.77%
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Results show high success rates, especially for Vicuna-7B, though performance varies significantly between models
+Key Limitations: Only tested on two models, significant performance gap between models
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: Entropy threshold defense can effectively filter out adversarial prompts while maintaining normal functionality
+Location: Section 4.2
+Exact Quote: when the entropy threshold is set to 1.6, all raw prompts can be answered normally, while 46.1% OoD prompts and 61.5% weak semantic prompts will be refused by the LLMs
+
+Evidence:
+- Evidence Text: Entropy threshold effectiveness data
+  Strength: moderate
+  Location: Section 4.2/Figure 4
+  Limitations: Trade-off between defense and normal functionality not fully explored
+  Exact Quote: high thresholds will lead to ineffective defense against hallucination attacks, while low thresholds will hurt the performance of the raw prompts
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The proposed defense shows promise with concrete metrics, but optimal threshold selection and broader validation needed
+Key Limitations: Balance between security and functionality needs more exploration
+
+--------------------------------------------------
+
+Claim 4:
+Type: result
+Statement: Longer OoD prompts achieve higher success rates in triggering hallucinations
+Location: Section 4.1
+Exact Quote: When the length of the OoD prompts increases from 20 to 30, the attack success rate significantly increases by 34.6% (30.77% → 65.38%)
+
+Evidence:
+- Evidence Text: Success rate comparison across prompt lengths
+  Strength: moderate
+  Location: Section 4.1/Table 4
+  Limitations: Only tested on LLaMA2 model, limited length range
+  Exact Quote: Token Length 10: 23.08%, 20: 30.77%, 30: 65.38%
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Clear trend shown in data, but limited to one model and specific length range
+Key Limitations: Single model testing, narrow range of lengths tested
+
+--------------------------------------------------
+

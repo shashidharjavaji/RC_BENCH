@@ -1,0 +1,197 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Fine-tuning LLMs on a corpus of planning instances does not lead to robust planning skills, as indicated by poor performance on out-of-distribution test sets.
+Location: Abstract
+Type: Novel Finding
+Quote: Fine-tuning LLMs on a corpus of planning instances does not lead to robust planning skills, as indicated by poor performance on out-of-distribution test sets.
+
+Evidence:
+- Table 1 presents the performance of our fine-tuned LLM across various test sets with no additional strategies applied. Although the LLM performs well on in-distribution, it struggles to generalize to OOD cases.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: Only shows performance on specific test sets
+  Quote: Table 1 presents the performance of our fine-tuned LLM across various test sets with no additional strategies applied. Although the LLM performs well on in-distribution, it struggles to generalize to OOD cases.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: performance on out-of-distribution test sets
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: Strategies like chain-of-thought (CoT) enhance the probability of a plan being executable, indicating progress towards better plan quality.
+Location: Abstract
+Type: Novel Finding
+Quote: At the same time, we find that various strategies, including chain_of-thought, do enhance the probability of a plan being executable, indicating progress towards better plan quality, despite not directly enhancing the final validity rate.
+
+Evidence:
+- Table 2 presents the average performance across all domains in the ablation study, showing that permutation augmentation enhances the executability rate.
+  Strength: moderate
+  Location: Section 4.2
+  Limitations: Only shows average performance across all domains
+  Quote: Table 2 presents the average performance across all domains in the ablation study, showing that permutation augmentation enhances the executability rate.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: enhancement of executability rate
+Confidence: high
+
+==================================================
+
+Claim 3:
+Statement: Reinforcement learning (RL) with the novel 'Longest Contiguous Common Subsequence' (LCCS) reward emerges as the most effective strategy, contributing to both plan executability and validity.
+Location: Abstract
+Type: Novel Finding
+Quote: Among the strategies we evaluated, reinforcement learning with our novel ‘Longest Contiguous Common Subsequence’ (LCCS) reward emerged as the most effective, contributing to both plan executability and validity.
+
+Evidence:
+- RL emerges as the most effective strategy, contributing to both plan executability and validity, with a 6.7% increase in validity rate and a 9.0% increase in executability rate on the 'long' test set.
+  Strength: strong
+  Location: Section 4.7
+  Limitations: Only shows performance on the 'long' test set
+  Quote: RL emerges as the most effective strategy, contributing to both plan executability and validity, with a 6.7% increase in validity rate and a 9.0% increase in executability rate on the 'long' test set.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: effectiveness of RL with LCCS reward
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: The model struggles to generalize to out-of-distribution scenarios, particularly in the 'unseen' and 'obfuscated' test sets.
+Location: Section 4.1
+Type: Limitation
+Quote: Generalization to Novel Domains: A Clear Failure The fine-tuned model utterly failed to perform in the “unseen” and “obfuscated” test sets, unable to generate either valid or executable plans.
+
+Evidence:
+- The model utterly failed to perform in the 'unseen' and 'obfuscated' test sets, unable to generate either valid or executable plans.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: Only shows performance on specific test sets
+  Quote: The model utterly failed to perform in the 'unseen' and 'obfuscated' test sets, unable to generate either valid or executable plans.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: generalization to unseen and obfuscated test sets
+Confidence: high
+
+==================================================
+
+Claim 5:
+Statement: Permutation augmentation enhances the executability rate, particularly in the 'unseen' test set, with a score of 75.5%.
+Location: Section 4.2
+Type: Novel Finding
+Quote: While this technique does not significantly improve the validity rate, it largely enhances the executability rate (see Table 2 row 2). In particular, we observe a remarkable 75.5% score in “unseen” test set, while the vanilla model only got 20.1% (row 1).
+
+Evidence:
+- Permutation augmentation enhances the executability rate, particularly in the 'unseen' test set, with a score of 75.5%.
+  Strength: moderate
+  Location: Section 4.2
+  Limitations: Only shows performance on the 'unseen' test set
+  Quote: Permutation augmentation enhances the executability rate, particularly in the 'unseen' test set, with a score of 75.5%.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: enhancement of executability rate in unseen test set
+Confidence: high
+
+==================================================
+
+Claim 6:
+Statement: Goal CoT hinders planning performance among OOD cases, showing no improvement whatsoever.
+Location: Section 4.3
+Type: Limitation
+Quote: Goal CoT is the only strategy that hinders planning performance among OOD cases, showing no improvement whatsoever (see Table 2 row 3, 5, 7, 9).
+
+Evidence:
+- Goal CoT hinders planning performance among OOD cases, showing no improvement whatsoever, as shown in Table 2.
+  Strength: moderate
+  Location: Section 4.3
+  Limitations: Only shows performance on OOD cases
+  Quote: Goal CoT hinders planning performance among OOD cases, showing no improvement whatsoever, as shown in Table 2.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: performance on OOD cases
+Confidence: high
+
+==================================================
+
+Claim 7:
+Statement: The model recognizes mistakes but fails to correct them, as shown by high precision and recall rates in probing tests.
+Location: Section 4.4
+Type: Limitation
+Quote: Despite high initial expectations for self-correction learning – stemming from its demonstrated effectiveness in solving math problems – this recently proposed strategy did not improve validity rates (see Table 2 row 6, 7, 8, 9).
+
+Evidence:
+- The model recognizes mistakes but fails to correct them, as shown by high precision and recall rates in probing tests, with a precision of 90.5% and recall of 99.2%.
+  Strength: strong
+  Location: Section 4.4
+  Limitations: Only shows performance on probing tests
+  Quote: The model recognizes mistakes but fails to correct them, as shown by high precision and recall rates in probing tests, with a precision of 90.5% and recall of 99.2%.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: mistake recognition and correction
+Confidence: high
+
+==================================================
+
+Claim 8:
+Statement: State CoT boosts executability with a caveat: its efficacy is limited to short problems, as it does not improve performance in the 'long' test set.
+Location: Section 4.5
+Type: Novel Finding
+Quote: We observed that State CoT does not improve plan executability within the ‘long’ test set, yet it significantly enhances performance within the ‘unseen’ test set (e.g., 100% in row 4).
+
+Evidence:
+- State CoT boosts executability with a caveat: its efficacy is limited to short problems, as it does not improve performance in the 'long' test set.
+  Strength: moderate
+  Location: Section 4.5
+  Limitations: Only shows performance on specific test sets
+  Quote: State CoT boosts executability with a caveat: its efficacy is limited to short problems, as it does not improve performance in the 'long' test set.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: limited to short problems
+Confidence: medium
+
+==================================================
+
+Claim 9:
+Statement: RL enhances model performance, especially on longer problems, with a 6.7% increase in validity rate and a 9.0% increase in executability rate on the 'long' test set.
+Location: Section 4.7
+Type: Novel Finding
+Quote: RL notably improves the performance under our end-to-end planning paradigm, especially on longer problems. Note that the model was trained on 10% of the ‘long’ test set with the proposed LCCS-based reward model, and evaluated on the 90% of the ‘long’ test set and other OOD test sets.
+
+Evidence:
+- RL enhances model performance, especially on longer problems, with a 6.7% increase in validity rate and a 9.0% increase in executability rate on the 'long' test set.
+  Strength: strong
+  Location: Section 4.7
+  Limitations: Only shows performance on the 'long' test set
+  Quote: RL enhances model performance, especially on longer problems, with a 6.7% increase in validity rate and a 9.0% increase in executability rate on the 'long' test set.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: performance on longer problems
+Confidence: high
+
+==================================================
+
+
+Execution Times:
+claims_analysis_time: 175.20 seconds
+evidence_analysis_time: 215.32 seconds
+conclusions_analysis_time: 84.51 seconds
+total_execution_time: 478.58 seconds

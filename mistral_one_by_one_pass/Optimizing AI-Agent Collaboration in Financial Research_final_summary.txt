@@ -1,0 +1,627 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+ For example:
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "The use of AI agents to analyze financial reports and aid in investment strategies has shown promising results, enhancing both accuracy and efficiency.",
+            "location": "Introduction",
+            "claim_type": "Methodology",
+            "exact_quote": "The use of AI agents to analyze financial reports and aid in investment strategies has shown promising results, enhancing both accuracy and efficiency."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "The study shows that for relatively simple tasks such as fundamental and market sentiment analysis, a single agent performs better than multiple agents from both investment research and Artificial Intelligence Generated Content (AIGC) perspectives.",
+            "location": "Introduction",
+            "claim_type": "Results",
+            "exact_quote": "The study shows that for relatively simple tasks such as fundamental and market sentiment analysis, a single agent performs better than multiple agents from both investment research and Artificial Intelligence Generated Content (AIGC) perspectives."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "Multi-agents are more suitable for relatively complex tasks like risk analysis.",
+            "location": "Introduction",
+            "claim_type": "Results",
+            "exact_quote": "Multi-agents are more suitable for relatively complex tasks like risk analysis."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "For collaboration, a structure where all agents communicate with each other performs better at simple tasks.",
+            "location": "Introduction",
+            "claim_type": "Results",
+            "exact_quote": "For collaboration, a structure where all agents communicate with each other performs better at simple tasks."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "Structure with absolute leadership optimizes efficiency and streamlines workflows, which is particularly suitable for scenarios requiring unified instructions and execution.",
+            "location": "Introduction",
+            "claim_type": "Results",
+            "exact_quote": "Structure with absolute leadership optimizes efficiency and streamlines workflows, which is particularly suitable for scenarios requiring unified instructions and execution."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "The key contributions of this study can be summarized below:",
+            "location": "Introduction",
+            "claim_type": "Contributions",
+            "exact_quote": "The key contributions of this study can be summarized below:"
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "Innovative Multi-Agent Collaboration Frameworks: We defined several novel AI agent architectures from single-agent to multi-agent, and explored vertical/horizontal/hybrid multi-agent collaboration structures distinguished between internal implementations of leadership and cooperation.",
+            "location": "Introduction",
+            "claim_type": "Contributions",
+            "exact_quote": "Innovative Multi-Agent Collaboration Frameworks: We defined several novel AI agent architectures from single-agent to multi-agent, and explored vertical/horizontal/hybrid multi-agent collaboration structures distinguished between internal implementations of leadership and cooperation."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "Detailed Analysis of Information Flow: We performed an in-depth analysis of the forms of information flow between agents in tasks of varying difficulty, explaining the core differences produced by different collaboration architectures.",
+            "location": "Introduction",
+            "claim_type": "Contributions",
+            "exact_quote": "Detailed Analysis of Information Flow: We performed an in-depth analysis of the forms of information flow between agents in tasks of varying difficulty, explaining the core differences produced by different collaboration architectures."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "Optimal Agent Group for Investment Research: Based on our experimental results, we identified the optimal multi-agent architectures for various sub-tasks. We demonstrated that an ensemble structure involving multiple agent groups achieves superior performance in investment research tasks, achieving target price prediction with 2.35% avg. diff. and 66.7% accuracy in buy or not decision-making, surpassing all other agent architectures.",
+            "location": "Introduction",
+            "claim_type": "Contributions",
+            "exact_quote": "Optimal Agent Group for Investment Research: Based on our experimental results, we identified the optimal multi-agent architectures for various sub-tasks. We demonstrated that an ensemble structure involving multiple agent groups achieves superior performance in investment research tasks, achieving target price prediction with 2.35% avg. diff. and 66.7% accuracy in buy or not decision-making, surpassing all other agent architectures."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "The architecture of AI agents varies from a single agent running independently to a collaborative form where multiple agents work together. Multi-agent systems involve two or more agents with the same or different LLM back-ends.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The architecture of AI agents varies from a single agent running independently to a collaborative form where multiple agents work together. Multi-agent systems involve two or more agents with the same or different LLM back-ends."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "In this section, we explore our methodology for building AI agent structures from single-agent to multi-agent, including multi-agent collaboration structures with the distinct internal implementation of leadership and cooperation.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "In this section, we explore our methodology for building AI agent structures from single-agent to multi-agent, including multi-agent collaboration structures with the distinct internal implementation of leadership and cooperation."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "The overview of the structures is shown in Figure 1.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The overview of the structures is shown in Figure 1."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "Relying on the Text2Param capabilities of the underlying LLM, it’s not difficult for agents to invoke a variety of tools, such as retrieving stock prices from YFinance and fetching posts from Reddit’s r/WallStreetBets.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Relying on the Text2Param capabilities of the underlying LLM, it’s not difficult for agents to invoke a variety of tools, such as retrieving stock prices from YFinance and fetching posts from Reddit’s r/WallStreetBets."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "However, for investment research, analyzing company financial reports is also crucial. This requires equipping agents with the ability to retrieve relevant contexts from financial reports that are usually extremely long and complex.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "However, for investment research, analyzing company financial reports is also crucial. This requires equipping agents with the ability to retrieve relevant contexts from financial reports that are usually extremely long and complex."
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "Typically, researchers adopt RAG (Retrieval-Augmented Generation) for such scenarios.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Typically, researchers adopt RAG (Retrieval-Augmented Generation) for such scenarios."
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "Unlike typical RAG use cases (e.g. QA), we do not manually provide query questions or adjust the retriever settings for optimal results.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Unlike typical RAG use cases (e.g. QA), we do not manually provide query questions or adjust the retriever settings for optimal results."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "Instead, to fully evaluate the agent’s capabilities, we have encapsulated the ability to retrieve chunks from the RAG database into a tool function as shown in Figure 1.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Instead, to fully evaluate the agent’s capabilities, we have encapsulated the ability to retrieve chunks from the RAG database into a tool function as shown in Figure 1."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "Under this setup, agents can independently write the query and pick the number of retrievals based on task requirements.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Under this setup, agents can independently write the query and pick the number of retrievals based on task requirements."
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "If the retrieved chunks do not meet the needs, the parameters could be refined and used for another round of recall.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "If the retrieved chunks do not meet the needs, the parameters could be refined and used for another round of recall."
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "Such integration places the RAG functionality within a unified framework alongside other tool functions, making the scope of the agent’s capabilities clearer and more manageable.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Such integration places the RAG functionality within a unified framework alongside other tool functions, making the scope of the agent’s capabilities clearer and more manageable."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "For a single-agent case study, we utilize a basic chatbot with the function-calling ability described in the previous section.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "For a single-agent case study, we utilize a basic chatbot with the function-calling ability described in the previous section."
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "System prompts define its role as an analyst and limit its behavior to write & execute codes on its own.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "System prompts define its role as an analyst and limit its behavior to write & execute codes on its own."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "Through such constraints, it’s easier to balance the difficulty level of each task based on not only the task itself but also the information available for each agent.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Through such constraints, it’s easier to balance the difficulty level of each task based on not only the task itself but also the information available for each agent."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "There is no human intervention in any agent’s process of handling the task, agents can decide to terminate their analysis on their own when they finish their tasks.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "There is no human intervention in any agent’s process of handling the task, agents can decide to terminate their analysis on their own when they finish their tasks."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "In a group of two agents, agents’ roles are similarly defined as, and have equal rights to conclude the given tasks.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "In a group of two agents, agents’ roles are similarly defined as, and have equal rights to conclude the given tasks."
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "However, If we directly apply the implementation of a single-agent architecture, a common issue is that one agent might complete most of the work and then summarize and respond, skipping interaction with the other agent.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "However, If we directly apply the implementation of a single-agent architecture, a common issue is that one agent might complete most of the work and then summarize and respond, skipping interaction with the other agent."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "Extra prompts are thus added to force communication between agents.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Extra prompts are thus added to force communication between agents."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "For a dual group of Agents A& B, the following responsibilities are added to Agent A’s system prompt:",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "For a dual group of Agents A& B, the following responsibilities are added to Agent A’s system prompt:"
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "(1) Ask for advice from [Agent B] before you make any conclusion.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "(1) Ask for advice from [Agent B] before you make any conclusion."
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "(2) Inspect analysis delivered by [Agent B] and give out advice.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "(2) Inspect analysis delivered by [Agent B] and give out advice."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "(3) Reach a consensus with [Agent B] and provide the final analysis.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "(3) Reach a consensus with [Agent B] and provide the final analysis."
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "When the number of agents exceeds three, we can experiment with more complex and dynamic structures.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "When the number of agents exceeds three, we can experiment with more complex and dynamic structures."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "These structures can be better adapted to scenarios involving larger groups or can function as unit structures within a larger organization.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "These structures can be better adapted to scenarios involving larger groups or can function as unit structures within a larger organization."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "Centered around leadership and communication, we have developed three distinct agent collaboration patterns, which are referred to as vertical structure, horizontal structure and hybrid structure.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Centered around leadership and communication, we have developed three distinct agent collaboration patterns, which are referred to as vertical structure, horizontal structure and hybrid structure."
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "In a horizontal multi-agent structure, all agents are on the same level.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "In a horizontal multi-agent structure, all agents are on the same level."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "This architecture is easy to implement and expand and has been proven to be suitable for handling relatively simple tasks.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "This architecture is easy to implement and expand and has been proven to be suitable for handling relatively simple tasks."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "In a horizontal agent structure, all agents equally participate and discuss tasks together.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "In a horizontal agent structure, all agents equally participate and discuss tasks together."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "Their communication is shared, and each agent can see all messages from other agents.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Their communication is shared, and each agent can see all messages from other agents."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "The horizontal agent structure is usually suitable for tasks requiring collaboration, feedback, and team discussion.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The horizontal agent structure is usually suitable for tasks requiring collaboration, feedback, and team discussion."
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "The implementation of a horizontal collaboration structure can be seen as an expansion of a dual-agent group, as similar prompts are utilized to force communication and information sharing.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The implementation of a horizontal collaboration structure can be seen as an expansion of a dual-agent group, as similar prompts are utilized to force communication and information sharing."
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "The dialogue unfolds in the form of a group chat, and the conversation in the group chat is visible to all roles.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The dialogue unfolds in the form of a group chat, and the conversation in the group chat is visible to all roles."
+        },
+        {
+            "claim_id": 42,
+            "claim_text": "The speaking order follows a round-robin mechanism, with all roles taking turns to speak until any agent decides to end the conversation and report back to the user.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The speaking order follows a round-robin mechanism, with all roles taking turns to speak until any agent decides to end the conversation and report back to the user."
+        },
+        {
+            "claim_id": 43,
+            "claim_text": "In the vertical multi-agent structure, the organization structure is leader-subordinate.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "In the vertical multi-agent structure, the organization structure is leader-subordinate."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": "Leaders are responsible for global planning and coordination, while subordinates handle specific data processing and analysis.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Leaders are responsible for global planning and coordination, while subordinates handle specific data processing and analysis."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "Subordinates simply receive orders from the leader, finish the job assigned, and report back.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Subordinates simply receive orders from the leader, finish the job assigned, and report back."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "They are not designed to communicate with other agents.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "They are not designed to communicate with other agents."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "As such structure is not natively supported, we implemented it with a nested chat mechanism as shown in Algorithm 1.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "As such structure is not natively supported, we implemented it with a nested chat mechanism as shown in Algorithm 1."
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "The leader needs to specify a subordinate’s name at the end of the response and issue instructions to it.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The leader needs to specify a subordinate’s name at the end of the response and issue instructions to it."
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "Such a format is captured by the framework, triggering a nested chat process towards the specified subordinate, starting with the leader’s instruction.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Such a format is captured by the framework, triggering a nested chat process towards the specified subordinate, starting with the leader’s instruction."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "This nested chat content is not visible to other subordinates.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "This nested chat content is not visible to other subordinates."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "After the nested chat ends, the subordinate’s final response is delivered back to the leader.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "After the nested chat ends, the subordinate’s final response is delivered back to the leader."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "The leader then issues instructions continuously or integrates the subordinate’s results to ultimately decide whether to end the entire conversation.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The leader then issues instructions continuously or integrates the subordinate’s results to ultimately decide whether to end the entire conversation."
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "To achieve this, a leader_prompt is designed as below, where group_desc introduces all subordinates and their responsibilities:",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "To achieve this, a leader_prompt is designed as below, where group_desc introduces all subordinates and their responsibilities:"
+        },
+        {
+            "claim_id": 54,
+            "claim_text": "**Leader Prompt Sample**",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "**Leader Prompt Sample**"
+        },
+        {
+            "claim_id": 55,
+            "claim_text": "You are the leader of the following group: {group_desc}",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "You are the leader of the following group: {group_desc}"
+        },
+        {
+            "claim_id": 56,
+            "claim_text": "As a group leader, you are responsible for coordinating the team’s efforts to achieve the project’s objectives.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "As a group leader, you are responsible for coordinating the team’s efforts to achieve the project’s objectives."
+        },
+        {
+            "claim_id": 57,
+            "claim_text": "You must ensure that the team is working together effectively and efficiently.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "You must ensure that the team is working together effectively and efficiently."
+        },
+        {
+            "claim_id": 58,
+            "claim_text": "Summarize the status of the whole project progress each time you respond.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Summarize the status of the whole project progress each time you respond."
+        },
+        {
+            "claim_id": 59,
+            "claim_text": "End your response with an order to one of your team members to progress the project, if the objective has not been achieved yet.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "End your response with an order to one of your team members to progress the project, if the objective has not been achieved yet."
+        },
+        {
+            "claim_id": 60,
+            "claim_text": "Orders should be follow the format: “[<name>] <order>”.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Orders should be follow the format: “[<name>] <order>”."
+        },
+        {
+            "claim_id": 61,
+            "claim_text": "Orders need to be detailed, including necessary time period in formation, stock information, or instruction from higher-level leaders.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Orders need to be detailed, including necessary time period in formation, stock information, or instruction from higher-level leaders."
+        },
+        {
+            "claim_id": 62,
+            "claim_text": "Make only one order at a time.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Make only one order at a time."
+        },
+        {
+            "claim_id": 63,
+            "claim_text": "After receiving feedback from a team member, check the results of the task, and make sure it has been well completed before proceeding to the next order.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "After receiving feedback from a team member, check the results of the task, and make sure it has been well completed before proceeding to the next order."
+        },
+        {
+            "claim_id": 64,
+            "claim_text": "Reply “TERMINATE” at the end when everything is done.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Reply “TERMINATE” at the end when everything is done."
+        },
+        {
+            "claim_id": 65,
+            "claim_text": "In a hybrid multi-agent structure, agents have the same leveled roles and responsibilities defined as in the vertical structure but can communicate in a shared manner as in the horizontal structure.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "In a hybrid multi-agent structure, agents have the same leveled roles and responsibilities defined as in the vertical structure but can communicate in a shared manner as in the horizontal structure."
+        },
+        {
+            "claim_id": 66,
+            "claim_text": "Unlike in the horizontal structure, where all agents have the right to report the final analysis and finish the conversation, lower-level agents here are asked to turn to the leader for the final analysis.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Unlike in the horizontal structure, where all agents have the right to report the final analysis and finish the conversation, lower-level agents here are asked to turn to the leader for the final analysis."
+        },
+        {
+            "claim_id": 67,
+            "claim_text": "Instead of using the leader_prompt to establish leadership, two extra responsibilities are added separately to the leader and subordinates’ system prompt as follows:",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Instead of using the leader_prompt to establish leadership, two extra responsibilities are added separately to the leader and subordinates’ system prompt as follows:"
+        },
+        {
+            "claim_id": 68,
+            "claim_text": "Leader",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Leader"
+        },
+        {
+            "claim_id": 69,
+            "claim_text": "(1) Give out tasks and advices to [Agent A] & [Agent B].",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "(1) Give out tasks and advices to [Agent A] & [Agent B]."
+        },
+        {
+            "claim_id": 70,
+            "claim_text": "(2) You should be the person to provide final analysis and finish the task.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "(2) You should be the person to provide final analysis and finish the task."
+        },
+        {
+            "claim_id": 71,
+            "claim_text": "Subordinates",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Subordinates"
+        },
+        {
+            "claim_id": 72,
+            "claim_text": "(1) Report your findings to [Leader Agent] and ask for advices before providing final analysis.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "(1) Report your findings to [Leader Agent] and ask for advices before providing final analysis."
+        },
+        {
+            "claim_id": 73,
+            "claim_text": "(2) You’re not allowed to finish the task without the permission from [Leader Agent].",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "(2) You’re not allowed to finish the task without the permission from [Leader Agent]."
+        },
+        {
+            "claim_id": 74,
+            "claim_text": "The speaking order is still round-robin, but the conversation is consistently ended by the leader agent with the above prompts implemented.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The speaking order is still round-robin, but the conversation is consistently ended by the leader agent with the above prompts implemented."
+        },
+        {
+            "claim_id": 75,
+            "claim_text": "The key contributions of this study can be summarized below:",
+            "location": "Introduction",
+            "claim_type": "Contributions",
+            "exact_quote": "The key contributions of this study can be summarized below:"
+        },
+        {
+            "claim_id": 76,
+            "claim_text": "Innovative Multi-Agent Collaboration Frameworks: We defined several novel AI agent architectures from single-agent to multi-agent, and explored vertical/horizontal/hybrid multi-agent collaboration structures distinguished between internal implementations of leadership and cooperation.",
+            "location": "Introduction",
+            "claim_type": "Contributions",
+            "exact_quote": "Innovative Multi-Agent Collaboration Frameworks: We defined several novel AI agent architectures from single-agent to multi-agent, and explored vertical/horizontal/hybrid multi-agent collaboration structures distinguished between internal implementations of leadership and cooperation."
+        },
+        {
+            "claim_id": 77,
+            "claim_text": "Detailed Analysis of Information Flow: We performed an in-depth analysis of the forms of information flow between agents in tasks of varying difficulty, explaining the core differences produced by different collaboration architectures.",
+            "location": "Introduction",
+            "claim_type": "Contributions",
+            "exact_quote": "Detailed Analysis of Information Flow: We performed an in-depth analysis of the forms of information flow between agents in tasks of varying difficulty, explaining the core differences produced by different collaboration architectures."
+        },
+        {
+            "claim_id": 78,
+            "claim_text": "Optimal Agent Group for Investment Research: Based on our experimental results, we identified the optimal multi-agent architectures for various sub-tasks. We demonstrated that an ensemble structure involving multiple agent groups achieves superior performance in investment research tasks, achieving target price prediction with 2.35% avg. diff. and 66.7% accuracy in buy or not decision-making, surpassing all other agent architectures.",
+            "location": "Introduction",
+            "claim_type": "Contributions",
+            "exact_quote": "Optimal Agent Group for Investment Research: Based on our experimental results, we identified the optimal multi-agent architectures for various sub-tasks. We demonstrated that an ensemble structure involving multiple agent groups achieves superior performance in investment research tasks, achieving target price prediction with 2.35% avg. diff. and 66.7% accuracy in buy or not decision-making, surpassing all other agent architectures."
+        },
+        {
+            "claim_id": 79,
+            "claim_text": "The architecture of AI agents varies from a single agent running independently to a collaborative form where multiple agents work together. Multi-agent systems involve two or more agents with the same or different LLM back-ends.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The architecture of AI agents varies from a single agent running independently to a collaborative form where multiple agents work together. Multi-agent systems involve two or more agents with the same or different LLM back-ends."
+        },
+        {
+            "claim_id": 80,
+            "claim_text": "In this section, we explore our methodology for building AI agent structures from single-agent to multi-agent, including multi-agent collaboration structures with the distinct internal implementation of leadership and cooperation.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "In this section, we explore our methodology for building AI agent structures from single-agent to multi-agent, including multi-agent collaboration structures with the distinct internal implementation of leadership and cooperation."
+        },
+        {
+            "claim_id": 81,
+            "claim_text": "The overview of the structures is shown in Figure 1.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "The overview of the structures is shown in Figure 1."
+        },
+        {
+            "claim_id": 82,
+            "claim_text": "Relying on the Text2Param capabilities of the underlying LLM, it’s not difficult for agents to invoke a variety of tools, such as retrieving stock prices from YFinance and fetching posts from Reddit’s r/WallStreetBets.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Relying on the Text2Param capabilities of the underlying LLM, it’s not difficult for agents to invoke a variety of tools, such as retrieving stock prices from YFinance and fetching posts from Reddit’s r/WallStreetBets."
+        },
+        {
+            "claim_id": 83,
+            "claim_text": "However, for investment research, analyzing company financial reports is also crucial. This requires equipping agents with the ability to retrieve relevant contexts from financial reports that are usually extremely long and complex.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "However, for investment research, analyzing company financial reports is also crucial. This requires equipping agents with the ability to retrieve relevant contexts from financial reports that are usually extremely long and complex."
+        },
+        {
+            "claim_id": 84,
+            "claim_text": "Typically, researchers adopt RAG (Retrieval-Augmented Generation) for such scenarios.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Typically, researchers adopt RAG (Retrieval-Augmented Generation) for such scenarios."
+        },
+        {
+            "claim_id": 85,
+            "claim_text": "Unlike typical RAG use cases (e.g. QA), we do not manually provide query questions or adjust the retriever settings for optimal results.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Unlike typical RAG use cases (e.g. QA), we do not manually provide query questions or adjust the retriever settings for optimal results."
+        },
+        {
+            "claim_id": 86,
+            "claim_text": "Instead, to fully evaluate the agent’s capabilities, we have encapsulated the ability to retrieve chunks from the RAG database into a tool function as shown in Figure 1.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Instead, to fully evaluate the agent’s capabilities, we have encapsulated the ability to retrieve chunks from the RAG database into a tool function as shown in Figure 1."
+        },
+        {
+            "claim_id": 87,
+            "claim_text": "Under this setup, agents can independently write the query and pick the number of retrievals based on task requirements.",
+            "location": "Methodology",
+            "claim_type": "Methodology",
+            "exact_quote": "Under this setup, agents can independently write the query and pick the number of retrievals based on task
+
+Raw Evidence:
+
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 308.47 seconds
+evidence_analysis_time: 1.38 seconds
+conclusions_analysis_time: 1.38 seconds
+total_execution_time: 313.52 seconds

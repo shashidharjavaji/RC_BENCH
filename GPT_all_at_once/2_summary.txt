@@ -1,0 +1,56 @@
+Claim 1:
+Type: performance
+Statement: Larger P(IK) classifiers are better at generalization across multiple distributions.
+Location: Section 5.2 Out of Distribution Generalization of P(IK)
+Exact Quote: We generally observe increasing AUROC as model size increases for all three out-of-distribution evals, suggesting that larger P(IK) classifiers are better at generalization.
+
+Evidence:
+- Evidence Text: Generalization improves as model size increases, with AUROC and calibration better for larger models.
+  Strength: strong
+  Location: Section 5.2 Out of Distribution Generalization of P(IK)
+  Limitations: While generalization improves with model size, calibration on Lambada was poor.
+  Exact Quote: We see that there is a general trend where the AUROC of P(IK) increases with model size, and calibration gets better with model size.
+
+- Evidence Text: Training on all 4 tasks improves performance across different tasks compared to training only on TriviaQA.
+  Strength: strong
+  Location: Section 5.5 Comparing Models Trained with Distinct Pretraining Distributions
+  Limitations: Performance specifics and calibration improvement magnitude are not detailed explicitly for each task.
+  Exact Quote: Training on everything does help across all tasks.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Evidence indicates increased model size and diverse training significantly enhance generalization, corroborated by AUROC improvements across multiple tasks.
+Key Limitations: Lack of specific calibration details for each task and impact of training diversity on calibration could further substantiate the claim.
+
+--------------------------------------------------
+
+Claim 2:
+Type: performance
+Statement: The presence of relevant source materials and hints improvement the P(IK) model's performance.
+Location: Section 5.4 P(IK) Generalizes to Account for Hints Towards GSM8k Solutions
+Exact Quote: We find that P(IK) responds appropriately to sources, correct hints, and incorrect or distracting hints.
+
+Evidence:
+- Evidence Text: Providing partial hints from the GSM8k hint results in higher P(IK) scores, showing that the model accurately adjusts its confidence based on the completeness of information.
+  Strength: moderate
+  Location: Section 5.4 P(IK) Generalizes to Account for Hints Towards GSM8k Solutions
+  Limitations: The effect varies dependent on the extent of the hint provided and the model’s prior training data.
+  Exact Quote: Showing more of the GSM8k hint results in higher P(IK). The effect is more consistent for the model trained on all 4 tasks.
+
+- Evidence Text: Models are partially fooled by bad hints but show lower P(IK) scores compared to when provided with good hints, indicating a level of discernment in evaluating hint quality.
+  Strength: moderate
+  Location: Section 5.4 P(IK) Generalizes to Account for Hints Towards GSM8k Solutions
+  Limitations: Variation in model response to different types of hints isn’t quantitatively detailed.
+  Exact Quote: We see lower P(IK) scores for bad hints (though the models are partially fooled).
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Evidence supports that models' performance on P(IK) is sensitive to the quality and content of hints, demonstrating an ability to adjust predictions based on contextual clues.
+Key Limitations: The analysis lacks in-depth exploration of model responses to varying hint qualities and their impact on P(IK) scores in a quantified manner.
+
+--------------------------------------------------
+

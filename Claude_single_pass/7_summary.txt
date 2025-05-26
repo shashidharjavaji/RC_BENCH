@@ -1,0 +1,72 @@
+Claim 1:
+Type: performance
+Statement: REALM outperforms all previous approaches on Open-QA tasks by a significant margin (4-16% absolute accuracy)
+Location: Section 4.4 Main Results
+Exact Quote: REALM outperform all previous approaches by a significant margin.
+
+Evidence:
+- Evidence Text: Detailed performance comparison on NQ, WQ, and CT datasets showing REALM achieving best scores
+  Strength: strong
+  Location: Table 1
+  Limitations: Limited to 3 specific benchmarks
+  Exact Quote: Ours (X = CC-News, Z = Wikipedia) achieves 40.4% on NQ, 40.7% on WQ, and 42.9% on CT
+
+- Evidence Text: Comparison with T5-11B showing better performance with smaller model
+  Strength: strong
+  Location: Section 4.4
+  Limitations: T5 uses additional training data not available to REALM
+  Exact Quote: REALM outperforms the largest T5-11B model while being 30 times smaller
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Comprehensive empirical results across multiple datasets with clear improvements over baselines
+Key Limitations: Limited to specific QA tasks, may not generalize to other domains
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology
+Statement: Salient span masking is crucial for REALM's performance
+Location: Section 4.5 Analysis
+Exact Quote: While such salient span masking has not been shown to be impactful in previous work with standard BERT training, it is crucial for REALM.
+
+Evidence:
+- Evidence Text: Ablation study comparing different masking schemes
+  Strength: moderate
+  Location: Table 2
+  Limitations: Only tested on NQ development set
+  Exact Quote: REALM with random uniform masks: 32.3, REALM with random span masks: 35.3
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Clear performance drop with alternative masking schemes, though limited to one dataset
+Key Limitations: Ablation only on one dataset, mechanism not fully explained
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: Both retriever and encoder components benefit from REALM pre-training
+Location: Section 4.5 Analysis
+Exact Quote: We find that both the encoder and retriever benefit from REALM training separately, but the best result requires both components acting in unison.
+
+Evidence:
+- Evidence Text: Ablation results showing performance with reset components
+  Strength: strong
+  Location: Table 2
+  Limitations: Only tested on NQ development set
+  Exact Quote: REALM retriever+Baseline encoder: 37.4, Baseline retriever+REALM encoder: 35.3, Baseline (ORQA): 31.3
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Clear empirical evidence showing benefits to both components individually and together
+Key Limitations: Results from single dataset ablation
+
+--------------------------------------------------
+

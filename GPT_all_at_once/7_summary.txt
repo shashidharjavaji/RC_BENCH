@@ -1,0 +1,66 @@
+Claim 1:
+Type: performance
+Statement: REALM outperforms all previous approaches by a significant margin on three popular Open-QA benchmarks.
+Location: section 4.4. Main results
+Exact Quote: REALM outperform all previous approaches by a significant margin.
+
+Evidence:
+- Evidence Text: On NaturalQuestions-Open, WebQuestions, and CuratedTrec, REALM's dense retrieval and transformer setup yields the highest exact match scores reported, surpassing other methods including those based on T5, sparse retrieval, and hybrid models.
+  Strength: strong
+  Location: Table 1 and section 4.3. Implementation Details
+  Limitations: Comparison limited to reported metrics in similar testing environments; does not account for differences in computational resources or data preprocessing that might affect outcomes.
+  Exact Quote: REALM outperforms all existing systems.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Concrete performance metrics are provided in comparison with multiple previous approaches, showing significant improvements.
+Key Limitations: Comparisons are made under similar but not identical conditions, and improvements are specific to the tested benchmarks.
+
+--------------------------------------------------
+
+Claim 2:
+Type: performance
+Statement: The improvement of REALM over ORQA is purely due to better pre-training.
+Location: Section 4.4. Main results
+Exact Quote: The improvement of REALM over ORQA is purely due to better pre-training.
+
+Evidence:
+- Evidence Text: REALM and ORQA, when fine-tuned with identical hyperparameters, show that the performance difference is attributed to the former's pre-training process, including the novel use of backpropagation into the MIPS index for training the retriever.
+  Strength: moderate
+  Location: section 4.2. Approaches compared and 4.3. Implementation Details
+  Limitations: Causal assertions based on performance comparisons; specific aspects of pre-training contributing to the improvement are not quantified.
+  Exact Quote: REALM adds a novel language model pre-training step, and backpropagates into the MIPS index, rather than using a fixed index.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Based on comparing similar fine-tuning setups, the evidence suggests pre-training differences are significant, though deeper investigation into pre-training components' individual contributions is needed.
+Key Limitations: Lacks direct evidence of how each component of pre-training contributes to the performance gap.
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: REALM's retriever benefits both the knowledge retrieval and encoding processes, with the best results requiring both components acting in unison.
+Location: section 4.5. Analysis
+Exact Quote: We find that both the encoder and retriever benefit from REALM training separately, but the best result requires both components acting in unison.
+
+Evidence:
+- Evidence Text: Ablation studies show that separate improvements in retrieval and encoding due to REALM pre-training contribute to performance, but combining these enhancements yields the highest gains in model effectiveness.
+  Strength: moderate
+  Location: Table 2
+  Limitations: Findings are based on ablation studies with specific configurations and may not fully encapsulate how each component interacts in all contexts.
+  Exact Quote: REALM retriever+Baseline encoder 37.4, Baseline retriever+REALM encoder 35.3, Baseline (ORQA) 31.3.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Empirical results from varied configurations support the claim, highlighting the integration of retrieval and encoding as crucial for maximized performance.
+Key Limitations: Evidence largely dependent on specific benchmark tasks and configurations tested.
+
+--------------------------------------------------
+

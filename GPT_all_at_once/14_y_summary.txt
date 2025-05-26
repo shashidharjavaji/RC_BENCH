@@ -1,0 +1,72 @@
+Claim 1:
+Type: result
+Statement: M3ID improves visual grounding and reduces hallucinations in VLMs.
+Location: Abstract/Introduction/Results
+Exact Quote: M3ID can be applied to any pre-trained autoregressive VLM at inference time without necessitating further training and with minimal computational overhead.
+
+Evidence:
+- Evidence Text: M3ID achieves 27%/21% relative improvement over LLaVA7B and 26%/29% over LLaVA13B on the CHAIRi and CHAIRs metrics.
+  Strength: strong
+  Location: Results, Table 1
+  Limitations: Requires two forward passes at inference time, potentially leading to higher memory consumption.
+  Exact Quote: M3ID achieves 27%/21% relative improvement over LLaVA7B and 26%/29% over LLaVA13B on the CHAIRi and CHAIRs metrics.
+
+- Evidence Text: Applying M3ID or DPO reduces the percentage of hallucinated objects in captioning tasks by 25% and by 28%, respectively.
+  Strength: strong
+  Location: Results, Section 5.2
+  Limitations: Evidence is based on specific tasks and models, it may not generalize to all VLMs or tasks.
+  Exact Quote: Applying M3ID or DPO reduces the percentage of hallucinated objects in captioning tasks [20] by 25% and by 28%, respectively.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence is supported by experimental results showing significant improvements on several metrics.
+Key Limitations: Limited evidence on generalizability across diverse models and tasks; potential increase in computational resources.
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology
+Statement: M3ID's operation at inference time does not require additional training or access to model weights.
+Location: Introduction/Methodology
+Exact Quote: M3ID is applicable to any off-the-shelf model without additional training or access to model weights, offering a low computational overhead alternative to standard decoding algorithms.
+
+Evidence:
+- Evidence Text: M3ID adjusts the generation process based on visual prompt dependency, effectively leveraging mutual information between text and image without model retraining.
+  Strength: strong
+  Location: Introduction, Figure 1
+  Limitations: Depends on the quality of existing model weights and their compatibility with M3ID.
+  Exact Quote: M3ID amplifies the conditioned directions that are not already predicted by the unconditioned model more as new tokens are generated.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The methodology is novel and significantly reduces computational overhead by avoiding retraining. It leverages existing model capabilities.
+Key Limitations: Effectiveness may vary depending on the underlying model's architecture and pre-training.
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: Pairing M3ID with DPO improves grounding of VLM outputs on visual prompts beyond M3ID alone.
+Location: Results/Discussion
+Exact Quote: M3ID can be paired with Direct Preference Optimization (DPO) to improve the model’s reliance on the prompt image without requiring any labels.
+
+Evidence:
+- Evidence Text: Combining M3ID with DPO shows further reduction in hallucinated objects and improvements in grounding, supported by quantitative results on captioning tasks and VQA benchmarks.
+  Strength: strong
+  Location: Results, Section 5.2 and Table 1
+  Limitations: Results specific to implemented benchmarks; broader applications and other tasks need to be explored.
+  Exact Quote: LLaVA13B M3ID + DPO 85.2 53.4 79.1 57.5 73.2 67.5 79.2 51.1
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Quantitative evidence from controlled experiments demonstrates clear benefits of integrating M3ID with DPO.
+Key Limitations: The effectiveness may be model-specific; further studies across models and tasks are required to generalize findings.
+
+--------------------------------------------------
+

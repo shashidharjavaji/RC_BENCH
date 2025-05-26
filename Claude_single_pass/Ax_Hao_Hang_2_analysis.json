@@ -1,0 +1,97 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Most existing attribution methods violate either sensitivity or implementation invariance axioms",
+                "type": "result",
+                "location": "Section 2",
+                "exact_quote": "We find that other feature attribution methods in literature break at least one of the two axioms"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Gradient method breaks sensitivity axiom shown through ReLU network example",
+                    "strength": "strong",
+                    "limitations": "Only one example network shown",
+                    "location": "Section 2.1",
+                    "exact_quote": "For a concrete example, consider a one variable, one ReLU network, f(x) = 1 - ReLU(1-x). Suppose the baseline is x = 0 and the input is x = 2. The function changes from 0 to 1, but because f becomes flat at x = 1, the gradient method gives attribution of 0 to x."
+                },
+                {
+                    "evidence_text": "DeepLift and LRP break implementation invariance shown through counterexample",
+                    "strength": "strong",
+                    "limitations": "Limited to specific architecture example",
+                    "location": "Appendix B",
+                    "exact_quote": "Figure 7 provides an example of two equivalent networks f(x1,x2) and g(x1,x2) for which DeepLift and LRP yield different attributions."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Clear mathematical counterexamples provided for each method, though limited to specific architectures",
+                "key_limitations": "Counterexamples focus on simple networks, may not generalize to all architectures",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Integrated gradients is the only path method that preserves symmetry",
+                "type": "contribution",
+                "location": "Section 4.2",
+                "exact_quote": "Integrated gradients is the unique path method that is symmetry-preserving."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Mathematical proof showing any non-straightline path violates symmetry",
+                    "strength": "strong",
+                    "limitations": "None significant - proof is mathematically complete",
+                    "location": "Appendix A",
+                    "exact_quote": "Consider a non-straightline path \u03b3 : [0,1] \u2192 Rn from baseline to input. W.l.o.g., there exists t0 \u2208 [0,1] such that for two dimensions i,j, \u03b3i(t0) > \u03b3j(t0)..."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Rigorous mathematical proof provided",
+                "key_limitations": "None significant",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "The integrated gradients method requires minimal computation and is easy to implement",
+                "type": "methodology",
+                "location": "Section 5",
+                "exact_quote": "The integral of integrated gradients can be efficiently approximated via a summation. We simply sum the gradients at points occurring at sufficiently small intervals along the straightline path"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Method requires only gradient computations in a loop",
+                    "strength": "moderate",
+                    "limitations": "No direct performance comparisons with other methods",
+                    "location": "Section 5",
+                    "exact_quote": "In practice, we find that somewhere between 20 and 300 steps are enough to approximate the integral (within 5%)"
+                },
+                {
+                    "evidence_text": "Implementation in major frameworks is straightforward",
+                    "strength": "moderate",
+                    "limitations": "Limited to specific framework example",
+                    "location": "Section 5",
+                    "exact_quote": "For instance, in TensorFlow, it amounts to calling tf.gradients in a loop over the set of inputs"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Implementation details provided but lacks comparative analysis",
+                "key_limitations": "No benchmarks comparing computational cost to other methods",
+                "confidence_level": "medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "23.55 seconds",
+        "total_execution_time": "26.23 seconds"
+    }
+}

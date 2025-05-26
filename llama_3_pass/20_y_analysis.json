@@ -1,0 +1,166 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "A static method for neuron-level knowledge attribution in large language models is proposed, achieving superior performance across three metrics compared to seven other methods.",
+                "location": "Abstract",
+                "type": "Methodological Contribution",
+                "exact_quote": "In this paper, we propose a static method for pinpointing significant neurons. Compared to seven other methods, our approach demonstrates superior performance across three metrics."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The results of the original model (first line) and eight attribution methods are shown in Table 2. In comparison with the other seven methods, our attribution method (second line) attributes more important neurons, resulting in the most significant reduction across all metrics in both GPT2 and Llama.",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "Section 4.1",
+                    "exact_quote": "Table 2"
+                }
+            ],
+            "conclusion": {
+                "claim_id": 1,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Comparison with other methods is limited to the seven methods evaluated",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "The proposed method identifies 'value neurons' that directly contribute to final predictions and 'query neurons' that aid in activating these 'value neurons'.",
+                "location": "Abstract",
+                "type": "Methodological Contribution",
+                "exact_quote": "Additionally, since most static methods typically only identify 'value neurons' directly contributing to the final prediction, we propose a method for identifying 'query neurons' which activate these 'value neurons'."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "We propose a static method to identify these 'query neurons' based on Eq.1, Eq.5, and Eq.6. Since the fc2 vectors do not change, the coefficient scores are the only varying element in different cases.",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "Section 3.4",
+                    "exact_quote": "Section 3.4"
+                }
+            ],
+            "conclusion": {
+                "claim_id": 2,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None mentioned in the provided text",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "The analysis reveals that both attention and FFN layers can store knowledge, with all important neurons directly contributing to knowledge prediction located in deep layers.",
+                "location": "Section 4.2",
+                "type": "Empirical Finding",
+                "exact_quote": "Both attention and FFN layers have ability to store knowledge, and all the top10 layers are in deep layers."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Both attention and FFN layers have ability to store knowledge, and all the top10 layers are in deep layers.",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "Section 4.2",
+                    "exact_quote": "Table 3 and Table 4"
+                }
+            ],
+            "conclusion": {
+                "claim_id": 3,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Analysis is based on the specific models (GPT2 and Llama) and knowledge types evaluated",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Knowledge with similar semantics tends to be stored in the same heads, while knowledge with distinct semantics is stored in different heads.",
+                "location": "Section 4.2",
+                "type": "Empirical Finding",
+                "exact_quote": "Information with analogous semantics (e.g., language, capital, country) tends to be stored within similar layers/modules."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "Information with analogous semantics (e.g., language, capital, country) tends to be stored within similar layers/modules.",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "Section 4.2",
+                    "exact_quote": "Table 4"
+                }
+            ],
+            "conclusion": {
+                "claim_id": 4,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Observation is based on the top layers and heads identified",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Intervening a few 'value neurons' (300) or 'query neurons' (1000) can significantly influence the final prediction.",
+                "location": "Section 4.2",
+                "type": "Empirical Finding",
+                "exact_quote": "When intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 5,
+                    "evidence_text": "When intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "Section 4.2",
+                    "exact_quote": "Table 13"
+                }
+            ],
+            "conclusion": {
+                "claim_id": 5,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Intervention is limited to the top neurons identified",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": {
+                "text": "The shallow and medium FFN layers play a crucial role in activating 'value neurons' in attention layers.",
+                "location": "Section 4.2",
+                "type": "Empirical Finding",
+                "exact_quote": "For every knowledge, the shallow and medium FFN layers play larger roles than attention layers in activating 'value neurons'."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 6,
+                    "evidence_text": "The shallow and medium FFN layers play a crucial role in activating 'value neurons' in attention layers, as shown in Table 14.",
+                    "strength": "strong",
+                    "limitations": "None",
+                    "location": "Section 4.2",
+                    "exact_quote": "Table 14"
+                }
+            ],
+            "conclusion": {
+                "claim_id": 6,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Analysis focuses on the role of shallow and medium FFN layers",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "105.29 seconds",
+        "evidence_analysis_time": "99.43 seconds",
+        "conclusions_analysis_time": "55.06 seconds",
+        "total_execution_time": "264.18 seconds"
+    }
+}

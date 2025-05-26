@@ -1,0 +1,148 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "LLMs do not think step-by-step in implicit reasoning.",
+                "location": "Abstract",
+                "type": "Novel Finding",
+                "exact_quote": "LLMs Do Not Think Step-by-step In Implicit Reasoning"
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The results in Figure 2 and Figure 3 shows the accuracy of probing the intermediate result of each step when the problem is 3-step or 5-step. It is clear that the results of the first step and the last step can always be probed successfully in the back layers, indicating the model does memorize the input value (i.e. the result of the first step) and does conceive the final answer (i.e. the result of the last step). By contrast, the result of the second step can barely be probed with a lower accuracy, and the results of other steps in the middle can hardly be detected.",
+                    "strength": "strong",
+                    "limitations": "Limited to arithmetic problems",
+                    "location": "Section 2.2",
+                    "exact_quote": "It looks that the curve of the last step just surges in the last layers, even without waiting for the processing of the 3rd or 4th step."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 1,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Limited to arithmetic problems and specific LLM model (Qwen2.5-72B-Instruct)",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Implicit CoT still lags behind explicit CoT in performance.",
+                "location": "Introduction",
+                "type": "Comparison/Contrast",
+                "exact_quote": "empirical evidence suggests the performance of implicit CoT still lag behind explicit CoT."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Empirical evidence suggests the performance of implicit CoT still lag behind explicit CoT.",
+                    "strength": "moderate",
+                    "limitations": "No specific data provided in this snippet",
+                    "location": "Introduction",
+                    "exact_quote": "Despite the theoretical appeal of implicit reasoning as a more efficient alternative to traditional CoT methods, empirical evidence suggests the performance of implicit CoT still lag behind explicit CoT."
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Table 1 shows the accuracy of Qwen2.5-72b-instruct under different problem presentations using implicit or explicit reasoning on 3-step and 5-step problems.",
+                    "strength": "strong",
+                    "limitations": "Specific to Qwen2.5-72b-instruct model",
+                    "location": "Section 2.3",
+                    "exact_quote": "Implicit Explicit Prompt 3-step 5-step original 85.01 53.95 100.00 100.00 reverse 70.62 13.71 100.00 100.00 divide 69.86 37.28 100.00 100.00"
+                }
+            ],
+            "conclusion": {
+                "claim_id": 2,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Empirical evidence from specific experiments, might not generalize to all LLMs or tasks",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "LLMs may have the ability to perform 2-hop reasoning in implicit reasoning but not for more steps.",
+                "location": "Section 2.2",
+                "type": "Novel Finding",
+                "exact_quote": "This suggests that LLMs may have the ability to perform a 2-hop reasoning (the 3-step problem actually only needs 2 hops because the result of the first step is already given) in implicit reasoning, but not at all when there are more steps involved."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "The results of the second step can barely be probed with a lower accuracy, and the results of other steps in the middle can hardly be detected, suggesting LLMs may have the ability to perform 2-hop reasoning in implicit reasoning but not for more steps.",
+                    "strength": "moderate",
+                    "limitations": "Limited to arithmetic problems and specific probing method",
+                    "location": "Section 2.2",
+                    "exact_quote": "By contrast, the result of the second step can barely be probed with a lower accuracy, and the results of other steps in the middle can hardly be detected."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 3,
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "key_limitations": "Inference based on probing accuracy, might not directly imply reasoning capability",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Implicit reasoning is less robust and less reliable than explicit reasoning.",
+                "location": "Section 2.3",
+                "type": "Comparison/Contrast",
+                "exact_quote": "This contrast further demonstrate our inference that, in implicit reasoning, the model is actually answering directly by experience and intuition, but not by reasoning step-by-step. This cause the way of implicit reasoning less robust and less reliable."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 5,
+                    "evidence_text": "Table 1 shows that modifying the problem by reversing the order of the equations or dividing all values by 10 significantly degrades the performance when using implicit reasoning, while the performance of explicit reasoning remains perfect.",
+                    "strength": "strong",
+                    "limitations": "Specific to Qwen2.5-72b-instruct model and arithmetic problems",
+                    "location": "Section 2.3",
+                    "exact_quote": "Implicit Explicit Prompt 3-step 5-step original 85.01 53.95 100.00 100.00 reverse 70.62 13.71 100.00 100.00 divide 69.86 37.28 100.00 100.00"
+                }
+            ],
+            "conclusion": {
+                "claim_id": 4,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Specific to the tested modifications and LLM model, might not generalize to all scenarios",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Scaling the test-time by using explicit CoT may still be the most feasible method to further propel the capabilities of LLMs at present.",
+                "location": "Section 3 Conclusion",
+                "type": "Recommendation/Advice",
+                "exact_quote": "When you ask LLMs to give the answer directly, you should know that it has not actually undergone a real reasoning. Scaling the test-time by using explicit CoT may still be the most feasible method to further propel the capabilities of LLMs at present."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 6,
+                    "evidence_text": "The study concludes that scaling the test-time by using explicit CoT may still be the most feasible method to further propel the capabilities of LLMs at present, due to the limitations of implicit reasoning.",
+                    "strength": "moderate",
+                    "limitations": "Conclusion based on the study's findings, not direct experimental evidence",
+                    "location": "Section 3",
+                    "exact_quote": "Scaling the test-time by using explicit CoT may still be the most feasible method to further propel the capabilities of LLMs at present."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 5,
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "key_limitations": "Conclusion based on the study's findings, might not account for future advancements in implicit CoT",
+                "confidence_level": "medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "42.00 seconds",
+        "evidence_analysis_time": "87.35 seconds",
+        "conclusions_analysis_time": "28.98 seconds",
+        "total_execution_time": "158.91 seconds"
+    }
+}

@@ -1,0 +1,204 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Larger models are well-calibrated on diverse multiple choice questions when provided in the right format.",
+                "type": "result",
+                "location": "2",
+                "exact_quote": "We show that large models are very well calibrated on diverse multiple choice questions (e.g. from BIG Bench [Srivastava et al., 2022], MMLU [Hendrycks et al., 2021], and many other evaluations); see Figures 4, 5, and 6."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Calibration curves for various model sizes on all of the multiple choice tasks in BIG Bench, in the format described in section 2.",
+                    "strength": "strong",
+                    "limitations": "Assumes that the format used is the only factor contributing to calibration.",
+                    "location": "2",
+                    "exact_quote": "We show calibration curves for various model sizes on all of the multiple choice tasks in BIG Bench, in the format described in section 2."
+                },
+                {
+                    "evidence_text": "Calibration improves with model size and few-shot prompting.",
+                    "strength": "strong",
+                    "limitations": "Does not account for potential overfitting to specific tasks or formats.",
+                    "location": "2",
+                    "exact_quote": "We typically find good calibration 0-shot, without any other prompt, though calibration improves as we pass from 0-shot to few-shot."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence provided shows clear trends of improved calibration with increased model size and the use of few-shot prompting.",
+                "key_limitations": "The study does not explore the impact of different prompting strategies or task formats on calibration.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Models can self-evaluate whether their own samples are True or False, though this tends to be a more challenging task.",
+                "type": "result",
+                "location": "4.1",
+                "exact_quote": "We evaluate on the generative tasks TriviaQA [Joshi et al., 2017], Lambada [Paperno et al., 2016], the Codex HumanEval [Chen et al., 2021], arithmetic problems, and natural function synthesis problems scraped from GitHub."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Models can self-evaluate whether their own samples are True or False, though this tends to be a more challenging task (since models tend to find their own samples more plausible).",
+                    "strength": "moderate",
+                    "limitations": "The claim is based on the assumption that models are more likely to find their own samples more plausible, which may not always be the case.",
+                    "location": "4.1",
+                    "exact_quote": "We can self-evaluate whether their own samples are True or False, though this tends to be a more challenging task (since models tend to find their own samples more plausible)."
+                },
+                {
+                    "evidence_text": "Self-evaluations are well-calibrated few-shot, though models aren\u2019t as well-calibrated zero-shot.",
+                    "strength": "moderate",
+                    "limitations": "The claim is based on the assumption that few-shot prompting improves calibration, which may not always be the case.",
+                    "location": "4.1",
+                    "exact_quote": "Self-evaluations are well-calibrated few-shot, though models aren\u2019t as well-calibrated zero-shot."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The evidence provided shows that self-evaluation performance improves with model size and few-shot prompting.",
+                "key_limitations": "The study does not explore the impact of different prompting strategies or task formats on self-evaluation.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Models trained to predict 'P(IK)' can differentiate between questions they can and cannot answer.",
+                "type": "methodology",
+                "location": "5",
+                "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "We train P(IK) as the logit from an additional value 'head' added to the model.",
+                    "strength": "strong",
+                    "limitations": "The claim assumes that the value head approach is the most effective method for training P(IK).",
+                    "location": "5.1",
+                    "exact_quote": "We train P(IK) as the logit from an additional value 'head' added to the model."
+                },
+                {
+                    "evidence_text": "We finetune the entire model along with the value head.",
+                    "strength": "moderate",
+                    "limitations": "The claim assumes that finetuning the entire model along with the value head is the most effective method for training P(IK).",
+                    "location": "5.1",
+                    "exact_quote": "During P(IK) training, we finetune the entire model along with the value head."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The evidence provided shows that training models with a value head can effectively differentiate between questions they can and cannot answer.",
+                "key_limitations": "The study does not explore alternative methods for training P(IK).",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "P(IK) generalizes to account for source materials in the context.",
+                "type": "result",
+                "location": "5.3",
+                "exact_quote": "We see that including a relevant Wikipedia article in the context boosts the average P(IK) on TriviaQA Questions."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Including a relevant Wikipedia article in the context boosts the average P(IK) on TriviaQA Questions.",
+                    "strength": "strong",
+                    "limitations": "The claim is based on the assumption that the presence of a Wikipedia article is the only factor affecting P(IK).",
+                    "location": "5.3",
+                    "exact_quote": "Including a relevant Wikipedia article in the context boosts the average P(IK) on TriviaQA Questions."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence provided shows that P(IK) increases when a relevant Wikipedia article is included in the context.",
+                "key_limitations": "The study does not explore the impact of other factors, such as the length of the article or the relevance of the information.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "P(IK) generalizes to account for hints towards the solution of mathematical word problems.",
+                "type": "result",
+                "location": "5.4",
+                "exact_quote": "We see that showing more of the GSM8k hint results in higher P(IK)."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Showing more of the GSM8k hint results in higher P(IK).",
+                    "strength": "moderate",
+                    "limitations": "The claim is based on the assumption that the presence of a hint is the only factor affecting P(IK).",
+                    "location": "5.4",
+                    "exact_quote": "Showing more of the GSM8k hint results in higher P(IK)."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The evidence provided shows that P(IK) increases when more of the hint is shown.",
+                "key_limitations": "The study does not explore the impact of other factors, such as the quality of the hint or the complexity of the problem.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": {
+                "text": "Models trained on TriviaQA, LAMBADA, Arithmetic, and Python Function Synthesis perform better and more consistently on P(IK) with hints.",
+                "type": "result",
+                "location": "5.4",
+                "exact_quote": "The P(IK) model that was trained on TriviaQA, LAMBADA, Arithmetic, and Python Function Synthesis performs better and more consistently, especially with partial hints."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The P(IK) model trained on TriviaQA, LAMBADA, Arithmetic, and Python Function Synthesis performs better and more consistently, especially with partial hints.",
+                    "strength": "moderate",
+                    "limitations": "The claim is based on the assumption that the performance of the model is solely due to the training data.",
+                    "location": "5.4",
+                    "exact_quote": "The P(IK) model trained on TriviaQA, LAMBADA, Arithmetic, and Python Function Synthesis performs better and more consistently, especially with partial hints."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The evidence provided shows that the model trained on a diverse set of tasks performs better and more consistently on P(IK) with hints.",
+                "key_limitations": "The study does not explore the impact of other factors, such as the quality of the hints or the complexity of the problems.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": {
+                "text": "Models trained on distinct pretraining distributions can be distinguished based on P(IK).",
+                "type": "methodology",
+                "location": "5.5",
+                "exact_quote": "We studied two 12B models (with identical architecture) that were pretrained on distinct data distributions."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "We finetuned both models for P(IK) on the questions from the TriviaQA training set that each model got correct.",
+                    "strength": "moderate",
+                    "limitations": "The claim is based on the assumption that the performance of the models is solely due to the training data.",
+                    "location": "5.5",
+                    "exact_quote": "We finetuned both models for P(IK) on the questions from the TriviaQA training set that each model got correct."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The evidence provided shows that models trained on distinct pretraining distributions can be distinguished based on P(IK).",
+                "key_limitations": "The study does not explore the impact of other factors, such as the quality of the training data or the architecture of the models.",
+                "confidence_level": "medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "269.10 seconds",
+        "total_execution_time": "357.92 seconds"
+    }
+}

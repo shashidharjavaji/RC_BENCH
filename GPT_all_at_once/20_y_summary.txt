@@ -1,0 +1,78 @@
+Claim 1:
+Type: performance
+Statement: The proposed method achieves the best performance under three metrics compared with seven static methods.
+Location: Section 1/Paragraph 4
+Exact Quote: Compared with seven static methods, our proposed method achieves the best performance on three metrics.
+
+Evidence:
+- Evidence Text: The method significantly reduces the probability of the correct knowledge token in GPT2 and Llama-7B.
+  Strength: strong
+  Location: Section 4.1/Results and analysis
+  Limitations: Limited to two models and specific knowledge types.
+  Exact Quote: when only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama-7B.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Evidence demonstrates method's effectiveness in attributing neurons significantly impacting final predictions; however, it's based on limited models and types.
+Key Limitations: Lack of diverse model evaluation and focused on specific types of knowledge.
+
+--------------------------------------------------
+
+Claim 2:
+Type: contribution
+Statement: Both attention and FFN layers can store knowledge, with all important neurons directly contributing to knowledge prediction in deep layers.
+Location: Section 3/Paragraph 1
+Exact Quote: Both attention and FFN layers can store knowledge, and all important neurons directly contribute to knowledge prediction are in deep layers.
+
+Evidence:
+- Evidence Text: Value neurons are activated by attention value neurons from medium-deep layers, and these, in turn, by shallow-medium FFN query neurons.
+  Strength: moderate
+  Location: Section 3/Paragraph 4
+  Limitations: The analysis focused on the impact of neuron depth on knowledge storage without considering the effects of neuron width or other factors.
+  Exact Quote: FFN value neurons are mainly activated by medium-deep attention value neurons, while these attention neurons are mainly activated by shallow/medium FFN query neurons.
+
+- Evidence Text: Shared value and query neurons display different distributions across models, implying varying storage and retrieval mechanisms.
+  Strength: moderate
+  Location: Section 4.2/Table 8
+  Limitations: Insight derived from top-ranking neurons in limited models, may not generalize.
+  Exact Quote: On average, there are 27.6% shared value neurons in GPT2 and 14.1% in Llama.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Empirical data supports the claim of deep layer importance in knowledge storage but narrower examination scope.
+Key Limitations: Study narrowly focuses on specific models and knowledge type attributions.
+
+--------------------------------------------------
+
+Claim 3:
+Type: performance
+Statement: The log probability increase method outperforms other attribution metrics in identifying neurons that significantly influence final predictions.
+Location: Section 3.4/Paragraph 2
+Exact Quote: Compared with the other seven methods, our attribution method [...] attributes more important neurons, resulting in the most significant reduction across all metrics in both GPT2 and Llama.
+
+Evidence:
+- Evidence Text: The method leads to a significant decrease in the correct knowledge token's probability in intervention experiments.
+  Strength: strong
+  Location: Section 3.4/Table 2
+  Limitations: Effectiveness demonstrated under controlled conditions; real-world applicability may vary.
+  Exact Quote: when only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama-7B.
+
+- Evidence Text: Attribution using log probability increase more effectively captures neurons in medium-deep to very deep layers compared to other methods.
+  Strength: moderate
+  Location: Section 4.2/Paragraph 5
+  Limitations: Primarily based on synthetic intervention analysis, lacks verification in naturally occurring model usage.
+  Exact Quote: [...] employing probability increase is more inclined to attribute neurons in the deepest layers, whereas log probability increase tends to attribute neurons in medium-deep layers.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Direct correlation between the method usage and measurable outcomes; however, based on specific implementations and models.
+Key Limitations: Efficiency and applicability may hinge on the specific qualities of the LLMs being analyzed.
+
+--------------------------------------------------
+

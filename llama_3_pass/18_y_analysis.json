@@ -1,0 +1,140 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "In-Context RALM can play two important roles in making RALM systems more powerful and more prevalent.",
+                "location": "Section 8: Discussion",
+                "type": "Methodology/Approach",
+                "exact_quote": "Retrieval from external sources has become a common practice in knowledge-intensive tasks (such as factual question answering, fact checking, and more; Petroni et al. 2021). In parallel, recent breakthroughs in LM generation capabilities has led to LMs that can generate useful long texts. However, factual inaccuracies remain a common way in which machine-generated text can fall short, and lack of direct provenance makes it hard to trust machine generated text. This makes language modeling both a promising and an urgent new application area for knowledge grounding, and motivates promoting RALM approaches. Prior research has already investigated RALM, of course, but it is not yet widely deployed. One likely reason is that existing approaches rely upon fine-tuning the LM, which is typically difficult and costly, and is even impossible for LMs accessible only via an API. This paper presented the framework of In-Context RALM, enabling frozen, off-the-shelf LMs to benefit from retrieval. We demonstrated that substantial performance gains can be achieved by using general purpose retrievers, and showed that additional gains can be achieved by tailoring the document selection to the LM setting. A recent work by Muhlgay et al. (2023) demonstrates that In-Context RALM is indeed able to improve the factuality of large LMs. Several directions for further improvement remain for future work. First, this paper considers only the case of prepending a single external document to the context; adding more documents could drive further gains (for example, using the framework of Ratner et al., 2022). Second, we retrieved documents every fixed interval of s tokens, but see potential for large latency and cost gains by retrieving more sparsely, such as only when a specialized model predicts that retrieval is needed. We release the code used in this work, for the community to use and improve over. We hope it will drive further research of RALM, which will enable its wider adoption. In-Context RALM can play two important roles in making RALM systems more powerful and more prevalent."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "First, given its simple reading mechanism, In-Context RALM can serve as a clean probe for developing document retrieval methods that are specialized for the LM task. These in turn can be used to improve both In-Context RALM and other more elaborate RALM methods that currently leverage general purpose retrievers. Second, due to its compatibility with off-the-shelf LMs, In-Context RALM can help drive wider deployment of RALM systems.",
+                    "strength": "strong",
+                    "limitations": "None mentioned",
+                    "location": "Section 8: Discussion",
+                    "exact_quote": "First, given its simple reading mechanism, In-Context RALM can serve as a clean probe for developing document retrieval methods that are specialized for the LM task. These in turn can be used to improve both In-Context RALM and other more elaborate RALM methods that currently leverage general purpose retrievers. Second, due to its compatibility with off-the-shelf LMs, In-Context RALM can help drive wider deployment of RALM systems."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 1,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None mentioned in the provided text",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Substantial performance gains can be achieved by using general purpose retrievers.",
+                "location": "Section 8: Discussion",
+                "type": "Methodology/Approach",
+                "exact_quote": "We demonstrated that substantial performance gains can be achieved by using general purpose retrievers, and showed that additional gains can be achieved by tailoring the document selection to the LM setting."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Table 1 shows for the GPT-2 models that across all the examined corpora, employing In-Context RALM with an off-the-shelf retriever improved LM perplexity to a sufficient extent that it matched that of a 2\u20133 larger model.",
+                    "strength": "strong",
+                    "limitations": "Limited to GPT-2 models",
+                    "location": "Section 5: The Effectiveness of In-Context RALM with Off-the-Shelf Retrievers",
+                    "exact_quote": "Table 1 shows for the GPT-2 models that across all the examined corpora, employing In-Context RALM with an off-the-shelf retriever improved LM perplexity to a sufficient extent that it matched that of a 2\u20133 larger model."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 2,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Specific models and corpora tested",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "In-Context RALM is able to improve the factuality of large LMs.",
+                "location": "Section 8: Discussion",
+                "type": "Methodology/Approach",
+                "exact_quote": "A recent work by Muhlgay et al. (2023) demonstrates that In-Context RALM is indeed able to improve the factuality of large LMs."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "A recent work by Muhlgay et al. (2023) demonstrates that In-Context RALM is indeed able to improve the factuality of large LMs.",
+                    "strength": "strong",
+                    "limitations": "Not presented in this paper, but mentioned as external work",
+                    "location": "Section 8: Discussion",
+                    "exact_quote": "A recent work by Muhlgay et al. (2023) demonstrates that In-Context RALM is indeed able to improve the factuality of large LMs."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 3,
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "key_limitations": "Based on a single recent work, might not be universally applicable",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Adding more documents could drive further gains.",
+                "location": "Section 8: Discussion",
+                "type": "Future Work",
+                "exact_quote": "First, this paper considers only the case of prepending a single external document to the context; adding more documents could drive further gains (for example, using the framework of Ratner et al., 2022)."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "Figure 8 demonstrates that showing documents in-context significantly improves the model\u2019s performance, and most of the gain can be obtained by using only two documents (or even a single one in some cases).",
+                    "strength": "moderate",
+                    "limitations": "Limited to the development set of NQ and TriviaQA",
+                    "location": "Section 7: In-Context RALM for Open-Domain Question Answering",
+                    "exact_quote": "Figure 8 demonstrates that showing documents in-context significantly improves the model\u2019s performance, and most of the gain can be obtained by using only two documents (or even a single one in some cases)."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 4,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Dependent on the specific experimental setup (Figure 8)",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Retrieving more sparsely could lead to large latency and cost gains.",
+                "location": "Section 8: Discussion",
+                "type": "Future Work",
+                "exact_quote": "Second, we retrieved documents every fixed interval of s tokens, but see potential for large latency and cost gains by retrieving more sparsely, such as only when a specialized model predicts that retrieval is needed."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 5,
+                    "evidence_text": "We see potential for large latency and cost gains by retrieving more sparsely, such as only when a specialized model predicts that retrieval is needed.",
+                    "strength": "weak",
+                    "limitations": "Speculative, not experimentally verified in this paper",
+                    "location": "Section 8: Discussion",
+                    "exact_quote": "We see potential for large latency and cost gains by retrieving more sparsely, such as only when a specialized model predicts that retrieval is needed."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 5,
+                "conclusion_justified": true,
+                "robustness": "low",
+                "key_limitations": "Speculative, based on potential rather than direct evidence",
+                "confidence_level": "low"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "134.51 seconds",
+        "evidence_analysis_time": "132.75 seconds",
+        "conclusions_analysis_time": "45.40 seconds",
+        "total_execution_time": "320.71 seconds"
+    }
+}

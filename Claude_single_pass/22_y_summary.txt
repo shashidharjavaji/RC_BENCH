@@ -1,0 +1,78 @@
+Claim 1:
+Type: performance
+Statement: The proposed JMRI framework achieves state-of-the-art performance on five visual grounding benchmark datasets
+Location: Section IV.D
+Exact Quote: Experimental results on five public benchmark datasets demonstrate the effectiveness of the proposed JMRI against the state-of-the-arts.
+
+Evidence:
+- Evidence Text: Performance on ReferItGame and Flickr30K Entities datasets showing JMRI II achieves 71.65% and 82.11% accuracy respectively
+  Strength: strong
+  Location: Section IV.D.1
+  Limitations: Limited to specific datasets and metrics
+  Exact Quote: On the ReferItGame dataset, JMRI II obtains the second-best accuracy among all the approaches...On the Flick30K Entities dataset, JMRI with two versions obtained the first and the third best results
+
+- Evidence Text: Superior performance on RefCOCO/RefCOCO+/RefCOCOg datasets with significant improvements over previous SOTA
+  Strength: strong
+  Location: Section IV.D.2
+  Limitations: Primarily focused on accuracy metric only
+  Exact Quote: JMRI II surpasses the previous state-of-the-art VLTVG/SeqTR by an improvement of 4.24/5.72 points on val-g, 2.08/3.26 points on val-u, and 3.32/3.29 points on test-u
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Comprehensive experimental results across multiple datasets with quantitative improvements over SOTA methods
+Key Limitations: Limited evaluation metrics, specific to certain types of datasets
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology
+Statement: JMRI achieves best performance with lowest training cost by freezing pretrained vision-language foundation model
+Location: Section III
+Exact Quote: By freezing the pretrained CLIP and updating the other modules, we achieve the best performance with the least training budget and deployment cost.
+
+Evidence:
+- Evidence Text: Training details showing frozen CLIP parameters and optimization of other modules only
+  Strength: moderate
+  Location: Section IV.B.2
+  Limitations: Limited direct comparison of training costs with other methods
+  Exact Quote: We utilize the pretrained CLIP model to initialize the early joint representation module and freeze its parameters during training, and the other modules are optimized with AdamW optimizer
+
+Evaluation:
+Conclusion Justified: No
+Robustness: medium
+Confidence Level: medium
+Justification: While freezing CLIP parameters reduces training cost, insufficient direct evidence comparing costs with other methods
+Key Limitations: Lacks comprehensive training cost comparisons
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: Early joint representation using CLIP provides strong semantic alignment between visual and linguistic features
+Location: Section III.A
+Exact Quote: The projection space is learned by CLIP using contrastive pretraining...Consequently, the early fusion between vision and language is achieved by the dot product in a learned contrastive embedding space.
+
+Evidence:
+- Evidence Text: Grad-CAM visualizations showing semantic alignment
+  Strength: moderate
+  Location: Section IV.E.1
+  Limitations: Qualitative evidence only
+  Exact Quote: Grad-CAM maps usually pay attention to the relevant cues and highlight image regions corresponding to the target object
+
+- Evidence Text: Ablation study results showing contribution of early alignment
+  Strength: strong
+  Location: Section IV.C.1/Table I
+  Limitations: Limited to specific experimental setup
+  Exact Quote: Without early alignment and deep fusion, the grounding performance decreases dramatically
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Both qualitative and quantitative evidence support semantic alignment claim
+Key Limitations: Heavy reliance on qualitative visualization evidence
+
+--------------------------------------------------
+

@@ -1,0 +1,158 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Models trained on MNLI adopt lexical overlap, subsequence, and constituent heuristics rather than learning proper inference rules",
+                "location": "Abstract",
+                "type": "Main finding",
+                "exact_quote": "We find that models trained on MNLI, including BERT, a state-of-the-art model, perform very poorly on HANS, suggesting that they have indeed adopted these heuristics."
+            },
+            "evidence": [],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Models tested were all neural networks; may not generalize to other architectures",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "HANS dataset reveals substantial room for improvement in NLI systems",
+                "location": "Abstract",
+                "type": "Conclusion",
+                "exact_quote": "We conclude that there is substantial room for improvement in NLI systems, and that the HANS dataset can motivate and measure progress in this area."
+            },
+            "evidence": [],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Limited to specific heuristics tested; other aspects of NLI may show different results",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "All tested models performed substantially below chance on HANS, barely exceeding 0% accuracy in most cases",
+                "location": "Section 5 Results",
+                "type": "Empirical finding",
+                "exact_quote": "However, they all performed poorly\u2014with accuracies less than 10% in most cases, when chance is 50%\u2014on the cases where the heuristics make incorrect predictions"
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Models scored less than 10% accuracy on non-entailment cases in HANS when chance is 50%",
+                    "strength": "strong",
+                    "limitations": "Only tested 4 models",
+                    "location": "Results section",
+                    "exact_quote": "they all performed poorly\u2014with accuracies less than 10% in most cases, when chance is 50%\u2014on the cases where the heuristics make incorrect predictions"
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Results specific to non-entailment cases; models performed well on entailment cases",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "SPINN performed better than DA and ESIM on subsequence and constituent cases due to its tree-based structure",
+                "location": "Section 5 Results",
+                "type": "Comparative finding",
+                "exact_quote": "SPINN had the best performance on the subsequence cases. This might be due to the tree-based nature of its input: since the subsequences targeted in these cases were explicitly chosen not to be constituents, they do not form cohesive units in SPINN's input in the way they do for sequential models."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "SPINN outperformed on subsequence cases due to tree structure",
+                    "strength": "moderate",
+                    "limitations": "Performance still poor overall",
+                    "location": "Results section - Comparison of models",
+                    "exact_quote": "SPINN had the best performance on the subsequence cases. This might be due to the tree-based nature of its input: since the subsequences targeted in these cases were explicitly chosen not to be constituents, they do not form cohesive units in SPINN's input in the way they do for sequential models."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Improvement still left performance far below chance; may be due to other factors besides tree structure",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "BERT performed better than other models on lexical overlap and constituent cases but still far below chance",
+                "location": "Section 5 Results",
+                "type": "Comparative finding",
+                "exact_quote": "BERT did slightly worse than SPINN on the subsequence cases, but performed noticeably less poorly than all other models at both the constituent and lexical overlap cases (though it was still far below chance)."
+            },
+            "evidence": [],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Still poor absolute performance; relative improvement may not be meaningful",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": {
+                "text": "Models' poor performance on HANS is likely due more to insufficient signal in the MNLI training set than architectural limitations",
+                "location": "Section 6 Discussion",
+                "type": "Interpretive finding",
+                "exact_quote": "Other sources of evidence suggest that the models' failure is due in large part to insufficient signal from the MNLI training set, rather than the models' representational capacities alone."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "BERT has strong syntax capabilities but fails on HANS due to MNLI training",
+                    "strength": "strong",
+                    "limitations": "Indirect evidence based on prior BERT results",
+                    "location": "Discussion section",
+                    "exact_quote": "The BERT model we used (bert-base-uncased) was found by Goldberg (2019) to achieve strong results in syntactic tasks such as subject-verb agreement prediction...Despite this evidence that BERT has access to relevant syntactic information, its accuracy was 0% on the subject-object swap cases"
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Evidence is somewhat indirect; other factors could explain BERT's poor performance",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": {
+                "text": "Augmenting training data with HANS-like examples substantially improved model performance on HANS",
+                "location": "Section 7",
+                "type": "Empirical finding",
+                "exact_quote": "In general, the models trained on the augmented MNLI performed very well on HANS"
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Models trained on MNLI+HANS-like examples performed well on HANS",
+                    "strength": "strong",
+                    "limitations": "Not all models improved equally",
+                    "location": "Section 7",
+                    "exact_quote": "In general, the models trained on the augmented MNLI performed very well on HANS (Figure 2); the one exception was that the DA model performed poorly on subcases for which a bag-of-words representation was inadequate."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Some categories still showed poor transfer; improvements varied across models",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "14.82 seconds",
+        "evidence_analysis_time": "13.06 seconds",
+        "conclusions_analysis_time": "8.44 seconds",
+        "total_execution_time": "40.92 seconds"
+    }
+}

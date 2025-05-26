@@ -1,0 +1,243 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: The study reveals that LLMs prefer knowledge that forms a Chain of Evidence (CoE) in imperfect contexts when handling multi-hop QA.
+Location: Abstract
+
+Evidence:
+- Evidence Text: The study characterizes three features of CoE knowledge: intent, keywords, and relations. It then proposes a CoE discrimination approach to identify CoE from external knowledge.
+  Strength: strong
+  Location: Section 3
+  Limitations: None
+  Exact Quote: We assume that LLMs prefer knowledge that forms CoE. To satisfy the two properties required for CoE formation, we characterize three features: 1) Intent describes the ultimate goal the user intends to solve through the question. 2) Keywords are important words or phrases that capture the specific details the user is asking about; and 3) Relations describe how keywords are connected to each other to convey intent.
+
+- Evidence Text: The study evaluates the effectiveness of CoE in imperfect contexts using multi-hop QA datasets (HotpotQA and 2WikiMultihopQA) and finds that CoE outperforms Non-CoE variants in accuracy.
+  Strength: strong
+  Location: Section 5
+  Limitations: None
+  Exact Quote: Generally, our study reveals LLMs’ preference for CoE in the imperfect context. Once CoE’s implicit relevance or interconnectivity is disrupted, the preference also decreases.
+
+- Evidence Text: The study also investigates LLMs’ faithfulness to CoE when it contains factual errors and finds that LLMs exhibit significant faithfulness to the answer supported by CoE.
+  Strength: strong
+  Location: Section 6
+  Limitations: None
+  Exact Quote: Finding-3: LLMs exhibit significant faithfulness to the answer supported by CoE although it contains factual errors.
+
+Conclusion:
+  Author's Conclusion: The study reveals that LLMs prefer knowledge that forms a Chain of Evidence (CoE) in imperfect contexts when handling multi-hop QA.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on a comprehensive evaluation using multiple datasets (HotpotQA and 2WikiMultihopQA) and various LLMs. The study's findings are consistent across different experimental settings, adding to the robustness of the evidence.
+  Limitations: The study's focus on multi-hop QA might limit the generalizability of the findings to other QA types. Additionally, the study does not explore the individual contributions of CoE features to LLM performance, which could provide further insights.
+  Location: Abstract
+
+--------------------------------------------------
+
+Claim 2:
+Statement: The proposed CoE discrimination approach can effectively identify CoE from external knowledge.
+Location: Section 3
+
+Evidence:
+- Evidence Text: The proposed CoE discrimination approach is based on the characterization of CoE knowledge, which includes intent, keywords, and relations. The approach leverages GPT-4o to discriminate the presence of these features within external knowledge.
+  Strength: strong
+  Location: Section 3.2
+  Limitations: None
+  Exact Quote: Based on the characterized features, we design an approach to discriminate whether external knowledge qualifies as CoE...
+
+- Evidence Text: The evaluation on five LLMs reveals that CoE enhances LLMs through more accurate generation, stronger answer faithfulness, better robustness against knowledge conflict, and improved performance in a popular RAG case.
+  Strength: strong
+  Location: Section 5
+  Limitations: None
+  Exact Quote: The evaluation on five LLMs reveals that CoE enhances LLMs through more accurate generation, stronger answer faithfulness, better robustness against knowledge conflict, and improved performance in a popular RAG case.
+
+Conclusion:
+  Author's Conclusion: The proposed CoE discrimination approach can effectively identify CoE from external knowledge.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on a comprehensive evaluation across five LLMs and multiple scenarios, including the addition of irrelevant information and misinformation. The consistent improvements observed across these evaluations strengthen the conclusion.
+  Limitations: The study's focus on multi-hop QA and the specific CoE features characterized may limit the generalizability of the findings to other question types or CoE structures.
+  Location: Section 3
+
+--------------------------------------------------
+
+Claim 3:
+Statement: LLMs exhibit higher faithfulness to the answer implicated in CoE, even when CoE contains factual errors.
+Location: Section 6
+
+Evidence:
+- Evidence Text: Table 3 shows the FR of LLMs with external knowledge under CoE and two types of Non-CoE containing incorrect answers.
+  Strength: strong
+  Location: Section 6
+  Limitations: None
+  Exact Quote: The results show that under CoE, the average FR reaches 85.4%, which is 20.6% and 16.2% higher than the SenP and WordP types under Non-CoE respectively.
+
+- Evidence Text: Moreover, Mann-Whitney tests confirmed statistically significant improvements of CoE over all Non-CoE groups (p < 0.05).
+  Strength: strong
+  Location: Section 6
+  Limitations: None
+  Exact Quote: Moreover, Mann-Whitney tests confirmed statistically significant improvements of CoE over all Non-CoE groups (p < 0.05).
+
+Conclusion:
+  Author's Conclusion: LLMs exhibit higher faithfulness to the answer implicated in CoE, even when CoE contains factual errors.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on a comprehensive evaluation of multiple LLMs (GPT-3.5, GPT-4, Llama2-13B, Llama3-70B, and Qwen2.5-32B) and two datasets (HotpotQA and 2WikiMultihopQA). The statistically significant improvements of CoE over all Non-CoE groups further reinforce the robustness of the evidence.
+  Limitations: One potential limitation is that the study only investigates the faithfulness of LLMs to CoE with factual errors in a multi-hop QA setting. Further research could explore the generalizability of these findings to other question-answering tasks or settings.
+  Location: Section 6
+
+--------------------------------------------------
+
+Claim 4:
+Statement: The CoE-guided retrieval strategy can effectively improve LLM’s accuracy in the naive RAG framework.
+Location: Section 8
+
+Evidence:
+- Evidence Text: Table 5 shows LLMs’ Accuracy (ACC) on naive RAG and RAG+ScopeCoE. The results demonstrate that RAG+ScopeCoE achieves average ACC of 77.8% and 81.6% on HotpotQA and 2WikiMultihopQA respectively, outperforming RAG by 10.4% and 28.7%.
+  Strength: strong
+  Location: Section 8.4
+  Limitations: The results are based on a specific experiment setup and may not generalize to other scenarios.
+  Exact Quote: Table 5 demonstrates the impact of naive RAG and RAG+ScopeCoE on LLMs’ accuracy.
+
+Conclusion:
+  Author's Conclusion: The CoE-guided retrieval strategy can effectively improve LLM’s accuracy in the naive RAG framework.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on quantitative results from experiments, showing consistent improvements across different models and datasets.
+  Limitations: The study only evaluates the CoE-guided retrieval strategy within the context of the naive RAG framework and may not generalize to other RAG scenarios or frameworks.
+  Location: Section 8
+
+--------------------------------------------------
+
+Claim 5:
+Statement: The study’s findings could provide insights for future research in designing the retrieval process and assessing the quality of external knowledge with the proposed CoE discrimination approach.
+Location: Conclusion
+
+Evidence:
+- Evidence Text: The evaluation on five LLMs reveals that CoE enhances LLMs through more accurate generation, stronger answer faithfulness, better robustness against knowledge conflict, and improved performance in a popular RAG case.
+  Strength: strong
+  Location: Section 8: Conclusion
+  Limitations: None mentioned in the paper
+  Exact Quote: The above findings could provide insights for future research in designing the retrieval process and assessing the quality of external knowledge with the proposed CoE discrimination approach.
+
+Conclusion:
+  Author's Conclusion: The study’s findings could provide insights for future research in designing the retrieval process and assessing the quality of external knowledge with the proposed CoE discrimination approach.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on a comprehensive evaluation of five LLMs, covering various aspects of their performance. The results consistently show the benefits of CoE, indicating a strong correlation between the proposed approach and the observed outcomes.
+  Limitations: The study's focus on multi-hop QA and the specific CoE discrimination approach might limit the generalizability of the findings to other types of questions or retrieval scenarios.
+  Location: Conclusion
+
+--------------------------------------------------
+
+Claim 6:
+Statement: The study has three limitations: (1) no step to verify the correctness of answers within the CoE, (2) not investigating individual contributions of CoE features to LLM performance, and (3) the usability of the proposed retrieval strategy having inherent constraints across RAG scenarios.
+Location: Limitations
+
+Evidence:
+- Evidence Text: There are three limitations to the current study. Firstly, we apply the ScopeCoE to search for CoE in external knowledge, but there is no step to verify the correctness of answers within the CoE. If the retrieved CoE contains incorrect information, it may mislead the LLM to generate inaccurate responses. In the Section 6, we discuss LLMs’ Following Rate to CoE containing factual errors, showing that LLMs are highly likely to follow the knowledge provided in CoE.
+  Strength: strong
+  Location: Section 9
+  Limitations: 1) no step to verify the correctness of answers within the CoE
+  Exact Quote: There are three limitations to the current study.
+
+- Evidence Text: Secondly, this paper does not investigate the individual contributions of CoE features to LLM performance. Since intent, keywords, and relations within CoE are interdependent, it is challenging to isolate any single feature. Therefore, we focus on examining the overall impact of CoE on LLM performance in this paper.
+  Strength: strong
+  Location: Section 9
+  Limitations: 2) not investigating individual contributions of CoE features to LLM performance
+  Exact Quote: Secondly, this paper does not investigate the individual contributions of CoE features to LLM performance.
+
+- Evidence Text: Thirdly, the usability of our proposed retrieval strategy (ScopeCoE) has inherent constraints across RAG scenarios. For instance, some RAG scenarios convert external knowledge into vectors and store them in vector databases, then search for question-relevant knowledge at the vector level during the retrieval phase. Our approach, which operates at the textual level, is not suitable for such vector-based RAG scenarios.
+  Strength: strong
+  Location: Section 9
+  Limitations: 3) the usability of the proposed retrieval strategy having inherent constraints across RAG scenarios
+  Exact Quote: Thirdly, the usability of our proposed retrieval strategy (ScopeCoE) has inherent constraints across RAG scenarios.
+
+Conclusion:
+  Author's Conclusion: The study acknowledges three limitations, including the lack of verification for CoE answers, the inability to isolate individual CoE feature contributions, and the limited usability of the proposed retrieval strategy across RAG scenarios.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on the study's own methodology and findings. The limitations are clearly stated, and the explanations are concise and easy to understand.
+  Limitations: None, as the limitations are already acknowledged by the authors.
+  Location: Limitations
+
+--------------------------------------------------
+
+Claim 7:
+Statement: The study uses two datasets, HotpotQA and 2WikiMultihopQA, as sources for constructing CoE samples.
+Location: Section 4
+
+Evidence:
+- Evidence Text: We selected two commonly used multihop QA datasets, HotpotQA and 2WikiMultihopQA as the sample sources.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: None
+  Exact Quote: We selected two commonly used multihop QA datasets, HotpotQA and 2WikiMultihopQA as the sample sources.
+
+Conclusion:
+  Author's Conclusion: The study utilizes two datasets, HotpotQA and 2WikiMultihopQA, as sources for constructing CoE samples.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is a clear and direct statement from the text, leaving little room for misinterpretation.
+  Limitations: None identified.
+  Location: Section 4
+
+--------------------------------------------------
+
+Claim 8:
+Statement: The study uses five LLMs (GPT-3.5, GPT-4, LLama2-13B, LLama3-70B, and Qwen2.5-32B) for evaluation.
+Location: Section 4
+
+Evidence:
+- Evidence Text: For the following experimantal evaluation, we introduce two closed-source LLMs (GPT-3.5, GPT4) and three open-source LLMs (LLama2-13B, LLama3-70B, and Qwen2.5-32B).
+  Strength: strong
+  Location: Section 4.3
+  Limitations: None
+  Exact Quote: For the following experimantal evaluation, we introduce two closed-source LLMs (GPT-3.5, GPT4) and three open-source LLMs (LLama2-13B, LLama3-70B, and Qwen2.5-32B).
+
+Conclusion:
+  Author's Conclusion: The study uses five LLMs (GPT-3.5, GPT-4, LLama2-13B, LLama3-70B, and Qwen2.5-32B) for evaluation.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on a clear and direct statement, leaving little room for misinterpretation.
+  Limitations: None identified.
+  Location: Section 4
+
+--------------------------------------------------
+
+Claim 9:
+Statement: The study finds that LLMs exhibit higher robustness against knowledge conflict when equipped with CoE.
+Location: Section 7
+
+Evidence:
+- Evidence Text: Table 4 shows LLMs’ response accuracy (ACC) after adding misinformation to CoE and two types of Non-CoE. The results show that under CoE, the average ACC of LLMs reaches 84.1%, which is 21.4% and 15.3% higher than the SenP and WordP types under Non-CoE respectively.
+  Strength: strong
+  Location: Section 7
+  Limitations: The study only evaluates the robustness of LLMs against knowledge conflict in the context of multi-hop QA.
+  Exact Quote: Finding-5: LLMs augmented with CoE exhibit higher robustness against knowledge conflict than Non-CoE.
+
+Conclusion:
+  Author's Conclusion: The study finds that LLMs exhibit higher robustness against knowledge conflict when equipped with CoE.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on a comprehensive evaluation of multiple LLMs (GPT-3.5, GPT-4, Llama2-13B, Llama3-70B, and Qwen2.5-32B) and two datasets (HotpotQA and 2WikiMultihopQA). The results are consistent across different models and datasets, indicating a strong trend.
+  Limitations: The study only evaluates the robustness of CoE in the context of multi-hop QA and may not generalize to other types of questions or tasks. Additionally, the study relies on a specific methodology for introducing misinformation, which might not capture all possible scenarios.
+  Location: Section 7
+
+--------------------------------------------------
+
+Claim 10:
+Statement: The study discovers that adding misinformation to CoE has a greater impact on LLM’s ability to generate correct outputs compared to adding irrelevant information.
+Location: Section 7
+
+Evidence:
+- Evidence Text: Finding-6: Compared to adding irrelevant information to CoE, adding misinformation has a greater impact on LLM’s ability to generate correct outputs.
+  Strength: strong
+  Location: Section 7
+  Limitations: None
+  Exact Quote: In Table 2, when adding irrelevant information from 0% to 75%, the ACC of LLMs with CoE only decreases by 1.8%. However, as shown in Table 4, introducing misinformation under similar settings results in an 18.0% ACC drop for LLMs equipped with CoE.
+
+Conclusion:
+  Author's Conclusion: The study finds that adding misinformation to CoE has a more significant impact on LLM's ability to generate correct outputs than adding irrelevant information.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, as it is based on a comprehensive evaluation of LLMs' performance under different conditions. The comparison between the impact of misinformation and irrelevant information provides a clear insight into the relative effects of each type of noise on LLMs.
+  Limitations: The study's focus on multi-hop QA and the specific CoE discrimination approach might limit the generalizability of the findings to other QA scenarios or knowledge retrieval methods.
+  Location: Section 7
+
+--------------------------------------------------
+
+Execution Times:
+claims_analysis_time: 146.71 seconds
+evidence_analysis_time: 439.12 seconds
+conclusions_analysis_time: 427.17 seconds
+total_execution_time: 1016.32 seconds

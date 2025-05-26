@@ -1,0 +1,56 @@
+Claim 1:
+Type: result
+Statement: LLMs hardly calculate intermediate results during implicit reasoning despite being able to provide correct final answers
+Location: Section 2.2
+Exact Quote: there is actually not a specific state where the model calculates the results of the intermediate steps, even when it correctly give a answer of the multi-step problem
+
+Evidence:
+- Evidence Text: Probing experiments show only first and last step results can be detected in model's hidden states
+  Strength: strong
+  Location: Section 2.2
+  Limitations: Only tested on arithmetic problems, may not generalize to other reasoning tasks
+  Exact Quote: the results of the first step and the last step can always be probed successfully in the back layers...the results of other steps in the middle can hardly be detected
+
+- Evidence Text: Second step shows minimal detectability while later intermediate steps show none
+  Strength: moderate
+  Location: Section 2.2
+  Limitations: Limited to probing with linear classifiers
+  Exact Quote: the result of the second step can barely be probed with a lower accuracy, and the results of other steps in the middle can hardly be detected
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Multiple probing experiments consistently show lack of intermediate step information, though limited to arithmetic problems
+Key Limitations: Analysis relies on linear probing which may miss more complex representations
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Implicit reasoning is less robust than explicit CoT when problems are slightly modified
+Location: Section 2.3
+Exact Quote: compare to the original problems, the modified problems significantly degrade the performance when using implicit reasoning
+
+Evidence:
+- Evidence Text: Performance drops significantly for reversed and divided problems with implicit reasoning while explicit CoT maintains perfect accuracy
+  Strength: strong
+  Location: Section 2.3/Table 1
+  Limitations: Limited to two types of modifications
+  Exact Quote: original 85.01% -> reverse 70.62%, divide 69.86% (3-step implicit) vs 100% for all explicit cases
+
+- Evidence Text: Performance degradation more severe for 5-step problems
+  Strength: strong
+  Location: Section 2.3/Table 1
+  Limitations: Only tested up to 5 steps
+  Exact Quote: 5-step problems: original 53.95% -> reverse 13.71%, divide 37.28% (implicit) vs 100% explicit
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Clear quantitative evidence shows significant performance drops under minor problem modifications for implicit reasoning while explicit CoT remains stable
+Key Limitations: Limited types of modifications tested, specific to arithmetic problems
+
+--------------------------------------------------
+

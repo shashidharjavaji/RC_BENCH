@@ -1,0 +1,97 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Popular NLI models rely heavily on shallow heuristics rather than true understanding of language structure",
+                "type": "result",
+                "location": "Results section (Section 5)",
+                "exact_quote": "All models achieved high scores on the MNLI test set... However, they all performed poorly\u2014with accuracies less than 10% in most cases, when chance is 50%\u2014on the cases where the heuristics make incorrect predictions"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Performance on HANS non-entailment cases <10% for all models",
+                    "strength": "strong",
+                    "limitations": "Limited to specific heuristics tested",
+                    "location": "Results section, Figure 1b",
+                    "exact_quote": "they all performed poorly\u2014with accuracies less than 10% in most cases, when chance is 50%\u2014on the cases where the heuristics make incorrect predictions"
+                },
+                {
+                    "evidence_text": "High performance on MNLI test set",
+                    "strength": "strong",
+                    "limitations": "MNLI may not represent full range of inference types",
+                    "location": "Results section, Figure 1a",
+                    "exact_quote": "All models achieved high scores on the MNLI test set"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Consistent poor performance across multiple models on targeted test cases, despite high MNLI scores",
+                "key_limitations": "Limited to specific heuristic types tested",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Models' poor performance stems more from insufficient signal in training data than architectural limitations",
+                "type": "result",
+                "location": "Discussion section",
+                "exact_quote": "Other sources of evidence suggest that the models' failure is due in large part to insufficient signal from the MNLI training set, rather than the models' representational capacities alone."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "BERT's strong syntactic abilities but poor HANS performance",
+                    "strength": "moderate",
+                    "limitations": "Indirect evidence through previous work",
+                    "location": "Discussion section",
+                    "exact_quote": "Despite this evidence that BERT has access to relevant syntactic information, its accuracy was 0% on the subject-object swap cases"
+                },
+                {
+                    "evidence_text": "Improved performance with augmented training data",
+                    "strength": "strong",
+                    "limitations": "Limited exploration of training conditions",
+                    "location": "Section 7",
+                    "exact_quote": "In general, the models trained on the augmented MNLI performed very well on HANS"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Multiple pieces of evidence support training data as key factor, but some reliance on indirect evidence",
+                "key_limitations": "Limited exploration of different training approaches",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "BERT performs better than other models on lexical overlap and constituent cases",
+                "type": "performance",
+                "location": "Results section",
+                "exact_quote": "BERT did slightly worse than SPINN on the subsequence cases, but performed noticeably less poorly than all other models at both the constituent and lexical overlap cases"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Comparative model performance numbers",
+                    "strength": "strong",
+                    "limitations": "Still poor absolute performance",
+                    "location": "Results section",
+                    "exact_quote": "Within the lexical overlap cases, BERT achieved 39% accuracy on conjunction...but 0% accuracy on subject/object swap"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Direct comparative performance numbers support claim",
+                "key_limitations": "Better relative performance still represents poor absolute performance",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "19.78 seconds",
+        "total_execution_time": "24.15 seconds"
+    }
+}

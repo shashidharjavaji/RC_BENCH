@@ -1,0 +1,712 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+ For example:
+        ```json
+        {
+            "claims": [
+                {
+                    "claim_id": 1,
+                    "claim_text": "Example claim text",
+                    "location": "Section X",
+                    "claim_type": "Example type",
+                    "exact_quote": "Exact quote from the paper"
+                }
+            ]
+        }
+        ```
+
+        Analyze the paper and extract all possible claims made by the authors.
+
+        Paper text: # AAAR-1.0: Assessing AI’s Potential to Assist Research
+
+## Anonymous submission
+
+**Abstract** **Task InstructionGiven the context of a paper, identify the missed** **Task Instruction**
+
+
+Numerous studies have assessed the proficiency of AI systems,
+particularly large language models (LLMs), in facilitating everyday tasks such as email writing, question answering, and
+creative content generation. However, researchers face unique
+challenges and opportunities in leveraging LLMs for their own
+work, such as brainstorming research ideas, designing experiments, and writing or reviewing papers. In this study, we introduce AAAR-1.0, a benchmark dataset designed to evaluate
+LLM performance in three fundamental, expertise-intensive
+research tasks: (i) EQUATIONINFERENCE, assessing the correctness of equations based on the contextual information in
+paper submissions; (ii) EXPERIMENTDESIGN, designing experiments to validate research ideas and solutions; and (iii)
+PAPERWEAKNESS, identifying weaknesses in paper submissions. AAAR-1.0 differs from prior benchmarks in two key
+ways: first, it is explicitly research-oriented, with tasks requiring deep domain expertise; second, it is researcher-oriented,
+mirroring the primary activities that researchers engage in on
+a daily basis. An evaluation of both open-source and proprietary LLMs reveals their potential as well as limitations in
+conducting sophisticated research tasks. We will release the
+AAAR-1.0 and keep iterating it to new versions.
+
+## Introduction
+
+Although AI has brought transformative changes to various aspects of life, its impact on researchers unfolds in a
+nuanced manner. On the one hand, AI assists in various research disciplines, such as Social Science, Finance, Medicine,
+GeoScience, Math, etc.(Yue et al. 2023; Li et al. 2023b), significantly expediting academic processes. However, many
+of these applications are superficial, often limited to datadriven clustering or classification. On the flip side, the AI
+era poses challenges for researchers. Despite its ability to
+streamline some activities, researchers still face demanding,
+cognitively intensive tasks such as staying current through extensive paper reading, rapidly generating ideas in response to
+fast-paced advancements, conducting rigorous experiments
+to substantiate claims, and managing an increasing volume
+of peer reviews. Then a question looms: How effectively
+can AI assist researchers in tasks that are domain-specific,
+expertise-demanding, and knowledge-intensive?
+Existing works proved the promising potential for using
+LLMs in assisting AI research. Si, Yang, and Hashimoto
+
+
+_This paper proposes an algorithm_
+
+_for the robustness of […]_
+_In the below sections, we conduct_
+_the experiments_
+
+
+_Given the context of a paper, identify the missed_
+
+_equation from the provided options (A, B, C, D)._
+
+
+_Given a paper, critique the weaknesses_
+_within this research work._
+
+
+_1. To prove the effectiveness[…]_
+_2. To study the impact of […]_
+_3. To avoid randomness in […]_
+
+
+_Given a partial paper, create a brief_
+_experiment plan and explanations._
+
+
+_(A). z = W*a+b_
+
+
+Figure 1: The input-output illustration of three tasks in the
+proposed AAAR-1.0 benchmark.
+
+(2024) conducted a large-scale human study and found that
+LLMs can generate creative research ideas. Lu et al. (2024)
+proposed an autonomous agent to handle complicated research workflow and write a whole research paper. However,
+most of these works focus on addressing highly subjective
+problems that require a high degree of expertise, making evaluation laborious and hard to reproduce. This underscores the
+need for a comprehensive benchmark that rigorously assesses
+LLMs’ capabilities in expertise-intensive research activities
+To this end, in this work, we introduce AAAR-1.0, a
+novel benchmark that aims to comprehensively assess the
+LLMs’ capacity on expert-level research tasks. As illustrated
+in Figure 1, AAAR-1.0 decomposes three distinct expert-level AI research tasks from the researcher’s daily activities,
+including i) EQUATIONINFERENCE, investigating whether
+the LLMs can infer the equation correctness based on the
+paper context; ii) EXPERIMENTDESIGN, validating LLMs’
+ability on designing reliable experiments for a research idea;
+iii) PAPERWEAKNESS, testing the quality of the weaknesses
+criticism written by the LLMs. To ensure data quality, senior
+
+
+**Paper Context**
+
+_This paper proposes an algorithm_
+
+_[…], the result z is defined as below:_
+_z =_
+
+_where W is the parameter, a and b_
+_are the […]_
+
+
+_1. Compare performance on […]_
+_2. Ablation study with […]_
+_3. Significance test […]_
+
+
+_(A). z = W*a+b_
+_(B). z = W*b+a_
+_(C). z = W*a*b_
+_(D). z = W*a/b_
+
+
+-----
+
+|GPT-4|Col2|
+|---|---|
+
+
+.
+
+**This paper is about a new**
+**reinforcement learning […].]**
+
+**In this section, we conduct**
+**ablation to show the […]**
+
+**We found that […]**
+
+
+context before
+**z = W*a + b**
+context after
+
+
+**Task #3: WEAKNESS**
+
+
+**Reviewer#1**
+This paper
+proposes a
+novel metric
+about the […]
+
+
+**+**
+
+.
+
+Paper PDF
+
+
+Figure 2: Data construction workflows of the three tasks in AAAR-1.0.
+
+
+context before
+**z = W * a + b**
+context after
+
+
+**Reviewer#1**
+This paper
+proposes a
+**+** novel metric
+about the […]
+
+
+Paper PDF
+
+
+AI researchers with extensive domain expertise perform data
+annotation for AAAR-1.0, followed by rigorous multi-round
+data examination and filtering. All three tasks require models
+to possess strong domain knowledge covering various cuttingedge research findings, as well as expert-level research experience, to the extent that even humans need substantial
+research accumulation to tackle the tasks we designed. Crucially, tasks here are singular, stand-alone challenges (with
+clear input and output expectations) rather than a complicated
+task chain (Li et al. 2024; Lu et al. 2024), providing a more
+transparent assessment of the model’s intermediate output.
+
+Benefiting from the proposed automatic metrics, we conduct extensive experiments across numerous mainstream
+LLMs, where we find that:
+
+  - Closed-source LLMs generally outperform open-source
+LLMs on AAAR-1.0, likely due to their richer scientific
+knowledge stemming from a larger model size.
+
+  - Contrary to human behaviour, neither extending the
+input modality (i.e., leveraging text and figures) nor
+enlarging the input context guarantees enhanced performance. This underlines most current LLMs’ limitations
+in processing diverse, extensive information coming
+from scientific documents.
+
+  - LLM-designed experiments are innovative and more
+diverse than those by humans; however, many are trivial,
+lack feasibility, and stray from the original research
+objectives.
+
+  - LLM-generated weaknesses often lack ample domain
+knowledge, especially on cutting-edge research topics,
+leading to the vague weaknesses applicable to various
+papers.
+
+
+**Task #2: EXPDESIGN**
+
+
+## AAAR-1.0
+
+Figure 2 provides an overview of constructing AAAR1.0. In the following sections, we elaborate on the
+data collection details of the aforementioned three
+tasks, including EQUATIONINFERENCE ( EQINFER ), EX
+PERIMENTDESIGN ( EXPDESIGN ), and PAPERWEAKNESS ( WEAKNESS ).
+
+### EQUATIONINFERENCE
+
+Writing a correct scientific equation is challenging because
+it involves an in-depth understanding towards an algorithm
+or the relations between the massive notations. However, directly asking LLMs to generate equations is over-challenging.
+For this reason, in this task, we adopt the conventional multichoice classification paradigm for building EQINFER, as
+shown in Figure 1.
+
+① **Data crawling and cleaning.** For the data source, we
+adopt the pre-compilation LaTeX code for two reasons: i)
+existing PDF parsing tools, such as PyMuPDF and PaperMage (Lo et al. 2023), can introduce considerable noise to the
+parsed equation text; ii) considering most of exiting LLMs are
+capable with processing LaTeX code, using LaTeX source
+instead of parsed text can be more accurate and provide
+LLMs with richer information. Meanwhile, to avoid using
+any low-quality human-written equations, we only crawl
+those peer-reviewed papers accepted by top-tier conferences.
+Accordingly, we first obtain the accepted paper list from ACL
+Anthology, from year 2019 to 2023. Next, we search each
+paper on arXiv to crawl its LaTeX source (if it exists). Finally,
+we get a total of 1,762 papers’ source LaTeX packages.
+We then clean the LaTeX sources by deleting all the comments and combining multiple cross-referred.tex files into
+a main file. Afterwards, we use regex to randomly extract (at
+most) 3 equations’ code snippets per paper, finally resulting
+
+
+**Task #1: EQINFER**
+
+
+-----
+
+in 3,877 human-written equations are extracted.
+
+② **LLM-based equation synthesis.** As we formulate this
+task as classification, for each human-written positive equation, we have to craft at least three counterpart negative equations. To this end, we prompt GPT-4 to synthesize more equations based on the paper context. For each positive equation,
+we repeat this prompting (with a high decoding temperature)
+until three different negative equations are synthesized.
+
+③ **LLM-based filtering.** However, the LLM-synthetic
+equations can sometimes be context-unaligned, i.e., some
+synthesized equations contain notations that are never defined
+in the paper context, which is a superficial shortcut for the
+classification tasks (Geirhos et al. 2020). To improve the data
+quality, we prompt GPT-4 to identify those context-unaligned
+negative equations. We then discard those instances where
+all three negative equations are identified as contextually unaligned. This filtering leads to a final of 1,449 classification
+instances (62.3% instances are filtered).
+
+④ **Expert-based examination.** Furthermore, it’s also possible that synthesized negative equations are actually correct
+(i.e., false negative options) — even if the negative and positive equations are written differently, the final compiled
+results might be the same. To filter out the false negative
+equations and to have a final check on the classification instances, we then employ human experts to conduct a further
+data review.
+We asked 5 senior PhD students who are experienced in AI
+research to manually check all the instances. For each classification instance, we ask human experts to consider the following criteria: i) are all four equations (both positive and
+**negative) grammatically correct? ii) after compilation, is**
+**there only one correct answer? We ask every human ex-**
+pert to use external LaTeX compilation tools (e.g., TeXlive),
+and identify the instances that cannot meet the criteria. Each
+instance is examined by at least two experts, and we only
+keep instances that all experts decide to keep. After this strict
+examination, a total of 1,049 instances are eventually kept
+(27.6% instances are filtered)
+
+**Final data.** We finally shuffle the four equations for each
+classification instance and randomly assign letters (A, B, C,
+and D) to the equations. We show the data statistics of the
+final EQINFER in Table 4 and the sample data cases in Appendix.
+
+### EXPERIMENTDESIGN
+Given a research topic, such as a novel ML algorithm, a
+qualified researcher can design a solid experiment plan for
+it, and clarify underlying motivation to ensure the reliability
+of the designed experiment. Unlike the concurrent works
+that focus on the experiment implementation (Lu et al. 2024;
+Huang et al. 2024), we emphasize the importance of assessing the high-level experiment design of LLMs before the
+subsequent implementation to avoid any expensive execution iteration. Therefore, as shown in Figure 1, we formulate EXPDESIGN as a text-generation task that takes preexperiment paper context as input, and then generates the
+experiment and explanation list.
+
+
+① **Data crawling.** As for the data source, we first collect
+10k papers’ data from arXiv, including LaTeX sources and
+_≥_
+PDFs, which cover broad AI categories, including cs.AI,
+cs.CL, and cs.CV, from year 2018 to 2023. Similarly, to
+ensure the source data quality, we only use papers that have
+appeared at well-known conferences.
+
+② **Domain-expert annotation.** Making a reliable and executable experiment plan requires solid foundation knowledge
+of a specific research area. Consequently, we set a high standard for choosing annotators: i) be a senior PhD student with
+at least one peer-reviewed publication; ii) have more than 4
+years of AI research experience; iii) frequently serve as conference reviewers. Finally, we invite a total of 10 qualified
+experts to participate in our data collection procedure. Given
+the 10k crawled papers, we first ask every annotator to bid on
+the papers that they are interested in. After bidding, each of
+them is assigned 10 papers by us, i.e., a total of 100 papers to
+be annotated. During annotation, we post each paper PDF on
+online Google Drive and ask the annotator to first carefully
+read the whole paper. Then, we ask them to identify and locate the key experiments in each paper (i.e., highlighting the
+relevant paragraphs of each experiment). We don’t consider
+some trivial experiments, such as those supplemental analyses in the appendix section. For each identified experiment,
+the annotator has to concisely answer two questions: i) what
+**did this experiment do? ii) why did the paper authors**
+**conduct this experiment? In other words, we ask the an-**
+notator to summarize all the key experiments in this paper
+and explain the underlying motivations based on their rich
+domain experience.
+
+③ **Multi-round peer discussion.** Intuitively, different experts might have different opinions on the same research
+topic. Particularly, when explaining the underlying motivation of an experiment, adopting only a single expert’s opinion
+might introduce bias to our annotation. Hence, we conduct
+a further multi-round peer discussion. For each online paper
+PDF, where all the key experiments are identified, summarized, and explained, we ask a different expert (reviewer)
+to review the annotation by considering the following three
+criteria: i) are the identified experiments all the key exper**iments? ii) does each experiment summarization covers**
+**all key information? iii) does each explanation sound rea-**
+**sonable and reliable? Each reviewer has to leave comments**
+to the online PDF regarding the above criteria, and then the
+annotator has to respond to each comment — either accept
+the suggestion and revise the previous annotation, or provide
+a “rebuttal” to the reviewer to uphold the annotation. This
+discussion iterates until both opinions align with each other.
+Eventually, for each paper, we collect two lists: i) the experiment list, summarizing each experiment step of the paper;
+ii) the explanation list, the underlying motivations that are
+one-one corresponding to the experiment.
+
+**Final data.** After annotation, we use the pre-experiment
+context of each paper (according to the first-experiment location identified by the annotator) as the input. Furthermore,
+we use GPT-4 to delete any sentence that potentially leaks
+
+
+-----
+
+the experiment from the input.[1] Similar to the EQINFER, we
+utilize the source LaTeX as the input text to avoid PDF paring
+noise. As for the image input, we collect those figures within
+each paper’s source LaTeX package and only keep figures
+that are used in the pre-experiment context. Overall, a total of
+100 instances are collected. As shown in Figure 1, the input
+of each instance is the pre-experiment context (including the
+figures), and the ground-truth output is the expert-annotated
+experiment plan and the explanations. Table 5 shows data
+statistics.
+
+### PAPERWEAKNESS
+
+Another critical research task is paper review. Previous works
+have demonstrated the usefulness of the LLM-based review
+feedback (Gao, Brantley, and Joachims 2024; Jin et al. 2024;
+Lu et al. 2024). However, as indicated by Du et al. (2024);
+Liang et al. (2024), LLMs only excel at summarizing the
+research strengths while falling significantly short on weakness criticism. Hence, we build WEAKNESS for particularly
+investigating the LLM-generated weaknesses.
+
+① **Data crawling.** We first crawl a total of 3,779 anonymous submissions of ICLR 2023 from OpenReview,[2] including PDF and other meta information (e.g., scores, decisions,
+and tracks). As the ICLR 2023 has 13 distinct tracks while
+the paper distribution across different tracks is highly biased,
+we then uniformly sample papers from different research
+tracks to improve the domain diversity. Meanwhile, during
+sampling, we also keep the accept/reject papers distributed
+equally to avoid data bias. In a word, we finally collect a
+total of 1,000 papers (500 accepted; 500 rejected), uniformly
+covering all 13 tracks. Please refer to Figure 3 for the track
+and score distribution of the 1,000 papers.
+
+② **LLM-based weakness extraction.** Since the raw comments crawled from ICLR 2023 are mixed with both strengths
+and weaknesses, we further employ GPT-4 to extract all the
+weaknesses from each reviewer’s comments and compose
+multiple weaknesses into a list. Notably, we force GPT-4 to
+keep the original text of the reviewer, i.e., all weaknesses
+in our dataset are those original sentences written by the reviewer without any modifications.[3] What’s more, sometimes
+one reviewer might repeatedly mention the same weakness
+throughout the comment. In this case, we simply keep all
+the repeated weaknesses because, if one weakness is repeatedly mentioned by the reviewer, it’s intuitively an important
+weakness that the reviewer wants to emphasise; accordingly,
+keeping the repeat items can penalize LLMs more on missing
+this weakness.
+All in all, for each paper, we can finally get multiple weakness lists (one weakness list per reviewer, one paper can have
+multiple reviewers). We further delete a few papers without
+
+1About 9.8% sentences are deleted.
+2We adopt ICLR because it releases full submissions, while
+some other conferences only release accepted papers.
+3We manually checked GPT-4’s extraction results of 200 cases
+— GPT-4 only missed ≤1% of reviewer-written weaknesses and
+maintained almost all the original text.
+
+
+any weaknesses found in the raw comments, resulting in a
+total of 993 instances, i.e., 993 {paper, weakness lists} pairs.
+
+③ **Input data processing.** As we mentioned before, we
+crawl papers from OpenReview instead of arXiv because the
+under-review paper draft is required for this task. However,
+not every paper from OpenReview can be found on arXiv,
+i.e., the source LaTeX code and figures of most under-review
+papers are unavailable. Therefore, we utilize VILA (Lin et al.
+2023) to parse text data out from the PDF; we also employ
+PDFFigures-2.0 (Clark and Divvala 2016) to extract all the
+figures and tables (in image) from the paper, as Vila is not
+good at processing the table data.
+
+**Final data.** Our final data is composed of 993 instances,
+each input is paper text along with figure/table images, and
+each output is peer reviewers’ weakness lists. Table 6 shows
+data statistics.
+
+## Evaluation Criteria
+
+For EQINFER, we adopt accuracy as the classification criterion. For EXPDESIGN and WEAKNESS, since both tasks have
+natural language outputs, semantic-based metrics are necessary. Hence, in addition to the conventional ROUGE (Lin
+2004), we also develop several novel similarity-based metrics
+for each specific task, including:
+
+  - S-F1 (equation 1 and 2): similarity-based F1 for assessing the experiment design quality. It measures how well
+each model-generated experiment aligns with the human
+experiments.
+
+  - S-Match (equation 3): “soft” match score for evaluating the explanation. It calculates the similarity between
+human and model-generated explanations.
+
+  - SN-F1 (equation 4 and 5): updated version of S-F1 to
+deal with the “nested” review weaknesses.
+
+  - ITF-IDF (equation 6): inspired by the classic TF-IDF;
+measures the inter- and intra-paper diversity of model-generated weaknesses.
+
+We sincerely recommend referring to Appendix for the
+formal equation definitions of the above metrics.
+
+## Experiments and Analyses
+
+In this section, we conduct extensive experiments
+on AAAR-1.0, across various popular LLMs, to quantify the current LLMs’ capacity to tackle high-level
+research tasks. Specifically, the following sections include **EQINFER,** **EXPDESIGN, and** **WEAKNESS.**
+Please refer to the Appendix for details on how to reproduce
+our experiment results.
+
+### EQUATIONINFERENCE
+
+**Settings.** As different LLMs have distinct context windows,
+to ensure a fair comparison, we fix the maximum input length
+for all models. According to the data statistics of Table 4,
+we empirically use 1,000 words for both contexts before and
+after equations, i.e., 2,000 surrounded words.
+
+
+-----
+
+**Main results.** Table 1 shows the main results. Firstly, the
+open-source LLMs, especially the Falcon and Gemma, perform unexpectedly disappointing (even worse than random
+guesses). These screwed scores are mainly due to the poor
+long-context instruction following ability, where we find
+some open-source LLMs are confused with the massive
+input and often copy the LaTeX code from the input. In
+contrast, closed-source LLMs generally achieve superior accuracy, probably owing to the richer scientific knowledge
+from the larger model parameters. However, considering the
+conventional multi-choice QA formulation of EQINFER, the
+recently-released GPT-4o solely gets 43.18, implying the
+unique challenge of EQINFER compared with other scientific QA benchmarks (Song et al. 2023). Notably, with the
+help of internal CoT, o1 gains stronger performances than
+GPT-4/GPT-4o, indicating the potential benefits of adopting
+reasoning for this task.
+
+_Q: do more contexts boost performance?_ Table 1 unifies
+the input context lengths to 1,000 words for various LLMs. In
+this paragraph, we experiment with long-context LLMs to investigate the impact of the input context lengths. Particularly,
+we scale the input length (per side) from 100 to 1,500 words.
+As shown in Figure 4, for the open-source LLMs (Llama and
+Qwen), after 300 words length, increasing the input context
+doesn’t help the performance and even significantly drops
+Qwen’s scores. While for the closed-source GPT-4-Turbo
+and GPT-4o, scaling up input length gradually boosts the performances at the first 1,000 words, but stabilizes afterwards.
+This is in line with human intuition, i.e., surrounding context
+is required for the equation inference, as the adjacent context
+usually provides important information, such as the target algorithm description or the notation definition. However, after
+exceeding a specific threshold, more context information is
+not beneficial anymore and even confuses those LLMs with
+poor long-context handling capacity (Wang et al. 2024; Liu
+et al. 2024).
+
+### EXPERIMENTDESIGN
+**Settings.** Similarly, we unify the input context length of
+different LLMs to ensure a fair comparison. According to
+Table 5, we set 2,000 and 3,000 input words for open- and
+closed-source LLMs, respectively. Meanwhile, as motivation explanation is the subsequent task of experiment design,
+using model-generated experiments can propagate errors in
+explanation, leading to inferior results for most LLMs. To
+this end, we provide LLMs with the oracle experiments when
+generating explanations.
+
+**Main results.** Table 2 shows the main results. For the experiment design, the closed-source LLMs generally outperform
+open-source LLMs, and both closed-/open-source LLMs are
+superior to the “Copy Input” baseline (except the Falcon).
+Despite the higher S-Precision, the open-source LLMs are
+seriously deficient in S-Recall compared with closed-source
+LLMs ( 10% ). We find that closed-source LLMs are more
+_∼_ _↓_
+creative in experiment design and tend to generate more experiment ideas than open-source LLMs (though most of the
+experiment ideas are trivial), leading to excellent S-Recall.
+As for the motivation explanation, the S-Match scores of
+
+
+**Methods** **Accuracy (%)**
+
+Random Guess 25.00
+
+**_Open-source LLMs_**
+
+OLMo-7B (Groeneveld et al. 2024) 19.00
+Falcon-40B (Almazrouei et al. 2023) 4.39
+Gemma 2-27B (Gemma Team, 2024) 3.24
+Mistral-7B (Jiang et al. 2023) 22.21
+Mixtral-8x22B-MoE (Jiang et al. 2024) 37.08
+Llama 3.1-70B (MetaAI 2024) 38.13
+Qwen 2.5-72B (Qwen Team, 2024) 35.93
+
+**_Closed-source LLMs_**
+
+Gemini 1.5 Pro (Anil et al. 2023) 34.31
+Claude 3.5 sonnet (Anthropic 2024) **61.10**
+GPT-4 (OpenAI et al. 2023) 49.85
+GPT-4o (OpenAI 2024a) 43.18
+o1-preview (OpenAI 2024b) 59.49
+
+Table 1: Various LLMs’ performances on the 1,049 instances
+of EQINFER task.
+
+closed-source LLMs still surpass the open-source LLMs,
+while the score difference is not significant. Furthermore,
+we find the negative correlation between S-Match and the
+ROUGE, where the ROUGE scores of closed-source LLMs
+are broadly inferior. We find that the open-source LLMs often
+try to copy the terms or phrases from the given experiment, or
+even simply paraphrase the experiment instead of explaining,
+which results in a high superficial overlap with the groundtruth explanation. This observation highlights the importance
+of adopting the proposed S-Match to avoid evaluation bias of
+traditional generation metrics.
+
+_Q1: can self-contained experiments enhance the explana-_
+**tion of motivation?** When generating the explanation in
+Table 2, we provide LLMs with each individual experiment
+and let them explain one by one, because we find that, when
+providing the whole experiment list, those open-source models only explain partial experiments because of their poor
+instruction-following capacity. However, there are intuitively
+some semantic or logical relations between different experiments, e.g., some experiments are prerequisites to others.
+Therefore, this one-by-one prompting might break the selfcontainment of an experiment plan. Consequently, we test
+with the “whole-list” prompting, where the LLMs are given
+the complete experiment list and are asked to explain all
+experiment steps together.
+As shown in Table 8, unlike the open-source LLMs, the
+explanation performances of those closed-source LLMs are
+generally improved after adopting whole-list prompting. According to further manual checking, after maintaining the
+self-containment of the experiments, the LLMs can refer to
+other experiments and better grasp the underlying motivation
+of the current experiment.
+
+_Q2: do human evaluation results align with automatic_
+**metrics for explanation?** As the explanation can be openended, in this paragraph, we provide the human evaluation
+
+
+-----
+
+**Experiment Design** **Motivation Explanation**
+
+**Methods**
+**S-F1** **S-Precision** **S-Recall** **S-Match** **ROUGE-L** **ROUGE-1**
+
+Copy Input 21.13 17.94 26.76 40.32 22.06 25.28
+
+**_Open-source LLMs_**
+
+OLMo-7B (Groeneveld et al. 2024) 33.94 37.25 31.79 45.78 26.30 30.38
+
+Falcon-40B (Almazrouei et al. 2023) 17.87 21.78 15.35 17.03 12.10 12.72
+
+Gemma 2-27B (Gemma Team, 2024) 34.33 39.71 30.51 42.77 26.20 29.63
+
+Mistral-7B (Jiang et al. 2023) 37.62 43.09 34.19 50.18 **30.20** 34.69
+
+Mixtral-8x22B-MoE (Jiang et al. 2024) 42.21 50.13 36.82 49.07 29.96 34.53
+
+Llama 3.1-70B (MetaAI 2024) 40.57 48.43 35.43 50.05 29.33 34.11
+
+Qwen 2.5-72B (Qwen Team, 2024) 43.24 **51.73** 37.55 51.12 29.46 34.68
+
+**_Closed-source LLMs_**
+
+Gemini 1.5 Pro (Anil et al. 2023) 51.87 50.77 53.37 52.87 28.52 33.80
+
+Claude 3.5 sonnet (Anthropic 2024) 48.74 46.49 51.53 53.03 18.75 26.15
+
+GPT-4 (OpenAI et al. 2023) 43.89 42.34 45.82 55.03 22.82 30.01
+
+GPT-4o (OpenAI 2024a) **53.00** 51.24 **55.12** 54.79 27.54 34.31
+
+o1-preview (OpenAI 2024b) 46.67 45.04 48.70 **58.55** 29.11 **36.70**
+
+Table 2: Various LLMs’ performances on the 100 instances of EXPDESIGN. The motivation explanation is based on the oracle
+experiments to prevent error propagation. “Copy Input” is a random baseline: for experiment design, randomly select 5 sentences
+from the input paper; for motivation explanation, directly copy each experiment idea.
+
+
+results on different LLMs’ motivation explanation outputs.
+In detail, we randomly select 20 out of 100 papers and ask 5
+annotators to read the experiments along with each model’s
+explanations; we then let the annotator decide whether each
+model’s explanation is acceptable (see Appendix for more details). Table 9 illustrates the results, where the score variance
+is higher than Table 2. However, the performance ranking
+of both tables is perfectly correlated with each other (Spearman’s rank correlation coefficient = 1), demonstrating the
+effectiveness of S-Match.
+
+_Q3: do more contexts boost performance?_ We also investigate the impact of input context length for EXPDESIGN.
+As shown in Figure 5, we scale up the input pre-experiment
+context length from 0.1k to 10k words (10k words is the maximum paper context length in the dataset). For the experiment
+planning, more input context does improve the performance
+of different LLMs, while this benefit stops after exceeding 5k
+words, which is similar to EQINFER’s scaling results — after
+the necessary information has been covered, scaling more
+up doesn’t boost the performance. Meanwhile, the results
+of the motivation explanation demonstrate that explaining
+motivations almost doesn’t require any paper context, i.e.,
+the LLMs solely rely on the given experiments. However,
+we do not expect this because we hope LLMs can explain
+the motivation based on a thorough understanding of the paper, just like how human experts do. Hence, there is still a
+considerable gap between the LLMs and humans in terms of
+grasping research motivations.
+
+_Q4: does multi-modal input boost performance?_ Intuitively, besides the text, when designing experiments for a
+given research topic, the figures can provide rich supplementary information, such as an algorithm illustration that can
+help better understand this research topic and underlying mo
+
+tivations. Hence, we test different MLLMs’ performances,
+including GPT4-o, GPT-4, and InternVL2 (Chen et al. 2024b).
+Table 10 shows the ablation results on the figure data. To our
+surprise, the figure data doesn’t improve the MLLMs’ results
+in this task, even harming the performances. This might be
+due to the low informativeness of the figures, as figures usually consume more input tokens but act only as supplementary
+information to the text, indicating future work on developing
+MLLMs that can effectively leverage the scientific figures.
+
+### PAPERWEAKNESS
+**Settings.** Intuitively, the full paper context is necessary for
+conducting a review. Therefore, instead of setting a maximum
+input length, in WEAKNESS, we try to feed all the paper context into the LLMs. As the input length of WEAKNESS is
+extremely long (see Table 6), we adopt a “split-combine”
+method — we first split the whole paper into several smaller
+pieces and let LLMs predict the weaknesses of each piece
+separately; after that, we combine all pieces’ weaknesses as
+a final complete prediction. In practice, for the length of each
+small piece, we set 2,000 and 3,000 words for open- and
+closed-source LLMs, respectively. Additionally, in this task,
+we also examine the performance of a recent agent framework, namely AI-SCI (Lu et al. 2024), which enhances GPT4o’s paper review ability by leveraging advanced prompting
+techniques, e.g., self-reflection (Shinn et al. 2024) and response ensembling (Wang et al. 2023).[4]
+
+**Main results.** Table 3 shows the main results, where the
+closed-source LLMs’ overall performances are generally superior to the results of open-source LLMs. Similarly, closed
+4We don’t run AI-SCI on EXPDESIGN, because AI-SCI takes
+model-generated ideas as the inputs, which are incompatible with
+our task setting.
+
+
+-----
+
+**Review Diversity**
+
+
+**Methods** **SN-F1 (%)** **SN-Precision (%)
+
+Raw Evidence:
+
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 334.48 seconds
+evidence_analysis_time: 1.83 seconds
+conclusions_analysis_time: 1.83 seconds
+total_execution_time: 343.79 seconds

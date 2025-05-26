@@ -1,0 +1,128 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: The proposed multimodal deep regression model (MDRM) outperforms all baselines in predicting stock volatility
+Location: Results and Discussion section
+Type: Performance claim
+Quote: The results show that our multimodal deep regression model (MDRM) outperforms all baselines. Using both text and audio data, the model has prediction error of 1.371, 0.420, 0.300 and 0.217 for 3-days, 7-days, 15-days and 30-days following the conference call respectively.
+
+Evidence:
+- MDRM outperforms all baselines with substantial improvements
+  Strength: strong
+  Location: Experiment Results section
+  Limitations: Only tested on S&P 500 companies in 2017
+  Quote: Using both text and audio data, the model has prediction error of 1.371, 0.420, 0.300 and 0.217 for 3-days, 7-days, 15-days and 30-days following the conference call respectively. Comparing with using past volatility only, the improvement gain is as substantial as 54.1% for 3-days prediction.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Results mainly based on S&P 500 companies which may not generalize to smaller companies
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: Multimodal features perform better than unimodal features for stock volatility prediction
+Location: Results and Discussion section
+Type: Comparative finding
+Quote: We can also conclude from the results that multimodal features are more helpful than unimodal features (either text or audio) alone. When we predict the stock volatility 3-days following the conference call, multimodal (1.371) outperform unimodal (1.431) by 4.2%.
+
+Evidence:
+- Multimodal features show better performance than unimodal
+  Strength: moderate
+  Location: Experiment Results section
+  Limitations: Improvement margin varies by prediction timeframe
+  Quote: When we predict the stock volatility 3-days following the conference call, multimodal (1.371) outperform unimodal (1.431) by 4.2%.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Audio-only results may be affected by early stopping due to overfitting
+Confidence: medium
+
+==================================================
+
+Claim 3:
+Statement: Short term volatility prediction is more difficult than long term prediction
+Location: Results and Discussion section
+Type: Research finding
+Quote: Our prediction results consistently show that short term volatility prediction error is much greater than long term prediction error. For example, the 3-days prediction MSE of MDRM is 1.371, while the 30-days MSE is 0.217.
+
+Evidence:
+- Short term prediction shows higher error rates
+  Strength: strong
+  Location: Experiment Results section
+  Limitations: Phenomenon already known in finance literature
+  Quote: For example, the 3-days prediction MSE of MDRM is 1.371, while the 30-days MSE is 0.217.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Phenomenon aligns with known PEAD effect but specific causation not proven
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: Deep models show diminishing advantages over simple models for long-term predictions
+Location: Results and Discussion section
+Type: Research finding
+Quote: Our experiment results also consistently show that complex deep models such as bc-LSTM or our proposed deep regression model outperform shallow models (such as SVR) by large margin in short-term prediction (τ =3 or 7). However, the margin becomes smaller as we predict a relative long-term stock volatility (τ =15 or 30).
+
+Evidence:
+- Deep models show smaller advantages for longer-term predictions
+  Strength: strong
+  Location: Experiment Results section
+  Limitations: Limited theoretical explanation provided
+  Quote: For example, comparing with tf-idf bag-of-words model at τ = 3, our MDRM reduces prediction error by 19.1% (1.371 vs. 1.695). However, at τ = 30, the prediction error reduction is 12.8% (0.217 vs. 0.249).
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Effect could be due to market efficiency or limitations of historical data predictive power
+Confidence: medium
+
+==================================================
+
+Claim 5:
+Statement: Individual vocal features like pitch and intensity are important for the model's performance
+Location: Results and Discussion section
+Type: Research finding
+Quote: Our experiment results show that without mean pitch feature, the MSE of our model increases 0.7%. The left-out of standard deviation of pitch also raises MSE by 0.65%. For mean intensity and number of pulses, MSE increases by 0.63% and 0.56% respectively.
+
+Evidence:
+- Removal of pitch and intensity features impacts model performance
+  Strength: moderate
+  Location: Experiment Results section
+  Limitations: Limited experimental details provided
+  Quote: Our experiment results show that without mean pitch feature, the MSE of our model increases 0.7%. The left-out of standard deviation of pitch also raises MSE by 0.65%. For mean intensity and number of pulses, MSE increases by 0.63% and 0.56% respectively.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Impact sizes are relatively small (<1%) and may not be economically significant
+Confidence: medium
+
+==================================================
+
+Claim 6:
+Statement: The Iterative Forced Alignment (IFA) method improves audio-text segmentation accuracy
+Location: Appendix section
+Type: Methodological advancement
+Quote: As shown in Table 2, the adoption of IFA improves segmentation accuracy and reduces the degree of error significantly.
+
+Evidence:
+- IFA improves segmentation accuracy compared to one-time method
+  Strength: moderate
+  Location: Appendix section
+  Limitations: Tested on limited sample size
+  Quote: We randomly select 200 earnings conference calls to test the effectiveness of IFA... the adoption of IFA improves segmentation accuracy and reduces the degree of error significantly.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Testing done on limited sample of 200 calls; may not generalize to all scenarios
+Confidence: high
+
+==================================================
+

@@ -1,0 +1,139 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Simple, training-free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks.",
+                "type": "performance",
+                "location": "Introduction",
+                "exact_quote": "We demonstrate how simple, training-free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Experiments on two state-of-the-art LLMs with a publicly available ambiguous question-answering dataset show that simple disambiguating prompts improve performance over the naive setting.",
+                    "strength": "strong",
+                    "limitations": "The study is limited to two LLMs and may not generalize to other models.",
+                    "location": "Results and Discussion",
+                    "exact_quote": "Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries."
+                },
+                {
+                    "evidence_text": "Disambiguation via adding context performs better for both LLMs.",
+                    "strength": "moderate",
+                    "limitations": "The performance improvement is model-specific and may not apply to all LLMs.",
+                    "location": "Results and Discussion",
+                    "exact_quote": "Out of the two simple disambiguating methods explored, we see that disambiguation via adding context performs better for both LLMs."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence shows that simple disambiguating prompts improve performance for the two LLMs tested.",
+                "key_limitations": "The findings may not generalize to all LLMs.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Few-shot fine-tuning does not provide any improvement in LLM performance on ambiguous questions.",
+                "type": "performance",
+                "location": "Results and Discussion",
+                "exact_quote": "To evaluate whether small scale fine-tuning helps, we perform few-shot fine-tuning on GPT 4o-mini [7]. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI\u2019s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI\u2019s fine-tuning API [8] which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. To evaluate the performance of this fine-tuned model, we sample 1,000 ambiguous questions from the dataset at random and compare the performance between naive prompting on the 4o-mini model and naive prompting on the fine-tuned 4o-mini model. The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626.",
+                    "strength": "strong",
+                    "limitations": "The improvement is minimal and may not be statistically significant.",
+                    "location": "Results and Discussion",
+                    "exact_quote": "The GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The evidence shows that fine-tuning does not improve performance on ambiguous questions.",
+                "key_limitations": "The improvement is minimal and may not be statistically significant.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Lowering the temperature for LLM generation results in minor improvements in performance on ambiguous questions.",
+                "type": "performance",
+                "location": "Results and Discussion",
+                "exact_quote": "Lowering the temperature (0.2 instead of 1.0, in this case) seem to have minor improvements in some cases, but the difference is not that significant."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Lower temperature (0.2 instead of 1.0) seems to have minor improvements in some cases.",
+                    "strength": "weak",
+                    "limitations": "The improvement is minor and not statistically significant.",
+                    "location": "Results and Discussion",
+                    "exact_quote": "Lowering the temperature (0.2 instead of 1.0, in this case) seem to have minor improvements in some cases, but the difference is not that significant."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "low",
+                "justification": "The evidence shows that lowering the temperature has minor effects on performance.",
+                "key_limitations": "The improvement is minor and not statistically significant.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+                "type": "performance",
+                "location": "Conclusion and Future Works",
+                "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The average length of the question with added context was 126.90 words, which is approximately 14.2 times longer than the original question.",
+                    "strength": "moderate",
+                    "limitations": "The study does not provide a direct measure of the relevance of the added context.",
+                    "location": "Methodology and Experimental Settings",
+                    "exact_quote": "For our random sample of 1,000 questions in these experiments, the average length of the question with added context was 126.90 words, which is approximately 14.2 times longer than the original question."
+                },
+                {
+                    "evidence_text": "Adding context skews the plot 2 to the left, indicating that the model often adds wrong context.",
+                    "strength": "moderate",
+                    "limitations": "The study does not provide a direct measure of the relevance of the added context.",
+                    "location": "Results and Discussion",
+                    "exact_quote": "Problem with naive contextual enrichment: The Figures 2 and 3 show why the average is not going up when an LLM is prompted to insert context into a question."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The evidence shows that contextual enrichment can improve performance, but it often adds irrelevant context.",
+                "key_limitations": "The study does not provide a direct measure of the relevance of the added context.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Future work will fine-tune the LLM for accurate context-enhancement.",
+                "type": "methodology",
+                "location": "Conclusion and Future Works",
+                "exact_quote": "In future work, we plan to fine-tune the LLM for accurate context-enhancement."
+            },
+            "evidence": [],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is a future direction and does not require evidence.",
+                "key_limitations": "N/A",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "181.39 seconds",
+        "total_execution_time": "183.06 seconds"
+    }
+}

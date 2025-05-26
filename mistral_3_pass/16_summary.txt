@@ -1,0 +1,1660 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+### EUREKA: HUMAN-LEVEL REWARD DESIGN VIA CODING LARGE LANGUAGE MODELS
+
+**Yecheng Jason Ma[1 2][ �]** **, William Liang[2], Guanzhi Wang[1 3], De-An Huang[1], Osbert Bastani[2],**
+**Dinesh Jayaraman[2], Yuke Zhu[1 4], Linxi “Jim” Fan[1][ �]** _[†], Anima Anandkumar[1 3][ †]_
+
+1NVIDIA, 2UPenn, 3Caltech, 4UT Austin; †Equal advising
+
+[https://eureka-research.github.io](https://eureka-research.github.io)
+
+---
+
+### ABSTRACT
+
+Large Language Models (LLMs) have excelled as high-level semantic planners for sequential decision-making tasks. However, harnessing them to learn complex low-level manipulation tasks, such as dexterous pen spinning, remains an open problem. We bridge this fundamental gap and present EUREKA, a human-level reward design algorithm powered by LLMs. EUREKA exploits the remarkable zero-shot generation, code-writing, and in-context improvement capabilities of state-of-the-art LLMs, such as GPT-4, to perform evolutionary optimization over reward code. The resulting rewards can then be used to acquire complex skills via reinforcement learning. Without any task-specific prompting or pre-defined reward templates, EUREKA generates reward functions that outperform expert human-engineered rewards. In a diverse suite of 29 open-source RL environments that include 10 distinct robot morphologies, EUREKA outperforms human experts on 83% of the tasks, leading to an average normalized improvement of 52%. The generality of EUREKA also enables a new gradient-free in-context learning approach to reinforcement learning from human feedback (RLHF), readily incorporating human inputs to improve the quality and the safety of the generated rewards without model updating. Finally, using EUREKA rewards in a curriculum learning setting, we demonstrate for the first time, a simulated Shadow Hand capable of performing pen spinning tricks, adeptly manipulating a pen in circles at rapid speed.
+
+---
+
+### 1 INTRODUCTION
+
+Large Language Models (LLMs) have excelled as high-level semantic planners for robotics tasks (Ahn et al., 2022; Singh et al., 2023), but whether they can be used to learn complex low-level manipulation tasks, such as dexterous pen spinning, remains an open problem. Existing attempts require substantial domain expertise to construct task prompts or learn only simple skills, leaving a substantial gap in achieving human-level dexterity (Yu et al., 2023; Brohan et al., 2023).
+
+On the other hand, reinforcement learning (RL) has achieved impressive results in dexterity (Andrychowicz et al., 2020; Handa et al., 2023) as well as many other domains-if the human designers can carefully construct reward functions that accurately codify and provide learning signals for the desired behavior; likewise, many real-world RL tasks admit sparse rewards that are difficult for learning, necessitating reward shaping that provides incremental learning signals. Despite their fundamental importance, reward functions are known to be notoriously difficult to design in practice (Russell & Norvig, 1995; Sutton & Barto, 2018); a recent survey conducted finds 92% of polled reinforcement learning researchers and practitioners report manual trial-and-error reward design and 89% indicate that their designed rewards are sub-optimal (Booth et al., 2023) and lead to unintended behavior (Hadfield-Menell et al., 2017).
+
+Given the paramount importance of reward design, we ask whether it is possible to develop a universal reward programming algorithm using state-of-the-art coding LLMs, such as GPT-4. Their remarkable abilities in code writing, zero-shot generation, and in-context learning have previously enabled effective programmatic agents (Shinn et al., 2023; Wang et al., 2023a). Ideally, this reward design algorithm should achieve human-level reward generation capabilities that scale to a broad spectrum of tasks, including dexterity, automate the tedious trial-and-error procedure without human supervision, and yet be compatible with human oversight to assure safety and alignment.
+
+We introduce Evolution-driven Universal REward Kit for Agent (EUREKA), a novel reward design algorithm powered by coding LLMs with the following contributions:
+
+1. Achieves human-level performance on reward design across a diverse suite of 29 open-sourced RL environments that include 10 distinct robot morphologies, including quadruped, quadcopter, biped, manipulator, as well as several dexterous hands; see Fig. 1. Without any task-specific prompting or reward templates, EUREKA autonomously generates rewards that outperform expert human rewards on 83% of the tasks and realizes an average normalized improvement of 52%.
+
+2. Solves dexterous manipulation tasks that were previously not feasible by manual reward engineering. We consider pen spinning, in which a five-finger hand needs to rapidly rotate a pen in pre-defined spinning configurations for as many cycles as possible. Combining EUREKA with curriculum learning, we demonstrate for the first time rapid pen spinning maneuvers on a simulated anthropomorphic Shadow Hand (see Figure 1 bottom).
+
+3. Enables a new gradient-free in-context learning approach to reinforcement learning from human feedback (RLHF) that can generate more performant and human-aligned reward functions based on various forms of human inputs without model updating. We demonstrate that EUREKA can readily benefit from and improve upon existing human reward functions. Likewise, we showcase EUREKA’s capability in using purely textual feedback to generate progressively more human-aligned reward functions.
+
+Unlike prior work L2R on using LLMs to aid reward design (Yu et al., 2023), EUREKA is completely free of task-specific prompts, reward templates, as well as few-shot examples. In our experiments, EUREKA significantly outperforms L2R due to its ability to generate free-form, expressive reward programs. EUREKA’s generality is made possible through three key algorithmic design choices: environment as context, evolutionary search, and reward reflection. First, by taking the environment source code as context, EUREKA can zero-shot generate executable reward functions from the backbone coding LLM (GPT-4). Then, EUREKA substantially improves the quality of its rewards by performing evolutionary search, iteratively proposing batches of reward candidates and refining the most promising ones within the LLM context window. This in-context improvement is made effective via reward reflection, a textual summary of the reward quality based on policy training statistics that enables automated and targeted reward editing; see Fig. 3 for an example of EUREKA zero-shot reward as well as various improvements accumulated during its optimization. To ensure that EUREKA can scale up its reward search to maximum potential, EUREKA evaluates intermediate rewards using GPU-accelerated distributed reinforcement learning on IsaacGym (Makoviychuk et al., 2021), which offers up to three orders of magnitude in policy learning speed, making EUREKA an extensive algorithm that scales naturally with more compute. See Fig. 2 for an overview. We are committed to open-sourcing all prompts, environments, and generated reward functions to promote further research on LLM-based reward design.
+
+---
+
+### 2 PROBLEM SETTING AND DEFINITIONS
+
+The goal of reward design is to return a shaped reward function for a ground-truth reward function that may be difficult to optimize directly (e.g., sparse rewards); this ground-truth reward function may only be accessed via queries by the designer. We first introduce the formal definition from Singh et al. (2010), which we then adapt to the program synthesis setting, which we call reward generation.
+
+**Definition 2.1. (Reward Design Problem (Singh et al., 2010)) A reward design problem (RDP) is**
+a tuple P = ⟨M, R, πM _, F_ _⟩, where M = (S, A, T_ ) is the world model with state space S, action space A, and transition function T. R is the space of reward functions; AM (·) : R → Π is a learning algorithm that outputs a policy π : S ∆(A) that optimizes reward R in the resulting Markov
+_→_ _∈R_
+_Decision Process (MDP), (M, R); F : Π →_ R is the fitness function that produces a scalar evaluation of any policy, which may only be accessed via policy queries (i.e., evaluate the policy using the ground truth reward function). In an RDP, the goal is to output a reward function R such that
+_∈R_
+the policy π := AM (R) that optimizes R achieves the highest fitness score F (π).
+
+**Reward Generation Problem. In our problem setting, every component within a RDP is specified**
+via code. Then, given a string l that specifies the task, the objective of the reward generation problem
+is to output a reward function code R such that F (AM (R)) is maximized.
+
+---
+
+### 3 METHOD
+
+EUREKA consists of three algorithmic components: 1) environment as context that enables zero-shot generation of executable rewards, 2) evolutionary search that iteratively proposes and refines reward candidates, and 3) reward reflection that enables fine-grained reward improvement. See Alg. 1 for pseudocode; all prompts are included in App. A.
+
+#### 3.1 ENVIRONMENT AS CONTEXT
+
+Reward design requires the environment specification to be provided to the LLM. We propose directly feeding the raw environment source code (without the reward code, if exists) as context. Given that any reward function is a function over the environment’s state and action variables, the only requirement in the source code is that it exposes these environment variables, which is easy to satisfy. In cases where the source code is not available, relevant state information can also be supplied via an API, for example. In practice, to ensure that the environment code fits within the LLM’s context window and does not leak simulation internals (so that we can expect the same prompt to generalize to new simulators), we have an automatic script to extract just the environment code snippets that expose and fully specify the environment state and action variables. see App. D for details.
+
+Given environment as context,
+EUREKA instructs the coding LLM
+to directly return executable Python
+code with only generic reward design
+and formatting tips, such as exposing 1: Require: Task description l, environment code M,
+individual components in the reward coding LLM LLM, fitness function F, initial prompt prompt
+as a dictionary output (for reasons 2: Hyperparameters: search iteration N, iteration batch size K
+
+3: for N iterations do
+
+that will be apparent in Sec. 3.3);
+
+4: // Sample K reward code from LLM
+
+see Prompt 1 and 3 in App. A.
+
+5: R1,..., Rk ∼ LLM(l, M, prompt)
+
+Remarkably, with only these minimal 6: // Evaluate reward candidates
+instructions, EUREKA can already 7: _s1 = F_ (R1),..., sK = F (RK )
+zero-shot generate plausibly-looking 8: // Reward reflection
+rewards in diverse environments in its 9: prompt := prompt : Reflection(Rbest[n] _[, s][n]best[)][,]_
+first attempts. An example EUREKA where best = arg maxk s1,..., sK
+output is shown in Fig. 3. As seen, 10: // Update Eureka reward
+EUREKA adeptly composes over 11: _REureka, sEureka = (Rbest[n]_ _[, s][n]best[)][,]_ if s[n]best _[> s][Eureka]_
+existing observation variables (e.g., 12: Output: REureka
+fingertip pos) in the provided
+environment code and produces a competent reward code – all without any environment-specific
+prompt engineering or reward templating. On the first try, however, the generated reward may not
+always be executable, and even if it is, it can be quite sub-optimal with respect to the task fitness
+metric F. While we can improve the prompt with task-specific formatting and reward design hints,
+doing so does not scale to new tasks and hinders the overall generality of our system. How can we
+effectively overcome the sub-optimality of single-sample reward generation?
+
+---
+
+#### 3.2 EVOLUTIONARY SEARCH
+
+In this section, we will demonstrate how evolutionary search presents a natural solution that addresses the aforementioned execution error and sub-optimality challenges. In each iteration, EUREKA samples several independent outputs from the LLM (Line 5 in Alg. 1). Since the generations are i.i.d, the probability that all reward functions from an iteration are buggy exponentially decreases as the number of samples increases. We find that for all environments we consider, sampling just a modest number of samples (16) contains at least one executable reward code in the first iteration.
+
+Given executable reward functions from an earlier iteration, EUREKA performs in-context reward
+_mutation, proposing new improved reward functions from the best one in the previous iteration._
+Concretely, a new EUREKA iteration will take the best-performing reward from the previous iteration,
+its reward reflection (Sec. 3.3), and the mutation prompt (Prompt 2 in App. A) as context and generate
+_K more i.i.d reward outputs from the LLM; several illustrative reward modifications are visualized in_
+Fig. 3. This iterative optimization continues until a specified number of iterations has been reached.
+Finally, we perform multiple random restarts to find better maxima; this is a standard strategy in
+global optimization. In all our experiments, EUREKA conducts 5 independent runs per environment,
+and for each run, searches for 5 iterations with K = 16 samples per iteration.
+
+---
+
+#### 3.3 REWARD REFLECTION
+
+In order to ground the in-context reward mutation, we must be able to put into words the quality of
+the generated rewards. We propose reward reflection, an automated feedback that summarizes the
+policy training dynamics in texts. Specifically, given that EUREKA reward functions are asked to
+expose their individual components in the reward program (e.g., reward components in Fig. 3),
+reward reflection tracks the scalar values of all reward components and the task fitness function at
+intermediate policy checkpoints throughout training. For instance, consider the illustrative example
+in Fig. 2, where the snapshot values of av penalty are provided as a list in the reward feedback.
+See App. G.1 for full examples.
+
+This reward reflection procedure, though simple to construct, is important due to two reasons: (1) the lack of fine-grained reward improvement signal in the task fitness function, and (2) the algorithm-dependent nature of reward optimization (Booth et al., 2023). First, as we can query the task fitness
+function F on the resulting policies, a simple strategy is to just provide this numerical score as
+the reward evaluation. While serving as the holistic ground-truth metric, the task fitness function
+itself lacks in credit assignment, providing no useful information on why a reward function works
+or not. Second, whether a reward function is effective is influenced by the particular choice of RL
+algorithm, and the same reward may perform very differently even under the same optimizer given
+hyperparameter differences (Henderson et al., 2018; Agarwal et al., 2021). By providing detailed
+accounts on how well the RL algorithm optimizes individual reward components, reward reflection
+enables EUREKA to produce more intricate and targeted reward editing.
+
+---
+
+### 4 EXPERIMENTS
+
+We thoroughly evaluate EUREKA on a diverse suite of robot embodiments and tasks, testing its ability
+to generate reward functions, solve new tasks, and incorporate various forms of human input. We
+use GPT-4 (OpenAI, 2023), in particular the gpt-4-0314 variant, as the backbone LLM for all
+LLM-based reward-design algorithms unless specified otherwise.
+
+**Environments. Our environments consist of 10 distinct robots and 29 tasks implemented using the**
+IsaacGym simulator (Makoviychuk et al., 2021). First, we include 9 original environments from
+IsaacGym (Isaac), covering a diverse set of robot morphologies from quadruped, bipedal, quadrotor,
+cobot arm, to dexterous hands. In addition to coverage over robot form factors, we ensure depth in our
+evaluation by including all 20 tasks from the Bidexterous Manipulation (Dexterity) benchmark (Chen
+et al., 2022). Dexterity contains 20 complex bi-manual tasks that require a pair of Shadow Hands to
+solve a wide range of complex manipulation skills, ranging from object handover to rotating a cup by
+180 degrees. For the task description input to EUREKA, we use the official description provided in
+the environment repository when possible. See App. B for details on all environments. It is worth
+noting that both benchmarks are publicly released concurrently, or after the GPT-4 knowledge cut-off
+date (September 2021), so GPT-4 is unlikely to have accumulated extensive internet knowledge
+about these tasks, making them ideal testbeds for assessing EUREKA’s reward generation capability
+compared to measurable human-engineered reward functions.
+
+4.1 BASELINES
+
+**L2R (Yu et al., 2023) proposes a two-stage LLM-prompting solution to generate templated rewards.**
+For an environment and task specified in natural language, a first LLM is asked to fill in a natural
+language template describing the agent’s motion; then, a second LLM is asked to convert this “motion
+description” into code that calls a manually defined set of reward API primitives to write a reward
+program that sets their parameters. To make L2R competitive for our tasks, we define the motion
+description template to mimic the original L2R templates, and we construct the API reward primitives
+using the individual components of the original human rewards when possible. Note that this gives
+L2R an advantage as it has access to the original reward functions. Consistent with EUREKA, we
+conduct 5 independent L2R runs per environment, and for each run, we generate 16 reward samples.
+See App. C for more details.
+
+**Human. These are the original shaped reward functions provided in our benchmark tasks. As these**
+reward functions are written by active reinforcement learning researchers who designed the tasks,
+these reward functions represent the outcomes of expert-level human reward engineering.
+
+**Sparse. These are identical to the fitness functions F that we use to evaluate the quality of the**
+generated rewards. Like Human, these are also provided by the benchmark. On the dexterity tasks,
+they are uniformly binary indicator functions that measure task success; on Isaac tasks, they vary in
+functional forms depending on the nature of the task. See App. B for a description of the ground-truth
+scoring metric for all tasks.
+
+4.2 TRAINING DETAILS
+
+**Policy Learning. For each task, all final reward functions are optimized using the same RL algorithm**
+with the same set of hyperparameters. Isaac and Dexterity share a well-tuned PPO implementation (Schulman et al., 2017; Makoviichuk & Makoviychuk, 2021), and we use this implementation
+and the task-specific PPO hyperparameters without any modification. Note that these task hyperparameters are tuned to make the official human-engineered rewards work well. For each final reward
+function obtained from each method, we run 5 independent PPO training runs and report the average
+of the maximum task metric values achieved from 10 policy checkpoints sampled at fixed intervals.
+In particular, the maximum is taken over the same number of checkpoints for each approach.
+
+**Reward Evaluation Metrics. For Isaac tasks, since the task metric F for each task varies in semantic**
+meaning and scale, we report the human normalized score for EUREKA and L2R, _|[Method]Human−[−]Sparse[Sparse]|_ [.]
+
+This metric provides a holistic measure of how EUREKA rewards fare against human-expert rewards
+with respect to the ground-truth task metric. For Dexterity, since all tasks are evaluated using the
+binary success function, we directly report success rates.
+
+4.3 RESULTS
+
+**EUREKA outperforms human rewards. In Figure 4, we report the aggregate results on Dexterity**
+and Isaac. Notably, EUREKA exceeds or performs on par to human level on all Isaac tasks and 15 out
+of 20 tasks on Dexterity (see App. F for a per-task breakdown). In contrast, L2R, while comparable
+on low-dimensional tasks (e.g., CartPole, BallBalance), lags significantly behind on high-dimensional
+tasks. Despite being provided access to some of the same reward components as Human, L2R still
+underperforms EUREKA after its initial iteration, when both methods have had the same number of
+reward queries. As expected, L2R’s lack of expressivity severely limits its performance. In contrast,
+EUREKA generates free-form rewards from scratch without any domain-specific knowledge and
+performs substantially better. In App. F, we present results on additional evaluation metrics such as
+interquantile mean (IQM), probability of improvement (Agarwal et al., 2021), and the aggregate RL
+training curves; on all evaluations, we observe the consistent trend that EUREKA generates the most
+capable reward functions. Furthermore, we ablate GPT-4 with GPT-3.5 and find EUREKA degrades in
+performance but still matches or exceeds human-level on most Isaac tasks, indicating that its general
+principles can be readily applied to coding LLMs of varying qualities.
+
+**EUREKA** **consistently** **improves**
+**over time. In Fig. 5, we visualize the**
+average performance of the cumulative best EUREKA rewards after each
+evolution iteration. Moreover, we
+study an ablation, EUREKA w.o. Evo**lution (32 Samples), which performs**
+only the initial reward generation
+step, sampling the same number of
+reward functions as two iterations in
+the original EUREKA. This ablation
+helps study, given a fixed number of Figure 5: EUREKA progressively produces better rewards via inreward function budget, whether it context evolutionary reward search.
+is more advantageous to perform the
+EUREKA evolution or simply sample more first-attempt rewards without iterative improvement. As
+seen, on both benchmarks, EUREKA rewards steadily improve and eventually surpass human rewards
+in performance despite sub-par initial performances. This consistent improvement also cannot be
+replaced by just sampling more in the first iteration as the ablation’s performances are lower than
+EUREKA after 2 iterations on both benchmarks. Together, these results demonstrate that EUREKA’s
+novel evolutionary optimization is indispensable for its final performance.
+
+**EUREKA generates novel rewards. We assess the nov-**
+elty of EUREKA rewards by computing the correlations
+between EUREKA and human rewards on all the Isaac
+tasks; see App. B for details on this procedure. Then, we
+plot the correlations against the human normalized scores
+on a scatter-plot in Figure 6, where each point represents
+a single EUREKA reward on a single task. As shown,
+EUREKA mostly generates weakly correlated reward functions that outperform the human ones. In addition, by
+examining the average correlation by task (App. F), we
+observe that the harder the task is, the less correlated the
+EUREKA rewards. We hypothesize that human rewards
+are less likely to be near optimal for difficult tasks, leaving
+more room for EUREKA rewards to be different and bet- Figure 6: Eureka generates novel rewards.
+ter. In a few cases, EUREKA rewards are even negatively
+correlated with human rewards but perform significantly better, demonstrating that EUREKA can
+_discover novel reward design principles that may run counter to human intuition; we illustrate these_
+EUREKA rewards in App. G.2.
+
+**Reward reflection enables targeted improvement. To assess the importance of constructing reward**
+reflection in the reward feedback, we evaluate an ablation, EUREKA (No Reward Reflection), which
+reduces the reward feedback prompt to include only snapshot values of the task metric F. Averaged
+over all Isaac tasks, EUREKA without reward reflection reduces the average normalized score by
+28.6%; in App. F, we provide detailed per-task breakdown and observe much greater performance
+deterioration on higher dimensional tasks. To provide qualitative analysis, in App. G.1, we include
+several examples in which EUREKA utilizes the reward reflection to perform targeted reward editing.
+
+
+**EUREKA with curriculum learning enables dexterous pen spinning. Finally, we investigate**
+whether EUREKA can be used to solve a truly novel and challenging dexterous task. To this end,
+we propose pen spinning as a test bed. This task is highly dynamic and requires a Shadow Hand
+to continuously rotate a pen to achieve some pre-defined spinning patterns for as many cycles as
+possible; we implement this task on top of the original Shadow Hand environment in Isaac Gym
+without changes to any physics parameter, ensuring physical realism. We consider a curriculum
+_learning (Bengio et al., 2009) approach to break down the task into manageable components that can_
+be independently solved by EUREKA. Specifically, we first use EUREKA to generate a reward for the
+task of re-orienting the pen to random target configurations and train a policy using the final EUREKA
+reward. Then, using this pre-trained policy (Pre-Trained), we fine-tune it using the same EUREKA
+reward to reach the sequence of pen-spinning configurations (Fine-Tuned). To demonstrate the
+importance of curriculum learning, we also directly train a policy from scratch on the target task using
+EUREKA reward without the first-stage pre-training (Scratch). The RL training curves are shown in
+Figure 7. Eureka fine-tuning quickly adapts the policy to successfully spin the pen for many cycles
+in a row; see project website for videos. In contrast, neither pre-trained or learning-from-scratch
+policies can complete even a single cycle of pen spinning. In addition, using this EUREKA fine-tuning
+approach, we have also trained pen spinning policies for a variety of different spinning configurations;
+all pen spinning videos can be viewed on our project website, and experimental details are in App. D.1.
+These results demonstrate EUREKA’s applicability to advanced policy learning approaches, which
+are often necessary for learning very complex skills
+
+4.4 EUREKA FROM HUMAN FEEDBACK
+
+In addition to automated reward design, EUREKA enables
+a new gradient-free in-context learning approach to RL
+from Human Feedback (RLHF) that can readily incorporate various types of human inputs to generate more
+performant and human-aligned reward functions.
+
+**EUREKA can improve and benefit from human reward**
+**functions. We study whether starting with a human reward**
+**function initialization, a common scenario in real-world**
+**RL applications, is advantageous for EUREKA. Importantly, incorporating human initialization requires no modification to EUREKA – we can simply substitute the raw Figure 7: EUREKA can be flexibly combined
+human reward function as the output of the first EUREKA with curriculum learning to acquire complex
+iteration. To investigate this, we select several tasks from dexterous skills.
+Dexterity that differ in the relative performances between
+the original EUREKA and human rewards. The full results are shown in Figure 8.
+
+As shown, regardless of the quality of the human
+rewards, EUREKA improves and benefits from
+human rewards as EUREKA (Human Init.) is
+uniformly better than both EUREKA and Human on all tasks. This suggests that EUREKA’s
+in-context reward improvement capability is
+largely independent of the quality of the base
+reward. Furthermore, the fact that EUREKA can
+significantly improve over human rewards even
+when they are highly sub-optimal hints towards
+an interesting hypothesis: human designers are
+_generally knowledgeable about relevant state_
+_variables but are less proficient at designing re-_ Figure 8: EUREKA effectively improves and benefits
+_wards using them. This makes intuitive sense as_ from human reward initialization.
+identifying relevant state variables that should
+be included in the reward function involves mostly common sense reasoning, but reward design
+requires specialized knowledge and experience in RL. Together, these results demonstrate EUREKA’s
+_reward assistant capability, perfectly complementing human designers’ knowledge about useful state_
+variables and making up for their less proficiency on how to design rewards using them. In App. G.3,
+we provide several examples of EUREKA (Human Init.) steps.
+
+
+**Reward reflection via human feedback induces aligned behavior. So far, all EUREKA rewards**
+are optimized against a fixed, black-box task fitness function F. This task metric, however, may
+not fully align with human intent. Moreover, in many open-ended tasks, F may not be available in
+the first place (Fan et al., 2022). In these challenging scenarios, we propose to augment EUREKA
+by having humans step in and put into words the reward reflection in terms of the desired behavior
+and correction. We investigate this capability in EUREKA by teaching a Humanoid agent how to run
+purely from textual reward reflection; in App. G.4, we show the exact sequence of human feedback
+and EUREKA rewards. Then, we conduct a user study asking 20 unfamiliar users to indicate their
+preferences between two policy rollout videos shown in random order, one trained with human reward
+reflection (EUREKA-HF) and the other one trained with the original best EUREKA reward; the details
+are in App. D.3. As shown in Fig. 9, despite running a bit slower, the EUREKA-HF agent is preferred
+by a large majority of our users. Qualitatively, we indeed see that the EUREKA-HF agent acquires safer
+and more stable gait, as instructed by the human. See the project website for a comparison.
+
+---
+
+### 5 RELATED WORK
+
+**Reward Design.** Reward engineering is a
+long-standing challenge in reinforcement learning (Singh et al., 2010; Sutton & Barto, 2018).
+The most common reward design method is manual trial-and-error (Knox et al., 2023; Booth
+et al., 2023). Inverse reinforcement learning
+(IRL) infers reward functions from demonstra
+Method Forward Velocity Human Preference
+
+tions (Abbeel & Ng, 2004; Ziebart et al., 2008;
+Ho & Ermon, 2016), but it requires expensive ex- EUREKA **7.53** 5/20
+pert data collection, which may not be available, EUREKA-HF 5.58 **15/20**
+and outputs non-interpretable black-box reward
+
+Figure 9: EUREKA can incorporate human reward re
+functions. Several prior works have studied au
+flection to modify rewards that induce safer and more
+
+tomated reward search through evolutionary al
+human-aligned behavior.
+
+gorithms (Niekum et al., 2010; Chiang et al.,
+2019; Faust et al., 2019). These early attempts
+are limited to task-specific implementations of evolutionary algorithms that search over only parameters within provided reward templates. Recent works have also proposed using pretrained foundation
+models that can produce reward functions for new tasks (Ma et al., 2022; 2023; Fan et al., 2022; Du
+et al., 2023a; Karamcheti et al., 2023; Du et al., 2023b; Kwon et al., 2023). Most of these approaches
+output scalar rewards that lack interpretability and do not naturally admit the capability to improve or
+adapt rewards on-the-fly. In contrast, EUREKA adeptly generates free-form, white-box reward code
+and effectively in-context improves.
+
+**Code Large Language Models for Decision Making. Recent works have considered using coding**
+LLMs (Austin et al., 2021; Chen et al., 2021; Roziere et al.`, 2023) to generate grounded and structured
+programmatic output for decision making and robotics problems (Liang et al., 2023; Singh et al.,
+2023; Wang et al., 2023b; Huang et al., 2023; Wang et al., 2023a; Liu et al., 2023a; Silver et al.,
+2023; Ding et al., 2023; Lin et al., 2023; Xie et al., 2023). However, most of these works rely on
+known motion primitives to carry out robot actions and do not apply to robot tasks that require
+low-level skill learning, such as dexterous manipulation. The closest to our work is a recent work (Yu
+et al., 2023) that also explores using LLMs to aid reward design. Their approach, however, requires
+domain-specific task descriptions and reward templates.
+
+---
+
+### 6 CONCLUSION
+
+We have presented EUREKA, a universal reward design algorithm powered by coding large language
+models and in-context evolutionary search. Without any task-specific prompt engineering or human
+intervention, EUREKA achieves human-level reward generation on a wide range of robots and tasks.
+EUREKA’s particular strength in learning dexterity solves dexterous pen spinning for the first time with
+a curriculum learning approach. Finally, EUREKA enables a gradient-free approach to reinforcement
+learning from human feedback that readily incorporates human reward initialization and textual
+feedback to better steer its reward generation. The versatility and substantial performance gains of
+EUREKA suggest that the simple principle of combining large language models with evolutionary
+algorithms are a general and scalable approach to reward design, an insight that may be generally
+applicable to difficult, open-ended search problems.
+
+|Method|Forward Velocity Human Preference|
+|---|---|
+|EUREKA EUREKA-HF|7.53 5/20 5.58 15/20|
+
+---
+
+### ACKNOWLEDGEMENT
+
+We are grateful to colleagues and friends at NVIDIA and UPenn for their helpful feedback and
+insightful discussions. We thank Viktor Makoviychuk, Yashraj Narang, Iretiayo Akinola, Erwin
+Coumans for their assistance on Isaac Gym experiment and rendering. This work is done during
+Yecheng Jason Ma’s internship at NVIDIA. We acknowledge funding support from NSF CAREER
+Award 2239301, ONR award N00014-22-1-2677, NSF Award CCF-1917852, and ARO Award
+W911NF-20-1-0080.
+
+---
+
+### REFERENCES
+
+Pieter Abbeel and Andrew Y Ng. Apprenticeship learning via inverse reinforcement learning. In
+_Proceedings of the twenty-first international conference on Machine learning, pp. 1, 2004._
+
+Rishabh Agarwal, Max Schwarzer, Pablo Samuel Castro, Aaron C Courville, and Marc Bellemare.
+Deep reinforcement learning at the edge of the statistical precipice. Advances in neural information
+_processing systems, 34:29304–29320, 2021._
+
+Michael Ahn, Anthony Brohan, Noah Brown, Yevgen Chebotar, Omar Cortes, Byron David, Chelsea
+Finn, Chuyuan Fu, Keerthana Gopalakrishnan, Karol Hausman, et al. Do as i can, not as i say:
+Grounding language in robotic affordances. arXiv preprint arXiv:2204.01691, 2022.
+
+Ilge Akkaya, Marcin Andrychowicz, Maciek Chociej, Mateusz Litwin, Bob McGrew, Arthur Petron,
+Alex Paino, Matthias Plappert, Glenn Powell, Raphael Ribas, et al. Solving rubik’s cube with a
+robot hand. arXiv preprint arXiv:1910.07113, 2019.
+
+OpenAI: Marcin Andrychowicz, Bowen Baker, Maciek Chociej, Rafal Jozefowicz, Bob McGrew,
+Jakub Pachocki, Arthur Petron, Matthias Plappert, Glenn Powell
+
+Structured Evidence:
+[
+  {
+    "claim_id": 1,
+    "evidence": [
+      {
+        "evidence_id": 1,
+        "evidence_text": "EUREKA generates reward functions that outperform expert human-engineered rewards.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.3",
+        "exact_quote": "EUREKA generates reward functions that outperform expert human-engineered rewards."
+      },
+      {
+        "evidence_id": 2,
+        "evidence_text": "EUREKA outperforms human rewards on 83% of the tasks.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.3",
+        "exact_quote": "EUREKA outperforms human rewards on 83% of the tasks."
+      }
+    ]
+  },
+  {
+    "claim_id": 2,
+    "evidence": [
+      {
+        "evidence_id": 1,
+        "evidence_text": "EUREKA generates free-form rewards from scratch without any domain-specific knowledge.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.3",
+        "exact_quote": "EUREKA generates free-form rewards from scratch without any domain-specific knowledge."
+      },
+      {
+        "evidence_id": 2,
+        "evidence_text": "EUREKA performs substantially better than L2R.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.3",
+        "exact_quote": "EUREKA performs substantially better than L2R."
+      }
+    ]
+  },
+  {
+    "claim_id": 3,
+    "evidence": [
+      {
+        "evidence_id": 1,
+        "evidence_text": "EUREKA generates novel rewards that are weakly correlated with human rewards.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.3",
+        "exact_quote": "EUREKA generates novel rewards that are weakly correlated with human rewards."
+      },
+      {
+        "evidence_id": 2,
+        "evidence_text": "EUREKA rewards are even negatively correlated with human rewards but perform significantly better.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.3",
+        "exact_quote": "EUREKA rewards are even negatively correlated with human rewards but perform significantly better."
+      }
+    ]
+  },
+  {
+    "claim_id": 4,
+    "evidence": [
+      {
+        "evidence_id": 1,
+        "evidence_text": "EUREKA rewards steadily improve and eventually surpass human rewards in performance.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.3",
+        "exact_quote": "EUREKA rewards steadily improve and eventually surpass human rewards in performance."
+      },
+      {
+        "evidence_id": 2,
+        "evidence_text": "EUREKA rewards are more performant and human-aligned.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.3",
+        "exact_quote": "EUREKA rewards are more performant and human-aligned."
+      }
+    ]
+  },
+  {
+    "claim_id": 5,
+    "evidence": [
+      {
+        "evidence_id": 1,
+        "evidence_text": "EUREKA can incorporate human reward reflection to induce aligned behavior.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.4",
+        "exact_quote": "EUREKA can incorporate human reward reflection to induce aligned behavior."
+      },
+      {
+        "evidence_id": 2,
+        "evidence_text": "EUREKA-HF agent is preferred by a large majority of users.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.4",
+        "exact_quote": "EUREKA-HF agent is preferred by a large majority of users."
+      }
+    ]
+  }
+]
+
+Raw Conclusions:
+```json
+{
+    "conclusions": [
+        {
+            "claim_id": 1,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 2,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 3,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 4,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 5,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 6,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 7,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 8,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 9,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 10,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 11,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 12,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 13,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 14,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 15,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 16,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 17,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 18,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 19,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 20,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 21,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 22,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 23,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 24,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 25,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 26,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 27,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 28,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 29,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 30,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 31,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 32,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 33,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 34,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 35,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 36,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 37,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 38,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 39,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 40,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 41,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 42,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 43,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 44,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 45,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 46,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 47,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 48,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 49,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 50,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 51,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 52,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 53,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 54,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 55,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 56,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 57,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 58,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 59,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 60,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 61,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 62,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 63,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 64,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 65,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 66,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 67,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 68,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 69,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 70,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 71,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 72,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 73,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 74,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 75,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 76,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 77,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 78,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 79,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 80,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 81,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 82,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 83,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 84,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 85,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 86,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 87,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 88,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 89,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 90,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 91,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 92,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 93,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 94,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 95,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 96,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 97,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 98,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 99,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 100,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 101,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 102,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 103,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 104,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 105,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 106,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 107,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 108,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 109,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 110,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 111,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 112,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 113,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 114,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 115,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 116,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 117,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 118,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 119,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 120,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 121,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 122,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 123,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 124,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 125,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 126,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 127,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 128,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 129,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 130,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 131,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 132,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 133,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 134,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 135,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 136,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 137,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 138,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 139,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 140,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 141,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 142,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 143,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 144,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 145,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 146,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 147,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 148,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 149,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 150,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 151,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 152,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 153,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 154,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 155,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 156,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 157,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 158,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 159,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+
+
+
+Execution Times:
+claims_analysis_time: 303.93 seconds
+evidence_analysis_time: 41.64 seconds
+conclusions_analysis_time: 366.10 seconds
+total_execution_time: 714.45 seconds

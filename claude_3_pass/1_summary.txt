@@ -1,0 +1,131 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Models trained on MNLI adopt lexical overlap, subsequence, and constituent heuristics rather than learning proper inference rules
+Location: Abstract
+Type: Main finding
+Quote: We find that models trained on MNLI, including BERT, a state-of-the-art model, perform very poorly on HANS, suggesting that they have indeed adopted these heuristics.
+
+Evidence:
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Models tested were all neural networks; may not generalize to other architectures
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: HANS dataset reveals substantial room for improvement in NLI systems
+Location: Abstract
+Type: Conclusion
+Quote: We conclude that there is substantial room for improvement in NLI systems, and that the HANS dataset can motivate and measure progress in this area.
+
+Evidence:
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Limited to specific heuristics tested; other aspects of NLI may show different results
+Confidence: high
+
+==================================================
+
+Claim 3:
+Statement: All tested models performed substantially below chance on HANS, barely exceeding 0% accuracy in most cases
+Location: Section 5 Results
+Type: Empirical finding
+Quote: However, they all performed poorly—with accuracies less than 10% in most cases, when chance is 50%—on the cases where the heuristics make incorrect predictions
+
+Evidence:
+- Models scored less than 10% accuracy on non-entailment cases in HANS when chance is 50%
+  Strength: strong
+  Location: Results section
+  Limitations: Only tested 4 models
+  Quote: they all performed poorly—with accuracies less than 10% in most cases, when chance is 50%—on the cases where the heuristics make incorrect predictions
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Results specific to non-entailment cases; models performed well on entailment cases
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: SPINN performed better than DA and ESIM on subsequence and constituent cases due to its tree-based structure
+Location: Section 5 Results
+Type: Comparative finding
+Quote: SPINN had the best performance on the subsequence cases. This might be due to the tree-based nature of its input: since the subsequences targeted in these cases were explicitly chosen not to be constituents, they do not form cohesive units in SPINN's input in the way they do for sequential models.
+
+Evidence:
+- SPINN outperformed on subsequence cases due to tree structure
+  Strength: moderate
+  Location: Results section - Comparison of models
+  Limitations: Performance still poor overall
+  Quote: SPINN had the best performance on the subsequence cases. This might be due to the tree-based nature of its input: since the subsequences targeted in these cases were explicitly chosen not to be constituents, they do not form cohesive units in SPINN's input in the way they do for sequential models.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Improvement still left performance far below chance; may be due to other factors besides tree structure
+Confidence: medium
+
+==================================================
+
+Claim 5:
+Statement: BERT performed better than other models on lexical overlap and constituent cases but still far below chance
+Location: Section 5 Results
+Type: Comparative finding
+Quote: BERT did slightly worse than SPINN on the subsequence cases, but performed noticeably less poorly than all other models at both the constituent and lexical overlap cases (though it was still far below chance).
+
+Evidence:
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Still poor absolute performance; relative improvement may not be meaningful
+Confidence: high
+
+==================================================
+
+Claim 6:
+Statement: Models' poor performance on HANS is likely due more to insufficient signal in the MNLI training set than architectural limitations
+Location: Section 6 Discussion
+Type: Interpretive finding
+Quote: Other sources of evidence suggest that the models' failure is due in large part to insufficient signal from the MNLI training set, rather than the models' representational capacities alone.
+
+Evidence:
+- BERT has strong syntax capabilities but fails on HANS due to MNLI training
+  Strength: strong
+  Location: Discussion section
+  Limitations: Indirect evidence based on prior BERT results
+  Quote: The BERT model we used (bert-base-uncased) was found by Goldberg (2019) to achieve strong results in syntactic tasks such as subject-verb agreement prediction...Despite this evidence that BERT has access to relevant syntactic information, its accuracy was 0% on the subject-object swap cases
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Evidence is somewhat indirect; other factors could explain BERT's poor performance
+Confidence: medium
+
+==================================================
+
+Claim 7:
+Statement: Augmenting training data with HANS-like examples substantially improved model performance on HANS
+Location: Section 7
+Type: Empirical finding
+Quote: In general, the models trained on the augmented MNLI performed very well on HANS
+
+Evidence:
+- Models trained on MNLI+HANS-like examples performed well on HANS
+  Strength: strong
+  Location: Section 7
+  Limitations: Not all models improved equally
+  Quote: In general, the models trained on the augmented MNLI performed very well on HANS (Figure 2); the one exception was that the DA model performed poorly on subcases for which a bag-of-words representation was inadequate.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Some categories still showed poor transfer; improvements varied across models
+Confidence: high
+
+==================================================
+

@@ -1,0 +1,401 @@
+{
+    "claims": {
+        "claims": [
+            {
+                "claim_id": 1,
+                "claim_text": "The authors propose a new static method for pinpointing significant neurons that demonstrates superior performance across three metrics compared to seven other methods",
+                "location": "Abstract",
+                "claim_type": "Primary methodological contribution",
+                "exact_quote": "In this paper, we propose a static method for pinpointing significant neurons. Compared to seven other methods, our approach demonstrates superior performance across three metrics."
+            },
+            {
+                "claim_id": 2,
+                "claim_text": "The authors propose a method for identifying 'query neurons' which activate 'value neurons'",
+                "location": "Abstract",
+                "claim_type": "Methodological contribution",
+                "exact_quote": "Additionally, since most static methods typically only identify 'value neurons' directly contributing to the final prediction, we propose a method for identifying 'query neurons' which activate these 'value neurons'."
+            },
+            {
+                "claim_id": 3,
+                "claim_text": "Both attention and FFN layers can store knowledge, with all important neurons directly contributing to knowledge prediction being in deep layers",
+                "location": "Introduction",
+                "claim_type": "Finding",
+                "exact_quote": "1) Both attention and FFN layers can store knowledge, and all important neurons directly contribute to knowledge prediction are in deep layers."
+            },
+            {
+                "claim_id": 4,
+                "claim_text": "Knowledge with similar semantics tends to be stored in the same attention heads, while knowledge with distinct semantics is stored in different heads",
+                "location": "Introduction",
+                "claim_type": "Finding",
+                "exact_quote": "2) In attention layers, knowledge with similar semantics (e.g. language, country, city) tends to be stored in the same heads. Knowledge with distinct semantics (e.g. country, color) is stored in different heads."
+            },
+            {
+                "claim_id": 5,
+                "claim_text": "Intervening on a few value neurons (300) or query neurons (1000) can significantly influence the final prediction",
+                "location": "Introduction",
+                "claim_type": "Finding",
+                "exact_quote": "3) While numerous neurons contribute to the final prediction, intervening on a few value neurons (300) or query neurons (1000) can significantly influence the final prediction."
+            },
+            {
+                "claim_id": 6,
+                "claim_text": "FFN value neurons are mainly activated by medium-deep attention value neurons, which are mainly activated by shallow/medium FFN query neurons",
+                "location": "Introduction",
+                "claim_type": "Finding",
+                "exact_quote": "4) FFN value neurons are mainly activated by medium-deep attention value neurons, while these attention neurons are mainly activated by shallow/medium FFN query neurons."
+            },
+            {
+                "claim_id": 7,
+                "claim_text": "The authors' proposed method achieves the best performance under three metrics compared to seven static methods",
+                "location": "Introduction",
+                "claim_type": "Performance claim",
+                "exact_quote": "Compared with seven static methods, our method achieves the best performance under three metrics."
+            },
+            {
+                "claim_id": 8,
+                "claim_text": "The sum score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons",
+                "location": "Appendix C",
+                "claim_type": "Finding",
+                "exact_quote": "The sum importance score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons."
+            },
+            {
+                "claim_id": 9,
+                "claim_text": "The shallow and medium FFN layers play larger roles than attention layers for every knowledge type",
+                "location": "Appendix D",
+                "claim_type": "Finding",
+                "exact_quote": "For every knowledge, the shallow and medium FFN layers play larger roles than attention layers."
+            }
+        ]
+    },
+    "evidence": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "When comparing eight attribution methods across three metrics (MRR, probability, and log probability), the proposed method achieved the best performance by causing the greatest decrease in these metrics when intervening on identified neurons",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to two specific models (GPT2-large and Llama-7B) and six types of knowledge",
+                    "location": "Section 4.1 Results and analysis",
+                    "exact_quote": "Compared with the other seven methods, our attribution method (second line) attributes more important neurons, resulting in the most significant reduction across all metrics in both GPT2 and Llama. Specifically, when only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama-7B."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Detailed comparison results showing the proposed method (line a) achieving best performance across MRR, probability and log probability metrics",
+                    "strength": "strong",
+                    "limitations": "Results shown only for top10 FFN neurons",
+                    "location": "Section 4.1 Table 2",
+                    "exact_quote": "In Table 2, our attribution method (line a) achieves MRR: 0.201/0.312, prob: 3.4/9.2, logp: -4.06/-3.91 for GPT2/Llama respectively, outperforming all other methods"
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "When intervening top1000 shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in Llama)",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only tested on specific knowledge types in GPT2 and Llama models",
+                    "location": "Section 4.2 'Important query neurons for attention value neurons'",
+                    "exact_quote": "When intervening top1000 shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in Llama), shown in Table 7. In comparison, randomly intervening 1,000 neurons only result in a decrease of 0.8%/1.1%. Hence, our method can locate the important query neurons in these layers."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Method uses inner products between query neurons and value neurons as importance scores",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Assumes nonlinear function \u03c3 doesn't affect relative values significantly",
+                    "location": "Section 3.4 'Importance Score for Query Neurons'",
+                    "exact_quote": "For each 'value neuron', we can compute the inner product between its subkey (see Eq.6) and each neuron/subvector within the residual output (see Eq.1). Despite the presence of a nonlinear function \u03c3 for computing the coefficient score, it usually does not affect the relative value between different neurons/subvectors."
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Analysis of neuron distribution across layers shows that important neurons are concentrated in deep layers (17th-31st layers) for both attention and FFN modules",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Analysis limited to two models (GPT2-large and Llama-7B)",
+                    "location": "Section 4.1 Results and Analysis",
+                    "exact_quote": "The neurons attributed by probability increase are on deepest layers (23th-31th), while other two methods can attribute neurons among 17th to 31th layers."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Both attention and FFN layer importance scores show significant contribution to knowledge storage across multiple knowledge types",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to six specific types of knowledge",
+                    "location": "Section 4.2 Table 3",
+                    "exact_quote": "We compute the sum of importance score of each attention and FFN layer in GPT2 (G-A, G-F) and Llama (L-A, L-F), shown in Table 3."
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_type": "primary",
+                    "evidence_text": "Top 10 important layers analysis shows concentration in deep layers for both attention and FFN",
+                    "strength": "strong",
+                    "limitations": "Analysis based on specific attribution method developed by authors",
+                    "location": "Section 4.2 Table 4",
+                    "exact_quote": "All the top10 layers are in deep layers. Information with analogous semantics (e.g., language, capital, country) tends to be stored within similar layers/modules."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Analysis of top 10 heads shows semantic-related knowledge (language, capital, country) stored in same heads like a[6]30, a[17]26, a[11]32 in GPT2 and a[12]23 in Llama",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to 6 types of knowledge categories and 2 models",
+                    "location": "Section 4.2 Head-level knowledge storage & Appendix B",
+                    "exact_quote": "Knowledge with similar semantics is stored in the same heads (e.g. a[6]30 in GPT2 and a[12]23 in Llama). For instance, a[6]30, a[17]26, a[11]32 rank top8 for language, capital and country in GPT2."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Quantitative results show intervening top heads affects semantically similar knowledge much more than dissimilar knowledge",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Based on MRR/probability decrease metrics only",
+                    "location": "Appendix B Table 11",
+                    "exact_quote": "When intervening the top 1% heads for each knowledge, similar knowledge (language, capital and country) is affected a lot, while other knowledge (month, color, number) is not affected much."
+                }
+            ]
+        },
+        {
+            "claim_id": 5,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "When intervening the top200 attention neurons and top100 FFN neurons for each sentence, MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama compared to random intervention only decreasing 0.22%/0.14%",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific models (GPT2 and Llama-7B)",
+                    "location": "Section 4.2 Neuron-level knowledge storage",
+                    "exact_quote": "When intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama. In comparison, randomly intervening the same number of neurons only decreases 0.22%/0.14%."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Intervening top1000 shallow query neurons caused significant drops in MRR/probability (92%/95% in GPT2 and 87%/95% in Llama) compared to random intervention (0.8%/1.1%)",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific models (GPT2 and Llama-7B)",
+                    "location": "Section 4.2 Important query neurons for attention value neurons",
+                    "exact_quote": "When intervening top1000 shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in Llama). In comparison, randomly intervening 1,000 neurons only result in a decrease of 0.8%/1.1%."
+                }
+            ]
+        },
+        {
+            "claim_id": 6,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The experimental results show that shallow/medium FFN layers activate attention neurons, as demonstrated in the query layer analysis for attention neurons",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Analysis is limited to top200 attention neurons",
+                    "location": "Section D (Appendix) - Important Query Layers for Attention Neurons",
+                    "exact_quote": "For every knowledge, the shallow and medium FFN layers play larger roles than attention layers."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "The flow of information through neuron layers is empirically demonstrated through query neuron distribution analysis",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Based on analysis of top1000 query and value neurons",
+                    "location": "Section 4.2 - Important query neurons for attention value neurons",
+                    "exact_quote": "Overall, our analysis learns the information flow at neuron level: features in shallow/medium FFN neurons are extracted, then activate the deep attention and FFN neurons related to final predictions."
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Distribution analysis shows clear pattern of queryonly neurons concentrated in shallow/medium layers",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Specific to analysis of top1000 neurons",
+                    "location": "Section 4.2 - Important query neurons for attention value neurons",
+                    "exact_quote": "the number of queryonly neurons, which is much larger than that of queryvalue neurons, starts to drop at 60% layer. This observation indicates that the shallow and medium FFN neurons are important for activating the attention \"value neurons\"."
+                }
+            ]
+        },
+        {
+            "claim_id": 7,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The results show their proposed log probability increase method outperforms 7 other methods across MRR, probability and log probability metrics when intervening on top FFN neurons",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only tested on GPT2-large and Llama-7B models; Only evaluated on six specific types of knowledge",
+                    "location": "Section 4.1, Table 2",
+                    "exact_quote": "In comparison with the other seven methods, our attribution method (second line) attributes more important neurons, resulting in the most significant reduction across all metrics in both GPT2 and Llama. Specifically, when only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama-7B."
+                }
+            ]
+        },
+        {
+            "claim_id": 8,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "For FFN layers in Llama, when comparing all neurons vs top 100 neurons: language (2.5 vs 6.4), capital (5.1 vs 6.3), country (3.6 vs 5.5), color (4.9 vs 6.1), number (6.5 vs 6.6), month (2.8 vs 7.0)",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Numbers for 'all' neurons are sometimes lower than top neurons, suggesting possible aggregation effects",
+                    "location": "Section 4.2 and Table 5",
+                    "exact_quote": "(FFN) all 2.5 5.1 3.6 4.9 6.5 2.8\ntop100 6.4 6.3 5.5 6.1 6.6 7.0"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "For GPT2, similar pattern is shown comparing all neurons vs top 100 FFN neurons: language (0.0 vs 4.2), capital (1.9 vs 4.6), country (1.4 vs 4.3), color (2.5 vs 4.3), number (4.0 vs 4.1), month (1.9 vs 4.7)",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Similar limitation as above with 'all' numbers being lower",
+                    "location": "Appendix C, Table 12",
+                    "exact_quote": "all 0.0 1.9 1.4 2.5 4.0 1.9\ntop100 4.2 4.6 4.3 4.3 4.1 4.7"
+                }
+            ]
+        },
+        {
+            "claim_id": 9,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The experimental results show FFN layers dominating the top 10 query layers across all knowledge types in both GPT2 and Llama models, with FFN layers (designated by 'f') appearing more frequently than attention layers (designated by 'a') in the rankings",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to analysis of top 10 query layers only",
+                    "location": "Appendix D, Table 14",
+                    "exact_quote": "lang f0, f1, a0, f2, f19, f20, f3, f17, f18, f21\ncapi f0, f1, a0, f2, f3, f20, f5, f4, f19, f17\ncnty f0, f1, f19, a0, f18, f2, f3, f21, f20, f17\ncol f0, f1, f2, f23, f20, f21, f22, f24, a0, f3\nnum f0, f18, f1, f19, f22, f16, f21, f2, f12, f20\nmon f0, f1, f19, f2, f9, f22, f10, f21, a0, f18"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "The paper explicitly states this finding in its analysis of which layers have large inner products with attention neurons",
+                    "strength": "strong",
+                    "limitations": "Does not quantify exact difference in contribution between FFN and attention layers",
+                    "location": "Appendix D, first paragraph",
+                    "exact_quote": "For every knowledge, the shallow and medium FFN layers play larger roles than attention layers."
+                }
+            ]
+        }
+    ],
+    "conclusions": {
+        "conclusions": [
+            {
+                "claim_id": 1,
+                "author_conclusion": "The authors conclude their proposed static method for neuron attribution outperforms seven other methods across three evaluation metrics (MRR, probability, and log probability) when identifying significant neurons in large language models",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is justified through quantitative experimental results showing the proposed method achieving better performance than baseline methods across all three metrics. The authors provide detailed comparative results in Table 2 and back this with methodological explanations and analysis of the results. The experimental setup is clear and the metrics are well-defined.",
+                "robustness_analysis": "The evidence is robust in several ways: 1) Uses multiple evaluation metrics rather than just one, 2) Compares against seven other methods, providing comprehensive benchmarking, 3) Tests on two different model architectures (GPT2-large and Llama-7B), 4) Includes detailed quantitative results showing consistent superior performance. The methodology appears sound with clear evaluation protocols.",
+                "limitations": "Key limitations include: 1) Testing only on two specific models rather than a broader range, 2) Focus on only six types of knowledge, which may not be representative of all knowledge types, 3) Evaluation limited to top10 FFN neurons rather than different neuron counts, 4) No statistical significance testing reported for the performance differences, 5) Potential selection bias in the knowledge types chosen for evaluation",
+                "location": "Abstract and Section 4.1",
+                "evidence_alignment": "The evidence strongly aligns with the conclusion through direct quantitative results showing superior performance. The experimental methodology and metrics are clearly defined and the results directly support the claimed performance advantages. Both pieces of evidence work together to demonstrate the method's effectiveness through both detailed results and analytical explanation.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 2,
+                "author_conclusion": "The authors conclude they successfully developed a method to identify query neurons that activate value neurons, using inner products between neurons as importance scores. The method showed significant effects when intervening with identified neurons, demonstrating 87-95% drops in model performance.",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is justified by two key pieces of evidence: 1) The clear methodological description of using inner products to identify query neurons, and 2) The quantitative validation showing large performance drops when intervening with identified neurons. The high magnitude of effect (>87% drops) across two different models provides strong empirical support.",
+                "robustness_analysis": "The evidence demonstrates good robustness through: 1) Testing on two different models (GPT2 and Llama), 2) Using multiple metrics (MRR and probability), 3) Showing consistent large effects across models (87-95% drops), 4) Having a clear mathematical foundation (inner product methodology). The consistency across models and metrics strengthens reliability.",
+                "limitations": "Key limitations include: 1) Testing only on specific knowledge types rather than general cases, 2) Testing only on GPT2 and Llama models rather than broader model types, 3) Assumption that nonlinear function \u03c3 doesn't significantly affect relative values between neurons, 4) Lack of ablation studies or comparative baselines against other potential methods",
+                "location": "Abstract and Section 3.4, with results in Section 4.2",
+                "evidence_alignment": "The evidence strongly aligns with the conclusion. The methodological description provides clear theoretical foundation, while the empirical results demonstrate the method's effectiveness through significant performance impacts when intervening with identified neurons. Both pieces of evidence directly support the claim of successfully identifying query neurons.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 3,
+                "author_conclusion": "The authors conclude that both attention and FFN layers are capable of storing knowledge, with the most significant neurons for knowledge prediction being concentrated in deep layers (particularly layers 17-31). This pattern is observed across different types of knowledge and in both model architectures studied.",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is well-supported by multiple pieces of complementary evidence. The neuron distribution analysis shows clear concentration in deep layers, supported by quantitative analysis of layer importance scores and consistent findings across different knowledge types. The results are demonstrated in both GPT2-large and Llama-7B models, with specific layer-wise evidence presented in tables and figures.",
+                "robustness_analysis": "The evidence demonstrates strong robustness through: 1) Consistent findings across two different model architectures, 2) Multiple analysis methods (distribution analysis, importance scores, and layer-wise contribution), 3) Quantitative results across six knowledge types, and 4) Clear documentation of methodology and results in tables and figures. The use of multiple evaluation metrics strengthens the reliability of the findings.",
+                "limitations": "Key limitations include: 1) Analysis limited to only two model architectures (GPT2-large and Llama-7B), 2) Focus on only six types of knowledge which may not be representative of all knowledge types, 3) Reliance on authors' novel attribution method which may need further validation, 4) Potential bias in knowledge type selection, 5) Lack of analysis on smaller model architectures or different transformer variants",
+                "location": "Introduction and Section 4",
+                "evidence_alignment": "The evidence strongly aligns with the conclusion through multiple complementary analyses. The layer-wise distribution analysis, importance scores, and top layer analysis all consistently support the concentration of important neurons in deep layers. The evidence spans both attention and FFN mechanisms, providing comprehensive support for the dual-storage claim.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 4,
+                "author_conclusion": "The authors conclude that knowledge with similar semantic properties (like language, capital, and country) tends to be stored in the same attention heads, while semantically distinct knowledge (like color, number, month) is stored in different heads. This pattern was observed consistently across both GPT2 and Llama models.",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is well-supported by both qualitative and quantitative evidence. The analysis demonstrates clear patterns in head-level storage through two complementary methods: (1) direct identification of shared heads for semantically similar knowledge, and (2) quantitative intervention experiments showing selective disruption of semantically related knowledge when specific heads are modified.",
+                "robustness_analysis": "The evidence is robust due to: 1) Consistency across two different model architectures (GPT2 and Llama), 2) Multiple evaluation approaches including both direct head analysis and intervention experiments, 3) Clear quantitative metrics showing significant differences in effects between semantically similar vs dissimilar knowledge (e.g., 33-44% MRR decrease for similar knowledge vs 1-6% for dissimilar knowledge in intervention experiments).",
+                "limitations": "1) Analysis limited to only 6 knowledge types, 2) Study conducted on only 2 models (GPT2-large and Llama-7B), 3) Relies primarily on MRR and probability decrease metrics for quantitative validation, 4) Does not explore potential interactions between different types of semantic knowledge, 5) No analysis of how this organization emerges during training",
+                "location": "Introduction and Section 4.2",
+                "evidence_alignment": "The evidence strongly aligns with the conclusion through both direct observation of head patterns and quantitative intervention results. Both pieces of evidence independently support the same conclusion about semantic-based organization of knowledge in attention heads.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 5,
+                "author_conclusion": "The authors conclude that intervening on a small number of specific neurons (300 value neurons or 1000 query neurons) can substantially impact model predictions, demonstrating that critical knowledge is concentrated in a relatively small subset of neurons.",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is well justified by two strong pieces of empirical evidence showing dramatic performance drops when intervening on small neuron sets compared to random interventions. The evidence demonstrates clear causal relationships through controlled experiments comparing targeted vs random interventions.",
+                "robustness_analysis": "The evidence is robust across multiple dimensions: 1) Consistent results across two different model architectures (GPT2 and Llama-7B), 2) Large effect sizes (>90% drops in performance metrics), 3) Clear comparison to random baseline interventions showing the effects are not due to chance, 4) Multiple evaluation metrics (MRR and probability) showing consistent results.",
+                "limitations": "Key limitations include: 1) Only tested on two specific models (GPT2 and Llama-7B), limiting generalizability to other architectures, 2) Focus on specific knowledge types/tasks, may not generalize to all model capabilities, 3) No exploration of interaction effects between neurons, 4) Limited investigation of why these specific neurons are important, 5) No validation across different model sizes or training procedures.",
+                "location": "Introduction and Section 4.2",
+                "evidence_alignment": "The evidence strongly aligns with the conclusion through direct experimental validation. The two key pieces of evidence demonstrate the claimed effect for both value neurons (300) and query neurons (1000) with clear quantitative results showing significant performance impacts.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 6,
+                "author_conclusion": "The authors conclude that there is a hierarchical flow of information where shallow/medium FFN neurons activate deep attention neurons, which in turn activate deep FFN neurons that contribute to final predictions. This creates a chain of information flow from shallow to deep layers through specific neuron interactions.",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is justified through multiple lines of empirical evidence: 1) Analysis of query layers shows shallow/medium FFN layers have strong activation patterns for attention neurons 2) Distribution analysis demonstrates clear concentration of query neurons in shallow/medium layers 3) The patterns are consistent across different types of knowledge and both studied models (GPT2 and Llama-7B)",
+                "robustness_analysis": "The evidence is robust as it comes from multiple analytical approaches: direct query layer analysis, neuron distribution studies, and intervention experiments. The consistency across different models and knowledge types strengthens the findings. The methodology includes both observational analysis and interventional testing.",
+                "limitations": "- Analysis focused only on top200 attention neurons and top1000 query/value neurons\n- Limited to two models (GPT2 and Llama-7B)\n- The study of neuron interactions may not capture all possible information flows\n- The interpretation of activation patterns could be affected by the chosen threshold values\n- Query neuron interpretability remains limited",
+                "location": "Introduction and Section 4.2",
+                "evidence_alignment": "The evidence strongly aligns with the conclusion. The query layer analysis directly supports the activation patterns, while the distribution analysis provides complementary evidence for the hierarchical structure. The intervention experiments validate the functional importance of the identified neurons.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 7,
+                "author_conclusion": "The authors conclude their proposed log probability increase method outperforms seven other static methods across three metrics (MRR, probability, and log probability) when evaluating neuron importance through intervention experiments",
+                "conclusion_justified": true,
+                "justification_explanation": "The evidence directly supports the conclusion through quantitative experimental results shown in Table 2, demonstrating superior performance of their method across all three metrics compared to the baseline methods. The experiments follow a clear methodology of intervening on top neurons and measuring impact on model predictions.",
+                "robustness_analysis": "The evidence shows strong methodological rigor through: 1) Clear comparison against 7 baseline methods, 2) Use of three different evaluation metrics, 3) Testing on two different model architectures (GPT2-large and Llama-7B), 4) Systematic evaluation process through neuron intervention experiments. The results consistently show the proposed method performing better across all conditions tested.",
+                "limitations": "Key limitations include: 1) Only tested on two specific models (GPT2-large and Llama-7B), 2) Evaluated only on six types of knowledge/facts, 3) Focuses only on static attribution methods rather than comparing to dynamic methods like causal tracing, 4) Limited to neuron-level analysis rather than broader model components",
+                "location": "Introduction and Section 4.1",
+                "evidence_alignment": "The evidence aligns well with the conclusion, providing direct quantitative results demonstrating superior performance. The experimental methodology and metrics are clearly defined and the results directly measure the claimed improvements. The multiple evaluation metrics and models strengthen the evidence quality.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 8,
+                "author_conclusion": "The authors conclude that the contributions of a small subset of neurons (top200 attention neurons and top100 FFN neurons) capture similar importance scores to the full set of neurons, suggesting that knowledge storage is concentrated in a relatively small number of key neurons",
+                "conclusion_justified": false,
+                "justification_explanation": "The evidence actually shows that in many cases, the sum scores for top neurons are higher than the scores for all neurons, which contradicts the claim of similarity. For example, in Llama's FFN layers, language scores are 2.5 for all vs 6.4 for top100, and in GPT2, language scores are 0.0 for all vs 4.2 for top100. This suggests a different phenomenon than what was claimed.",
+                "robustness_analysis": "The evidence is quantitative and consistent across two different models (GPT2 and Llama), showing similar patterns. The methodology of comparing neuron contributions is clear and replicable. However, the interpretation appears problematic as the numbers contradict the stated conclusion about similarity between top neurons and all neurons.",
+                "limitations": "1. The scoring mechanism and how it handles aggregation of neuron contributions is not fully explained\n2. The consistent pattern of top neurons showing higher scores than all neurons suggests possible issues with the scoring methodology\n3. The relationship between score values and actual neuron importance is not clearly established\n4. No statistical analysis is provided to support claims of similarity",
+                "location": "Section 4.2, Table 5, Appendix C, Table 12",
+                "evidence_alignment": "The numerical evidence consistently contradicts rather than supports the claim of similarity between top neuron scores and all neuron scores. The data shows top neurons consistently scoring higher than the full set.",
+                "confidence_level": "medium"
+            },
+            {
+                "claim_id": 9,
+                "author_conclusion": "The authors conclude that shallow and medium FFN layers have greater importance than attention layers as query layers for activating attention neurons across all knowledge types in both GPT2 and Llama models",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is justified by clear empirical evidence from both models showing FFN layers consistently dominating the top 10 query layer rankings across all knowledge types. The data in Table 14 provides direct, quantifiable evidence showing more FFN layers (f) appearing in top positions compared to attention layers (a) for every knowledge category tested.",
+                "robustness_analysis": "The evidence is robust for several reasons: 1) Consistency across two different model architectures (GPT2 and Llama), 2) Consistency across multiple knowledge types (language, capital, country, color, number, month), 3) Clear quantitative methodology based on inner product calculations with attention neurons, 4) Direct observational data rather than inferred relationships",
+                "limitations": "1) Analysis limited to top 10 query layers only, 2) Exact quantitative difference between FFN and attention layer contributions not specified, 3) Limited to two model architectures, 4) Inner product methodology assumptions not fully explained, 5) Possible selection bias in knowledge types tested",
+                "location": "Appendix D",
+                "evidence_alignment": "The evidence strongly aligns with the conclusion through consistent patterns across multiple test conditions and model architectures. The table data directly demonstrates the claimed relationship between FFN and attention layers.",
+                "confidence_level": "high"
+            }
+        ],
+        "analysis_metadata": {
+            "total_claims_analyzed": 9,
+            "claims_with_conclusions": 9,
+            "analysis_timestamp": "2025-02-03 19:50:00.958468"
+        }
+    },
+    "execution_times": {
+        "claims_analysis_time": "15.44 seconds",
+        "evidence_analysis_time": "84.61 seconds",
+        "conclusions_analysis_time": "101.10 seconds",
+        "total_execution_time": "0.00 seconds"
+    }
+}

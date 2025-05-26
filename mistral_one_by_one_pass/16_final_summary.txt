@@ -1,0 +1,458 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+ For example:
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "Large Language Models (LLMs) have excelled as high-level semantic planners for sequential decision-making tasks.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "Large Language Models (LLMs) have excelled as high-level semantic planners for sequential decision-making tasks."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "However, harnessing them to learn complex low-level manipulation tasks, such as dexterous pen spinning, remains an open problem.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "However, harnessing them to learn complex low-level manipulation tasks, such as dexterous pen spinning, remains an open problem."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "We bridge this fundamental gap and present EUREKA, a human-level reward design algorithm powered by LLMs.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "We bridge this fundamental gap and present EUREKA, a human-level reward design algorithm powered by LLMs."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "EUREKA exploits the remarkable zero-shot generation, code-writing, and in-context improvement capabilities of state-of-the-art LLMs, such as GPT-4, to perform evolutionary optimization over reward code.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "EUREKA exploits the remarkable zero-shot generation, code-writing, and in-context improvement capabilities of state-of-the-art LLMs, such as GPT-4, to perform evolutionary optimization over reward code."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "The resulting rewards can then be used to acquire complex skills via reinforcement learning.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "The resulting rewards can then be used to acquire complex skills via reinforcement learning."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Without any task-specific prompting or pre-defined reward templates, EUREKA generates reward functions that outperform expert human-engineered rewards.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "Without any task-specific prompting or pre-defined reward templates, EUREKA generates reward functions that outperform expert human-engineered rewards."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "In a diverse suite of 29 open-source RL environments that include 10 distinct robot morphologies, EUREKA outperforms human experts on 83% of the tasks, leading to an average normalized improvement of 52%.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "In a diverse suite of 29 open-source RL environments that include 10 distinct robot morphologies, EUREKA outperforms human experts on 83% of the tasks, leading to an average normalized improvement of 52%."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "The generality of EUREKA also enables a new gradient-free in-context learning approach to reinforcement learning from human feedback (RLHF), readily incorporating human inputs to improve the quality and the safety of the generated rewards without model updating.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "The generality of EUREKA also enables a new gradient-free in-context learning approach to reinforcement learning from human feedback (RLHF), readily incorporating human inputs to improve the quality and the safety of the generated rewards without model updating."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "Finally, using EUREKA rewards in a curriculum learning setting, we demonstrate for the first time, a simulated Shadow Hand capable of performing pen spinning tricks, adeptly manipulating a pen in circles at rapid speed.",
+            "location": "Abstract",
+            "claim_type": "Observation",
+            "exact_quote": "Finally, using EUREKA rewards in a curriculum learning setting, we demonstrate for the first time, a simulated Shadow Hand capable of performing pen spinning tricks, adeptly manipulating a pen in circles at rapid speed."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "Large Language Models (LLMs) have excelled as high-level semantic planners for robotics tasks (Ahn et al., 2022; Singh et al., 2023), but whether they can be used to learn complex low-level manipulation tasks, such as dexterous pen spinning, remains an open problem.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Large Language Models (LLMs) have excelled as high-level semantic planners for robotics tasks (Ahn et al., 2022; Singh et al., 2023), but whether they can be used to learn complex low-level manipulation tasks, such as dexterous pen spinning, remains an open problem."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "Existing attempts require substantial domain expertise to construct task prompts or learn only simple skills, leaving a substantial gap in achieving human-level dexterity (Yu et al., 2023; Brohan et al., 2023).",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Existing attempts require substantial domain expertise to construct task prompts or learn only simple skills, leaving a substantial gap in achieving human-level dexterity (Yu et al., 2023; Brohan et al., 2023)."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "On the other hand, reinforcement learning (RL) has achieved impressive results in dexterity (Andrychowicz et al., 2020; Handa et al., 2023) as well as many other domains-if the human designers can carefully construct reward functions that accurately codify and provide learning signals for the desired behavior; likewise, many real-world RL tasks admit sparse rewards that are difficult for learning, necessitating reward shaping that provides incremental learning signals.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "On the other hand, reinforcement learning (RL) has achieved impressive results in dexterity (Andrychowicz et al., 2020; Handa et al., 2023) as well as many other domains-if the human designers can carefully construct reward functions that accurately codify and provide learning signals for the desired behavior; likewise, many real-world RL tasks admit sparse rewards that are difficult for learning, necessitating reward shaping that provides incremental learning signals."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "Despite their fundamental importance, reward functions are known to be notoriously difficult to design in practice (Russell & Norvig, 1995; Sutton & Barto, 2018); a recent survey conducted finds 92% of polled reinforcement learning researchers and practitioners report manual trial-and-error reward design and 89% indicate that their designed rewards are sub-optimal (Booth et al., 2023) and lead to unintended behavior (Hadfield-Menell et al., 2017).",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Despite their fundamental importance, reward functions are known to be notoriously difficult to design in practice (Russell & Norvig, 1995; Sutton & Barto, 2018); a recent survey conducted finds 92% of polled reinforcement learning researchers and practitioners report manual trial-and-error reward design and 89% indicate that their designed rewards are sub-optimal (Booth et al., 2023) and lead to unintended behavior (Hadfield-Menell et al., 2017)."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "Given the paramount importance of reward design, we ask whether it is possible to develop a universal reward programming algorithm using state-of-the-art coding LLMs, such as GPT-4. Their remarkable abilities in code writing, zero-shot generation, and in-context learning have previously enabled effective programmatic agents (Shinn et al., 2023; Wang et al., 2023a). Ideally, this reward design algorithm should achieve human-level reward generation capabilities that scale to a broad spectrum of tasks, automate the tedious trial-and-error procedure without human supervision, and yet be compatible with human oversight to assure safety and alignment.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Given the paramount importance of reward design, we ask whether it is possible to develop a universal reward programming algorithm using state-of-the-art coding LLMs, such as GPT-4. Their remarkable abilities in code writing, zero-shot generation, and in-context learning have previously enabled effective programmatic agents (Shinn et al., 2023; Wang et al., 2023a). Ideally, this reward design algorithm should achieve human-level reward generation capabilities that scale to a broad spectrum of tasks, automate the tedious trial-and-error procedure without human supervision, and yet be compatible with human oversight to assure safety and alignment."
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "We introduce Evolution-driven Universal REward Kit for Agent (EUREKA), a novel reward design algorithm powered by coding LLMs with the following contributions:",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "We introduce Evolution-driven Universal REward Kit for Agent (EUREKA), a novel reward design algorithm powered by coding LLMs with the following contributions:"
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "1. Achieves human-level performance on reward design across a diverse suite of 29 open-sourced RL environments that include 10 distinct robot morphologies, including quadruped, quadcopter, biped, manipulator, as well as several dexterous hands; see Fig. 1. Without any task-specific prompting or reward templates, EUREKA autonomously generates rewards that outperform expert human rewards on 83% of the tasks and realizes an average normalized improvement of 52%.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "1. Achieves human-level performance on reward design across a diverse suite of 29 open-sourced RL environments that include 10 distinct robot morphologies, including quadruped, quadcopter, biped, manipulator, as well as several dexterous hands; see Fig. 1. Without any task-specific prompting or reward templates, EUREKA autonomously generates rewards that outperform expert human rewards on 83% of the tasks and realizes an average normalized improvement of 52%."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "2. Solves dexterous manipulation tasks that were previously not feasible by manual reward engineering. We consider pen spinning, in which a five-finger hand needs to rapidly rotate a pen in pre-defined spinning configurations for as many cycles as possible. Combining EUREKA with curriculum learning, we demonstrate for the first time rapid pen spinning maneuvers on a simulated anthropomorphic Shadow Hand (see Figure 1 bottom).",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "2. Solves dexterous manipulation tasks that were previously not feasible by manual reward engineering. We consider pen spinning, in which a five-finger hand needs to rapidly rotate a pen in pre-defined spinning configurations for as many cycles as possible. Combining EUREKA with curriculum learning, we demonstrate for the first time rapid pen spinning maneuvers on a simulated anthropomorphic Shadow Hand (see Figure 1 bottom)."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "3. Enables a new gradient-free in-context learning approach to reinforcement learning from human feedback (RLHF) that can generate more performant and human-aligned reward functions based on various forms of human inputs without model updating.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "3. Enables a new gradient-free in-context learning approach to reinforcement learning from human feedback (RLHF) that can generate more performant and human-aligned reward functions based on various forms of human inputs without model updating."
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "Unlike prior work L2R on using LLMs to aid reward design (Yu et al., 2023), EUREKA is completely free of task-specific prompts, reward templates, as well as few-shot examples.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Unlike prior work L2R on using LLMs to aid reward design (Yu et al., 2023), EUREKA is completely free of task-specific prompts, reward templates, as well as few-shot examples."
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "In our experiments, EUREKA significantly outperforms L2R due to its ability to generate free-form, expressive reward programs.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "In our experiments, EUREKA significantly outperforms L2R due to its ability to generate free-form, expressive reward programs."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "EUREKA’s generality is made possible through three key algorithmic design choices: environment as context, evolutionary search, and reward reflection.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "EUREKA’s generality is made possible through three key algorithmic design choices: environment as context, evolutionary search, and reward reflection."
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "First, by taking the environment source code as context, EUREKA can zero-shot generate executable reward functions from the backbone coding LLM (GPT-4).",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "First, by taking the environment source code as context, EUREKA can zero-shot generate executable reward functions from the backbone coding LLM (GPT-4)."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "Then, EUREKA substantially improves the quality of its rewards by performing evolutionary search, iteratively proposing batches of reward candidates and refining the most promising ones within the LLM context window.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "Then, EUREKA substantially improves the quality of its rewards by performing evolutionary search, iteratively proposing batches of reward candidates and refining the most promising ones within the LLM context window."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "This in-context improvement is made effective via reward reflection, a textual summary of the reward quality based on policy training statistics that enables automated and targeted reward editing; see Fig. 3 for an example of EUREKA zero-shot reward as well as various improvements accumulated during its optimization.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "This in-context improvement is made effective via reward reflection, a textual summary of the reward quality based on policy training statistics that enables automated and targeted reward editing; see Fig. 3 for an example of EUREKA zero-shot reward as well as various improvements accumulated during its optimization."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "To ensure that EUREKA can scale up its reward search to maximum potential, EUREKA evaluates intermediate rewards using GPU-accelerated distributed reinforcement learning on IsaacGym (Makoviychuk et al., 2021), which offers up to three orders of magnitude in policy learning speed, making EUREKA an extensive algorithm that scales naturally with more compute.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "To ensure that EUREKA can scale up its reward search to maximum potential, EUREKA evaluates intermediate rewards using GPU-accelerated distributed reinforcement learning on IsaacGym (Makoviychuk et al., 2021), which offers up to three orders of magnitude in policy learning speed, making EUREKA an extensive algorithm that scales naturally with more compute."
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "See Fig. 2 for an overview.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "See Fig. 2 for an overview."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "We are committed to open-sourcing all prompts, environments, and generated reward functions to promote further research on LLM-based reward design.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "We are committed to open-sourcing all prompts, environments, and generated reward functions to promote further research on LLM-based reward design."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "The goal of reward design is to return a shaped reward function for a ground-truth reward function that may be difficult to optimize directly (e.g., sparse rewards); this ground-truth reward function may only be accessed via queries by the designer.",
+            "location": "Problem Setting and Definitions",
+            "claim_type": "Observation",
+            "exact_quote": "The goal of reward design is to return a shaped reward function for a ground-truth reward function that may be difficult to optimize directly (e.g., sparse rewards); this ground-truth reward function may only be accessed via queries by the designer."
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "We first introduce the formal definition from Singh et al. (2010), which we then adapt to the program synthesis setting, which we call reward generation.",
+            "location": "Problem Setting and Definitions",
+            "claim_type": "Observation",
+            "exact_quote": "We first introduce the formal definition from Singh et al. (2010), which we then adapt to the program synthesis setting, which we call reward generation."
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "Definition 2.1. (Reward Design Problem (Singh et al., 2010)) A reward design problem (RDP) is a tuple P = ⟨M, R, πM _, F_ _⟩, where M = (S, A, T_ ) is the world model with state space S, action space A, and transition function T. R is the space of reward functions; AM (·) : R → Π is a learning algorithm that outputs a policy π : S ∆(A) that optimizes reward R in the resulting Markov _→_ _∈R_
+_Decision Process (MDP), (M, R); F : Π →_ R is the fitness function that produces a scalar evaluation of any policy, which may only be accessed via policy queries (i.e., evaluate the policy using the ground truth reward function). In an RDP, the goal is to output a reward function R such that
+_∈R_
+the policy π := AM (R) that optimizes R achieves the highest fitness score F (π).",
+            "location": "Problem Setting and Definitions",
+            "claim_type": "Observation",
+            "exact_quote": "Definition 2.1. (Reward Design Problem (Singh et al., 2010)) A reward design problem (RDP) is a tuple P = ⟨M, R, πM _, F_ _⟩, where M = (S, A, T_ ) is the world model with state space S, action space A, and transition function T. R is the space of reward functions; AM (·) : R → Π is a learning algorithm that outputs a policy π : S ∆(A) that optimizes reward R in the resulting Markov _→_ _∈R_
+_Decision Process (MDP), (M, R); F : Π →_ R is the fitness function that produces a scalar evaluation of any policy, which may only be accessed via policy queries (i.e., evaluate the policy using the ground truth reward function). In an RDP, the goal is to output a reward function R such that
+_∈R_
+the policy π := AM (R) that optimizes R achieves the highest fitness score F (π)."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "Reward Generation Problem. In our problem setting, every component within a RDP is specified via code. Then, given a string l that specifies the task, the objective of the reward generation problem is to output a reward function code R such that F (AM (R)) is maximized.",
+            "location": "Problem Setting and Definitions",
+            "claim_type": "Observation",
+            "exact_quote": "Reward Generation Problem. In our problem setting, every component within a RDP is specified via code. Then, given a string l that specifies the task, the objective of the reward generation problem is to output a reward function code R such that F (AM (R)) is maximized."
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "EUREKA consists of three algorithmic components: 1) environment as context that enables zero-shot generation of executable rewards, 2) evolutionary search that iteratively proposes and refines reward candidates, and 3) reward reflection that enables fine-grained reward improvement.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "EUREKA consists of three algorithmic components: 1) environment as context that enables zero-shot generation of executable rewards, 2) evolutionary search that iteratively proposes and refines reward candidates, and 3) reward reflection that enables fine-grained reward improvement."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "See Alg. 1 for pseudocode; all prompts are included in App. A.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "See Alg. 1 for pseudocode; all prompts are included in App. A."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "3.1 ENVIRONMENT AS CONTEXT",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "3.1 ENVIRONMENT AS CONTEXT"
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "Reward design requires the environment specification to be provided to the LLM. We propose directly feeding the raw environment source code (without the reward code, if exists) as context.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "Reward design requires the environment specification to be provided to the LLM. We propose directly feeding the raw environment source code (without the reward code, if exists) as context."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "Given that any reward function is a function over the environment’s state and action variables, the only requirement in the source code is that it exposes these environment variables, which is easy to satisfy.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "Given that any reward function is a function over the environment’s state and action variables, the only requirement in the source code is that it exposes these environment variables, which is easy to satisfy."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "In cases where the source code is not available, relevant state information can also be supplied via an API, for example.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "In cases where the source code is not available, relevant state information can also be supplied via an API, for example."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "In practice, to ensure that the environment code fits within the LLM’s context window and does not leak simulation internals (so that we can expect the same prompt to generalize to new simulators), we have an automatic script to extract just the environment code snippets that expose and fully specify the environment state and action variables.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "In practice, to ensure that the environment code fits within the LLM’s context window and does not leak simulation internals (so that we can expect the same prompt to generalize to new simulators), we have an automatic script to extract just the environment code snippets that expose and fully specify the environment state and action variables."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "Given environment as context, EUREKA instructs the coding LLM to directly return executable Python code with only generic reward design and formatting tips, such as exposing 1: Require: Task description l, environment code M, individual components in the reward coding LLM LLM, fitness function F, initial prompt prompt as a dictionary output (for reasons 2: Hyperparameters: search iteration N, iteration batch size K",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "Given environment as context, EUREKA instructs the coding LLM to directly return executable Python code with only generic reward design and formatting tips, such as exposing 1: Require: Task description l, environment code M, individual components in the reward coding LLM LLM, fitness function F, initial prompt prompt as a dictionary output (for reasons 2: Hyperparameters: search iteration N, iteration batch size K"
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "3: for N iterations do",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "3: for N iterations do"
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "// Sample K reward code from LLM",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "// Sample K reward code from LLM"
+        },
+        {
+            "claim_id": 42,
+            "claim_text": "R1,..., Rk ∼ LLM(l, M, prompt)",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "R1,..., Rk ∼ LLM(l, M, prompt)"
+        },
+        {
+            "claim_id": 43,
+            "claim_text": "Remarkably, with only these minimal instructions, EUREKA can already zero-shot generate plausibly-looking rewards in diverse environments in its first attempts.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "Remarkably, with only these minimal instructions, EUREKA can already zero-shot generate plausibly-looking rewards in diverse environments in its first attempts."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": "An example EUREKA where best = arg maxk s1,..., sK output is shown in Fig. 3.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "An example EUREKA where best = arg maxk s1,..., sK output is shown in Fig. 3."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "As seen, EUREKA adeptly composes over existing observation variables (e.g., fingertip pos) in the provided environment code and produces a competent reward code – all without any environment-specific prompt engineering or reward templating.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "As seen, EUREKA adeptly composes over existing observation variables (e.g., fingertip pos) in the provided environment code and produces a competent reward code – all without any environment-specific prompt engineering or reward templating."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "On the first try, however, the generated reward may not always be executable, and even if it is, it can be quite sub-optimal with respect to the task fitness metric F. While we can improve the prompt with task-specific formatting and reward design hints, doing so does not scale to new tasks and hinders the overall generality of our system.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "On the first try, however, the generated reward may not always be executable, and even if it is, it can be quite sub-optimal with respect to the task fitness metric F. While we can improve the prompt with task-specific formatting and reward design hints, doing so does not scale to new tasks and hinders the overall generality of our system."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "How can we effectively overcome the sub-optimality of single-sample reward generation?",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "How can we effectively overcome the sub-optimality of single-sample reward generation?"
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "In this section, we will demonstrate how evolutionary search presents a natural solution that addresses the aforementioned execution error and sub-optimality challenges.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "In this section, we will demonstrate how evolutionary search presents a natural solution that addresses the aforementioned execution error and sub-optimality challenges."
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "In each iteration, EUREKA samples several independent outputs from the LLM (Line 5 in Alg. 1). Since the generations are i.i.d, the probability that all reward functions from an iteration are buggy exponentially decreases as the number of samples increases.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "In each iteration, EUREKA samples several independent outputs from the LLM (Line 5 in Alg. 1). Since the generations are i.i.d, the probability that all reward functions from an iteration are buggy exponentially decreases as the number of samples increases."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "We find that for all environments we consider, sampling just a modest number of samples (16) contains at least one executable reward code in the first iteration.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "We find that for all environments we consider, sampling just a modest number of samples (16) contains at least one executable reward code in the first iteration."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "Given executable reward functions from an earlier iteration, EUREKA performs in-context reward mutation, proposing new improved reward functions from the best one in the previous iteration.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "Given executable reward functions from an earlier iteration, EUREKA performs in-context reward mutation, proposing new improved reward functions from the best one in the previous iteration."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "Concretely, a new EUREKA iteration will take the best-performing reward from the previous iteration, its reward reflection (Sec. 3.3), and the mutation prompt (Prompt 2 in App. A) as context and generate K more i.i.d reward outputs from the LLM; several illustrative reward modifications are visualized in Fig. 3.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "Concretely, a new EUREKA iteration will take the best-performing reward from the previous iteration, its reward reflection (Sec. 3.3), and the mutation prompt (Prompt 2 in App. A) as context and generate K more i.i.d reward outputs from the LLM; several illustrative reward modifications are visualized in Fig. 3."
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "This iterative optimization continues until a specified number of iterations has been reached.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "This iterative optimization continues until a specified number of iterations has been reached."
+        },
+        {
+            "claim_id": 54,
+            "claim_text": "Finally, we perform multiple random restarts to find better maxima; this is a standard strategy in global optimization.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "Finally, we perform multiple random restarts to find better maxima; this is a standard strategy in global optimization."
+        },
+        {
+            "claim_id": 55,
+            "claim_text": "In all our experiments, EUREKA conducts 5 independent runs per environment, and for each run, searches for 5 iterations with K = 16 samples per iteration.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "In all our experiments, EUREKA conducts 5 independent runs per environment, and for each run, searches for 5 iterations with K = 16 samples per iteration."
+        },
+        {
+            "claim_id": 56,
+            "claim_text": "3.3 REWARD REFLECTION",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "3.3 REWARD REFLECTION"
+        },
+        {
+            "claim_id": 57,
+            "claim_text": "In order to ground the in-context reward mutation, we must be able to put into words the quality of the generated rewards.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "In order to ground the in-context reward mutation, we must be able to put into words the quality of the generated rewards."
+        },
+        {
+            "claim_id": 58,
+            "claim_text": "We propose reward reflection, an automated feedback that summarizes the policy training dynamics in texts.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "We propose reward reflection, an automated feedback that summarizes the policy training dynamics in texts."
+        },
+        {
+            "claim_id": 59,
+            "claim_text": "Specifically, given that EUREKA reward functions are asked to expose their individual components in the reward program (e.g., reward components in Fig. 3), reward reflection tracks the scalar values of all reward components and the task fitness function at intermediate policy checkpoints throughout training.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "Specifically, given that EUREKA reward functions are asked to expose their individual components in the reward program (e.g., reward components in Fig. 3), reward reflection tracks the scalar values of all reward components and the task fitness function at intermediate policy checkpoints throughout training."
+        },
+        {
+            "claim_id": 60,
+            "claim_text": "For instance, consider the illustrative example in Fig. 2, where the snapshot values of av penalty are provided as a list in the reward feedback.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "For instance, consider the illustrative example in Fig. 2, where the snapshot values of av penalty are provided as a list in the reward feedback."
+        },
+        {
+            "claim_id": 61,
+            "claim_text": "See App. G.1 for full examples.",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "See App. G.1 for full examples."
+        },
+        {
+            "claim_id": 62,
+            "claim_text": "This reward reflection procedure, though simple to construct, is important due to two reasons: (1) the lack of fine-grained reward improvement signal in the task fitness function, and (2) the algorithm-dependent nature of reward optimization (Booth et al., 2023).",
+            "location": "Method",
+            "claim_type": "Observation",
+            "exact_quote": "This reward reflection procedure, though simple to construct, is important due to two reasons: (1) the lack of fine-grained reward improvement signal in the task fitness function, and (2) the algorithm-dependent nature of reward optimization (Booth
+
+Raw Evidence:
+
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 317.75 seconds
+evidence_analysis_time: 1.63 seconds
+conclusions_analysis_time: 1.62 seconds
+total_execution_time: 323.81 seconds

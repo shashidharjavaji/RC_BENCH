@@ -1,0 +1,330 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": "LLMs cannot be used as planners or plan verifiers themselves.",
+            "claim_location": "Introduction",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "On average, only about 12% of the plans that the best LLM (GPT-4) generates are actually executable without errors and goal-reaching.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results are specific to the tested LLMs and planning problem instances; may not generalize across all LLMs or planning scenarios.",
+                    "location": "Section 2.1, paragraph discussing autonomous mode performance",
+                    "exact_quote": "We show that results in the autonomous mode are pretty bleak. On average, only about 12% of the plans that the best LLM (GPT-4) generates are actually executable without errors and goal-reaching."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "LLMs have shown dismal performance on PlanBench, failing to significantly improve even with chain of thought or step-by-step prompting.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Evaluation based on PlanBench results; specific prompting methods tested may not encompass the full capability or future improvements of LLMs.",
+                    "location": "Section 2.2, paragraphs on plan verification and self-critique improvement",
+                    "exact_quote": "Table 1 shows that all the state of the art LLMs show dismal performance on PlanBench..."
+                }
+            ],
+            "evidence_locations": [
+                "Section 2.1, paragraph discussing autonomous mode performance",
+                "Section 2.2, paragraphs on plan verification and self-critique improvement"
+            ],
+            "conclusion": {
+                "author_conclusion": "LLMs should not be seen as independent planners or verifiers due to their inability to generate executably correct plans autonomously and their lack of self-verification capacity. However, using an LLM-Modulo Framework that integrates LLMs with external critiques and verification, LLMs can significantly contribute to planning tasks as knowledge sources, candidate generators, and in several other supportive capacities.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust, supported by empirical studies and systematic evaluations under controlled conditions. The authors also critically analyze contrary claims in the literature, providing a comprehensive assessment of LLM capabilities and limitations in autonomous and assisted planning contexts.",
+                "limitations": "Specific limitations include a reliance on the effectiveness and availability of external critics and verifiers, the quality of input for LLM-generated plans, and the potential need for significant domain-specific knowledge to effectively deploy the LLM-Modulo Framework.",
+                "conclusion_location": "Conclusion"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": "LLMs can play a variety of constructive roles in solving planning tasks when combined with external critics, verifiers, and humans.",
+            "claim_location": "Introduction",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "LLMs in conjunction with external critics can significantly improve performance in planning tasks, as demonstrated in classical planning domains and a travel planning benchmark.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Performance improvements are domain-specific and dependent on the effectiveness of the external critiques.",
+                    "location": "Section 4. Two Case Studies of LLM-Modulo & Conclusion",
+                    "exact_quote": "with back prompting from VAL acting as the external verifier and critic, LLM performance in Blocks World improves to 82% within 15 back prompting rounds, while in Logistics, it improves to 70%. LLM-Modulo doesn\u2019t help as much in an obfuscated version of blocks world called Mystery BW, reaching about 10% accuracy. This should be expected because the LLMs have difficulty generating plausible candidate plans for this domain."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4. Two Case Studies of LLM-Modulo & Conclusion"
+            ],
+            "conclusion": {
+                "author_conclusion": "LLMs are not capable of planning or self-verification independently but can significantly enhance planning tasks when integrated into LLM-Modulo Frameworks alongside external model-based verifiers, facilitating various planning-related roles.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence supporting the authors' conclusions is robust, leveraging empirical findings from experiments that clearly outline LLMs' limitations in planning and verification while highlighting their utility in idea generation and approximate knowledge sourcing when properly integrated with external verifiers.",
+                "limitations": "While convincingly argued, the analysis acknowledges the inherent limitations of LLMs' autonomous planning and self-verification capacities and relies on external systems for formal correctness, potentially constraining the direct applicability of LLMs to planning tasks.",
+                "conclusion_location": "Introduction, Planning-centered Limitations of LLMs, LLM-Modulo Framework for Robust Planning sections"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": "LLMs are not actually able to generate executable plans in autonomous modes.",
+            "claim_location": "Section 2.1",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Studies show that LLMs like GPT-4 generate executable plans without errors and goal-reaching only about 12% of the time when used in autonomous modes, indicating a significant limitation in autonomous planning capability.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The evaluation focuses on specific LLM instances and domains, referencing planning problem instances based on those employed in the International Planning Competition (IPC).",
+                    "location": "Section 2.1 & Table 1 in Results",
+                    "exact_quote": "On average, only about 12% of the plans that the best LLM (GPT-4) generates are actually executable without errors and goal-reaching."
+                }
+            ],
+            "evidence_locations": [
+                "Section 2.1 & Table 1 in Results"
+            ],
+            "conclusion": {
+                "author_conclusion": "LLMs cannot autonomously generate executable plans but can play a supportive role in planning tasks when combined with external critics and model-based verifiers within the LLM-Modulo Framework.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence supporting the conclusion is robust, drawing from empirical studies showing LLMs' limitations in autonomous plan generation and their potential when integrated within the LLM-Modulo Framework.",
+                "limitations": "The paper acknowledges LLMs' limitations in generating executable plans autonomously and the need for external verification. It highlights the gap between LLMs' potential and their current capabilities in planning tasks.",
+                "conclusion_location": "Section 2.1 and Conclusion"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": "LLMs' performance in plan generation does not significantly improve even with fine-tuning.",
+            "claim_location": "Section 2.1",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Our results indicate that in direct mode, LLMs are, perhaps not surprisingly, pretty bad at solving graph coloring instances. More interestingly, they are no better at verifying solutions. In iterative modes, given the inability of LLMs to verify solutions, it should come as no surprise that our experiments also show that the strategy of LLMs self-critiquing their solutions does not improve over the baseline. We report that the performance is in fact worse because the system can\u2019t recognize a correct coloring and thus merrily passes over fortuitously correct colorings it has generated, ending up with a wrong one.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The evidence is drawn from a controlled experimental context comparing direct and iterative modes of LLM operations, which may not capture the full range of real-world applications or settings.",
+                    "location": "Section 2.3. Analyzing Claims to the Contrary in the Literature & Section 3.5. Can LLM-Modulo Frameworks Pay Their Way?, 2402.01817v3.pdf",
+                    "exact_quote": "In iterative modes, given the inability of LLMs to verify solutions, it should come as no surprise that our experiments also show that the strategy of LLMs self-critiquing their solutions does not improve over the baseline. We report that the performance is in fact worse because the system can\u2019t recognize a correct coloring and thus merrily passes over fortuitously correct colorings it has generated, ending up with a wrong one."
+                }
+            ],
+            "evidence_locations": [
+                "Section 2.3. Analyzing Claims to the Contrary in the Literature & Section 3.5. Can LLM-Modulo Frameworks Pay Their Way?, 2402.01817v3.pdf"
+            ],
+            "conclusion": {
+                "author_conclusion": "LLMs, despite their capabilities, cannot autonomously generate executable plans or significantly improve through fine-tuning or iterative prompting strategies such as self-critique. However, they can play constructive roles within an LLM-Modulo Framework that leverages both LLMs and external verifiers.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence provided is robust, with extensive empirical data supporting the claims. It covers various models (GPT-4, GPT-3.5, etc.) and methodologies (direct mode, iterative modes, and different prompting strategies), providing a broad basis for the conclusions drawn.",
+                "limitations": "The studies primarily focus on the limitations of LLMs in autonomous planning tasks, with less emphasis on how factors like domain specificity or the complexity of the planning tasks may influence LLM performance. The potential of LLMs in collaborative frameworks, while highlighted, requires further exploration and validation.",
+                "conclusion_location": "Sections 2.1, 2.2, and 6 in 2402.01817v3.pdf"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": "LLMs cannot improve by self-critiquing their generated plans.",
+            "claim_location": "Section 2.2",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The strategy of LLMs self-critiquing their solutions, based on their inability to verify solutions, does not improve over the baseline. Experiments show that this approach results in worse performance, with systems passing over correct solutions and ending up with incorrect ones.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Specific to tasks like graph coloring instances and planning problems, might not generalize to all types of problems LLMs can address",
+                    "location": "2402.01817v3.pdf, section 2.2. LLMs cannot verify plans and thus cannot improve by self-critiquing",
+                    "exact_quote": "In iterative modes, given the inability of LLMs to verify solutions, our experiments also show that the strategy of LLMs self-critiquing their solutions does not improve over the baseline. We report that the performance is in fact worse because the system can\u2019t recognize a correct coloring and thus merrily passes over fortuitously correct colorings it has generated, ending up with a wrong one!"
+                }
+            ],
+            "evidence_locations": [
+                "2402.01817v3.pdf, section 2.2. LLMs cannot verify plans and thus cannot improve by self-critiquing"
+            ],
+            "conclusion": {
+                "author_conclusion": "Large Language Models (LLMs) are inherently unable to self-improve their planning capabilities through self-critiquing. Despite advances, LLMs fail to generate executable plans autonomously or improve their plan generation through iterative self-critiquing processes.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The research provides a detailed empirical analysis showing that LLMs, including GPT variants, do not significantly improve at plan generation or verification even when subjected to iterative self-critique. This shows a solid foundation in experimental methodology and results across different scenarios.",
+                "limitations": "The analysis might not fully account for the entire spectrum of LLM capabilities, especially in light of constantly evolving LLM architectures and training methods. Additionally, the studies focus on specific types of plan generation and verification tasks, which may not encompass all domains LLMs could potentially operate within.",
+                "conclusion_location": "Section 2.2 of 2402.01817v3.pdf"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": "The LLM-Modulo framework is proposed to leverage LLMs without wrongly ascribing to them capabilities they don't possess.",
+            "claim_location": "Introduction and Conclusion",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "In applying the LLM-Modulo framework to classical planning domains, back-prompting from VAL as an external verifier and critic increased LLM performance in Blocks World to 82% within 15 rounds, and in Logistics to 70%. The framework did not significantly help in Mystery BW, only reaching about 10% accuracy.",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Limited applicability in some domains, such as Mystery BW, where LLM-Modulo frameworks significantly struggle.",
+                    "location": "Two Case Studies of LLM-Modulo",
+                    "exact_quote": "In the former case, the results (presented in Section 5.2 and Table 4 of (Valmeekam et al., 2023c)) show that with back prompting from VAL (Howey et al., 2004) acting as the external verifier and critic, LLM performance in Blocks World improves to 82% within 15 back prompting rounds, while in Logistics, it improves to 70%. LLM-Modulo doesn\u2019t help as much in an obfuscated version of blocks world called Mystery BW, reaching about 10% accuracy."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "For a recent travel planning benchmark, adaptive implementation of the LLM-Modulo framework showed a significant performance improvement, yielding a 6x increase over baselines even with a limit of 10 back prompting cycles using weaker models like GPT-3.5-turbo.",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Findings are preliminary and additional detailed results are necessary to fully assess the framework's effectiveness.",
+                    "location": "Two Case Studies of LLM-Modulo",
+                    "exact_quote": "Our preliminary results show (see Figure 5; additional results in (Gundawar et al., 2024)) that LLM-Modulo based agentification with automated critics in the loop significantly improves the performance (6x of baselines) even with a limit of 10 back prompting cycles, and weaker models such as GPT-3.5-turbo."
+                }
+            ],
+            "evidence_locations": [
+                "Two Case Studies of LLM-Modulo",
+                "Two Case Studies of LLM-Modulo"
+            ],
+            "conclusion": {
+                "author_conclusion": "LLMs cannot autonomously perform planning or self-verification tasks but can significantly contribute to planning tasks as part of a larger LLM-Modulo Framework. This integration utilizes LLMs as idea generators and harnesses external critics for plan validation, ensuring rigorous use without overestimating LLM capabilities.",
+                "conclusion_justified": true,
+                "robustness_analysis": "Evidence supports the conclusion robustly, demonstrating a comprehensive understanding of LLM capabilities and limitations. The introduction of the LLM-Modulo framework is grounded in empirical findings and a clear rationale for integrating external verification.",
+                "limitations": "Limitations include an inherent dependency on the correct functioning and integration of external critics and verifiers within the LLM-Modulo framework. Potential biases in LLM-generated content and the effectiveness of external critics in catch errors not explicitly addressed.",
+                "conclusion_location": "Introduction and Conclusion sections"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": "LLMs can serve as powerful cognitive orthotics for human or machine agents if rightly used.",
+            "claim_location": "Conclusion",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "LLMs have been substantiated as effective in approximating knowledge sources and generating candidate plans, particularly within a framework that enhances their capabilities by incorporating external model-based verifiers. This combined approach allows for the generation of plans that may receive formal correctness guarantees where possible.",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "LLMs are not used as planners or plan verifiers themselves but rather in roles suited to their capabilities, like generating candidate plans or assisting in domain model acquisition.",
+                    "location": "Section 2 and 3, Discussion on LLM-Modulo Framework and roles of LLMs",
+                    "exact_quote": "LLMs play a spectrum of roles in this architecture, from guessing candidate plans, to translating those plans into syntactic forms that are more accessible to external critics, to helping end users flesh out incomplete specifications, to helping expert users acquire domain models (that in turn drive model-based critics). All this leveraging of LLMs is done without ascribing to them any planning or verification abilities. The LLM ideas are vetted by external critics, thus ensuring that the plans generated in this architecture can have formal correctness guarantees where possible."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "The practical application of LLMs in cognitive tasks is evaluated through the LLM-Modulo Framework. This approach integrates external critics that assess and refine the candidate plans generated by LLMs, embodying a generate-test-critique loop that utilizes the strengths of LLMs while ensuring the soundness of the resulting plans through external verification.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The effectiveness of the LLM-Modulo Framework is contingent on the soundness of the external model-based verifiers; the LLMs themselves do not ensure the correctness of the plans.",
+                    "location": "Section 3, LLM-Modulo Framework for Robust Planning",
+                    "exact_quote": "As can be seen readily, the underlying architecture is a Generate-Test-Critique loop, with the LLM generating candidate plans and a bank of critics critiquing the candidate. The plans an LLM helps generate in this architecture have soundness guarantees because of the external sound critics."
+                }
+            ],
+            "evidence_locations": [
+                "Section 2 and 3, Discussion on LLM-Modulo Framework and roles of LLMs",
+                "Section 3, LLM-Modulo Framework for Robust Planning"
+            ],
+            "conclusion": {
+                "author_conclusion": "LLMs, while not capable of autonomous planning, can significantly contribute to planning tasks as auxiliary resources in combination with external critics, verifiers, and human oversight within the LLM-Modulo Framework.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence, drawn from literature review and empirical studies, provides a solid backing for the conclusion. It highlights LLMs' limitations in autonomous planning while effectively demonstrating their utility in a supportive capacity within a structured framework.",
+                "limitations": "The evidence primarily focuses on the positive aspects of leveraging LLMs within the described framework without extensively addressing potential limitations or failures in this approach. It also largely overlooks the computational and practical challenges involved in implementing and maintaining such a framework in diverse planning scenarios.",
+                "conclusion_location": "Conclusion"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": "The LLM-Modulo architecture is put forward to address the over-optimism and over-pessimism about LLMs in planning and reasoning.",
+            "claim_location": "Conclusion",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The LLM-Modulo framework integrates LLMs with external sound model-based verifiers to leverage LLMs effectively in planning tasks without ascribing to them any planning or verification abilities.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Focuses on planning tasks, relies on external models for verification.",
+                    "location": "Section 3, Paragraph 1",
+                    "exact_quote": "We propose a general 'LLM-Modulo' framework. As can be seen readily, the underlying architecture is a Generate-Test-Critique loop, with the LLM generating candidate plans and a bank of critics critiquing the candidate. Note that the plans an LLM helps generate in this architecture have soundness guarantees because of the external sound critics."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "The LLM-Modulo framework was applied to classical planning domains and a travel planning benchmark, showing improved LLM performance with external verification.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Evidence is based on specific case studies; broader applicability needs more evidence.",
+                    "location": "Section 4, Paragraph 1",
+                    "exact_quote": "We have applied the LLM-Modulo framework to classical planning domains and to a recent travel planning benchmark. In the former case, the results show that with back prompting from VAL acting as the external verifier and critic, LLM performance in Blocks World improves to 82% within 15 back prompting rounds."
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Experimental results indicate that without external verification, LLMs struggle with planning tasks, demonstrating the necessity of the LLM-Modulo framework's approach.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Based on performance in autonomous modes, may not reflect all use cases.",
+                    "location": "Section 5.2, Table 1",
+                    "exact_quote": "On average, only about 12% of the plans that the best LLM (GPT-4) generates are actually executable without errors and goal-reaching."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3, Paragraph 1",
+                "Section 4, Paragraph 1",
+                "Section 5.2, Table 1"
+            ],
+            "conclusion": {
+                "author_conclusion": "LLMs cannot plan by themselves but can contribute constructively to planning tasks within LLM-Modulo frameworks, alongside external model-based verifiers for sound, robust planning.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The robustness of the evidence stems from a comprehensive methodology, including literature review questioning LLMs' planning capabilities, presentation of the LLM-Modulo framework, and empirical evaluation in planning tasks showing improvement with the framework.",
+                "limitations": "Specific limitations include reliance on external verifiers for correctness, potential biases in the choice of case studies, and assumptions about LLMs' capability to generate useful planning knowledge. The framework's effectiveness in wider planning and reasoning tasks beyond the demonstrated examples remains to be thoroughly tested.",
+                "conclusion_location": "Conclusion"
+            }
+        },
+        {
+            "claim_id": 9,
+            "claim": "LLM-Modulo frameworks integrate LLMs with external verifiers with correctness guarantees for robust and expressive planning.",
+            "claim_location": "Conclusion",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The LLM-Modulo framework leverages LLMs together with external verifiers to enhance plan generation for complex problem-solving tasks, ultimately improving performance through formal correctness guarantees.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited improvement in highly obfuscated domains like Mystery BW with about 10% accuracy.",
+                    "location": "Section 4. Two Case Studies of LLM-Modulo & Section 5. Related Work, Paragraph 1 & 4",
+                    "exact_quote": "with back prompting from VAL (Howey et al., 2004) acting as the external verifier and critic, LLM performance in Blocks World improves to 82% within 15 back prompting rounds, while in Logistics, it improves to 70%. LLM-Modulo doesn\u2019t help as much in an obfuscated version of blocks world called Mystery BW, reaching about 10% accuracy."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4. Two Case Studies of LLM-Modulo & Section 5. Related Work, Paragraph 1 & 4"
+            ],
+            "conclusion": {
+                "author_conclusion": "LLMs, while not capable of independent planning or verification, can significantly contribute to planning tasks when used within LLM-Modulo frameworks paired with external verifiers. This integration extends the capabilities of traditional planning systems by utilizing LLMs as approximate knowledge sources and plan generators, thereby ensuring plans meet correctness guarantees.",
+                "conclusion_justified": true,
+                "robustness_analysis": "Evidence for the LLM-Modulo approach is supported by discussions of the planning and verification limitations of LLMs, the proposal of a synergistic framework combining LLMs with external verifiers, as well as specific design choices ensuring robustness and practical applicability in real-world planning problems. The case studies further reinforce the viability of this approach by demonstrating improved performance in planning tasks.",
+                "limitations": "The authors note LLMs' incapability to independently perform planning or verification and the dependency on external model-based verifiers for correctness guarantees. While the approach significantly enhances the utility of LLMs in planning, it is reliant on the effectiveness of both the LLM's generative abilities and the external verification processes.",
+                "conclusion_location": "Conclusion"
+            }
+        },
+        {
+            "claim_id": 10,
+            "claim": "LLMs act as idea generators in LLM-Modulo Framework, where external critics critique the candidate plan.",
+            "claim_location": "LLM-Modulo Framework Overview",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "LLMs act as idea generators in the LLM-Modulo Framework, responding to problem specifications and iterative back prompting from a bank of critics.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The success of the LLM-Modulo framework depends on the completeness and sound critics' effectiveness in evaluating the candidate plans generated by LLMs.",
+                    "location": "Section 3.4. Summary of LLM Roles in LLM-Modulo & Section 3.5. Can LLM-Modulo Frameworks Pay Their Way? (2402.01817v3.pdf)",
+                    "exact_quote": "The most prominent, of course, is its role in 'guessing' the candidate plans (step 2 in Figure 3) in response to problem specification and iterative back prompting from the bank of critics (Step 5)."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "The critics in the LLM-Modulo framework evaluate LLM-generated candidates over hard and soft constraints, including correctness verification and stylistic elements, thereby critiquing the candidate plan for its fitness and acceptability.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The effectiveness of the framework relies on the ability of the critics to provide both hard and soft evaluations to ensure plan viability and adherence to preference or style.",
+                    "location": "Section 3.1. Critics/Verifers (2402.01817v3.pdf)",
+                    "exact_quote": "In the LLM-Modulo framework, critics can evaluate LLM-generated candidates for a planning/reasoning problem over both hard and soft (style) constraints."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.4. Summary of LLM Roles in LLM-Modulo & Section 3.5. Can LLM-Modulo Frameworks Pay Their Way? (2402.01817v3.pdf)",
+                "Section 3.1. Critics/Verifers (2402.01817v3.pdf)"
+            ],
+            "conclusion": {
+                "author_conclusion": "LLMs cannot themselves execute planning or verification tasks but play a significant role as idea generators and approximate knowledge sources in the LLM-Modulo Framework, where their outputs are augmented by external model-based verifiers to enable formal correctness",
+                "conclusion_justified": true,
+                "robustness_analysis": "The claim is robustly supported by comprehensive analysis, including empirical evaluations and theoretical discussions on the limitations and capabilities of LLMs. The framework's effectiveness is evidenced by case studies showing significant improvements in planning tasks.",
+                "limitations": "The analysis acknowledges LLMs' limitations in autonomous planning and self-verification while proposing a dependency on external model-based verifiers for ensuring formal correctness. The authors also recognize the potential for efficiency losses and increased complexity when integrating LLMs with external systems.",
+                "conclusion_location": "LLM-Modulo Framework Overview"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "46.78 seconds",
+        "evidence_analysis_time": "332.10 seconds",
+        "conclusions_analysis_time": "277.39 seconds",
+        "total_execution_time": "0.00 seconds"
+    }
+}

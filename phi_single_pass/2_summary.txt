@@ -1,0 +1,172 @@
+Claim 1:
+Type: result
+Statement: Larger models are well-calibrated on diverse multiple choice questions when provided in the right format.
+Location: 2
+Exact Quote: We show that large models are very well calibrated on diverse multiple choice questions (e.g. from BIG Bench [Srivastava et al., 2022], MMLU [Hendrycks et al., 2021], and many other evaluations); see Figures 4, 5, and 6.
+
+Evidence:
+- Evidence Text: Calibration curves for various model sizes on all of the multiple choice tasks in BIG Bench, in the format described in section 2.
+  Strength: strong
+  Location: 2
+  Limitations: Assumes that the format used is the only factor contributing to calibration.
+  Exact Quote: We show calibration curves for various model sizes on all of the multiple choice tasks in BIG Bench, in the format described in section 2.
+
+- Evidence Text: Calibration improves with model size and few-shot prompting.
+  Strength: strong
+  Location: 2
+  Limitations: Does not account for potential overfitting to specific tasks or formats.
+  Exact Quote: We typically find good calibration 0-shot, without any other prompt, though calibration improves as we pass from 0-shot to few-shot.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence provided shows clear trends of improved calibration with increased model size and the use of few-shot prompting.
+Key Limitations: The study does not explore the impact of different prompting strategies or task formats on calibration.
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Models can self-evaluate whether their own samples are True or False, though this tends to be a more challenging task.
+Location: 4.1
+Exact Quote: We evaluate on the generative tasks TriviaQA [Joshi et al., 2017], Lambada [Paperno et al., 2016], the Codex HumanEval [Chen et al., 2021], arithmetic problems, and natural function synthesis problems scraped from GitHub.
+
+Evidence:
+- Evidence Text: Models can self-evaluate whether their own samples are True or False, though this tends to be a more challenging task (since models tend to find their own samples more plausible).
+  Strength: moderate
+  Location: 4.1
+  Limitations: The claim is based on the assumption that models are more likely to find their own samples more plausible, which may not always be the case.
+  Exact Quote: We can self-evaluate whether their own samples are True or False, though this tends to be a more challenging task (since models tend to find their own samples more plausible).
+
+- Evidence Text: Self-evaluations are well-calibrated few-shot, though models aren’t as well-calibrated zero-shot.
+  Strength: moderate
+  Location: 4.1
+  Limitations: The claim is based on the assumption that few-shot prompting improves calibration, which may not always be the case.
+  Exact Quote: Self-evaluations are well-calibrated few-shot, though models aren’t as well-calibrated zero-shot.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided shows that self-evaluation performance improves with model size and few-shot prompting.
+Key Limitations: The study does not explore the impact of different prompting strategies or task formats on self-evaluation.
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: Models trained to predict 'P(IK)' can differentiate between questions they can and cannot answer.
+Location: 5
+Exact Quote: We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).
+
+Evidence:
+- Evidence Text: We train P(IK) as the logit from an additional value 'head' added to the model.
+  Strength: strong
+  Location: 5.1
+  Limitations: The claim assumes that the value head approach is the most effective method for training P(IK).
+  Exact Quote: We train P(IK) as the logit from an additional value 'head' added to the model.
+
+- Evidence Text: We finetune the entire model along with the value head.
+  Strength: moderate
+  Location: 5.1
+  Limitations: The claim assumes that finetuning the entire model along with the value head is the most effective method for training P(IK).
+  Exact Quote: During P(IK) training, we finetune the entire model along with the value head.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided shows that training models with a value head can effectively differentiate between questions they can and cannot answer.
+Key Limitations: The study does not explore alternative methods for training P(IK).
+
+--------------------------------------------------
+
+Claim 4:
+Type: result
+Statement: P(IK) generalizes to account for source materials in the context.
+Location: 5.3
+Exact Quote: We see that including a relevant Wikipedia article in the context boosts the average P(IK) on TriviaQA Questions.
+
+Evidence:
+- Evidence Text: Including a relevant Wikipedia article in the context boosts the average P(IK) on TriviaQA Questions.
+  Strength: strong
+  Location: 5.3
+  Limitations: The claim is based on the assumption that the presence of a Wikipedia article is the only factor affecting P(IK).
+  Exact Quote: Including a relevant Wikipedia article in the context boosts the average P(IK) on TriviaQA Questions.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence provided shows that P(IK) increases when a relevant Wikipedia article is included in the context.
+Key Limitations: The study does not explore the impact of other factors, such as the length of the article or the relevance of the information.
+
+--------------------------------------------------
+
+Claim 5:
+Type: result
+Statement: P(IK) generalizes to account for hints towards the solution of mathematical word problems.
+Location: 5.4
+Exact Quote: We see that showing more of the GSM8k hint results in higher P(IK).
+
+Evidence:
+- Evidence Text: Showing more of the GSM8k hint results in higher P(IK).
+  Strength: moderate
+  Location: 5.4
+  Limitations: The claim is based on the assumption that the presence of a hint is the only factor affecting P(IK).
+  Exact Quote: Showing more of the GSM8k hint results in higher P(IK).
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided shows that P(IK) increases when more of the hint is shown.
+Key Limitations: The study does not explore the impact of other factors, such as the quality of the hint or the complexity of the problem.
+
+--------------------------------------------------
+
+Claim 6:
+Type: result
+Statement: Models trained on TriviaQA, LAMBADA, Arithmetic, and Python Function Synthesis perform better and more consistently on P(IK) with hints.
+Location: 5.4
+Exact Quote: The P(IK) model that was trained on TriviaQA, LAMBADA, Arithmetic, and Python Function Synthesis performs better and more consistently, especially with partial hints.
+
+Evidence:
+- Evidence Text: The P(IK) model trained on TriviaQA, LAMBADA, Arithmetic, and Python Function Synthesis performs better and more consistently, especially with partial hints.
+  Strength: moderate
+  Location: 5.4
+  Limitations: The claim is based on the assumption that the performance of the model is solely due to the training data.
+  Exact Quote: The P(IK) model trained on TriviaQA, LAMBADA, Arithmetic, and Python Function Synthesis performs better and more consistently, especially with partial hints.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided shows that the model trained on a diverse set of tasks performs better and more consistently on P(IK) with hints.
+Key Limitations: The study does not explore the impact of other factors, such as the quality of the hints or the complexity of the problems.
+
+--------------------------------------------------
+
+Claim 7:
+Type: methodology
+Statement: Models trained on distinct pretraining distributions can be distinguished based on P(IK).
+Location: 5.5
+Exact Quote: We studied two 12B models (with identical architecture) that were pretrained on distinct data distributions.
+
+Evidence:
+- Evidence Text: We finetuned both models for P(IK) on the questions from the TriviaQA training set that each model got correct.
+  Strength: moderate
+  Location: 5.5
+  Limitations: The claim is based on the assumption that the performance of the models is solely due to the training data.
+  Exact Quote: We finetuned both models for P(IK) on the questions from the TriviaQA training set that each model got correct.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provided shows that models trained on distinct pretraining distributions can be distinguished based on P(IK).
+Key Limitations: The study does not explore the impact of other factors, such as the quality of the training data or the architecture of the models.
+
+--------------------------------------------------
+

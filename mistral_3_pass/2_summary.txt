@@ -1,0 +1,148 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+The paper "Language Models (Mostly) Know What They Know" by Saurav Kadavath et al. explores the ability of language models to evaluate their own claims and predict which questions they will be able to answer correctly. The study focuses on the calibration of language models and their ability to self-evaluate their outputs.
+
+### Key Findings:
+
+1. **Calibration on Multiple Choice Questions**:
+   - The paper shows that larger models are well-calibrated on diverse multiple choice questions when they are provided in the right format.
+   - Calibration improves with model size and few-shot prompting.
+
+2. **Self-Evaluation of Model-Generated Samples**:
+   - Models can self-evaluate whether their own samples are True or False, though this tends to be a more challenging task.
+   - Showing models many of their own T = 1 samples, along with a single sample to evaluate as True/False, can significantly improve their performance.
+
+3. **Training Models to Predict Whether They Can Answer Questions Correctly**:
+   - The paper trains models to predict the probability that they can answer a question correctly, denoted as P(IK).
+   - Models perform well at predicting P(IK) and partially generalize across tasks, though they struggle with calibration of P(IK) on new tasks.
+   - The predicted P(IK) probabilities also increase appropriately in the presence of relevant source materials in the context, and in the presence of hints towards the solution of mathematical word problems.
+
+### Contributions:
+
+1. **Calibration: Multiple Choice, None of the Above, and True/False**:
+   - The paper shows that when a format with visible lettered answer options is used, large models are very well-calibrated on diverse multiple choice questions.
+   - Calibration improves with model size and few-shot evaluation.
+   - Replacing an option with ‘none of the above’ reduces accuracy and calibration significantly.
+   - Models are also well-calibrated on True/False distinctions.
+
+2. **Self-Evaluation of Model-Generated Samples, without Finetuning**:
+   - Models can self-evaluate whether their own samples are True or False, though this tends to be a more challenging task.
+   - Showing models many of their own T = 1 samples, along with a single sample to evaluate as True/False, can significantly improve their performance.
+
+3. **Finetuning to Identify the Questions Models Can Correctly Answer**:
+   - The paper trains models with a value head to predict the probability that they can answer a question correctly, denoted as P(IK).
+   - Models trained on TriviaQA have significant power to differentiate between math, lambada, and code questions that they can answer.
+   - P(IK) tends to be poorly calibrated on these other distributions.
+   - Generalization is perhaps most clearly illustrated in Figures 16 and 17.
+
+### Discussion:
+
+1. **Limitations and Future Work**:
+   - The paper acknowledges that the study has limitations, such as the lack of generalization to new tasks and the need for further research to improve calibration and generalization.
+
+2. **Broader Impacts**:
+   - The paper discusses the broader impacts of the study, including the potential for training more honest models and investigating how honesty generalizes to cases where models are trained on objectives other than the imitation of human writing.
+
+### Conclusion:
+
+The paper concludes that language models can perform well at self-evaluation and predicting P(IK), though there are still challenges to be addressed. The study lays the groundwork for training more honest models and investigating how honesty generalizes to different training objectives.
+
+Structured Evidence:
+[
+  {
+    "claim_id": 1,
+    "evidence": [
+      {
+        "evidence_id": 1,
+        "evidence_text": "The paper shows that larger models are well-calibrated on diverse multiple choice questions when they are provided in the right format.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 2",
+        "exact_quote": "We find that when multiple choice problems are formatted in this way (as used by e.g. [Rae et al., 2021]):"
+      },
+      {
+        "evidence_id": 2,
+        "evidence_text": "Calibration improves with model size and few-shot prompting.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 2",
+        "exact_quote": "We show the calibration chart for all multiple choice BIG Bench tasks, in this format, in Figure 4."
+      }
+    ]
+  },
+  {
+    "claim_id": 2,
+    "evidence": [
+      {
+        "evidence_id": 3,
+        "evidence_text": "Models can self-evaluate whether their own samples are True or False, though this tends to be a more challenging task.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.1",
+        "exact_quote": "In section 3.2 we saw that large language models are well-calibrated on True/False questions."
+      },
+      {
+        "evidence_id": 4,
+        "evidence_text": "Showing models many of their own T = 1 samples, along with a single sample to evaluate as True/False, can significantly improve their performance.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.2",
+        "exact_quote": "With this format, performance improves significantly on all of the short-form answer tasks, as compared to the version where we only show models a single proposed answer."
+      }
+    ]
+  },
+  {
+    "claim_id": 3,
+    "evidence": [
+      {
+        "evidence_id": 5,
+        "evidence_text": "The paper trains models to predict the probability that they can answer a question correctly, denoted as P(IK).",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 5.1",
+        "exact_quote": "We train P(IK) as the logit from an additional value \u2018head\u2019 added to the model (independent of the logits for language modeling)."
+      },
+      {
+        "evidence_id": 6,
+        "evidence_text": "Models perform well at predicting P(IK) and partially generalize across tasks, though they struggle with calibration of P(IK) on new tasks.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 5.2",
+        "exact_quote": "We see that generalization gets better as model size increases."
+      }
+    ]
+  }
+]
+
+Structured Conclusions:
+[
+  {
+    "claim_id": 1,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "The study focuses on calibration and self-evaluation, but does not address the broader issue of model honesty in all contexts.",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 2,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "The study does not address the issue of model honesty in all contexts.",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 3,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "The study does not address the issue of model honesty in all contexts.",
+    "confidence_level": "high"
+  }
+]
+
+
+Execution Times:
+claims_analysis_time: 27.74 seconds
+evidence_analysis_time: 26.67 seconds
+conclusions_analysis_time: 8.74 seconds
+total_execution_time: 151.58 seconds

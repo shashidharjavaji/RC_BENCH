@@ -1,0 +1,95 @@
+{
+    "raw_claims": "This is a research paper titled \"DocPrompting: Generating Code by Retrieving the Docs\" by Shuyan Zhou, Uri Alon, Frank F. Xu, Zhiruo Wang, Zhengbao Jiang, and Graham Neubig. Here's a concise summary of the paper:\n\n**Main Contribution:**\nThe authors propose a novel approach called DocPrompting, which generates code by retrieving relevant documentation. This approach allows models to generalize to unseen functions and libraries by reading their documentation at test time.\n\n**Key Findings:**\n\n1. **Improved Code Generation:** DocPrompting consistently improves natural language (NL) to code models in two tasks (shell scripting and Python programming) and across multiple strong base models.\n2. **Generalization to Unseen Functions:** DocPrompting enables models to generate calls to unseen functions by retrieving their documentation, outperforming traditional models that rely on seen examples.\n3. **Effectiveness of Documentation Retrieval:** The authors demonstrate that retrieving documentation is more effective than retrieving examples for code generation, especially when new libraries are released.\n\n**Methodology:**\n\n1. **DocPrompting Framework:** The approach consists of two main components: a retriever that retrieves relevant documentation given an NL intent, and a generator that produces code based on the retrieved documentation and the intent.\n2. **Retriever Instantiation:** The authors experiment with sparse (BM25) and dense (SimCSE) retrievers, finding that dense retrievers perform better, especially when the NL intents require semantic alignment with the documents.\n3. **Generator Instantiation:** The authors use various generator models (GPT-Neo, T5, CodeT5, and Codex) and find that DocPrompting improves their performance, especially with the fusion-in-decoder approach.\n\n**Evaluation:**\n\n1. **Benchmarks:** The authors evaluate DocPrompting on two NL code benchmarks: tldr (shell scripting) and CoNaLa (Python programming).\n2. **Metrics:** They use various evaluation metrics, including command name accuracy, exact match, token-level F1, character-level BLEU, and execution-based evaluation (pass@k).\n\n**Results:**\n\n1. **tldr:** DocPrompting improves base models, with T5+DocPrompting achieving more than twice the accuracy of vanilla T5 in predicting command names.\n2. **CoNaLa:** CodeT5+DocPrompting yields a 1.65 BLEU improvement over the state-of-the-art baseline, with significant gains in unseen function recall.\n\n**Conclusion:**\nDocPrompting offers a promising direction for NL code generation, enabling models to generalize to unseen functions and libraries by leveraging documentation. The authors believe that their approach can be further improved and applied to additional code-related tasks and documentation-like resources.",
+    "structured_evidence": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "DocPrompting improves base models, with T5+DocPrompting achieving more than twice the accuracy of vanilla T5 in predicting command names.",
+                    "strength": "strong",
+                    "limitations": "Specific to tldr benchmark",
+                    "location": "Section 5.1",
+                    "exact_quote": "Table 1: Results on shell scripting, using a BM25 retriever with top-10 retrieved docs, on the test set of tldr."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "CodeT5+DocPrompting yields a 1.65 BLEU improvement over the state-of-the-art baseline, with significant gains in unseen function recall.",
+                    "strength": "strong",
+                    "limitations": "Specific to CoNaLa benchmark",
+                    "location": "Section 5.2",
+                    "exact_quote": "Table 3: Results on CoNaLa, using a CodeT5 retriever with top-10 retrieved docs."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "The authors demonstrate that retrieving documentation is more effective than retrieving examples for code generation, especially when new libraries are released.",
+                    "strength": "moderate",
+                    "limitations": "Dependent on the context of new library releases",
+                    "location": "Section 5.1 and Table 2",
+                    "exact_quote": "Table 2: Comparison to approaches that retrieve examples (Parvez et al., 2021; Pasupat et al., 2021)"
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "The authors experiment with sparse (BM25) and dense (SimCSE) retrievers, finding that dense retrievers perform better, especially when the NL intents require semantic alignment with the documents.",
+                    "strength": "strong",
+                    "limitations": "Specific to retriever instantiations",
+                    "location": "Section 3.1",
+                    "exact_quote": "Table 4: Retrieval performance of multiple models on the dev set of tldr (top) and CoNaLa (bottom)."
+                }
+            ]
+        }
+    ],
+    "structured_conclusions": [
+        {
+            "claim_id": 1,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "Assumes access to relevant documentation; relies on the quality of the retriever and generator models",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 2,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "Specific to the evaluated benchmarks and models; may not generalize to other domains or models",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 3,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "Dependent on the availability and quality of documentation for new libraries; assumes documentation is more readily available than examples for new libraries",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 4,
+            "conclusion_justified": true,
+            "robustness": "medium",
+            "key_limitations": "Evaluation metrics may not capture all aspects of code quality; relies on the specific implementation of the DocPrompting framework",
+            "confidence_level": "medium"
+        },
+        {
+            "claim_id": 5,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "Focused on NL code generation; potential applications to other code-related tasks and documentation-like resources are speculative",
+            "confidence_level": "high"
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "85.67 seconds",
+        "evidence_analysis_time": "83.95 seconds",
+        "conclusions_analysis_time": "56.03 seconds",
+        "total_execution_time": "230.20 seconds"
+    }
+}

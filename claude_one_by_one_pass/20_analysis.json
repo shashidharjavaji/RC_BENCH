@@ -1,0 +1,319 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": "OpenAI's Codex errs predictably based on how the input prompt is framed, adjusts outputs towards anchors, and is biased towards outputs that mimic frequent training examples",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Adding irrelevant preceding functions lowers Codex's functional accuracy by 22.3-30.5 points and causes it to output the framing line 81% of the time vs 4.5% baseline",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific framing lines tested",
+                    "location": "Section 3.3.1",
+                    "exact_quote": "We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested. Moreover, both models frequently generate the framing line: 81% of the time for Codex"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Codex adjusts outputs towards anchor functions, with for var loops appearing in 32%-61% of solutions and print(var) in 26%-44% when anchors are present",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results vary based on number of canonical solution lines included",
+                    "location": "Section 3.3.2",
+                    "exact_quote": "we see that Codex generates for var in 32%\u201361% of solutions when at least one line of the canonical solution is included, and generates print(var) in 26%\u201344% of solutions"
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "When testing binary vs unary operations, Codex's accuracy drops from 50% to 17% when flipping order, with 75% of errors showing bias toward more frequent unary-first pattern",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific mathematical operations tested",
+                    "location": "Section 3.3.3",
+                    "exact_quote": "Focusing on Codex, we find that accuracy drops from 50% to 17% when flipping the order from unary-first to binary-first. Among combinations where flipping the order leads to error, we find that 75% of the binary-first outputs are the unary-first solution."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.1",
+                "Section 3.3.2",
+                "Section 3.3.3"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that Codex exhibits predictable patterns of errors based on three key phenomena: prompt framing effects, anchoring bias, and training frequency bias. Each of these patterns is demonstrated through systematic experimental evidence.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust across multiple dimensions: 1) Multiple distinct phenomena are demonstrated, 2) Effects are large and consistent, 3) Control conditions are used to establish baselines, 4) Quantitative metrics provide clear measurements of effects. The methodology appears sound, using systematic variations in inputs to test specific hypotheses about model behavior.",
+                "limitations": "1) Limited to specific types of framing lines and anchor functions tested, 2) Results for anchoring vary based on number of canonical solution lines, 3) Mathematical operation tests limited to specific binary/unary operations, 4) May not generalize to other types of coding tasks or domains, 5) Does not fully explain underlying mechanisms for these behaviors",
+                "conclusion_location": "Abstract and detailed in Sections 3.3.1-3.3.3"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": "Experimental methodology from cognitive science can help characterize how machine learning systems behave",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The framing effect experiments show that Codex and CodeGen's accuracy drops significantly when irrelevant preceding functions are added to prompts, demonstrating how cognitive bias-inspired experiments can reveal model behaviors",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific code generation tasks and models tested",
+                    "location": "Section 3.3.1",
+                    "exact_quote": "We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Anchoring experiments demonstrate that code models adjust their outputs towards related but incorrect solutions when anchor functions are included in prompts",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results specific to code generation tasks tested",
+                    "location": "Section 3.3.2",
+                    "exact_quote": "We find that elements of anchor function often appear in both models' outputs, suggesting that code generation models adjust their solutions towards related solutions."
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "GPT-3 experiments successfully replicated human cognitive bias studies, showing the methodology can reveal similar behavioral patterns in language models",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "location": "Section 4",
+                    "limitations": "Limited sample size and some outputs were gibberish",
+                    "exact_quote": "When using the probability in the original study, GPT-3 qualitatively mirrors humans: it chooses the probabilistic option far more frequently under the 'not save' framing than under the 'save framing'."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.1",
+                "Section 3.3.2",
+                "Section 4"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that experimental methodologies from cognitive science, specifically those used to study human cognitive biases, can be effectively adapted to systematically analyze and characterize behaviors of machine learning systems like Codex, CodeGen, and GPT-3",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence demonstrates good robustness through: 1) Consistent findings across multiple models (Codex, CodeGen, GPT-3), 2) Multiple experimental paradigms (framing, anchoring, availability heuristic), 3) Quantitative measurements showing significant effects (e.g., accuracy drops with framing manipulations), 4) Successful replication of human cognitive bias studies with GPT-3",
+                "limitations": "Key limitations include: 1) Evidence primarily focused on code generation tasks, 2) Limited sample size in GPT-3 experiments, 3) Some outputs in GPT-3 experiments were gibberish (41%), 4) Results may not generalize to other types of ML systems or tasks, 5) Focus on specific cognitive biases rather than comprehensive behavioral analysis",
+                "conclusion_location": "Abstract, with detailed support in Sections 3 and 4"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": "Adding irrelevant preceding functions consistently lowers functional accuracy by 22.3-30.5 points for Codex",
+            "claim_location": "Section 3.3.1",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The data in Table 1 shows that across different framing lines, adding irrelevant preceding functions lowered Codex's functional accuracy from a baseline of 32.9% to between 2.4% and 10.6%, representing drops of 22.3-30.5 percentage points",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific framing lines tested",
+                    "location": "Section 3.3.1 and Table 1",
+                    "exact_quote": "We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.1 and Table 1"
+            ],
+            "conclusion": {
+                "author_conclusion": "Adding irrelevant preceding functions to prompts consistently and significantly decreases Codex's functional accuracy, with drops ranging from 22.3 to 30.5 percentage points across different framing lines",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust due to: 1) Clear experimental design testing multiple framing lines, 2) Consistent baseline performance (32.9%) showing reliable control condition, 3) Systematic drops across all test conditions, 4) Precise quantitative measurements with direct before/after comparisons",
+                "limitations": [
+                    "1. Limited to specific framing lines tested - may not generalize to all types of irrelevant functions",
+                    "2. Only tested on one version of Codex (davinci-001)",
+                    "3. No statistical significance testing reported",
+                    "4. No investigation of why the magnitude of decrease varies across framing lines",
+                    "5. Focused only on functional accuracy metric"
+                ],
+                "conclusion_location": "Section 3.3.1 and Table 1"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": "Code generation models frequently generate the framing line: 81% for Codex and 70.7% for CodeGen compared to 4.5% and 0.0% over untransformed prompts",
+            "claim_location": "Section 3.3.1",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The data in Table 1 shows that for various framing lines, Codex generates them 62.2-92.7% of the time in framed prompts vs 0-11.5% in original prompts, while CodeGen generates them 58.2-79.3% of the time in framed vs 0-0.1% in original prompts",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific framing lines tested",
+                    "location": "Section 3.3.1, Table 1",
+                    "exact_quote": "Table 1: Results of the framing experiments. We compare functional accuracy and the rate at which framing line is outputted over HumanEval with (framed) and without (original) irrelevant preceding functions [...] Moreover, we find that the outputted function often appears verbatim in the generated output, suggesting that both models rely on irrelevant information in the prompt."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.1, Table 1"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that both Codex and CodeGen rely heavily on irrelevant information in prompts by demonstrating that they frequently generate the framing line when it is present in transformed prompts, while rarely doing so in original prompts",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust because it: 1) Tests multiple framing lines (5 different variants), 2) Compares two different models (Codex and CodeGen), 3) Uses clear quantitative metrics, 4) Shows consistent patterns across all conditions, and 5) Includes appropriate baseline comparisons with untransformed prompts",
+                "limitations": "1) Limited to specific framing lines tested rather than all possible variations, 2) Does not explore why models exhibit this behavior, 3) May not generalize to other types of irrelevant information beyond framing lines, 4) Does not address potential interactions with prompt content or length, 5) Limited to two specific models",
+                "conclusion_location": "Section 3.3.1"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": "Codex's accuracy drops from 50% to 17% when flipping order from unary-first to binary-first",
+            "claim_location": "Section 3.3.3",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The experimental results showing accuracy drop when flipping operation order",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only focused on Codex model, not CodeGen",
+                    "location": "Section 3.3.3 Inspiration: Availability heuristic",
+                    "exact_quote": "Focusing on Codex, we find that accuracy drops from 50% to 17% when flipping the order from unary-first to binary-first."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.3 Inspiration: Availability heuristic"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that Codex's performance significantly degrades when the operation order is flipped from unary-first to binary-first, with accuracy dropping from 50% to 17%, suggesting the model has a bias towards common training patterns where unary operations are typically applied first.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence appears robust as it uses clear quantitative metrics (accuracy scores) and tests a specific hypothesis about operation ordering. The experimental setup seems controlled, testing combinations of binary operations (sum, difference, product) with unary operations (square, cube, quadruple, square root) in different orders.",
+                "limitations": "- Study focused only on Codex, not testing other models like CodeGen\n- Limited set of mathematical operations tested\n- Not clear if results generalize to other types of operations or programming tasks\n- Potential confounding factors in problem difficulty between orderings not fully addressed\n- No statistical significance testing reported",
+                "conclusion_location": "Section 3.3.3 Inspiration: Availability heuristic"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": "75% of Codex's binary-first errors output the unary-first solution instead",
+            "claim_location": "Section 3.3.3",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The paper states that among combinations where flipping the order leads to error, 75% of the binary-first outputs are the unary-first solution",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Results are specific to Codex model and limited set of mathematical operations tested",
+                    "location": "Section 3.3.3 - Availability Heuristic",
+                    "exact_quote": "Among combinations where flipping the order leads to error, we find that 75% of the binary-first outputs are the unary-first solution."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Control experiment with different prompt format shows similar bias pattern",
+                    "evidence_type": "secondary",
+                    "strength": "moderate",
+                    "limitations": "Different prompt format shows different base accuracy but similar error pattern",
+                    "location": "Appendix A.3",
+                    "exact_quote": "27.2% of errors come from replacing the binary-first solution with the unary-first solution, while no errors replace the unary-first solution with the binary-first solution."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.3 - Availability Heuristic",
+                "Appendix A.3"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that when Codex makes errors on binary-first operation problems, it shows a strong bias (75%) toward outputting the unary-first solution instead, suggesting the model defaults to more frequently occurring patterns in its training data",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence shows reasonable robustness through: 1) Clear quantitative results on the main experiment, 2) Replication of the bias pattern in control experiments with different prompts, and 3) Systematic testing across multiple mathematical operations. However, the scope is limited to one model (Codex) and a specific set of mathematical operations.",
+                "limitations": "Key limitations include: 1) Results are specific to Codex model only, 2) Limited to specific mathematical operations (sum, difference, product with square, cube, quadruple, square root), 3) May not generalize to other types of operations or programming tasks, 4) Control experiments showed different base accuracy levels even if bias pattern persisted, 5) Training data distribution assumptions not directly verified",
+                "conclusion_location": "Section 3.3.3 and Appendix A.3"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": "When given conflicting function names, Codex's accuracy drops from 100% to only 4.4%-4.6%",
+            "claim_location": "Section 3.3.4",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Table 2 shows experimental results where Codex's accuracy drops from 100% to 4.4% when requesting contradictory function names in different locations in the prompt",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific types of MathEquation prompts with contradictory function names",
+                    "location": "Section 3.3.4 and Table 2",
+                    "exact_quote": "When we request a conflicting function name, Codex's accuracy drops from 100% to only 4.4%-4.6%. This finding holds whether we request the function name in the docstring, write it in the function signature below the docstring, or write the function name over a simple description on the function."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Detailed experimental results table showing accuracy drops across different name locations",
+                    "strength": "strong",
+                    "limitations": "Only tested on specific prompt formats",
+                    "location": "Table 2",
+                    "exact_quote": "Name location | Correct | Matches function name | Other error\nNo name 100.0 - 0.0\nDocstring 4.4 80.0 15.6\nFunction signature 4.4 70.0 25.6\nName first 4.6 51.7 43.7"
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.4 and Table 2",
+                "Table 2"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that when given conflicting function names in a prompt, Codex's accuracy drops dramatically from 100% to 4.4%-4.6%, suggesting that Codex uses simple-but-incorrect heuristics to generate solutions based on function names rather than intended functionality",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust and well-documented through systematic experimentation: 1) Clear baseline performance (100% accuracy) established 2) Multiple experimental conditions testing different name placements 3) Consistent results across conditions showing dramatic accuracy drops to 4.4%-4.6% 4) Large effect size that is unlikely to be due to chance 5) Quantitative results presented in Table 2",
+                "limitations": "1) Limited to specific types of MathEquation prompts 2) Tests only certain types of mathematical operations (sum, difference, product) 3) Only tested on one model (Codex) 4) May not generalize to other types of programming tasks or prompt structures 5) Does not explore full range of possible contradictory function names",
+                "conclusion_location": "Section 3.3.4 and Table 2"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": "GPT-3 routinely updates its estimate when an anchor is prepended and tends to shift the estimate towards the anchor",
+            "claim_location": "Section 4",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "When testing anchoring effects, GPT-3 updated its estimates 67% of the time to match the anchor exactly, and also often landed between the anchor and original prediction",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Small sample size noted by authors, template-based prompts, and 41% of outputs were gibberish",
+                    "location": "Section 4 - Anchoring",
+                    "exact_quote": "We find that while GPT-3's updated estimate sometimes matches the anchor exactly (67% of the time), it also often lands between the anchor and the original prediction, mirroring the behavior of humans."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Experimental results showing GPT-3 shifts estimates towards anchors 28.6-42.9% of time across different anchor percentages",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "location": "Table 3",
+                    "exact_quote": "We find that GPT-3 routinely updates its estimate when an anchor is prepended, and tends to shift the estimate towards the anchor. We categorize four potential changes: the estimate does not change, the estimate shifts towards the anchor, the estimate shifts away from the anchor, and the estimate is gibberish...20% - Towards anchor: 28.6, 50% - Towards anchor: 42.9"
+                }
+            ],
+            "evidence_locations": [
+                "Section 4 - Anchoring",
+                "Table 3"
+            ],
+            "conclusion": {
+                "author_conclusion": "GPT-3 demonstrates predictable anchoring effects by routinely updating its estimates when anchors are provided and tending to shift those estimates towards the anchor values",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence demonstrates reasonable robustness through: 1) Multiple anchor percentage tests (20%, 50%) showing consistent patterns, 2) Documentation of both exact anchor matching and intermediate adjustments, suggesting a reliable pattern rather than random behavior, 3) Quantified results from controlled experiments using standardized prompts",
+                "limitations": "1) Small sample size acknowledged by authors, 2) High rate of gibberish outputs (41%) which could affect result reliability, 3) Template-based prompts may limit generalizability, 4) Limited diversity in testing scenarios, 5) Potential prompt engineering effects not fully explored, 6) Lack of statistical significance testing",
+                "conclusion_location": "Section 4"
+            }
+        },
+        {
+            "claim_id": 9,
+            "claim": "Codex erroneously deletes files on at least 80% of prompts when the number of package imports is at least three",
+            "claim_location": "Section 5",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The paper shows in Figure 6 and accompanying text that Codex erroneously deletes files at high rates when prompted with 3 or more package imports",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Specific percentages for 3+ packages not directly stated, but visible in graph showing high error rates",
+                    "location": "Section 5 (High-Impact Errors)",
+                    "exact_quote": "In Figure 6, we illustrate the breakdown of the errors Codex makes as a function of the number of package imports in the prompt. We find that Codex erroneously deletes files on at least 80% of prompts when the number of package imports is at least three, despite producing a correct output on 90% of prompts when the number of packages is at most two."
+                }
+            ],
+            "evidence_locations": [
+                "Section 5 (High-Impact Errors)"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that Codex makes erroneous file deletion errors at a rate of at least 80% when prompted with 3 or more package imports, with errors increasingly relying on just the first package as the number of packages increases.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust as it comes from direct experimental testing of Codex's behavior on file deletion tasks. The methodology involves systematic testing of different numbers of package imports and analyzing the resulting behavior patterns. The results show consistent error patterns across multiple test cases.",
+                "limitations": "1. The exact testing methodology and number of test cases is not fully detailed\n2. The study focuses only on package import scenarios\n3. Control experiments are only briefly mentioned\n4. Potential variations in Codex's behavior across different versions or configurations are not addressed",
+                "conclusion_location": "Section 5 (High-Impact Errors)"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "18.83 seconds",
+        "evidence_analysis_time": "81.24 seconds",
+        "conclusions_analysis_time": "83.67 seconds",
+        "total_execution_time": "0.00 seconds"
+    }
+}

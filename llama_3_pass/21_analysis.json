@@ -1,0 +1,156 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Pretrained Transformers store factual knowledge in feed-forward network (FFN) modules, which can be identified and analyzed.",
+                "location": "Section 1: Introduction",
+                "type": "Novel finding",
+                "exact_quote": "Large-scale pretrained language models are surprisingly good at recalling factual knowledge presented in the training corpus... In this paper, we present preliminary studies on how factual knowledge is stored in pretrained Transformers by introducing the concept of knowledge neurons."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "We propose a knowledge attribution method to identify the neurons that express a relational fact, where such neurons are named knowledge neurons.",
+                    "strength": "strong",
+                    "limitations": "None mentioned in this context",
+                    "location": "Section 3.2",
+                    "exact_quote": "We propose a knowledge attribution method to identify the neurons that express a relational fact, where such neurons are named knowledge neurons."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 1,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Specific to FFN modules and relational facts",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Knowledge neurons in FFN modules can be identified using a knowledge attribution method based on integrated gradients.",
+                "location": "Section 3: Identifying Knowledge Neurons",
+                "type": "Methodological contribution",
+                "exact_quote": "We propose a knowledge attribution method based on integrated gradients to evaluate the contribution of each neuron to knowledge predictions."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Our method can evaluate the contribution of each neuron to knowledge predictions. In this paper, we examine FFN intermediate neurons for the masked token, where the answer is predicted.",
+                    "strength": "strong",
+                    "limitations": "Limited to FFN intermediate neurons",
+                    "location": "Section 3.2",
+                    "exact_quote": "Our method can evaluate the contribution of each neuron to knowledge predictions. In this paper, we examine FFN intermediate neurons for the masked token, where the answer is predicted."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 2,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Dependent on the effectiveness of the knowledge attribution method",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Suppressing or amplifying the activation of knowledge neurons can affect the strength of knowledge expression.",
+                "location": "Section 4.5: Knowledge Neurons Affect Knowledge Expression",
+                "type": "Experimental result",
+                "exact_quote": "We investigate how much knowledge neurons can affect knowledge expression in Figure 4 and Figure 5."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Suppressing knowledge neurons identified by our knowledge attribution method leads to a consistent decrease (29.03% on average) in the correct probability.",
+                    "strength": "strong",
+                    "limitations": "Average decrease might not represent all cases",
+                    "location": "Figure 4",
+                    "exact_quote": "Suppressing knowledge neurons identified by our knowledge attribution method leads to a consistent decrease (29.03% on average) in the correct probability."
+                },
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "Amplifying knowledge neurons identified by our knowledge attribution method leads to a consistent increase (31.17% on average) in the correct probability.",
+                    "strength": "strong",
+                    "limitations": "Average increase might not represent all cases",
+                    "location": "Figure 5",
+                    "exact_quote": "Amplifying knowledge neurons identified by our knowledge attribution method leads to a consistent increase (31.17% on average) in the correct probability."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 3,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Specific to the experimental setup and dataset (PARAREL)",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Knowledge neurons tend to be activated by corresponding knowledge-expressing prompts.",
+                "location": "Section 4.6: Knowledge Neurons are Activated by Knowledge-Expressing Prompts",
+                "type": "Experimental result",
+                "exact_quote": "Quantitative and qualitative analysis on open-domain texts shows that knowledge neurons tend to be activated by the corresponding knowledge-expressing prompts."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 5,
+                    "evidence_text": "For our method, the identified knowledge neurons are more significantly activated by knowledge-expressing prompts (T1 = 0.485), compared with the control groups (T2 = 0.019 and T3 = \u22120.018).",
+                    "strength": "strong",
+                    "limitations": "Limited to the BINGREL dataset",
+                    "location": "Table 4",
+                    "exact_quote": "For our method, the identified knowledge neurons are more significantly activated by knowledge-expressing prompts (T1 = 0.485), compared with the control groups (T2 = 0.019 and T3 = \u22120.018)."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 4,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Specific to the BINGREL dataset and the types of prompts (T1, T2, T3)",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Leveraging knowledge neurons can be used to update or erase knowledge in pretrained Transformers.",
+                "location": "Section 5: Case Studies",
+                "type": "Novel application",
+                "exact_quote": "We present two preliminary case studies that attempt to utilize knowledge neurons to update or erase knowledge in pretrained Transformers."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 6,
+                    "evidence_text": "The surgery of knowledge neurons achieves a nontrivial success rate for updating facts, while random neurons are insufficient.",
+                    "strength": "strong",
+                    "limitations": "Success rate might be influenced by the specific experimental setup",
+                    "location": "Table 6",
+                    "exact_quote": "The surgery of knowledge neurons achieves a nontrivial success rate for updating facts, while random neurons are insufficient."
+                },
+                {
+                    "evidence_id": 7,
+                    "evidence_text": "With the erasing operation, the perplexity of the removed knowledge increases as expected. Moreover, the model perplexity of other relations remains similar.",
+                    "strength": "strong",
+                    "limitations": "Perplexity increase might not be uniform across all cases",
+                    "location": "Table 5",
+                    "exact_quote": "With the erasing operation, the perplexity of the removed knowledge increases as expected. Moreover, the model perplexity of other relations remains similar."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 5,
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "key_limitations": "Preliminary studies, limited to specific relations and factual knowledge",
+                "confidence_level": "medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "73.08 seconds",
+        "evidence_analysis_time": "116.04 seconds",
+        "conclusions_analysis_time": "41.34 seconds",
+        "total_execution_time": "235.16 seconds"
+    }
+}

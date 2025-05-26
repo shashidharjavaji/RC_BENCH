@@ -1,0 +1,773 @@
+{
+    "raw_claims": "This is a research paper titled \"Ada-LEval: Evaluating long-context LLMs with length-adaptable benchmarks\". Here's a breakdown of the paper:\n\n**Introduction**\n\n* The paper introduces Ada-LEval, a benchmark for evaluating the long-context understanding of Large Language Models (LLMs).\n* Existing benchmarks for LLMs have limitations, such as not adequately representing ultra-long settings (32,000+ tokens) and not requiring full-text comprehension.\n* Ada-LEval addresses these limitations with two challenging tasks: TSort and BestAnswer.\n\n**Tasks**\n\n* **TSort**: LLMs are given N shuffled text segments from a long book and must sort them into their original order.\n\t+ The task requires comprehensive understanding and reasoning across long text.\n\t+ The correct answer is the precise reinstatement of the segments' initial order.\n* **BestAnswer**: LLMs are given a question and multiple possible answers, and must identify the most helpful answer.\n\t+ The task requires complete reading and understanding of the provided text.\n\t+ The annotated response by the questioner serves as the definitive answer.\n\n**Related Work**\n\n* **Long-Context Techniques**: Researchers have developed techniques to address the complexities of increased text length in LLMs, including:\n\t+ Efficient attention mechanisms (e.g., Flash Attention, Dilated Attention)\n\t+ Divide-and-conquer paradigms (e.g., WebGPT, PEARL)\n\t+ Scalable position embeddings (e.g., RoPE, ALiBi, Position Interpolation)\n* **Long-Context Language Models**: Various LLMs have been developed to handle long contexts, including:\n\t+ Proprietary models (e.g., GPT-4 Turbo, Claude-2)\n\t+ Open-source models (e.g., LongChat, ChatGLM2-32k)\n* **Long-Context Benchmarks**: Existing benchmarks for evaluating LLMs' long-context capabilities, including:\n\t+ NarrativeQA, GovReport, SCROLLS, L-Eval, and LongBench\n\n**Ada-LEval**\n\n* **Task Definition**: TSort and BestAnswer tasks are designed to evaluate LLMs' long-context understanding.\n* **Source Data Collection**: Data is sourced from Booksum (for TSort) and Stack Overflow (for BestAnswer).\n* **Test Case Building**: Test cases are constructed with varying token lengths (up to 128k tokens) for both tasks.\n\n**Evaluation Results**\n\n* **Long-Context Evaluation Results**:\n\t+ TSort: GPT-4-Turbo outperforms other models, but its performance deteriorates at 16k tokens.\n\t+ BestAnswer: GPT-4-Turbo achieves state-of-the-art performance, but other models struggle with longer text lengths.\n* **Ultra-Long-Context Evaluation Results**:\n\t+ TSort: GPT-4-Turbo performs at a random guess level, while Claude-2 fails to give correct answers.\n\t+ BestAnswer: All models' performance declines sharply with longer text lengths.\n\n**Error Breakdown**\n\n* **Instruction Following Rate**: Most models struggle to follow instructions, especially with longer text lengths.\n* **Copy Instruction Rate**: Many models tend to copy the example answer, indicating a lack of understanding.\n* **Position Bias**: Models demonstrate significant position bias in choosing the most helpful answer, with better performance when the correct answer is at the beginning.\n\n**Scalable Position Embeddings**\n\n* **Methods**: Position interpolation and length extrapolation methods are evaluated.\n* **Results**: Scalable position embeddings improve long-context modeling capability, with NTK-aware Scaled RoPE outperforming other methods.\n\n**Comparison with Other Long-Context Benchmarks**\n\n* **BestAnswer**: Ada-LEval requires more comprehensive text understanding than traditional QA and summarization tasks.\n* **Experiment**: Truncating text length affects performance on BestAnswer more dramatically than on NarrativeQA and GovReport.\n\n**Conclusion**\n\n* Ada-LEval is a challenging benchmark for evaluating LLMs' long-context understanding.\n* The benchmark highlights the limitations of current LLMs, especially in ultra-long-context settings.\n* Future developments should focus on improving LLMs' long-context capabilities.\n\n**Limitations**\n\n* Ada-LEval is a challenging benchmark, requiring strong understanding and reasoning capabilities over long text.\n* The benchmark may not be suitable for current LLMs due to their poor instruction following rate and copy instruction rate.\n\n**Appendices**\n\n* **Test Case Building Statistics**: Detailed statistics on the length upper limit and stride for TSort task.\n* **Evaluation Setups**: Evaluation hyperparameters, computational budget, and benchmark instructions for both tasks.\n* **Validity of 200-testcase subset**: Results on a 200-testcase subset to ensure the validity of the evaluation.",
+    "structured_evidence": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Table 2: TSort results under long-context settings. This evaluation underscores the complexity of TSort, highlighting its intricate nature that necessitates a comprehensive understanding and reasoning across long text.",
+                    "strength": "strong",
+                    "limitations": "Limited to TSort task",
+                    "location": "Section 4.2",
+                    "exact_quote": "Table 2: TSort results under long-context settings. This evaluation underscores the complexity of TSort, highlighting its intricate nature that necessitates a comprehensive understanding and reasoning across long text."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Table 3: BestAnswer results under long-context settings. GPT-4-Turbo establishes the state-of-the-art on the BestAnswer benchmark.",
+                    "strength": "strong",
+                    "limitations": "Limited to BestAnswer task",
+                    "location": "Section 4.2",
+                    "exact_quote": "Table 3: BestAnswer results under long-context settings. GPT-4-Turbo establishes the state-of-the-art on the BestAnswer benchmark."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Table 6: Results of LLMs on TSort and BestAnswer benchmarks in ultra-long context settings. Though the evaluated models claim that they can understand long text up to 100,000+ tokens, they suffer from a dramatic decline on their performance under ultra-long-context settings.",
+                    "strength": "strong",
+                    "limitations": "Limited to ultra-long-context settings",
+                    "location": "Section 4.4",
+                    "exact_quote": "Table 6: Results of LLMs on TSort and BestAnswer benchmarks in ultra-long context settings. Though the evaluated models claim that they can understand long text up to 100,000+ tokens, they suffer from a dramatic decline on their performance under ultra-long-context settings."
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "Table 9: Results of Vicuna-v1.5 with different context window extrapolation methods on BestAnswer. Our findings indicate that scalable position embeddings do improve the long-context modeling capability.",
+                    "strength": "strong",
+                    "limitations": "Limited to Vicuna-v1.5 models",
+                    "location": "Section 4.5.3",
+                    "exact_quote": "Table 9: Results of Vicuna-v1.5 with different context window extrapolation methods on BestAnswer. Our findings indicate that scalable position embeddings do improve the long-context modeling capability."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "evidence_id": 5,
+                    "evidence_text": "Table 10: Results of GPT-4-Turbo on different long-context benchmarks. From the table, the performance of GPT-4-Turbo on BestAnswer decreases more dramatically than NarrativeQA and GovReport when text is truncated.",
+                    "strength": "strong",
+                    "limitations": "Limited to GPT-4-Turbo and BestAnswer",
+                    "location": "Section 4.5.4",
+                    "exact_quote": "Table 10: Results of GPT-4-Turbo on different long-context benchmarks. From the table, the performance of GPT-4-Turbo on BestAnswer decreases more dramatically than NarrativeQA and GovReport when text is truncated."
+                }
+            ]
+        }
+    ],
+    "structured_conclusions": [
+        {
+            "claim_id": 1,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 2,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 3,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 4,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 5,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 6,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 7,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 8,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 9,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 10,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 11,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 12,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 13,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 14,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 15,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 16,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 17,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 18,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 19,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 20,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 21,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 22,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 23,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 24,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 25,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 26,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 27,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 28,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 29,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 30,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 31,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 32,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 33,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 34,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 35,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 36,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 37,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 38,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 39,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 40,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 41,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 42,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 43,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 44,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 45,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 46,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 47,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 48,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 49,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 50,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 51,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 52,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 53,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 54,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 55,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 56,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 57,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 58,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 59,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 60,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 61,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 62,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 63,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 64,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 65,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 66,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 67,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 68,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 69,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 70,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 71,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 72,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 73,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 74,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 75,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 76,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 77,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 78,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 79,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 80,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 81,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 82,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 83,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 84,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 85,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 86,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 87,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 88,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 89,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 90,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 91,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 92,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 93,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 94,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 95,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 96,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 97,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 98,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 99,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        },
+        {
+            "claim_id": 100,
+            "conclusion_justified": true,
+            "robustness": "high",
+            "key_limitations": "None",
+            "confidence_level": "high"
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "141.12 seconds",
+        "evidence_analysis_time": "120.87 seconds",
+        "conclusions_analysis_time": "721.16 seconds",
+        "total_execution_time": "986.95 seconds"
+    }
+}

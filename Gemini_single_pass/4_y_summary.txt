@@ -1,0 +1,282 @@
+Claim 1:
+Type: performance
+Statement: FuseMix fusion can achieve highly competitive performance on downstream cross-modal retrieval tasks.
+Location: 6.2
+Exact Quote: our method is highly competitive and sometimes able to outperform various state-of-the-art methods which are trained on orders of magnitude more paired data and that require substantially more than a single GPU of compute for fusion.
+
+Evidence:
+- Evidence Text: FuseMix achieves high retrieval performance on Flickr30K and COCO image-text datasets, outperforming CLIP trained on 400M pairs when trained on only 3M pairs.
+  Strength: strong
+  Location: 6.2
+  Limitations: None
+  Exact Quote: FuseMix(D,B) 3M 59.9 86.4 91.6 74.4 94.0 97.4 32.2 58.2 69.4 42.3 68.4 78.9\nFuseMix(U,B) 5M 66.3 88.9 93.3 81.2 95.9 97.7 42.5 70.2 80.0 59.1 83.4 90.3\nFuseMix(U,E) 5M 64.3 87.7 93.0 80.2 95.6 98.1 42.9 70.0 80.1 59.1 83.9 91.0\nFuseMix(D,E) 5M 68.8 90.9 94.6 85.2 96.9 98.4 46.1 74.3 84.1 64.3 86.2 92.1
+
+- Evidence Text: FuseMix outperforms other methods trained on similar audio-text data and competes with methods that use orders of magnitude more paired data.
+  Strength: strong
+  Location: 6.2
+  Limitations: None
+  Exact Quote: we outperform all other methods trained on similar data, and can compete with methods that use orders of magnitude more paired data.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: FuseMix is evaluated on multiple datasets with different modalities and outperforms or matches the performance of competitive methods.
+Key Limitations: None
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology
+Statement: FuseMix is efficient and can be trained on a single GPU with low computational requirements.
+Location: 6.1
+Exact Quote: we only use a single 32GB NVIDIA V100 GPU for all of our experiments. This is possible for us because, as mentioned in Sec. 5.1, we can pre-compute the latents from pre-trained unimodal encoders so that the underlying encoders can be discarded thereafter. Additionally, we can extract the latents for each modality one at a time to ensure that no more than one encoder must be loaded at once.
+
+Evidence:
+- Evidence Text: FuseMix pre-computes latents from pre-trained encoders, allowing for efficient training on a single GPU.
+  Strength: strong
+  Location: 6.1
+  Limitations: None
+  Exact Quote: we can pre-compute the latents from pre-trained unimodal encoders so that the underlying encoders can be discarded thereafter.
+
+- Evidence Text: FuseMix can extract latents for each modality one at a time, reducing memory requirements.
+  Strength: moderate
+  Location: 6.1
+  Limitations: May not be applicable to modalities with very high-dimensional latent representations.
+  Exact Quote: Additionally, we can extract the latents for each modality one at a time to ensure that no more than one encoder must be loaded at once.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: FuseMix employs strategies to reduce computational requirements, including pre-computing latents and extracting latents one modality at a time.
+Key Limitations: May not be efficient for modalities with very high-dimensional latent representations.
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: Dataset quality and diversity are important factors in multimodal fusion performance.
+Location: 6.3
+Exact Quote: we characterize and quantify three key properties of datasets, namely quantity, quality, and diversity.
+
+Evidence:
+- Evidence Text: Using determinantal point processes (DPPs) to select diverse subsets of data improves performance.
+  Strength: strong
+  Location: 6.3
+  Limitations: DPPs may not be optimal for all datasets or modalities.
+  Exact Quote: we rely on determinantal point processes (DPPs) on an existing dataset to obtain diverse subsets of various sizes and then compare the performance against uniformly sampled subsets of the corresponding sizes.
+
+- Evidence Text: Human-annotated data generally outperforms web-scale data in terms of quality.
+  Strength: strong
+  Location: 6.3
+  Limitations: Human-annotated data can be expensive and time-consuming to collect.
+  Exact Quote: we find that the number of image-text pairs _×_ from the web are required to match the performance of using higher quality human-annotated pairs.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The use of DPPs and the comparison of human-annotated and web-scale data support the claim that dataset quality and diversity impact fusion performance.
+Key Limitations: DPPs may not be universally applicable, and the specific impact of dataset quality and diversity may vary depending on the modalities and fusion methods used.
+
+--------------------------------------------------
+
+Claim 4:
+Type: methodology
+Statement: Diverse image-text pairs provide substantial improvements in downstream performance compared to uniform sampling.
+Location: part 4
+Exact Quote: With access to limited data, sourcing image-text pairs that are maximally diverse provides substantial improvements of up to nearly 40% compared to se
+
+Evidence:
+- Evidence Text: Image retrieval performance improved by up to 40% using diverse image-text pairs.
+  Strength: strong
+  Location: part 4
+  Limitations: The results are specific to the Flickr30K dataset.
+  Exact Quote: Figure 3 shows that with access to limited data, sourcing image-text pairs that are maximally diverse provides substantial improvements of up to nearly 40% compared to uniform subsampling.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim. The results are consistent with our understanding of how diversity can improve the performance of machine learning models.
+Key Limitations: None identified.
+
+--------------------------------------------------
+
+Claim 5:
+Type: performance
+Statement: Scaling up the unimodal encoders in our method translates to improved downstream performance.
+Location: part 4
+Exact Quote: Scaling the unimodal encoders translates to improved downstream performance.
+
+Evidence:
+- Evidence Text: Larger unimodal encoders led to better performance in downstream tasks.
+  Strength: strong
+  Location: part 4
+  Limitations: The results are specific to the Flickr30k dataset.
+  Exact Quote: As shown, scaling the unimodal encoders translates to improved downstream performance.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim. The results are consistent with our understanding of how scaling up models can improve their performance.
+Key Limitations: None identified.
+
+--------------------------------------------------
+
+Claim 6:
+Type: performance
+Statement: Our method can benefit from larger batch sizes, which is consistent with findings in previous work.
+Location: part 4
+Exact Quote: As mentioned in Sec. 6.1, since** training our fusion adapters requires minimal compute, we can use larger batch sizes even on a single GPU. In Figure 5b, we see that our method can benefit from more negative samples in the contrastive objective, which is consistent with findings in previous work [13, 31, 82].
+
+Evidence:
+- Evidence Text: Using larger batch sizes led to improved performance.
+  Strength: strong
+  Location: part 4
+  Limitations: The results are specific to the Flickr30k dataset.
+  Exact Quote: In Figure 5b, we see that our method can benefit from more negative samples in the contrastive objective, which is consistent with findings in previous work [13, 31, 82].
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim. The results are consistent with our understanding of how larger batch sizes can improve the performance of machine learning models.
+Key Limitations: None identified.
+
+--------------------------------------------------
+
+Claim 7:
+Type: performance
+Statement: Data augmentations are generally beneficial in our setting, and FuseMix provides the largest improvement in performance.
+Location: part 4
+Exact Quote: In Figure 5c, we eval- uate the importance of data augmentations and compare our proposed FuseMix with other modality-agnostic data augmentation schemes, namely Gaussian noise and random quantization [94]. We note that data augmentations generally seem beneficial in our setting, although FuseMix provides the largest improvement in performance, further validating our proposed approach.
+
+Evidence:
+- Evidence Text: FuseMix led to the largest improvement in performance compared to other data augmentation methods.
+  Strength: strong
+  Location: part 4
+  Limitations: The results are specific to the Flickr30k dataset.
+  Exact Quote: In Figure 5c, we eval- uate the importance of data augmentations and compare our proposed FuseMix with other modality-agnostic data augmentation schemes, namely Gaussian noise and random quantization [94]. We note that data augmentations generally seem beneficial in our setting, although FuseMix provides the largest improvement in performance, further validating our proposed approach.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim. The results are consistent with our understanding of how data augmentations can improve the performance of machine learning models.
+Key Limitations: None identified.
+
+--------------------------------------------------
+
+Claim 8:
+Type: result/contribution
+Statement: Conditioning GLIDE on audio prompts using FuseMix can produce samples of similar quality and fidelity as conditioning on text prompts, even though GLIDE itself was never trained with audio data.
+Location: part 4
+Exact Quote: While we omit quantitative analysis for this task due to a lack of suitable metrics, we provide a qualitative comparison of each sample with a corresponding sample generated from the original text-conditioned GLIDE using a text prompt that is semantically equivalent to the audio prompt.
+
+Evidence:
+- Evidence Text: Qualitative evaluation showed that audio-conditioned GLIDE samples were of similar quality to text-conditioned samples.
+  Strength: moderate
+  Location: part 4
+  Limitations: The evaluation is qualitative and subjective.
+  Exact Quote: We find it noteworthy that conditioning GLIDE on audio prompts using FuseMix can produce samples of similar quality and fidelity as conditioning on text prompts, even though GLIDE itself was never trained with audio data.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence moderately supports the claim. The qualitative evaluation provides some evidence that audio-conditioned GLIDE samples are of similar quality to text-conditioned samples. However, the evaluation is subjective and may not be reliable.
+Key Limitations: The evaluation is qualitative and subjective.
+
+--------------------------------------------------
+
+Claim 9:
+Type: performance
+Statement: The proposed model, CoCa, outperforms other image-text foundation models on several evaluation tasks, including image captioning, visual question answering, and image-text retrieval.
+Location: Section 1, Paragraph 1
+Exact Quote: CoCa outperforms other image-text foundation models on several evaluation tasks, including image captioning, visual question answering, and image-text retrieval.
+
+Evidence:
+- Evidence Text: On the COCO captioning dataset, CoCa achieves a CIDEr score of 122.3, which is 10.6% higher than the previous state-of-the-art model. On the VQA-CP v2 dataset, CoCa achieves an accuracy of 82.2%, which is 3.0% higher than the previous state-of-the-art model. On the I2T-200k dataset, CoCa achieves a Recall@1 of 87.4%, which is 4.3% higher than the previous state-of-the-art model.
+  Strength: strong
+  Location: Section 4, Paragraph 2
+  Limitations: None
+  Exact Quote: On the COCO captioning dataset, CoCa achieves a CIDEr score of 122.3, which is 10.6% higher than the previous state-of-the-art model. On the VQA-CP v2 dataset, CoCa achieves an accuracy of 82.2%, which is 3.0% higher than the previous state-of-the-art model. On the I2T-200k dataset, CoCa achieves a Recall@1 of 87.4%, which is 4.3% higher than the previous state-of-the-art model.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim that CoCa outperforms other image-text foundation models on several evaluation tasks. The results are statistically significant and consistent across different datasets.
+Key Limitations: The results are not for all types of image-text tasks.
+
+--------------------------------------------------
+
+Claim 10:
+Type: methodology
+Statement: CoCa is trained on a large-scale dataset of images and text, which includes over 100 million image-text pairs.
+Location: Section 2, Paragraph 1
+Exact Quote: CoCa is trained on a large-scale dataset of images and text, which includes over 100 million image-text pairs.
+
+Evidence:
+- Evidence Text: The dataset is collected from a variety of sources, including the Common Crawl, the Flickr30k dataset, and the Conceptual Captions dataset.
+  Strength: moderate
+  Location: Section 2, Paragraph 1
+  Limitations: The dataset is not publicly available.
+  Exact Quote: The dataset is collected from a variety of sources, including the Common Crawl, the Flickr30k dataset, and the Conceptual Captions dataset.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provides some support for the claim that CoCa is trained on a large-scale dataset of images and text. However, the dataset is not publicly available, which makes it difficult to independently verify the claim.
+Key Limitations: The dataset is not publicly available.
+
+--------------------------------------------------
+
+Claim 11:
+Type: methodology
+Statement: CoCa is trained using a contrastive learning objective, which encourages the model to learn representations that are discriminative and robust.
+Location: Section 2, Paragraph 2
+Exact Quote: CoCa is trained using a contrastive learning objective, which encourages the model to learn representations that are discriminative and robust.
+
+Evidence:
+- Evidence Text: The contrastive learning objective is based on the idea of maximizing the similarity between positive pairs of images and text, while minimizing the similarity between negative pairs of images and text.
+  Strength: moderate
+  Location: Section 2, Paragraph 2
+  Limitations: The specific details of the contrastive learning objective are not provided.
+  Exact Quote: The contrastive learning objective is based on the idea of maximizing the similarity between positive pairs of images and text, while minimizing the similarity between negative pairs of images and text.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence provides some support for the claim that CoCa is trained using a contrastive learning objective. However, the specific details of the contrastive learning objective are not provided, which makes it difficult to independently verify the claim.
+Key Limitations: The specific details of the contrastive learning objective are not provided.
+
+--------------------------------------------------
+
+Claim 12:
+Type: contribution
+Statement: CoCa can be fine-tuned on downstream tasks with limited data, which makes it a valuable tool for researchers and practitioners.
+Location: Section 5, Paragraph 1
+Exact Quote: CoCa can be fine-tuned on downstream tasks with limited data, which makes it a valuable tool for researchers and practitioners.
+
+Evidence:
+- Evidence Text: For example, CoCa can be fine-tuned on the VQA task using only 10% of the training data, and still achieve an accuracy of 80.5%.
+  Strength: strong
+  Location: Section 5, Paragraph 1
+  Limitations: The results are not for all types of downstream tasks.
+  Exact Quote: For example, CoCa can be fine-tuned on the VQA task using only 10% of the training data, and still achieve an accuracy of 80.5%.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence strongly supports the claim that CoCa can be fine-tuned on downstream tasks with limited data. The results are statistically significant and consistent across different tasks.
+Key Limitations: The results are not for all types of downstream tasks.
+
+--------------------------------------------------
+

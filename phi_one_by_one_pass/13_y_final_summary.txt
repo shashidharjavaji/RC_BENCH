@@ -1,0 +1,1537 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting.",
+            "location": "Abstract",
+            "claim_type": "Improvement claim",
+            "exact_quote": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Abstract",
+            "claim_type": "Performance claim",
+            "exact_quote": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "PromptBERT's code is available on GitHub.",
+            "location": "Abstract",
+            "claim_type": "Availability claim",
+            "exact_quote": "Our code is available at https://github.com/kongds/Prompt-BERT."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "Original BERT layers fail to improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Performance claim",
+            "exact_quote": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "Static token embeddings are biased by token frequency, subword, and case.",
+            "location": "Section 3",
+            "claim_type": "Bias claim",
+            "exact_quote": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Removing biased tokens can improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Improvement claim",
+            "exact_quote": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "Prompt-based methods can avoid embedding bias and utilize the original BERT layers.",
+            "location": "Section 4",
+            "claim_type": "Method claim",
+            "exact_quote": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between supervised and unsupervised performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our method still outperforms them."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "PromptBERT achieves state-of-the-art results in both unsupervised and supervised settings.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "Template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT.",
+            "location": "Section 6",
+            "claim_type": "Method claim",
+            "exact_quote": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "Prompt-based contrastive learning method with template denoising is more stable than SimCSE in unsupervised contrastive learning.",
+            "location": "Section 6",
+            "claim_type": "Stability claim",
+            "exact_quote": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "PromptBERT achieves state-of-the-art results on transfer tasks.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting.",
+            "location": "Abstract",
+            "claim_type": "Improvement claim",
+            "exact_quote": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Abstract",
+            "claim_type": "Performance claim",
+            "exact_quote": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "PromptBERT's code is available on GitHub.",
+            "location": "Abstract",
+            "claim_type": "Availability claim",
+            "exact_quote": "Our code is available at https://github.com/kongds/Prompt-BERT."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "Original BERT layers fail to improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Performance claim",
+            "exact_quote": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "Static token embeddings are biased by token frequency, subword, and case.",
+            "location": "Section 3",
+            "claim_type": "Bias claim",
+            "exact_quote": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Removing biased tokens can improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Improvement claim",
+            "exact_quote": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "Prompt-based methods can avoid embedding bias and utilize the original BERT layers.",
+            "location": "Section 4",
+            "claim_type": "Method claim",
+            "exact_quote": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between supervised and unsupervised performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our method still outperforms them."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "PromptBERT achieves state-of-the-art results in both unsupervised and supervised settings.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "Template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT.",
+            "location": "Section 6",
+            "claim_type": "Method claim",
+            "exact_quote": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "Prompt-based contrastive learning method with template denoising is more stable than SimCSE in unsupervised contrastive learning.",
+            "location": "Section 6",
+            "claim_type": "Stability claim",
+            "exact_quote": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "PromptBERT achieves state-of-the-art results on transfer tasks.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting.",
+            "location": "Abstract",
+            "claim_type": "Improvement claim",
+            "exact_quote": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Abstract",
+            "claim_type": "Performance claim",
+            "exact_quote": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "PromptBERT's code is available on GitHub.",
+            "location": "Abstract",
+            "claim_type": "Availability claim",
+            "exact_quote": "Our code is available at https://github.com/kongds/Prompt-BERT."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "Original BERT layers fail to improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Performance claim",
+            "exact_quote": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "Static token embeddings are biased by token frequency, subword, and case.",
+            "location": "Section 3",
+            "claim_type": "Bias claim",
+            "exact_quote": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Removing biased tokens can improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Improvement claim",
+            "exact_quote": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "Prompt-based methods can avoid embedding bias and utilize the original BERT layers.",
+            "location": "Section 4",
+            "claim_type": "Method claim",
+            "exact_quote": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between supervised and unsupervised performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our method still outperforms them."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "PromptBERT achieves state-of-the-art results in both unsupervised and supervised settings.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "Template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT.",
+            "location": "Section 6",
+            "claim_type": "Method claim",
+            "exact_quote": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "Prompt-based contrastive learning method with template denoising is more stable than SimCSE in unsupervised contrastive learning.",
+            "location": "Section 6",
+            "claim_type": "Stability claim",
+            "exact_quote": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "PromptBERT achieves state-of-the-art results on transfer tasks.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting.",
+            "location": "Abstract",
+            "claim_type": "Improvement claim",
+            "exact_quote": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Abstract",
+            "claim_type": "Performance claim",
+            "exact_quote": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "PromptBERT's code is available on GitHub.",
+            "location": "Abstract",
+            "claim_type": "Availability claim",
+            "exact_quote": "Our code is available at https://github.com/kongds/Prompt-BERT."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "Original BERT layers fail to improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Performance claim",
+            "exact_quote": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "Static token embeddings are biased by token frequency, subword, and case.",
+            "location": "Section 3",
+            "claim_type": "Bias claim",
+            "exact_quote": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Removing biased tokens can improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Improvement claim",
+            "exact_quote": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "Prompt-based methods can avoid embedding bias and utilize the original BERT layers.",
+            "location": "Section 4",
+            "claim_type": "Method claim",
+            "exact_quote": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between supervised and unsupervised performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our method still outperforms them."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "PromptBERT achieves state-of-the-art results in both unsupervised and supervised settings.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "Template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT.",
+            "location": "Section 6",
+            "claim_type": "Method claim",
+            "exact_quote": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "Prompt-based contrastive learning method with template denoising is more stable than SimCSE in unsupervised contrastive learning.",
+            "location": "Section 6",
+            "claim_type": "Stability claim",
+            "exact_quote": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "PromptBERT achieves state-of-the-art results on transfer tasks.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting.",
+            "location": "Abstract",
+            "claim_type": "Improvement claim",
+            "exact_quote": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Abstract",
+            "claim_type": "Performance claim",
+            "exact_quote": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "PromptBERT's code is available on GitHub.",
+            "location": "Abstract",
+            "claim_type": "Availability claim",
+            "exact_quote": "Our code is available at https://github.com/kongds/Prompt-BERT."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "Original BERT layers fail to improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Performance claim",
+            "exact_quote": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "Static token embeddings are biased by token frequency, subword, and case.",
+            "location": "Section 3",
+            "claim_type": "Bias claim",
+            "exact_quote": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Removing biased tokens can improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Improvement claim",
+            "exact_quote": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "Prompt-based methods can avoid embedding bias and utilize the original BERT layers.",
+            "location": "Section 4",
+            "claim_type": "Method claim",
+            "exact_quote": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between supervised and unsupervised performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our method still outperforms them."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "PromptBERT achieves state-of-the-art results in both unsupervised and supervised settings.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "Template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT.",
+            "location": "Section 6",
+            "claim_type": "Method claim",
+            "exact_quote": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "Prompt-based contrastive learning method with template denoising is more stable than SimCSE in unsupervised contrastive learning.",
+            "location": "Section 6",
+            "claim_type": "Stability claim",
+            "exact_quote": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "PromptBERT achieves state-of-the-art results on transfer tasks.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting.",
+            "location": "Abstract",
+            "claim_type": "Improvement claim",
+            "exact_quote": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Abstract",
+            "claim_type": "Performance claim",
+            "exact_quote": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "PromptBERT's code is available on GitHub.",
+            "location": "Abstract",
+            "claim_type": "Availability claim",
+            "exact_quote": "Our code is available at https://github.com/kongds/Prompt-BERT."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "Original BERT layers fail to improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Performance claim",
+            "exact_quote": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "Static token embeddings are biased by token frequency, subword, and case.",
+            "location": "Section 3",
+            "claim_type": "Bias claim",
+            "exact_quote": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Removing biased tokens can improve the performance of sentence embeddings.",
+            "location": "Section 3",
+            "claim_type": "Improvement claim",
+            "exact_quote": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "Prompt-based methods can avoid embedding bias and utilize the original BERT layers.",
+            "location": "Section 4",
+            "claim_type": "Method claim",
+            "exact_quote": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between supervised and unsupervised performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "PromptBERT outperforms SimCSE and BERT-flow in sentence embeddings performance.",
+            "location": "Section 5",
+            "claim_type": "Performance claim",
+            "exact_quote": "Our method still outperforms them."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "PromptBERT achieves
+
+Raw Evidence:
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Our code is available at https://github.com/kongds/Prompt-BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 5,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+                }
+            ]
+        },
+        {
+            "claim_id": 6,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+                }
+            ]
+        },
+        {
+            "claim_id": 7,
+            "evidence": [
+                {
+                    "section": "Section 4",
+                    "text": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 8,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+                }
+            ]
+        },
+        {
+            "claim_id": 9,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 10,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 11,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 12,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+                }
+            ]
+        },
+        {
+            "claim_id": 13,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Our code is available at https://github.com/kongds/Prompt-BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 5,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+                }
+            ]
+        },
+        {
+            "claim_id": 6,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+                }
+            ]
+        },
+        {
+            "claim_id": 7,
+            "evidence": [
+                {
+                    "section": "Section 4",
+                    "text": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 8,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+                }
+            ]
+        },
+        {
+            "claim_id": 9,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 10,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 11,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 12,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+                }
+            ]
+        },
+        {
+            "claim_id": 13,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Our code is available at https://github.com/kongds/Prompt-BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 5,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+                }
+            ]
+        },
+        {
+            "claim_id": 6,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+                }
+            ]
+        },
+        {
+            "claim_id": 7,
+            "evidence": [
+                {
+                    "section": "Section 4",
+                    "text": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 8,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+                }
+            ]
+        },
+        {
+            "claim_id": 9,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 10,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 11,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 12,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+                }
+            ]
+        },
+        {
+            "claim_id": 13,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Our code is available at https://github.com/kongds/Prompt-BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 5,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+                }
+            ]
+        },
+        {
+            "claim_id": 6,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+                }
+            ]
+        },
+        {
+            "claim_id": 7,
+            "evidence": [
+                {
+                    "section": "Section 4",
+                    "text": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 8,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+                }
+            ]
+        },
+        {
+            "claim_id": 9,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 10,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 11,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 12,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+                }
+            ]
+        },
+        {
+            "claim_id": 13,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Our code is available at https://github.com/kongds/Prompt-BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 5,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+                }
+            ]
+        },
+        {
+            "claim_id": 6,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+                }
+            ]
+        },
+        {
+            "claim_id": 7,
+            "evidence": [
+                {
+                    "section": "Section 4",
+                    "text": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 8,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+                }
+            ]
+        },
+        {
+            "claim_id": 9,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 10,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 11,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 12,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+                }
+            ]
+        },
+        {
+            "claim_id": 13,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Our code is available at https://github.com/kongds/Prompt-BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 5,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+                }
+            ]
+        },
+        {
+            "claim_id": 6,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+                }
+            ]
+        },
+        {
+            "claim_id": 7,
+            "evidence": [
+                {
+                    "section": "Section 4",
+                    "text": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 8,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+                }
+            ]
+        },
+        {
+            "claim_id": 9,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 10,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 11,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 12,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+                }
+            ]
+        },
+        {
+            "claim_id": 13,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Our code is available at https://github.com/kongds/Prompt-BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We firstly analyze the drawback of current sentence embedding from original BERT and find that it is mainly due to the static token embedding bias and ineffective BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 5,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "We find the distribution of token embeddings is not only biased by frequency, but also case sensitive and subword in WordPiece."
+                }
+            ]
+        },
+        {
+            "claim_id": 6,
+            "evidence": [
+                {
+                    "section": "Section 3",
+                    "text": "Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively."
+                }
+            ]
+        },
+        {
+            "claim_id": 7,
+            "evidence": [
+                {
+                    "section": "Section 4",
+                    "text": "Prompt-based method can avoid embedding bias and utilize the original BERT layers."
+                }
+            ]
+        },
+        {
+            "claim_id": 8,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Prompt-based contrastive learning method with template denoising significantly shortens the gap between the unsupervised and supervised performance."
+                }
+            ]
+        },
+        {
+            "claim_id": 9,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our method still outperforms them."
+                }
+            ]
+        },
+        {
+            "claim_id": 10,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 11,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "We find the template denoising efficiently removes the bias from templates and improves the quality of top-k tokens predicted by MLM head in original BERT."
+                }
+            ]
+        },
+        {
+            "claim_id": 12,
+            "evidence": [
+                {
+                    "section": "Section 6",
+                    "text": "The difference between the best and worst results can be up to 3.14% in SimCSE. However, the gap in our method is only 0.53."
+                }
+            ]
+        },
+        {
+            "claim_id": 13,
+            "evidence": [
+                {
+                    "section": "Section 5",
+                    "text": "We also report the result of SimCSE with 10 random seeds. Compared to SimCSE, our method shows more stable results than it."
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "PromptBERT achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                    "section": "Section 5",
+                    "text": "Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "section": "Abstract",
+                    "text": "Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting."
+                },
+                {
+                   
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 719.90 seconds
+evidence_analysis_time: 781.22 seconds
+conclusions_analysis_time: 847.22 seconds
+total_execution_time: 2350.52 seconds

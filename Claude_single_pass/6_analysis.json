@@ -1,0 +1,97 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "kNN-LM achieves state-of-the-art performance on WIKITEXT-103",
+                "type": "performance",
+                "location": "Section 4.1",
+                "exact_quote": "kNN-LM improves perplexity on WIKITEXT-103 from 18.65 (Baevski & Auli, 2019) to a new state-of-the-art of 16.12"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Experimental results showing perplexity improvement",
+                    "strength": "strong",
+                    "limitations": "Limited to one dataset",
+                    "location": "Table 1",
+                    "exact_quote": "Base LM (Baevski & Auli, 2019) 17.96 18.65 247M\n+kNN-LM 16.06 16.12 247M"
+                },
+                {
+                    "evidence_text": "Additional improvement with continuous cache",
+                    "strength": "strong",
+                    "limitations": "None noted",
+                    "location": "Table 1",
+                    "exact_quote": "+kNN-LM + Continuous Cache 15.81 15.79 247M"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Results clearly show improvement over previous SOTA with multiple configurations",
+                "key_limitations": "Limited to one benchmark dataset",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Retrieving nearest neighbors from a large corpus outperforms training on it",
+                "type": "result",
+                "location": "Section 4.2",
+                "exact_quote": "retrieving nearest neighbors from the corpus outperforms training on it"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Experimental comparison on WIKI-3B",
+                    "strength": "strong",
+                    "limitations": "Single dataset comparison",
+                    "location": "Table 3",
+                    "exact_quote": "WIKI-3B - 16.11 15.17\nWIKI-100M WIKI-3B 14.61 13.73"
+                },
+                {
+                    "evidence_text": "Performance with different datastore sizes",
+                    "strength": "strong",
+                    "limitations": "Limited to specific model architecture",
+                    "location": "Figure 2",
+                    "exact_quote": "using only 1.6B examples for the datastore already surpasses the performance of the model trained on all of WIKI-3B"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Multiple experiments with different configurations support the claim",
+                "key_limitations": "Limited to specific model architecture and dataset",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "kNN-LM enables effective domain adaptation without additional training",
+                "type": "contribution",
+                "location": "Section 4.3",
+                "exact_quote": "Adding kNN search over BOOKS to the WIKI-3B model reduces perplexity by 14 points (to 20.47), demonstrating that kNN-LM allows a single model to be useful in multiple domains"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Domain adaptation experimental results",
+                    "strength": "strong",
+                    "limitations": "Tested only on one domain pair",
+                    "location": "Table 4",
+                    "exact_quote": "WIKI-3B - 37.13 34.84\nWIKI-3B BOOKS 24.85 20.47"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Shows clear improvement in domain adaptation",
+                "key_limitations": "Limited evaluation across different domain pairs",
+                "confidence_level": "medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "20.25 seconds",
+        "total_execution_time": "23.73 seconds"
+    }
+}

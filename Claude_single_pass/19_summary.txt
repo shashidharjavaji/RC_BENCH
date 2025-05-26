@@ -1,0 +1,84 @@
+Claim 1:
+Type: contribution
+Statement: Feed-forward layers in transformers operate as key-value memories where keys correlate with input patterns and values induce output distributions
+Location: Introduction
+Exact Quote: We show that feed-forward layers emulate key-value memories, where each key correlates with textual patterns in the training examples, and each value induces a distribution over the output vocabulary.
+
+Evidence:
+- Evidence Text: Mathematical demonstration of similarity between feed-forward and key-value memory equations
+  Strength: strong
+  Location: Section 2
+  Limitations: Theoretical similarity doesn't prove functional equivalence
+  Exact Quote: Comparing equations 1 and 2 shows that feed-forward layers are almost identical to key-value neural memories; the only difference is that neural memory uses softmax as the non-linearity f(·)
+
+- Evidence Text: Expert annotation showing keys correspond to interpretable patterns
+  Strength: moderate
+  Location: Section 3.2
+  Limitations: Limited sample size, potential subjective bias in annotations
+  Exact Quote: Experts were able to identify at least one pattern for every key, with an average of 3.6 identified patterns per key.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: high
+Justification: Strong theoretical foundation combined with empirical evidence from expert annotations, though some limitations in empirical validation
+Key Limitations: Expert annotations could be subjective, sample size limitations
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Lower layers detect shallow patterns while upper layers detect semantic patterns
+Location: Section 3.2
+Exact Quote: the lower layers (layers 1-9) are dominated by shallow patterns, often with prefixes that share the last word. In contrast, the upper layers (layers 10-16) are characterized by more semantic patterns
+
+Evidence:
+- Evidence Text: Expert pattern analysis results
+  Strength: moderate
+  Location: Section 3.2
+  Limitations: Subjective human annotations
+  Exact Quote: Comparing the amount of prefixes associated with shallow patterns and semantic patterns (Figure 2), the lower layers (layers 1-9) are dominated by shallow patterns
+
+- Evidence Text: Token removal impact analysis
+  Strength: strong
+  Location: Section 3.2
+  Limitations: Indirect measure of pattern types
+  Exact Quote: In upper layers, removing the last token has less impact, supporting our conclusion that upper-layer keys are less correlated with shallow patterns.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Multiple forms of evidence support the claim, though some rely on subjective annotations
+Key Limitations: Relies partly on subjective expert annotations
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: Value vectors in upper layers predict tokens that follow key patterns
+Location: Section 4
+Exact Quote: values in the upper layers tend to assign higher probability to the next token of examples triggering the corresponding keys
+
+Evidence:
+- Evidence Text: Agreement rate analysis between value predictions and key triggers
+  Strength: strong
+  Location: Section 4
+  Limitations: Only measures top prediction agreement
+  Exact Quote: starting from layer 11, the agreement rate quickly rises until 3.5%, showing higher agreement between keys and values on the identity of the top-ranked token
+
+- Evidence Text: Statistical significance comparison
+  Strength: strong
+  Location: Section 4
+  Limitations: None noted
+  Exact Quote: this value is orders of magnitude higher than a random token prediction from the vocabulary, which would produce a far lower agreement rate (0.0004%)
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Clear quantitative evidence showing statistically significant patterns
+Key Limitations: Analysis focuses only on top predictions rather than full distribution
+
+--------------------------------------------------
+

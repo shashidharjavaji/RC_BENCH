@@ -1,0 +1,88 @@
+Claim 1:
+Type: contribution
+Statement: Feed-forward layers in transformer-based language models operate as key-value memories.
+Location: Abstract
+Exact Quote: Feed-forward layers in transformer-based language models operate as key-value memories.
+
+Evidence:
+- Evidence Text: The first parameter matrix in the layer corresponds to keys, and the second parameter matrix to values.
+  Strength: strong
+  Location: Section 2
+  Limitations: The claim is based on a theoretical observation and does not provide experimental evidence.
+  Exact Quote: Comparing equations 1 and 2 shows that feedforward layers are almost identical to key-value neural memories; the only difference is that neural memory uses softmax as the non-linearity f ( ), while the canonical transformer does not use a normalizing function in the feed-forward layer.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The claim is supported by a theoretical observation and is further validated by experimental results in the paper.
+Key Limitations: The claim is based on a theoretical observation and does not provide experimental evidence.
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Each key in feed-forward layers captures a specific set of human-interpretable input patterns.
+Location: Section 3
+Exact Quote: We posit that the key vectors K in feed-forward layers act as pattern detectors over the input sequence, where each individual key vector ki corresponds to a specific pattern over the input prefix x1,..., xj.
+
+Evidence:
+- Evidence Text: Experts were able to identify at least one pattern for every key, with an average of 3.6 identified patterns per key.
+  Strength: strong
+  Location: Section 3.2
+  Limitations: The claim is based on human annotation and may be subject to bias.
+  Exact Quote: Experts were able to identify at least one pattern for every key, with an average of 3.6 identified patterns per key.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by human annotation and experimental results.
+Key Limitations: The claim is based on human annotation and may be subject to bias.
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: Values in the upper layers tend to assign higher probability to the next token of examples triggering the corresponding keys.
+Location: Section 4
+Exact Quote: When viewed as distributions over the output vocabulary, values in the upper layers tend to assign higher probability to the next token of examples triggering the corresponding keys.
+
+Evidence:
+- Evidence Text: The agreement rate between the top-ranked token based on the value vector vi[ℓ] and the next token of the top-ranked trigger example associated with the key vector k[ℓ]i is close to zero in the lower layers but starts to rise in the upper layers.
+  Strength: strong
+  Location: Section 4
+  Limitations: The claim is based on experimental results and may be subject to variability in the dataset.
+  Exact Quote: The agreement rate is close to zero in the lower layers (1-10), but starting from layer 11, the agreement rate quickly rises until 3.5%, showing higher agreement between keys and values on the identity of the top-ranked token.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by experimental results and statistical analysis.
+Key Limitations: The claim is based on experimental results and may be subject to variability in the dataset.
+
+--------------------------------------------------
+
+Claim 4:
+Type: contribution
+Statement: The model’s output is formed via an aggregation of these distributions, where they are first composed to form individual layer outputs, which are then refined throughout the model’s layers using residual connections.
+Location: Section 5
+Exact Quote: The model’s output is formed via an aggregation of these distributions, where they are first composed to form individual layer outputs, which are then refined throughout the model’s layers using residual connections.
+
+Evidence:
+- Evidence Text: The residual connection r is used to sequentially compose predictions to produce the model’s final output.
+  Strength: strong
+  Location: Section 5.2
+  Limitations: The claim is based on a theoretical observation and does not provide experimental evidence.
+  Exact Quote: While a single feed-forward layer composes its memories in parallel, a multi-layer model uses the residual connection r to sequentially compose predictions to produce the model’s final output.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The claim is supported by a theoretical observation and is further validated by experimental results in the paper.
+Key Limitations: The claim is based on a theoretical observation and does not provide experimental evidence.
+
+--------------------------------------------------
+

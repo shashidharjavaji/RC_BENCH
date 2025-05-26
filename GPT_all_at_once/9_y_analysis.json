@@ -1,0 +1,58 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Multimodal neurons in text-only transformer MLPs translate image semantics into language.",
+                "type": "result",
+                "location": "Conclusion section",
+                "exact_quote": "We find multimodal neurons in text-only transformer MLPs and show that these neurons consistently translate image semantics into language."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Multimodal neurons are better at segmenting objects in images than randomly selected neurons, and ablating multimodal neurons degrades image caption content significantly.",
+                    "strength": "strong",
+                    "limitations": "Evaluation is based on a single multimodal model, LiMBeR-BEIT.",
+                    "location": "Sections 3.2 and 3.3",
+                    "exact_quote": "Across 12 COCO categories, the receptive fields of multimodal neurons better segment the concept in each image than randomly sampled neurons in the same layers. Ablating the same number of top-scoring units decreases token probability by 80% on average."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Evidence supports the claim, but analysis is conducted on a single model which might limit generalizability.",
+                "key_limitations": "Study on a single multimodal model; further investigation across other models needed for generalizability.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Soft-prompt inputs to the language model do not map onto interpretable tokens in the output vocabulary.",
+                "type": "result",
+                "location": "Conclusion section",
+                "exact_quote": "Soft-prompt inputs to the language model do not map onto interpretable tokens in the output vocabulary."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Decoded image prompts show no significant difference from random embeddings based on comparison metrics such as CLIPScore and BERTScore.",
+                    "strength": "strong",
+                    "limitations": "May not capture the nuanced ways in which soft-prompts contribute to model performance.",
+                    "location": "Section 3.1",
+                    "exact_quote": "Real and random prompts are negligibly different, confirming that inputs to GPT-J do not readily encode interpretable semantics."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The direct evaluation of soft-prompt input semantics supports the claim effectively.",
+                "key_limitations": "The approach may overlook indirect effects of soft-prompts on model performance.",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "32.52 seconds",
+        "total_execution_time": "32.52 seconds"
+    }
+}

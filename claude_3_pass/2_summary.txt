@@ -1,0 +1,158 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Larger language models are well-calibrated on diverse multiple choice questions when provided in the right format
+Location: Abstract
+Type: Result/Finding
+Quote: We first show that larger models are well-calibrated on diverse multiple choice and true/false questions when they are provided in the right format.
+
+Evidence:
+- Calibration results shown for BIG Bench tasks with formatted multiple choice questions
+  Strength: strong
+  Location: Section 2
+  Limitations: Only tested on specific formatted prompts
+  Quote: We find that when multiple choice problems are formatted in this way... our largest models tend to produce a well-calibrated probability distribution among the available options.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Format-dependent results, specific to multiple choice
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: Models perform well at evaluating the probability that their answers are correct, with calibration and scaling improving for larger models
+Location: Abstract
+Type: Result/Finding
+Quote: We find encouraging performance, calibration, and scaling for P(True) on a diverse array of tasks.
+
+Evidence:
+Conclusion:
+Justified: False
+Robustness: medium
+Limitations: Evidence not clearly presented in the excerpts
+Confidence: low
+
+==================================================
+
+Claim 3:
+Statement: Self-evaluation improves when models consider multiple samples before predicting validity
+Location: Abstract
+Type: Result/Finding
+Quote: Performance at self-evaluation further improves when we allow models to consider many of their own samples before predicting the validity of one specific possibility.
+
+Evidence:
+- Performance improves when showing models multiple T=1 samples before evaluation
+  Strength: strong
+  Location: Section 4.2
+  Limitations: Improvement varies by task type
+  Quote: Showing models many of their own T = 1 samples, along with a single sample to evaluate as True/False, can significantly improve their performance
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Limited details on magnitude of improvement
+Confidence: medium
+
+==================================================
+
+Claim 4:
+Statement: Models perform well at predicting P(IK) and partially generalize across tasks
+Location: Abstract
+Type: Result/Finding
+Quote: Models perform well at predicting P(IK) and partially generalize across tasks, though they struggle with calibration of P(IK) on new tasks.
+
+Evidence:
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Generalization is only partial and calibration struggles OOD
+Confidence: high
+
+==================================================
+
+Claim 5:
+Statement: P(IK) probabilities increase appropriately with relevant source materials and hints
+Location: Abstract
+Type: Result/Finding
+Quote: The predicted P(IK) probabilities also increase appropriately in the presence of relevant source materials in the context, and in the presence of hints towards the solution of mathematical word problems.
+
+Evidence:
+- P(IK) increases appropriately with relevant Wikipedia sources
+  Strength: strong
+  Location: Section 5.3
+  Limitations: Only tested on TriviaQA questions
+  Quote: We demonstrate this phenomenon quantitatively using questions from TriviaQA, by comparing P(IK) evaluated both with and without accompanying reference material.
+
+- P(IK) responds appropriately to GSM8k hints
+  Strength: strong
+  Location: Section 5.4
+  Limitations: Only tested on math problems
+  Quote: showing more of the hint generally leads to higher P(IK), (2) good hints that lead to the correct answer result in higher P(IK) scores than bad hints
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Tested on limited domains (TriviaQA and GSM8k)
+Confidence: high
+
+==================================================
+
+Claim 6:
+Statement: Calibration improves with model size and few-shot prompting
+Location: Introduction
+Type: Result/Finding
+Quote: In particular, calibration improves with model size and few-shot prompting.
+
+Evidence:
+- Calibration improves with model size and few-shot prompting shown in experiments
+  Strength: strong
+  Location: Section 2
+  Limitations: Limited to tested model sizes
+  Quote: We typically find good calibration 0-shot, without any other prompt, though calibration improves as we pass from 0-shot to few-shot. We find that in almost all cases, calibration improves with model size and capability.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Specific to the evaluation formats tested
+Confidence: high
+
+==================================================
+
+Claim 7:
+Statement: Verification improves faster than generation quality as model size increases
+Location: Introduction
+Type: Result/Finding
+Quote: Furthermore, as model size and capabilities increase, models improve at self-evaluation, which suggests that verification improves faster than generation quality in this context.
+
+Evidence:
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: Evidence not clearly presented in excerpts
+Confidence: low
+
+==================================================
+
+Claim 8:
+Statement: RLHF policy miscalibration can be fixed with temperature adjustment
+Location: Section 3.3
+Type: Result/Finding
+Quote: However, a simple temperature adjustment (with the same temperature T = 2.5 for all evaluations) largely fixes calibration issues with several independent evaluation tasks
+
+Evidence:
+- RLHF policies become well-calibrated with temperature adjustment
+  Strength: moderate
+  Location: Section 3.3
+  Limitations: Only tested with T=2.5 temperature
+  Quote: a simple temperature adjustment (with the same temperature T = 2.5 for all evaluations) largely fixes calibration issues with several independent evaluation tasks
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Limited to specific temperature adjustment (T=2.5)
+Confidence: medium
+
+==================================================
+

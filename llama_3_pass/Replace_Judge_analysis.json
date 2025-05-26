@@ -1,0 +1,164 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Using a Panel of LLM Evaluators (PoLL) composed of smaller models is an effective method for evaluating LLM performance, reducing intra-model bias, latency, and cost.",
+                "location": "Section 5 Conclusions and Limitations",
+                "type": "Methodological contribution",
+                "exact_quote": "In this paper, we showed how a Panel of LLM Evaluators composed of smaller models is not only an effective method for evaluating LLM performance, but also reduces intra-model bias, latency, and cost."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Across three distinct judge settings and spanning six different datasets, we find that using a PoLL composed of a larger number of smaller models outperforms a single large judge, exhibits less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive.",
+                    "strength": "strong",
+                    "limitations": "Limited to three judge settings and six datasets",
+                    "location": "Section 4.1",
+                    "exact_quote": "Across three distinct judge settings and spanning six different datasets, we find that using a PoLL composed of a larger number of smaller models outperforms a single large judge, exhibits less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "The cost of running our specific instance of PoLL is $1.25/input + $4.25/output, whereas the cost of running GPT-4 Turbo is $10/input + $30/output.",
+                    "strength": "strong",
+                    "limitations": "Cost comparison is based on specific instances of PoLL and GPT-4 Turbo",
+                    "location": "Section 4.5",
+                    "exact_quote": "At the time of writing, the cost of running our specific instance of PoLL is $1.25/input + $4.25/output, whereas the cost of running GPT-4 Turbo is $10/input + $30/output."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 1,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Specific cost comparison might not be universally applicable; PoLL's effectiveness might vary across different tasks and domains",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "PoLL outperforms a single large judge in evaluating LLM generations, exhibiting less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive.",
+                "location": "Abstract",
+                "type": "Comparative evaluation",
+                "exact_quote": "We propose instead to evaluate models using a Panel of LLm evaluators (PoLL) drawn from different model families rather than a single large judge, and find that using an instantiation of PoLL correlates better with human judgements compared to a single large judge (GPT-4), while being over seven times cheaper."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "PoLL outperforms a single large judge in evaluating LLM generations, exhibiting less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive.",
+                    "strength": "strong",
+                    "limitations": "Limited to three judge settings and six datasets",
+                    "location": "Section 4.1",
+                    "exact_quote": "PoLL outperforms a single large judge in evaluating LLM generations, exhibiting less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 2,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Same as Claim 1; Additionally, the claim assumes a specific composition of PoLL",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "GPT-4 is a relatively weak judge, exhibiting high variance with minor changes to the prompt.",
+                "location": "Section 4.3",
+                "type": "Methodological limitation",
+                "exact_quote": "In some scenarios, GPT-4 is a relatively weak judge, exhibiting high variance with minor changes to the prompt."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "Based on the observation that GPT-4 was the weakest judge model on our KILT evaluations, we investigated how the model reacts to modifications to its prompt.",
+                    "strength": "moderate",
+                    "limitations": "Limited to KILT evaluations and GPT-4",
+                    "location": "Section 4.3",
+                    "exact_quote": "Based on the observation that GPT-4 was the weakest judge model on our KILT evaluations, we investigated how the model reacts to modifications to its prompt."
+                },
+                {
+                    "evidence_id": 5,
+                    "evidence_text": "In Table 3, we can see how the correlation between GPT-4 and human annotators varies as the prompt changes.",
+                    "strength": "strong",
+                    "limitations": "Limited to KILT evaluations and GPT-4",
+                    "location": "Section 4.3",
+                    "exact_quote": "In Table 3, we can see how the correlation between GPT-4 and human annotators varies as the prompt changes."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 3,
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "key_limitations": "Limited to a specific experiment with GPT-4; Prompt changes might not universally impact GPT-4's performance",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Intra-model scoring bias is reduced by pooling judgements across a panel of heterogeneous evaluator models.",
+                "location": "Section 4.4",
+                "type": "Methodological contribution",
+                "exact_quote": "One of the biggest motivators for replacing a single large judge with a panel of heterogeneous models is to reduce bias in evaluation, and we find that overall, PoLL has the smallest spread in scores."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 6,
+                    "evidence_text": "One of the biggest motivators for replacing a single large judge with a panel of heterogeneous models is to reduce bias in evaluation.",
+                    "strength": "moderate",
+                    "limitations": "Limited to the context of the paper",
+                    "location": "Section 5 Conclusions and Limitations",
+                    "exact_quote": "One of the biggest motivators for replacing a single large judge with a panel of heterogeneous models is to reduce bias in evaluation."
+                },
+                {
+                    "evidence_id": 7,
+                    "evidence_text": "In Figures 3 and 4, we can see how the different judges score different models and how far those predictions deviate from human annotator decisions.",
+                    "strength": "strong",
+                    "limitations": "Limited to multi-hop datasets",
+                    "location": "Section 4.4",
+                    "exact_quote": "In Figures 3 and 4, we can see how the different judges score different models and how far those predictions deviate from human annotator decisions."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 4,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Assumes a specific context of evaluation; Might not generalize to all scenarios where bias is a concern",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "PoLL performs well consistently across different tasks, but further work is needed to see how broadly applicable the method is.",
+                "location": "Section 5 Conclusions and Limitations",
+                "type": "Future work direction",
+                "exact_quote": "In this work we investigated only three evaluator settings and a limited number of judges and panel compositions, while PoLL performs well consistently, further work is needed to see how broadly applicable the method is."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 8,
+                    "evidence_text": "While we showed that PoLL is an effective alternative to a single large model in these settings, further work is needed to see how broadly applicable the method is.",
+                    "strength": "weak",
+                    "limitations": "Acknowledged as a limitation of the study",
+                    "location": "Section 5 Conclusions and Limitations",
+                    "exact_quote": "While we showed that PoLL is an effective alternative to a single large model in these settings, further work is needed to see how broadly applicable the method is."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 5,
+                "conclusion_justified": true,
+                "robustness": "low",
+                "key_limitations": "Acknowledges the need for further research; Lack of concrete evidence within the provided text to support the claim",
+                "confidence_level": "low"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "93.52 seconds",
+        "evidence_analysis_time": "181.68 seconds",
+        "conclusions_analysis_time": "58.95 seconds",
+        "total_execution_time": "337.46 seconds"
+    }
+}

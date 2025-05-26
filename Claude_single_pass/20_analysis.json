@@ -1,0 +1,104 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Code generation models (Codex and CodeGen) rely on irrelevant information in prompts in predictable ways",
+                "type": "result",
+                "location": "Section 3.3.1",
+                "exact_quote": "These results suggest that code generation models can erroneously rely on irrelevant information in the prompt in predictable ways"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Adding irrelevant preceding functions lowered functional accuracy by 22.3-30.5 points for Codex across different framing lines",
+                    "strength": "strong",
+                    "limitations": "Limited to specific types of irrelevant functions tested",
+                    "location": "Section 3.3.1",
+                    "exact_quote": "We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex"
+                },
+                {
+                    "evidence_text": "Models frequently generated the framing line - 81% for Codex and 70.7% for CodeGen vs 4.5% and 0% without irrelevant functions",
+                    "strength": "strong",
+                    "limitations": "Only tested on a limited set of framing lines",
+                    "location": "Table 1",
+                    "exact_quote": "Both models frequently generate the framing line: 81% of the time for Codex and 70.7% of time for CodeGen, compared to only 4.5% and 0.0% over untransformed prompts respectively"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Clear quantitative evidence showing both reduced accuracy and systematic incorporation of irrelevant information across multiple models",
+                "key_limitations": "Limited set of irrelevant functions and framing lines tested",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Code generation models adjust their outputs towards related but incorrect anchor solutions when included in prompts",
+                "type": "result",
+                "location": "Section 3.3.2",
+                "exact_quote": "Our findings suggest that code generation models can err by adjusting its output towards related solutions, when the solutions are included in the prompt"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Codex generates for var in 32%-61% of solutions with canonical lines, print(var) in 26%-44% of solutions",
+                    "strength": "strong",
+                    "limitations": "Limited to specific anchor types tested",
+                    "location": "Section 3.3.2",
+                    "exact_quote": "we see that Codex generates for var in 32%\u201361% of solutions when at least one line of the canonical solution is included, and generates print(var) in 26%\u201344% of solutions"
+                },
+                {
+                    "evidence_text": "Both models include anchor lines in solutions not copying anchor function verbatim",
+                    "strength": "moderate",
+                    "limitations": "Exact proportions not specified",
+                    "location": "Section 3.3.2",
+                    "exact_quote": "both models include anchor lines in many solutions that do not copy the anchor function verbatim"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Multiple quantitative measures show incorporation of anchor elements, with control experiments ruling out simple copying",
+                "key_limitations": "Limited anchor types tested, some results lack precise quantification",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Codex tends to output solutions to related prompts that appear more frequently in the training set",
+                "type": "result",
+                "location": "Section 3.3.3",
+                "exact_quote": "Our results suggest that Codex can err by outputting solutions to related, frequent prompts in the training set"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Accuracy drops from 50% to 17% when flipping operations from unary-first to binary-first",
+                    "strength": "strong",
+                    "limitations": "Limited operation types tested",
+                    "location": "Section 3.3.3",
+                    "exact_quote": "accuracy drops from 50% to 17% when flipping the order from unary-first to binary-first"
+                },
+                {
+                    "evidence_text": "75% of binary-first errors were unary-first solutions",
+                    "strength": "strong",
+                    "limitations": "Assumption about training set frequencies",
+                    "location": "Section 3.3.3",
+                    "exact_quote": "Among combinations where flipping the order leads to error, we find that 75% of the binary-first outputs are the unary-first solution"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Clear pattern of reverting to presumed more common solutions, with quantitative evidence",
+                "key_limitations": "Indirect evidence of training set frequencies, limited operation types",
+                "confidence_level": "medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "31.94 seconds",
+        "total_execution_time": "38.90 seconds"
+    }
+}

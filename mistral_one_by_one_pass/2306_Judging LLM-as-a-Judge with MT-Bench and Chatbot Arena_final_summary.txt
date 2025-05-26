@@ -1,0 +1,557 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+ For example:
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "Evaluating large language model (LLM) based chat assistants is challenging due to their broad capabilities and the inadequacy of existing benchmarks in measuring human preferences.",
+            "location": "Abstract",
+            "claim_type": "Problem statement",
+            "exact_quote": "Evaluating large language model (LLM) based chat assistants is challenging due to their broad capabilities and the inadequacy of existing benchmarks in measuring human preferences."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "To address this, we explore using strong LLMs as judges to evaluate these models on more open-ended questions.",
+            "location": "Abstract",
+            "claim_type": "Solution",
+            "exact_quote": "To address this, we explore using strong LLMs as judges to evaluate these models on more open-ended questions."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "We examine the usage and limitations of LLM-as-a-judge, including position, verbosity, and self-enhancement biases, as well as limited reasoning ability, and propose solutions to mitigate some of them.",
+            "location": "Abstract",
+            "claim_type": "Methodology",
+            "exact_quote": "We examine the usage and limitations of LLM-as-a-judge, including position, verbosity, and self-enhancement biases, as well as limited reasoning ability, and propose solutions to mitigate some of them."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "We then verify the agreement between LLM judges and human preferences by introducing two benchmarks: MT-bench, a multi-turn question set; and Chatbot Arena, a crowdsourced battle platform.",
+            "location": "Abstract",
+            "claim_type": "Methodology",
+            "exact_quote": "We then verify the agreement between LLM judges and human preferences by introducing two benchmarks: MT-bench, a multi-turn question set; and Chatbot Arena, a crowdsourced battle platform."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "Our results reveal that strong LLM judges like GPT-4 can match both controlled and crowdsourced human preferences well, achieving over 80% agreement, the same level of agreement between humans.",
+            "location": "Abstract",
+            "claim_type": "Results",
+            "exact_quote": "Our results reveal that strong LLM judges like GPT-4 can match both controlled and crowdsourced human preferences well, achieving over 80% agreement, the same level of agreement between humans."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Hence, LLM-as-a-judge is a scalable and explainable way to approximate human preferences, which are otherwise very expensive to obtain.",
+            "location": "Abstract",
+            "claim_type": "Conclusion",
+            "exact_quote": "Hence, LLM-as-a-judge is a scalable and explainable way to approximate human preferences, which are otherwise very expensive to obtain."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "Additionally, we show our benchmark and traditional benchmarks complement each other by evaluating several variants of LLaMA and Vicuna.",
+            "location": "Abstract",
+            "claim_type": "Conclusion",
+            "exact_quote": "Additionally, we show our benchmark and traditional benchmarks complement each other by evaluating several variants of LLaMA and Vicuna."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "The MT-bench questions, 3K expert votes, [and 30K conversations with human preferences are publicly available at https:](https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge)",
+            "location": "Abstract",
+            "claim_type": "Data availability",
+            "exact_quote": "The MT-bench questions, 3K expert votes, [and 30K conversations with human preferences are publicly available at https:](https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge)"
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "We argue that this discrepancy primarily arises due to existing evaluation that only measures LLMs’ core capability on a confined set of tasks (e.g., multi-choice knowledge or retrieval questions), without adequately assessing its alignment with human preference in open-ended tasks, such as the ability to accurately adhere to instructions in multi-turn dialogues.",
+            "location": "Introduction",
+            "claim_type": "Problem statement",
+            "exact_quote": "We argue that this discrepancy primarily arises due to existing evaluation that only measures LLMs’ core capability on a confined set of tasks (e.g., multi-choice knowledge or retrieval questions), without adequately assessing its alignment with human preference in open-ended tasks, such as the ability to accurately adhere to instructions in multi-turn dialogues."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "As a demonstration, we show conversation histories with two models on an MMLU question in Figure 1. The two models are LLaMA-13B, a pre-trained base model without fine-tuning, and Vicuna-13B, our fine-tuned model from LLaMA-13B on high-quality conversations (the training details are in Appendix E). Despite the base LLaMA models showing competitive performance on conventional benchmarks (Table 8), its answers to open-ended questions are often not preferred by humans. This misalignment of conventional benchmarks underscores the core problem driving this paper: the need for a robust and scalable automated method to evaluate LLM alignment with human preferences.",
+            "location": "Introduction",
+            "claim_type": "Problem statement",
+            "exact_quote": "As a demonstration, we show conversation histories with two models on an MMLU question in Figure 1. The two models are LLaMA-13B, a pre-trained base model without fine-tuning, and Vicuna-13B, our fine-tuned model from LLaMA-13B on high-quality conversations (the training details are in Appendix E). Despite the base LLaMA models showing competitive performance on conventional benchmarks (Table 8), its answers to open-ended questions are often not preferred by humans. This misalignment of conventional benchmarks underscores the core problem driving this paper: the need for a robust and scalable automated method to evaluate LLM alignment with human preferences."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "To study this, we introduce two benchmarks with human ratings as the primary evaluation metric: MT-bench and Chatbot Arena.",
+            "location": "Introduction",
+            "claim_type": "Methodology",
+            "exact_quote": "To study this, we introduce two benchmarks with human ratings as the primary evaluation metric: MT-bench and Chatbot Arena."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "While human evaluation is the gold standard for assessing human preferences, it is exceptionally slow and costly. To automate the evaluation, we explore the use of state-of-the-art LLMs, such as GPT-4, as a surrogate for humans.",
+            "location": "Introduction",
+            "claim_type": "Methodology",
+            "exact_quote": "While human evaluation is the gold standard for assessing human preferences, it is exceptionally slow and costly. To automate the evaluation, we explore the use of state-of-the-art LLMs, such as GPT-4, as a surrogate for humans."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "We call this approach “LLM-as-a-judge”. This approach has been tried in our earlier blog post [8] and other concurrent or follow-up work [5, 29, 14, 12, 52, 18, 33, 40, 7, 43]. However, there has not been a systematic study of this approach.",
+            "location": "Introduction",
+            "claim_type": "Methodology",
+            "exact_quote": "We call this approach “LLM-as-a-judge”. This approach has been tried in our earlier blog post [8] and other concurrent or follow-up work [5, 29, 14, 12, 52, 18, 33, 40, 7, 43]. However, there has not been a systematic study of this approach."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "In this paper, we study the LLM-as-a-judge approach by comparing it to the gold standard of human evaluation.",
+            "location": "Introduction",
+            "claim_type": "Methodology",
+            "exact_quote": "In this paper, we study the LLM-as-a-judge approach by comparing it to the gold standard of human evaluation."
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "We examine several potential limitations of the LLM-as-a-judge approach including position bias, verbosity bias, self-enhancement bias, and limited reasoning ability.",
+            "location": "Introduction",
+            "claim_type": "Methodology",
+            "exact_quote": "We examine several potential limitations of the LLM-as-a-judge approach including position bias, verbosity bias, self-enhancement bias, and limited reasoning ability."
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "We show that some of the biases are minor or can be mitigated.",
+            "location": "Introduction",
+            "claim_type": "Methodology",
+            "exact_quote": "We show that some of the biases are minor or can be mitigated."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "Once addressed, our results from 3K controlled expert votes and 3K crowdsourced human votes in the wild verify that GPT-4 judge match human evaluations at an agreement rate exceeding 80%, achieving the same level of human-human agreement.",
+            "location": "Introduction",
+            "claim_type": "Results",
+            "exact_quote": "Once addressed, our results from 3K controlled expert votes and 3K crowdsourced human votes in the wild verify that GPT-4 judge match human evaluations at an agreement rate exceeding 80%, achieving the same level of human-human agreement."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "Consequently, this suggests LLM-as-a-judge is a scalable method to swiftly evaluate human preference, serving as a promising alternative to traditional human evaluations.",
+            "location": "Introduction",
+            "claim_type": "Conclusion",
+            "exact_quote": "Consequently, this suggests LLM-as-a-judge is a scalable method to swiftly evaluate human preference, serving as a promising alternative to traditional human evaluations."
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "This paper makes two contributions: (1) a systematic study of LLM-as-a-judge; and (2) human preference datasets with high-quality questions and diverse user interactions from MT-bench and Chatbot Arena.",
+            "location": "Introduction",
+            "claim_type": "Contribution",
+            "exact_quote": "This paper makes two contributions: (1) a systematic study of LLM-as-a-judge; and (2) human preference datasets with high-quality questions and diverse user interactions from MT-bench and Chatbot Arena."
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "In addition, we argue for the adoption of a hybrid evaluation framework for future LLM benchmarks: by combining the existing capability-based benchmarks and the new preference-based benchmarks with LLM-as-a-judge, one can swiftly and automatically evaluate both the core capabilities and human alignment of models.",
+            "location": "Introduction",
+            "claim_type": "Conclusion",
+            "exact_quote": "In addition, we argue for the adoption of a hybrid evaluation framework for future LLM benchmarks: by combining the existing capability-based benchmarks and the new preference-based benchmarks with LLM-as-a-judge, one can swiftly and automatically evaluate both the core capabilities and human alignment of models."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "We publicly release 80 MT-bench questions, 3K expert votes, and 30K conversations with human preferences for future study.",
+            "location": "Introduction",
+            "claim_type": "Data availability",
+            "exact_quote": "We publicly release 80 MT-bench questions, 3K expert votes, and 30K conversations with human preferences for future study."
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "Table 1: Sample multi-turn questions in MT-bench.",
+            "location": "Section 2.2",
+            "claim_type": "Data description",
+            "exact_quote": "Table 1: Sample multi-turn questions in MT-bench."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "We create MT-bench, a benchmark consisting of 80 high-quality multi-turn questions.",
+            "location": "Section 2.2",
+            "claim_type": "Methodology",
+            "exact_quote": "We create MT-bench, a benchmark consisting of 80 high-quality multi-turn questions."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "MT-bench is designed to test multi-turn conversation and instruction-following ability, covering common use cases and focusing on challenging questions to differentiate models.",
+            "location": "Section 2.2",
+            "claim_type": "Methodology",
+            "exact_quote": "MT-bench is designed to test multi-turn conversation and instruction-following ability, covering common use cases and focusing on challenging questions to differentiate models."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "We identify 8 common categories of user prompts to guide its construction: writing, roleplay, extraction, reasoning, math, coding, knowledge I (STEM), and knowledge II (humanities/social science).",
+            "location": "Section 2.2",
+            "claim_type": "Methodology",
+            "exact_quote": "We identify 8 common categories of user prompts to guide its construction: writing, roleplay, extraction, reasoning, math, coding, knowledge I (STEM), and knowledge II (humanities/social science)."
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "For each category, we then manually designed 10 multi-turn questions.",
+            "location": "Section 2.2",
+            "claim_type": "Methodology",
+            "exact_quote": "For each category, we then manually designed 10 multi-turn questions."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "Table 1 lists several sample questions.",
+            "location": "Section 2.2",
+            "claim_type": "Data description",
+            "exact_quote": "Table 1 lists several sample questions."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "Our second approach is Chatbot Arena, a crowdsourcing benchmark platform featuring anonymous battles.",
+            "location": "Section 2.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Our second approach is Chatbot Arena, a crowdsourcing benchmark platform featuring anonymous battles."
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "On this platform, users can interact with two anonymous models simultaneously, posing the same question to both.",
+            "location": "Section 2.3",
+            "claim_type": "Methodology",
+            "exact_quote": "On this platform, users can interact with two anonymous models simultaneously, posing the same question to both."
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "They vote for which model provides the preferred response, with the identities of the models disclosed post-voting.",
+            "location": "Section 2.3",
+            "claim_type": "Methodology",
+            "exact_quote": "They vote for which model provides the preferred response, with the identities of the models disclosed post-voting."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "After running Chatbot Arena for one month, we have collected around 30K votes.",
+            "location": "Section 2.3",
+            "claim_type": "Data description",
+            "exact_quote": "After running Chatbot Arena for one month, we have collected around 30K votes."
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "Since the platform does not use pre-defined questions, it allows gathering a wide range of unrestricted use cases and votes in the wild, based on the diverse interests of users.",
+            "location": "Section 2.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Since the platform does not use pre-defined questions, it allows gathering a wide range of unrestricted use cases and votes in the wild, based on the diverse interests of users."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "A screenshot of the platform can be found at Appendix C.2.",
+            "location": "Section 2.3",
+            "claim_type": "Data description",
+            "exact_quote": "A screenshot of the platform can be found at Appendix C.2."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "While our initial evaluations using MT-bench and Chatbot Arena rely on human ratings, collecting human preferences can be costly and laborious.",
+            "location": "Section 3.1",
+            "claim_type": "Problem statement",
+            "exact_quote": "While our initial evaluations using MT-bench and Chatbot Arena rely on human ratings, collecting human preferences can be costly and laborious."
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "To overcome this, we aim to develop a more scalable and automated approach.",
+            "location": "Section 3.1",
+            "claim_type": "Solution",
+            "exact_quote": "To overcome this, we aim to develop a more scalable and automated approach."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "Given that most questions in MT-bench and Chatbot Arena are open-ended without reference answers, devising a rule-based program to assess the outputs is extremely challenging.",
+            "location": "Section 3.1",
+            "claim_type": "Problem statement",
+            "exact_quote": "Given that most questions in MT-bench and Chatbot Arena are open-ended without reference answers, devising a rule-based program to assess the outputs is extremely challenging."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "Traditional evaluation metrics based on the similarity between outputs and reference answers (e.g., ROUGE [25], BLEU [32]) are also ineffective for these questions.",
+            "location": "Section 3.1",
+            "claim_type": "Problem statement",
+            "exact_quote": "Traditional evaluation metrics based on the similarity between outputs and reference answers (e.g., ROUGE [25], BLEU [32]) are also ineffective for these questions."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "As LLMs continue to improve, they show potential in replacing human annotators in many tasks [17, 20].",
+            "location": "Section 3.1",
+            "claim_type": "Methodology",
+            "exact_quote": "As LLMs continue to improve, they show potential in replacing human annotators in many tasks [17, 20]."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "Specifically, we are interested in whether LLMs can effectively evaluate the responses of chat assistants and match human preferences.",
+            "location": "Section 3.1",
+            "claim_type": "Methodology",
+            "exact_quote": "Specifically, we are interested in whether LLMs can effectively evaluate the responses of chat assistants and match human preferences."
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "Next, we discuss the use and limitations of LLM-as-a-judge.",
+            "location": "Section 3.1",
+            "claim_type": "Methodology",
+            "exact_quote": "Next, we discuss the use and limitations of LLM-as-a-judge."
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "We propose 3 LLM-as-a-judge variations. They can be implemented independently or in combination:",
+            "location": "Section 3.1",
+            "claim_type": "Methodology",
+            "exact_quote": "We propose 3 LLM-as-a-judge variations. They can be implemented independently or in combination:"
+        },
+        {
+            "claim_id": 42,
+            "claim_text": " - Pairwise comparison. An LLM judge is presented with a question and two answers, and tasked to determine which one is better or declare a tie.",
+            "location": "Section 3.1",
+            "claim_type": "Methodology",
+            "exact_quote": " - Pairwise comparison. An LLM judge is presented with a question and two answers, and tasked to determine which one is better or declare a tie."
+        },
+        {
+            "claim_id": 43,
+            "claim_text": " - Single answer grading. Alternatively, an LLM judge is asked to directly assign a score to a single answer.",
+            "location": "Section 3.1",
+            "claim_type": "Methodology",
+            "exact_quote": " - Single answer grading. Alternatively, an LLM judge is asked to directly assign a score to a single answer."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": " - Reference-guided grading. In certain cases, it may be beneficial to provide a reference solution if applicable.",
+            "location": "Section 3.1",
+            "claim_type": "Methodology",
+            "exact_quote": " - Reference-guided grading. In certain cases, it may be beneficial to provide a reference solution if applicable."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "These methods have different pros and cons.",
+            "location": "Section 3.1",
+            "claim_type": "Methodology",
+            "exact_quote": "These methods have different pros and cons."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "For example, the pairwise comparison may lack scalability when the number of players increases, given that the number of possible pairs grows quadratically; single answer grading may be unable to discern subtle differences between specific pairs, and its results may become unstable, as absolute scores are likely to fluctuate more than relative pairwise results if the judge model changes.",
+            "location": "Section 3.1",
+            "claim_type": "Methodology",
+            "exact_quote": "For example, the pairwise comparison may lack scalability when the number of players increases, given that the number of possible pairs grows quadratically; single answer grading may be unable to discern subtle differences between specific pairs, and its results may become unstable, as absolute scores are likely to fluctuate more than relative pairwise results if the judge model changes."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "LLM-as-a-judge offers two key benefits: scalability and explainability.",
+            "location": "Section 3.2",
+            "claim_type": "Methodology",
+            "exact_quote": "LLM-as-a-judge offers two key benefits: scalability and explainability."
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "It reduces the need for human involvement, enabling scalable benchmarks and fast iterations.",
+            "location": "Section 3.2",
+            "claim_type": "Methodology",
+            "exact_quote": "It reduces the need for human involvement, enabling scalable benchmarks and fast iterations."
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "Additionally, LLM judges provide not only scores but also explanations, making their outputs interpretable.",
+            "location": "Section 3.2",
+            "claim_type": "Methodology",
+            "exact_quote": "Additionally, LLM judges provide not only scores but also explanations, making their outputs interpretable."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "We identify certain biases and limitations of LLM judges.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "We identify certain biases and limitations of LLM judges."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "However, we will also present solutions later and show the agreement between LLM judges and humans is high despite these limitations.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "However, we will also present solutions later and show the agreement between LLM judges and humans is high despite these limitations."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "Position bias is when an LLM exhibits a propensity to favor certain positions over others.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Position bias is when an LLM exhibits a propensity to favor certain positions over others."
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "This bias is not unique to our context and has been seen in human decision-making [3, 34] and other ML domains [22, 41].",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "This bias is not unique to our context and has been seen in human decision-making [3, 34] and other ML domains [22, 41]."
+        },
+        {
+            "claim_id": 54,
+            "claim_text": "Figure 11 (Appendix) shows an example of position bias.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Figure 11 (Appendix) shows an example of position bias."
+        },
+        {
+            "claim_id": 55,
+            "claim_text": "GPT-4 is tasked to evaluate two responses from GPT-3.5 and Vicuna-13B to an open-ended question.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "GPT-4 is tasked to evaluate two responses from GPT-3.5 and Vicuna-13B to an open-ended question."
+        },
+        {
+            "claim_id": 56,
+            "claim_text": "When GPT-3.5’s answer is positioned first, GPT-4 considers GPT-3.5’s answer more detailed and superior.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "When GPT-3.5’s answer is positioned first, GPT-4 considers GPT-3.5’s answer more detailed and superior."
+        },
+        {
+            "claim_id": 57,
+            "claim_text": "However, upon switching the positions of the two responses, GPT-4’s judgement flips, favoring Vicuna’s answer.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "However, upon switching the positions of the two responses, GPT-4’s judgement flips, favoring Vicuna’s answer."
+        },
+        {
+            "claim_id": 58,
+            "claim_text": "To analyze the position bias, we construct two similar answers to each first-turn question in MT-bench by calling GPT-3.5 twice with a temperature of 0.7.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "To analyze the position bias, we construct two similar answers to each first-turn question in MT-bench by calling GPT-3.5 twice with a temperature of 0.7."
+        },
+        {
+            "claim_id": 59,
+            "claim_text": "We then try three LLMs with two different prompts: “default” is our default prompt in Figure 5 (Appendix). “rename” renames the assistants in our default prompt to see whether the bias is on positions or names.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "We then try three LLMs with two different prompts: “default” is our default prompt in Figure 5 (Appendix). “rename” renames the assistants in our default prompt to see whether the bias is on positions or names."
+        },
+        {
+            "claim_id": 60,
+            "claim_text": "As in Table 2, we found all of them exhibit strong position bias.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "As in Table 2, we found all of them exhibit strong position bias."
+        },
+        {
+            "claim_id": 61,
+            "claim_text": "Most LLM judges favor the first position.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Most LLM judges favor the first position."
+        },
+        {
+            "claim_id": 62,
+            "claim_text": "Claude-v1 also shows a name bias which makes it favors \"Assistant A\", as illustrated by the \"rename\" prompt.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Claude-v1 also shows a name bias which makes it favors \"Assistant A\", as illustrated by the \"rename\" prompt."
+        },
+        {
+            "claim_id": 63,
+            "claim_text": "The position bias can be very significant.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "The position bias can be very significant."
+        },
+        {
+            "claim_id": 64,
+            "claim_text": "Only GPT-4 outputs consistent results in more than 60% of cases.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Only GPT-4 outputs consistent results in more than 60% of cases."
+        },
+        {
+            "claim_id": 65,
+            "claim_text": "Note that this test is challenging because the answers are very similar and occasionally indistinguishable even to humans.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Note that this test is challenging because the answers are very similar and occasionally indistinguishable even to humans."
+        },
+        {
+            "claim_id": 66,
+            "claim_text": "We will show that position bias is less prominent in some cases in Appendix D.1.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "We will show that position bias is less prominent in some cases in Appendix D.1."
+        },
+        {
+            "claim_id": 67,
+            "claim_text": "As for the origin of this bias, we suspect that it could be rooted in the training data or inherent to the left-to-right architecture of causal transformers, but leave a deeper study as future work.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "As for the origin of this bias, we suspect that it could be rooted in the training data or inherent to the left-to-right architecture of causal transformers, but leave a deeper study as future work."
+        },
+        {
+            "claim_id": 68,
+            "claim_text": "Verbosity bias is when an LLM judge favors longer, verbose responses, even if they are not as clear, high-quality, or accurate as shorter alternatives.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Verbosity bias is when an LLM judge favors longer, verbose responses, even if they are not as clear, high-quality, or accurate as shorter alternatives."
+        },
+        {
+            "claim_id": 69,
+            "claim_text": "To examine this bias, we design a “repetitive list” attack with model answers from MT-bench.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "To examine this bias, we design a “repetitive list” attack with model answers from MT-bench."
+        },
+        {
+            "claim_id": 70,
+            "claim_text": "We first select 23 model answers from MT-bench that contain a numbered list.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "We first select 23 model answers from MT-bench that contain a numbered list."
+        },
+        {
+            "claim_id": 71,
+            "claim_text": "We then make them unnecessarily verbose by asking GPT-4 to rephrase the list without adding any new information and insert the rephrased new list to the beginning of the original list.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "We then make them unnecessarily verbose by asking GPT-4 to rephrase the list without adding any new information and insert the rephrased new list to the beginning of the original list."
+        },
+        {
+            "claim_id": 72,
+            "claim_text": "For example, if the original response contains 5 items, then the new response will contain 10 items but the first 5 items are rephrased from the original 5 items.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "For example, if the original response contains 5 items, then the new response will contain 10 items but the first 5 items are rephrased from the original 5 items."
+        },
+        {
+            "claim_id": 73,
+            "claim_text": "An example is shown in Figure 12 (Appendix).",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "An example is shown in Figure 12 (Appendix)."
+        },
+        {
+            "claim_id": 74,
+            "claim_text": "We define the attack is successful if an LLM judge thinks the new response is better than the old response.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "We define the attack is successful if an LLM judge thinks the new response is better than the old response."
+        },
+        {
+            "claim_id": 75,
+            "claim_text": "Table 3 shows the failure rate of LLM judges under this attack, demonstrating that all LLMs may be prone to verbosity bias though GPT-4 defends significantly better than others.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Table 3 shows the failure rate of LLM judges under this attack, demonstrating that all LLMs may be prone to verbosity bias though GPT-4 defends significantly better than others."
+        },
+        {
+            "claim_id": 76,
+            "claim_text": "As a calibration, we find LLM judges are able to correctly judge identical answers (i.e., they always return a tie for two identical answers) but cannot pass the more advanced “repetitive list” attack.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "As a calibration, we find LLM judges are able to correctly judge identical answers (i.e., they always return a tie for two identical answers) but cannot pass the more advanced “repetitive list” attack."
+        },
+        {
+            "claim_id": 77,
+            "claim_text": "Self-enhancement bias. We adopt the term “self-enhancement bias” from social cognition literature [4] to describe the effect that LLM judges may favor the answers generated by themselves.",
+            "location": "Section 3.3",
+            "claim_type": "Methodology",
+            "exact_quote": "Self-enhancement bias. We adopt the term “self-enhancement bias” from social cognition literature [4] to describe the effect
+
+Raw Evidence:
+
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 321.14 seconds
+evidence_analysis_time: 1.67 seconds
+conclusions_analysis_time: 1.67 seconds
+total_execution_time: 329.46 seconds

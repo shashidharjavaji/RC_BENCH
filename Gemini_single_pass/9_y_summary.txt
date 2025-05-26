@@ -1,0 +1,194 @@
+Claim 1:
+Type: result
+Statement: Multimodal neurons can be found within the transformer, and they are active in response to particular image semantics.
+Location: section 2.3
+Exact Quote: We analyze text transformer neurons in the multimodal LiMBeR model [28], where a linear layer trained on CC3M [36] casts BEIT [2] image embeddings into the input space (eL = 4096) of GPT-J 6B [43]. GPT-J transforms input sequence x = [x1, . . ., xP ] into a probability distribution y over next-token continuations of x [42], to create an image caption (where P = 196 image patches). At layer _`, the hidden state h[`]i_ [is given by][ h]i[`][−][1] + ai[`] + mi[`], where **ai[`]** and mi[`] are attention and MLP outputs. The output of the final layer L is decoded using Wd for unembedding: _y = softmax(Wdh[L]), which we refer to as decoder(h[L]).
+
+Evidence:
+- Evidence Text: We apply a procedure based on gradients to evaluate the contribution of neuron uk to an image captioning task.
+  Strength: moderate
+  Location: section 2.4
+  Limitations: The gradient-based attribution method is a heuristic and may not accurately reflect the true contribution of a neuron.
+  Exact Quote: **Attributing model outputs to neurons with image input.**\nWe apply a procedure based on gradients to evaluate the contribution of neuron uk to an image captioning task. This approach follows several related approaches in neuron attribution, such as Grad-CAM [35] and Integrated Gradients [39, 6]. We adapt to the recurrent nature of transformer token prediction by attributing neuron effects from image patches to generated tokens in the caption, which may be several transformer passes later. We assume the model is predicting c as the most probable next token t, with logit _y[c]. We define the attribution score g of uk on token c after_a forward pass through image patches 1, . . ., p and pre_{_ _}_activation output Z, using the following equation
+
+- Evidence Text: For each image in the MSCOCO-2017 [23] validation set, where LiMBeR-BEIT produces captions on par with using CLIP as a visual encoder [28], we calculate _gk,c for uk across all layers with respect to the first noun c_ in the generated caption.
+  Strength: strong
+  Location: section 2.4
+  Limitations: The analysis is limited to the first noun in the generated caption.
+  Exact Quote: **Do neurons translate image semantics into related text?**\nWe evaluate the agreement between visual information in an image and the text multimodal neurons inject into the image caption. For each image in the MSCOCO-2017 [23] validation set, where LiMBeR-BEIT produces captions on par with using CLIP as a visual encoder [28], we calculate _gk,c for uk across all layers with respect to the first noun c_ in the generated caption.
+
+- Evidence Text: We measure how well decoded tokens (e.g. horses, racing, ponies, ridden, . . . in Figure 1) correspond with image semantics by computing CLIPScore [17] relative to the input image and BERTScore [45] relative to COCO image annotations (e.g. a cowboy riding a _horse). Table 1 shows that tokens decoded from multimodal neurons perform competitively with GPT image captions on CLIPScore, and outperform a baseline on BERTScore where pairings between images and decoded multimodal neurons are randomized (we introduce this baseline as we do not expect BERTScores for comma-separated token lists to be comparable to GPT captions, e.g. a horse and rider).
+  Strength: strong
+  Location: section 2.4
+  Limitations: The analysis is limited to the top 10 most probable language tokens.
+  Exact Quote: **Do neurons translate image semantics into related text?**\nWe evaluate the agreement between visual information in an image and the text multimodal neurons inject into the image caption. For each image in the MSCOCO-2017 [23] validation set, where LiMBeR-BEIT produces captions on par with using CLIP as a visual encoder [28], we calculate _gk,c for uk across all layers with respect to the first noun c_ in the generated caption. For the 100 uk with highest gk,c for each image, we compute decoder(Wout[k] [)][ to produce a]list of the 10 most probable language tokens uk contributes to the image caption. Restricting analyses to interpretable neurons (where at least 7 of the top 10 tokens are words in the English dictionary containing 3 letters) retains 50% _≥_ of neurons with high gk,c (see examples and further implementation details in the Supplement).
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The claim is supported by moderate to strong evidence, but the analysis is limited to the first noun in the generated caption and the top 10 most probable language tokens.
+Key Limitations: The gradient-based attribution method is a heuristic and may not accurately reflect the true contribution of a neuron.
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Multimodal neurons operate on specific visual concepts across inputs, and have a systematic causal effect on image captioning.
+Location: section 1
+Exact Quote: In a series of experiments, we show that multimodal neurons operate on specific visual concepts across inputs, and have a systematic causal effect on image captioning.
+
+Evidence:
+- Evidence Text: Figure 2 shows example COCO images alongside top scoring multimodal neurons per image, and image regions where the neurons are maximally active.
+  Strength: moderate
+  Location: section 2.4
+  Limitations: The analysis is limited to a small number of example images.
+  Exact Quote: Figure 2 shows example COCO images alongside top scoring multimodal neurons per image, and image regions where the neurons are maximally active.
+
+- Evidence Text: Most top-scoring neurons are found between layers 5 and 10 of GPT-J (L = 28; see Supplement), consistent with the finding from [26] that MLP knowledge contributions occur in earlier layers.
+  Strength: moderate
+  Location: section 2.4
+  Limitations: The analysis is limited to the top-scoring multimodal neurons.
+  Exact Quote: Most top-scoring neurons are found between layers 5 and 10 of GPT-J (L = 28; see Supplement), consistent with the finding from [26] that MLP knowledge contributions occur in earlier layers.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The claim is supported by moderate evidence, but the analysis is limited to a small number of example images and the top-scoring multimodal neurons.
+Key Limitations: The analysis does not provide a comprehensive characterization of the visual concepts operated on by multimodal neurons.
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: A Kolmogorov-Smirnov test shows no significant difference between CLIPScore distributions comparing real decoded prompts and random embeddings to images.
+Location: Results section / paragraph 1
+Exact Quote: A KolmogorovSmirnov test [19, 37] shows no significant difference (D =_.037, p > .5) between CLIPScore distributions comparing_real decoded prompts and random embeddings to images.
+
+Evidence:
+- Evidence Text: The Kolmogorov-Smirnov test statistic (D) is 0.037 and the p-value is greater than 0.5.
+  Strength: strong
+  Location: Results section / paragraph 1
+  Limitations: The test is only performed on a limited number of images.
+  Exact Quote: A KolmogorovSmirnov test [19, 37] shows no significant difference (D =_.037, p > .5) between CLIPScore distributions comparing_real decoded prompts and random embeddings to images.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence is strong and there are no major limitations.
+Key Limitations: The test is only performed on a limited number of images.
+
+--------------------------------------------------
+
+Claim 4:
+Type: result
+Statement: CLIPScores for five COCO nouns per image show significant difference from image prompts.
+Location: Results section / paragraph 1
+Exact Quote: We compute CLIPScores for five COCO nouns per image (sampled from human annotations) which show significant difference (D > .9, p < .001) from image prompts.
+
+Evidence:
+- Evidence Text: The Kolmogorov-Smirnov test statistic (D) is greater than 0.9 and the p-value is less than 0.001.
+  Strength: strong
+  Location: Results section / paragraph 1
+  Limitations: The test is only performed on a limited number of images.
+  Exact Quote: We compute CLIPScores for five COCO nouns per image (sampled from human annotations) which show significant difference (D > .9, p < .001) from image prompts.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence is strong and there are no major limitations.
+Key Limitations: The test is only performed on a limited number of images.
+
+--------------------------------------------------
+
+Claim 5:
+Type: result
+Statement: Real and random prompts are negligibly different in terms of BERTScores relative to human COCO annotations.
+Location: Results section / paragraph 2
+Exact Quote: Real and random prompts are negligibly different, confirming that inputs to GPT-J do not readily encode interpretable semantics.
+
+Evidence:
+- Evidence Text: The BERTScores for real and random prompts are not statistically different.
+  Strength: moderate
+  Location: Results section / paragraph 2
+  Limitations: The test is only performed on a limited number of images.
+  Exact Quote: Real and random prompts are negligibly different, confirming that inputs to GPT-J do not readily encode interpretable semantics.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence is not as strong as the evidence for claims 1 and 2, but it is still supportive.
+Key Limitations: The test is only performed on a limited number of images.
+
+--------------------------------------------------
+
+Claim 6:
+Type: result
+Statement: The receptive fields of multimodal neurons better segment the concept in each image than randomly sampled neurons from the same layers.
+Location: Results section / paragraph 3.2
+Exact Quote: Across 12 COCO categories, the receptive fields of multimodal neurons better segment the concept in each image than randomly sampled neurons in the same layers (Figure 5).
+
+Evidence:
+- Evidence Text: Figure 5 shows that the receptive fields of multimodal neurons overlap more with the ground truth segmentations than the receptive fields of randomly sampled neurons.
+  Strength: strong
+  Location: Results section / paragraph 3.2
+  Limitations: The results are only shown for 12 COCO categories.
+  Exact Quote: Across 12 COCO categories, the receptive fields of multimodal neurons better segment the concept in each image than randomly sampled neurons in the same layers (Figure 5).
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence is strong and there are no major limitations.
+Key Limitations: The results are only shown for 12 COCO categories.
+
+--------------------------------------------------
+
+Claim 7:
+Type: result
+Statement: Ablating multimodal neurons decreases token probability by 80% on average.
+Location: Results section / paragraph 3.3
+Exact Quote: When up to 6400 random units are ablated, we find that the probability of token c is largely unaffected, but ablating the same number of top-scoring units decreases token probability by 80% on average.
+
+Evidence:
+- Evidence Text: Figure 6 shows that ablating top-scoring multimodal neurons leads to a significant decrease in the probability of the corresponding token.
+  Strength: strong
+  Location: Results section / paragraph 3.3
+  Limitations: The results are only shown for a single image.
+  Exact Quote: When up to 6400 random units are ablated, we find that the probability of token c is largely unaffected, but ablating the same number of top-scoring units decreases token probability by 80% on average.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence is strong, but the results are only shown for a single image.
+Key Limitations: The results are only shown for a single image.
+
+--------------------------------------------------
+
+Claim 8:
+Type: result
+Statement: Ablating multimodal neurons leads to significant changes in the semantics of GPT-generated captions.
+Location: Results section / paragraph 3.3
+Exact Quote: Ablating multimodal neurons also leads to significant changes in the semantics of GPT-generated captions.
+
+Evidence:
+- Evidence Text: Figure 6 shows an example of how ablating a multimodal neuron can change the semantics of a GPT-generated caption.
+  Strength: strong
+  Location: Results section / paragraph 3.3
+  Limitations: The results are only shown for a single example.
+  Exact Quote: Ablating multimodal neurons also leads to significant changes in the semantics of GPT-generated captions.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence is strong, but the results are only shown for a single example.
+Key Limitations: The results are only shown for a single example.
+
+--------------------------------------------------
+

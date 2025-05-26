@@ -1,0 +1,372 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": "Codex errs predictably based on input prompt framing, adjusting outputs towards anchors, and mimicking frequent training examples.",
+            "claim_location": "Abstract/Introduction",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Adding irrelevant preceding functions consistently lowers functional accuracy for Codex, by between 22.3 and 30.5 points across different framing lines tested. Models frequently generate the framing line, with Codex doing so 81% of the time.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The study focuses on specific framing lines and their direct inclusion in outputs, which may not fully encompass the range of possible inputs or contexts.",
+                    "location": "Section 3.3.1 & Table 1",
+                    "exact_quote": "We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested. Moreover, both models frequently generate the framing line: 81% of the time for Codex and 70.7% of time for CodeGen."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Prepending anchor functions to prompts, which are similar but contain some errors, decreases functional accuracy and leads to solutions that include error elements from the anchor functions.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The anchoring experiment's conclusions are derived under controlled conditions, potentially limiting the generalizability to real-world scenarios with more complex or nuanced prompts.",
+                    "location": "Section 3.3.2 & Figures 3, 5",
+                    "exact_quote": "Using anchoring as inspiration, we hypothesize that code generation models may adjust their output towards related solutions, when these solutions are included in the prompt. Prepending anchor functions to prompts decreases functional accuracy and solutions often contain elements of the anchor function."
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Codex outputs solutions to related prompts that appear more frequently in the training set, as demonstrated by changing the order of operations in prompts and observing a significant drop in accuracy from 50% to 17% when the conventional order is reversed.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "This evidence is specific to programming tasks involving order of operations, which may not apply to other types of coding problems or general language model behavior.",
+                    "location": "Section 3.3.3",
+                    "exact_quote": "Focusing on Codex, we find that accuracy drops from 50% to 17% when flipping the order from unary-first to binary-first... 75% of the binary-first outputs are the unary-first solution."
+                },
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "Codex utilizes simple-but-incorrect heuristics, significantly dropping accuracy from 100% to 4.4%-4.6% when conflicting function names are added to MathEquation prompts, often generating solutions based on the function name.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The specific context of providing contradictory function names in prompts may not commonly occur in typical use cases, limiting the broader implications of the finding.",
+                    "location": "Section 3.3.4 & Table 2",
+                    "exact_quote": "When we request a conflicting function name, Codex\u2019s accuracy drops from 100% to only 4.4%-4.6%... Codex responds with the function specified in the function name."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.1 & Table 1",
+                "Section 3.3.2 & Figures 3, 5",
+                "Section 3.3.3",
+                "Section 3.3.4 & Table 2"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors concluded that code generation models like OpenAI's Codex exhibit predictable errors based on input framing, adjusting outputs towards anchors included in the prompt, and frequency of exposure to similar examples during training. This is demonstrated through experiments inspired by human cognitive biases, such as the framing effect and anchoring, to show that these models can generate outputs that erroneously rely on irrelevant or misleading aspects of inputs, mirroring cognitive biases observed in humans.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence supporting the conclusion is robust, drawn from a variety of experiments that show a consistent pattern of errors across different cognitive biases being tested. The methodology, including the use of HumanEval prompts and the transformation approach to elicit failures, is designed to minimize bias and assess model behavior in a controlled yet comprehensive manner. The experiments were constructed to closely mirror the conditions under which the models operate in real-world scenarios, enhancing the reliability of the findings.",
+                "limitations": "Limitations include potential biases in the selection of cognitive biases chosen for study, the possibility that not all relevant failure modes were captured, and the generalizability of results across different versions of code generation models or tasks beyond code generation. Additionally, since models evolve rapidly, findings may be specific to the model versions tested.",
+                "conclusion_location": "Section 6 Discussion in 20.pdf"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": "Experimental methodology from cognitive science can help characterize machine learning system behavior.",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Experimental results demonstrate that framing effects and cognitive biases can predictably affect the performance of code generation models, leading to decreased functional accuracy and an increased likelihood of reproducing irrelevant information from prompts.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The results are based on specific models (Codex, CodeGen) and may not generalize to all machine learning systems.",
+                    "location": "Section 3.3.1 Inspiration: Framing effect & Section 3.3 Empirical results",
+                    "exact_quote": "Using the framing effect as inspiration, we hypothesize that code generation models may generate solutions exclusively from irrelevant information in the prompt. To elicit this failure, we transform HumanEval prompts by prepending irrelevant preceding functions... We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested. Moreover, both models frequently generate the framing line: 81% of the time for Codex and 70.7% of time for CodeGen, compared to only 4.5% and 0.0% over untransformed prompts respectively."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "The inclusion of anchors influenced model output towards related-but-incorrect solutions, providing experimental evidence of cognitive bias effects on machine learning model behavior.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Findings are limited to the experimental design and models (Codex and CodeGen) tested.",
+                    "location": "Section 3.3.2 Inspiration: Anchoring & Results Table",
+                    "exact_quote": "Using anchoring as inspiration, we hypothesize that code generation models may adjust their output towards related solutions, when these solutions are included in the prompt... We report the results of our framing experiments in Table 1. We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex. Moreover, both models frequently generate the framing line: 81% of the time for Codex."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.1 Inspiration: Framing effect & Section 3.3 Empirical results",
+                "Section 3.3.2 Inspiration: Anchoring & Results Table"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that experimental methodologies from cognitive science, particularly by leveraging human cognitive biases, can effectively characterize and uncover failure modes of machine learning systems, including large language models like OpenAI's Codex. This approach successfully identifies both existing and high-impact errors within these systems.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence presented in the paper is robust, showcasing a methodical and replicable approach to eliciting errors in AI models. The use of cognitive biases to hypothesize and test potential failure modes is both innovative and effective, as supported by numerous examples and detailed experimental results. The methodology's success across different models and biases underscores its generalizability and strength.",
+                "limitations": "While the methodology is effective in uncovering errors, its reliance on human cognitive biases might not encompass all potential failure modes of machine learning systems. The approach primarily identifies qualitative errors, which may require additional quantitative methods for comprehensive system evaluation. Furthermore, the experiments focus on selected models, which might not fully represent the diversity of machine learning applications.",
+                "conclusion_location": "Abstract, Sections 1, 3.3, 6, and 5"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": "The study presents a method to systematically elicit errors from large language models to understand model behavior.",
+            "claim_location": "Discussion",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The study outlines a method to systematically identify and test for qualitative errors in large language and code generation models, leveraging insights from human cognitive biases to elicit specific model behaviors.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The methodology, while comprehensive, illustrates potential model misuse risks and primarily focuses on identifying errors without offering direct solutions for model improvement.",
+                    "location": "Discussion & Empirical results sections",
+                    "exact_quote": "In this work, we identify and test for classes of errors that open-ended generation systems can make, using cognitive biases as motivation. Our experiments uncover deficiencies of Codex, CodeGen, and GPT-3, and elicit high-impact errors that are challenging to undo."
+                }
+            ],
+            "evidence_locations": [
+                "Discussion & Empirical results sections"
+            ],
+            "conclusion": {
+                "author_conclusion": "The research successfully presents a method that can systematically elicit high-impact errors from large language models by utilizing cognitive biases as a foundation. This method allows for a deeper understanding of model behavior through the identification and testing of potential qualitative failure modes, demonstrating the efficacy of applying cognitive science methodologies to uncover failure modes of complex machine learning systems.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The robustness of the conclusion lies in the method's ability to elicit errors across different models systematically, showcasing the method's adaptability and reliability. Moreover, the approach's grounding in cognitive science principles and its proven effectiveness across multiple instances reinforce the conclusion's strength.",
+                "limitations": "While the evidence is compelling, limitations exist in potential biases introduced through the selection of cognitive biases and the extrapolation of findings to all types of errors and models. Additionally, the method's reliance on human-defined inputs and the inherent unpredictability of model outputs may introduce variability in the findings.",
+                "conclusion_location": "Discussion"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": "Constructing transformations over prompts elicits specific failure modes in AI systems without requiring mechanistic insight.",
+            "claim_location": "Methodology",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Experiments conducted to test the framing effect hypothesis demonstrate that AI models such as Codex and CodeGen are sensitive to irrelevant information included in prompts and make predictable errors, thereby directly supporting the claim.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The study acknowledges limitations like small sample sizes, reliance on prompt templates, and the generation of gibberish outputs in certain cases (41% on average for GPT-3 in an anchoring experiment). These factors may affect the generalizability and interpretability of the results.",
+                    "location": "Section 3.3 Empirical results, Section 6 Discussion, and related experiment sections",
+                    "exact_quote": "We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested. Moreover, both models frequently generate the framing line: 81% of the time for Codex and 70.7% of time for CodeGen, compared to only 4.5% and 0.0% over untransformed prompts respectively. These results suggest that code generation models can erroneously rely on irrelevant information in the prompt in predictable ways."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3 Empirical results, Section 6 Discussion, and related experiment sections"
+            ],
+            "conclusion": {
+                "author_conclusion": "The study concludes that constructing transformations over prompts can successfully elicit specific failure modes in AI systems without necessitating in-depth mechanistic insight into those systems. This conclusion is based on their empirical investigations, which include experiments testing these constructs against cognitive biases within code generation models like OpenAI's Codex and Salesforce's CodeGen.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence provides a strong foundation for the conclusion, demonstrating that the introduction of specific transformations to prompts influences the AI's performance in predictable manners. The experiments were designed to mimic cognitive biases\u2014which are well-documented in humans\u2014and showed that AI systems exhibit similar susceptibilities, thereby underscoring the methodological strength and consistency of the evidence.",
+                "limitations": "The study, while thorough, acknowledges that its approach queries systems as black-boxes, potentially glossing over the nuance of mechanistic insights that could offer deeper understanding. Furthermore, there's an inherent limitation in the generalizability of the findings, given the focus on specific cognitive biases and the use of particular AI models like Codex and CodeGen.",
+                "conclusion_location": "Discussion and Conclusion sections"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": "Adding irrelevant preceding functions to prompts can significantly decrease functional accuracy in code models.",
+            "claim_location": "Empirical results: Framing effect",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Adding irrelevant preceding functions consistently lowers functional accuracy by between 22.3 and 30.5 points for Codex, and framing lines being generated 81% of the time by Codex and 70.7% by CodeGen.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The experiment is limited by the specific framing lines and code generation models tested.",
+                    "location": "Section 3.3.1 Inspiration: Framing effect & Table 1",
+                    "exact_quote": "We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested. Moreover, both models frequently generate the framing line: 81% of the time for Codex and 70.7% of time for CodeGen."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.1 Inspiration: Framing effect & Table 1"
+            ],
+            "conclusion": {
+                "author_conclusion": "The research concludes that code generation models, specifically Codex and CodeGen, are significantly affected by framing effects where irrelevant preceding functions in the prompt lead to decreased functional accuracy and increased reliance on irrelevant information.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The experimental design leveraging multiple framing lines and rigorous comparisons to baseline conditions (original prompts without alterations) provides substantial evidence of the impact of the framing effect on code model performance. The methodology, involving contrasting model behavior with and without the introduction of irrelevant information, strengthens the evidence's reliability.",
+                "limitations": "The study's limitations include a focus on specific models (Codex and CodeGen) and particular types of framing lines, potentially limiting the generalizability of findings across different code generation models or other forms of irrelevant information. Additionally, the contextual dependency of the framing effect (i.e., how framing influences might vary across different kinds of programming tasks or languages) was not explored in depth.",
+                "conclusion_location": "20.pdf: Empirical results: Framing effect"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": "Models frequently generate irrelevant information from the prompt verbatim, indicating reliance on semantically irrelevant information.",
+            "claim_location": "Empirical results: Framing effect",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Adding irrelevant preceding functions lowers functional accuracy and increases verbatim generation of the framing line.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results may not generalize beyond the specific models (Codex and CodeGen) and programming context tested.",
+                    "location": "Section 3.3.1 Inspiration: Framing effect & Results",
+                    "exact_quote": "We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested. Moreover, both models frequently generate the framing line: 81% of the time for Codex and 70.7% of time for CodeGen, compared to only 4.5% and 0.0% over untransformed prompts respectively."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.1 Inspiration: Framing effect & Results"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that code generation models, specifically Codex and CodeGen, often generate irrelevant information from the prompt, effectively demonstrating a reliance on semantically irrelevant information. This conclusion is based on experiments showing a consistent decrease in functional accuracy upon adding irrelevant preceding functions to prompts and a high frequency of these models regenerating the irrelevant framing lines verbatim in their outputs.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust, demonstrating a clear and consistent pattern across multiple framing lines and both models. The methodology of transforming prompts to elicit failure modes, inspired by cognitive biases, effectively reveals the models' reliance on irrelevant information.",
+                "limitations": "A limitation is the possible lack of generalizability across different models or outside the specific experimental conditions. The evidence is derived from models' performance on code generation tasks, which may not fully represent their ability to discern relevance in other contexts.",
+                "conclusion_location": "Empirical results: Framing effect"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": "Prepending anchor functions to prompts reduces Codex and CodeGen's functional accuracy.",
+            "claim_location": "Empirical results: Anchoring",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Prepending irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines tested",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The study measures accuracy reduction and verbatim appearance of framing lines but may not capture all nuances of functional accuracy changes across different contexts",
+                    "location": "Section 3.3.1 & Table 1",
+                    "exact_quote": "adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Prepending anchor functions to prompts leads to a consistent decrease in functional accuracy for both Codex and CodeGen, with elements of the anchor function often appearing in the model outputs",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results may vary with prompt construction or model configuration adjustments, only two types of anchor lines (print-var and add-var) were tested",
+                    "location": "Sections 3.3.2 & Figures 4, 8, Table 5",
+                    "exact_quote": "prepending print-var anchor functions consistently lowers Codex and CodeGens\u2019 functional accuracies across different number of prompted canonical solution lines"
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.1 & Table 1",
+                "Sections 3.3.2 & Figures 4, 8, Table 5"
+            ],
+            "conclusion": {
+                "author_conclusion": "Prepending anchor functions to prompts reliably decreases the functional accuracy of Codex and CodeGen, indicating these models' sensitivity to changes in input that introduce errors or irrelevant information.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence exhibits methodological soundness by using diverse prompts, controlling for variations, and presenting a clear, quantitative decrease in model performance due to the addition of anchor functions. Both the consistency across different types of anchor functions and the significant reduction in functional accuracy highlight the robustness of this conclusion.",
+                "limitations": "The study's reliance on select anchor functions and specific model configurations may limit generalizability. Additionally, while significant, the quantified impact on functional accuracy does not account for the full spectrum of potential real-world coding scenarios or the models' capacity for correct outputs despite the inclusion of anchors.",
+                "conclusion_location": "Empirical results: Anchoring in 20.pdf"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": "Code generation models err by adjusting outputs towards related, but incorrect solutions included in the prompt.",
+            "claim_location": "Discussion of empirical results: Anchoring",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Code generation models adjust their output towards related, but incorrect solutions when such solutions are included in the prompt. This leads to a consistent lowering of functional accuracy demonstrated through anchoring experiments, where anchor functions similar but incorrect were used.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The outcomes are based on experiments within a controlled environment and may not fully encapsulate complex real-world scenarios.",
+                    "location": "Section 3.3.2, Anchoring & Section 3.3.1, Framing Effect",
+                    "exact_quote": "Overall, our findings suggest that code generation models can err by adjusting its output towards related solutions, when the solutions are included in the prompt."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.2, Anchoring & Section 3.3.1, Framing Effect"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors concluded that code generation models, such as Codex and CodeGen, can err by adjusting their outputs towards related but incorrect solutions prompted in the inputs. Evidence suggests that when anchor functions similar to potential solutions but containing errors are prepended to prompts, the models often incorporate elements of these anchor functions into their outputs, thereby lowering functional accuracy and indicating a reliance on the prompted solutions rather than generating correct ones independently.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust, as it comprises quantitative analyses across various prompts and conditions, including control experiments to mitigate potential biases. Methodological strengths include the diverse set of prompts used, control for instructional nature of prompts, and consideration of model output behaviors. The consistency of evidence across different models and types of anchor lines (e.g., 'print-var' and 'add-var') further supports the reliability of the findings.",
+                "limitations": "Specific limitations include potential variability in model behaviors not captured by the experiments and the generalizability of findings across all possible prompt configurations. While the study focuses on Codex and CodeGen, the behaviors of other code generation models under similar conditions remain unexplored. Moreover, the study's setup might not encompass all factors influencing model outputs, such as the complexity of the tasks or the models' training data.",
+                "conclusion_location": "Discussion of empirical results: Anchoring"
+            }
+        },
+        {
+            "claim_id": 9,
+            "claim": "Attraction to simpler outputs results in high-impact errors like erroneous file deletions.",
+            "claim_location": "Section on high-impact errors",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Experiments were conducted to test Codex's generation of outputs based on the complexity of prompts involving file deletion. This resulted in high rates of erroneous file deletions when prompts involved checking for multiple package imports. Specifically, when the number of package imports in the prompt was three or higher, Codex erroneously deleted files on at least 80% of the prompts, showcasing a high impact error due to attraction to simpler outputs.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Experimental setup might not encompass all possible prompt variations, and results are limited to specific conditions tested (e.g., file deletion tasks with varying number of package imports).",
+                    "location": "Section 5 High-Impact Errors, paragraphs 1-4",
+                    "exact_quote": "We find that Codex erroneously deletes files on at least 80% of prompts when the number of package imports is at least three, despite producing a correct output on 90% of prompts when the number of packages is at most two."
+                }
+            ],
+            "evidence_locations": [
+                "Section 5 High-Impact Errors, paragraphs 1-4"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors concluded that the tendency of Codex to favor simpler outputs leads to high-impact errors like erroneous file deletions, especially as the complexity of the task increases (i.e., the number of package imports in a prompt). This supports the hypothesis that Codex may engage in attribute substitution, simplifying complex tasks into subsets that are easier to execute but not equivalent, resulting in incorrect actions.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence supporting the authors' conclusion is robust, relying on controlled experimental conditions that isolate the effect of simpler outputs on error rates. The substantial increase in erroneous file deletions with the complexity of the task provides a clear linkage between the tendency to simplify and the occurrence of high-impact errors.",
+                "limitations": "A limitation in both evidence and conclusion might include the experimental setup's concentration on a specific type of coding task (file deletion) and a particular model (Codex). These factors might limit the generalizability of the findings. Moreover, the authors do not extensively discuss potential variability in Codex's behavior across different versions or configurations.",
+                "conclusion_location": "Section 3.3.4 on high-impact errors"
+            }
+        },
+        {
+            "claim_id": 10,
+            "claim": "Models can err by using simple but incorrect heuristics to generate solutions, leading to a high error rate when faced with conflicting function names.",
+            "claim_location": "Empirical results: Attribute substitution",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Using attribute substitution as inspiration, an experiment was designed to test if Codex uses simple-but-incorrect heuristics by prompting it with conflicting function names in MathEquation prompts and measuring its accuracy and response to the function name versus the desired solution. The experiment used 90 prompts where the desired solution and requested function name differed, finding a significant accuracy drop from 100% to 4.4%-4.6% across conditions when requesting conflicting function names and that Codex frequently generates solutions based on the conflicting function name, indicating it can err by using simple-but-incorrect heuristics.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The study focuses on one model (Codex) and a specific type of prompt (MathEquation with conflicting function names), potentially limiting generalizability.",
+                    "location": "Section 3.3.4 Inspiration: Attribute substitution & experimental results",
+                    "exact_quote": "We evaluate Codex using 90 MathEquation prompts where the desired solution and requested function name differ... Codex's accuracy drops from 100% to only 4.4%-4.6%. This finding holds whether we request the function name in the docstring, write it in the function signature below the docstring, or write the function name over a simple description on the function. Moreover, for between 52% and 80% of prompts, Codex responds with the function specified in the function name. Our results indicate that Codex can err by using simple-but-incorrect heuristics to generate solutions."
+                }
+            ],
+            "evidence_locations": [
+                "Section 3.3.4 Inspiration: Attribute substitution & experimental results"
+            ],
+            "conclusion": {
+                "author_conclusion": "Codex's performance significantly degrades when prompted with conflicting function names, demonstrating its reliance on simple-but-incorrect heuristics for solution generation.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust, coming from systematic testing across 90 MathEquation prompts with varying contexts for naming the function. The consistency across different experimental setups (e.g., placement of the conflicting name in the docstring, function signature) further strengthens the evidence.",
+                "limitations": "A limitation is the focus on Codex and a specific type of error (attribute substitution-inspired). This scope might not capture the full range of heuristics Codex applies in other scenarios. Additionally, the study implicitly assumes that the model's training data and inherent design predispose it to these errors without examining external factors that might mitigate these issues.",
+                "conclusion_location": "Section 3.3.4 Empirical results: Attribute substitution"
+            }
+        },
+        {
+            "claim_id": 11,
+            "claim": "Framework demonstrates the brittleness of completion systems through model-agnostic transformations.",
+            "claim_location": "Discussion",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Framework employs model-agnostic transformations to systematically elicit high-impact errors from code generation models, demonstrating their brittleness.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The study is focused on code generation models and may not generalize to other types of completion systems.",
+                    "location": "Discussion Section",
+                    "exact_quote": "Despite this additional constraint, we are able to construct model-agnostic transformations: we do not use the training data, model parameters, or even output logits. Our success in this restricted setting demonstrates the comparative brittleness of completion systems."
+                }
+            ],
+            "evidence_locations": [
+                "Discussion Section"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that their framework effectively demonstrates the brittleness of code generation systems like Codex, CodeGen, and GPT-3 by using model-agnostic transformations to systematically elicit high-impact errors. The framework allows for the probing of these systems as a black box, identifying deficiencies without needing access to the model's internal data or parameters.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is methodologically sound, utilizing a mix of cognitive science principles and systematic experimental design to test the model's behavior across various failure modes artificially induced through input transformations. The reported examples and empirical results offer a clear view of how these models fail to handle certain types of inputs reliably.",
+                "limitations": "While comprehensive, the study might not elucidate all possible failure modes of the systems tested, as it focuses on a select set of cognitive biases and transformation techniques. Furthermore, the approach might not capture errors that require deeper understanding or context, as it primarily focuses on systematic, measurable failures.",
+                "conclusion_location": "Discussion"
+            }
+        },
+        {
+            "claim_id": 12,
+            "claim": "The research introduces new robustness challenges for developers and highlights potential misuses of models.",
+            "claim_location": "Discussion",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The research identified and tested for classes of errors that open-ended generation systems can make, focusing on cognitive biases to elicit high-impact errors such as erroneous file deletions, demonstrating new robustness challenges for developers.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "While the framework successfully uncovers deficiencies and errors in models like Codex, the approach relies on cognitive biases as a proxy, which may not cover all potential error classes or robustness challenges.",
+                    "location": "Discussion section",
+                    "exact_quote": "Our experiments uncover deficiencies of Codex, CodeGen, and GPT-3, and elicit high-impact errors that are challenging to undo. ... we introduce new robustness challenges for developers and identify misuses of these models, which we feel supersedes this risk."
+                }
+            ],
+            "evidence_locations": [
+                "Discussion section"
+            ],
+            "conclusion": {
+                "author_conclusion": "The research uncovers new challenges in model robustness and potential misuses by systematically eliciting errors from large language models, demonstrating the need for more thorough testing prior to wide deployment. It also introduces a methodological framework inspired by cognitive biases to predict and identify failure modes in code generation models.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence demonstrates a methodologically robust approach to understanding model errors, employing cognitive biases as a heuristic to uncover failure modes. The document details several experimental setups, showing consistent results across different models (Codex, GPT-3) and types of errors, from simple framing effects to complex attribute substitution errors, indicating a significant and reliable method to probe model vulnerabilities.",
+                "limitations": "While the research presents a novel methodology and finds substantial areas of concern, it acknowledges limitations such as the models' black-box nature, and the potential for discovered errors to be exploited in practical scenarios. The study's experimental nature also means that it might not capture all possible failure modes or how these errors manifest in real-world applications beyond the tested scenarios.",
+                "conclusion_location": "Discussion"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "53.01 seconds",
+        "evidence_analysis_time": "242.51 seconds",
+        "conclusions_analysis_time": "285.39 seconds",
+        "total_execution_time": "0.00 seconds"
+    }
+}

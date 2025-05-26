@@ -1,0 +1,128 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Integrated gradients is a new attribution method that requires no modification to original networks and is extremely simple to implement
+Location: Abstract
+Type: Method contribution
+Quote: Our method requires no modification to the original network and is extremely simple to implement; it just needs a few calls to the standard gradient operator.
+
+Evidence:
+- Implementation requires only gradient calls in a loop
+  Strength: strong
+  Location: Section 5: Computing Integrated Gradients
+  Limitations: Implementation details vary by framework
+  Quote: Notice that the approximation simply involves computing the gradient in a for loop which should be straightforward and efficient in most deep learning frameworks.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Implementation simplicity is relative and may still require technical expertise
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: Most known attribution methods do not satisfy two fundamental axioms - Sensitivity and Implementation Invariance
+Location: Abstract
+Type: Finding
+Quote: We identify two fundamental axioms— Sensitivity and Implementation Invariance that attribution methods ought to satisfy. We show that they are not satisfied by most known attribution methods, which we consider to be a fundamental weakness of those methods.
+
+Evidence:
+- Specific examples showing violations of axioms by existing methods
+  Strength: strong
+  Location: Section 2 and Appendix B
+  Limitations: Limited to specific example cases
+  Quote: Unfortunately, Deconvolution networks (DeConvNets), and Guided back-propagation violate Sensitivity(a). [...] Methods like DeepLift and LRP break Implementation Invariance
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Examples focus on specific cases rather than comprehensive analysis of all methods
+Confidence: high
+
+==================================================
+
+Claim 3:
+Statement: Path methods are the only attribution methods that satisfy Implementation Invariance, Sensitivity(b), Linearity, and Completeness
+Location: Section 4.1
+Type: Theoretical result
+Quote: Path methods are the only attribution methods that always satisfy Implementation Invariance, Sensitivity(b), Linearity, and Completeness.
+
+Evidence:
+- Formal proposition about path methods
+  Strength: strong
+  Location: Section 4.1
+  Limitations: Relies on referenced external proof
+  Quote: Proposition 2. (Theorem 1 (Friedman, 2004)) Path methods are the only attribution methods that always satisfy Implementation Invariance, Sensitivity(b), Linearity, and Completeness.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Relies on theoretical proof that requires mathematical expertise to verify
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: Integrated gradients is the unique path method that is symmetry-preserving
+Location: Section 4.2
+Type: Theoretical result
+Quote: Integrated gradients is the unique path method that is symmetry-preserving.
+
+Evidence:
+- Mathematical proof of uniqueness provided
+  Strength: strong
+  Location: Section 4.2 and Appendix A
+  Limitations: None noted
+  Quote: Theorem 1. Integrated gradients is the unique path method that is symmetry-preserving.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Proof assumes mathematical framework established in paper
+Confidence: high
+
+==================================================
+
+Claim 5:
+Statement: The integrated gradients method identified an anomaly in the W1N2 architecture related to identical attribution for different atoms
+Location: Section 6.5
+Type: Finding
+Quote: On applying the integrated gradients method to this network, we found that several atoms in the same molecule received identical attribution despite being bonded to different atoms...On investigating the problem further, in the network architecture, the atoms and atom-pair features were not fully convolved.
+
+Evidence:
+- Description of discovered anomaly in W1N2 architecture
+  Strength: moderate
+  Location: Section 6.5
+  Limitations: Limited technical detail provided
+  Quote: On applying the integrated gradients method to this network, we found that several atoms in the same molecule received identical attribution despite being bonded to different atoms.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Single example of anomaly detection, may not generalize to other architectures
+Confidence: medium
+
+==================================================
+
+Claim 6:
+Statement: Integrated gradients can be efficiently approximated via summation with 20 to 300 steps
+Location: Section 5
+Type: Method property
+Quote: In practice, we find that somewhere between 20 and 300 steps are enough to approximate the integral (within 5%)
+
+Evidence:
+- Empirical finding about number of steps needed
+  Strength: moderate
+  Location: Section 5
+  Limitations: Specific error threshold not always given
+  Quote: In practice, we find that somewhere between 20 and 300 steps are enough to approximate the integral (within 5%)
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Number of steps may vary based on network complexity and desired accuracy
+Confidence: medium
+
+==================================================
+

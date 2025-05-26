@@ -1,0 +1,1846 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "Predicting financial risks of publicly traded companies is an essential task in financial markets.",
+            "location": "Abstract",
+            "claim_type": "Major claim",
+            "exact_quote": "Predicting financial risks of publicly traded companies is an essential task in financial markets."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "Prior research has shown that textual information in a firm’s financial statement can be used to predict its stock’s risk level.",
+            "location": "Abstract",
+            "claim_type": "Minor claim",
+            "exact_quote": "Prior research has shown that textual information in a firm’s financial statement can be used to predict its stock’s risk level."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "Nowadays, firm CEOs communicate information not only verbally through press releases and financial reports, but also nonverbally through investor meetings and earnings conference calls.",
+            "location": "Abstract",
+            "claim_type": "Minor claim",
+            "exact_quote": "Nowadays, firm CEOs communicate information not only verbally through press releases and financial reports, but also nonverbally through investor meetings and earnings conference calls."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "There are anecdotal evidences that CEO’s vocal features, such as emotions and voice tones, can reveal the firm’s performance.",
+            "location": "Abstract",
+            "claim_type": "Minor claim",
+            "exact_quote": "There are anecdotal evidences that CEO’s vocal features, such as emotions and voice tones, can reveal the firm’s performance."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "However, how vocal features can be used to predict risk levels, and to what extent, is still unknown.",
+            "location": "Abstract",
+            "claim_type": "Minor claim",
+            "exact_quote": "However, how vocal features can be used to predict risk levels, and to what extent, is still unknown."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "To fill the gap, we obtain earnings call audio recordings and textual transcripts for S&P 500 companies in recent years.",
+            "location": "Abstract",
+            "claim_type": "Minor claim",
+            "exact_quote": "To fill the gap, we obtain earnings call audio recordings and textual transcripts for S&P 500 companies in recent years."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "We propose a multimodal deep regression model (MDRM) that jointly model CEO’s verbal (from text) and vocal (from audio) information in a conference call.",
+            "location": "Abstract",
+            "claim_type": "Minor claim",
+            "exact_quote": "We propose a multimodal deep regression model (MDRM) that jointly model CEO’s verbal (from text) and vocal (from audio) information in a conference call."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "Empirical results show that our model that jointly considers verbal and vocal features achieves significant and substantial prediction error reduction.",
+            "location": "Abstract",
+            "claim_type": "Minor claim",
+            "exact_quote": "Empirical results show that our model that jointly considers verbal and vocal features achieves significant and substantial prediction error reduction."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "We also discuss several interesting findings and the implications to financial markets.",
+            "location": "Abstract",
+            "claim_type": "Minor claim",
+            "exact_quote": "We also discuss several interesting findings and the implications to financial markets."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "The processed earnings conference calls data (text and audio) are released for readers who are interested in reproducing the results or designing trading strategy.",
+            "location": "Abstract",
+            "claim_type": "Minor claim",
+            "exact_quote": "The processed earnings conference calls data (text and audio) are released for readers who are interested in reproducing the results or designing trading strategy."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "Predicting financial risks of publicly traded companies is of great interest to capital market participants.",
+            "location": "1 Introduction",
+            "claim_type": "Major claim",
+            "exact_quote": "Predicting financial risks of publicly traded companies is of great interest to capital market participants."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "In finance, stock price volatility, which is the standard deviation of a stock’s returns over a period of time, is often used as a measure of financial risks.",
+            "location": "1 Introduction",
+            "claim_type": "Minor claim",
+            "exact_quote": "In finance, stock price volatility, which is the standard deviation of a stock’s returns over a period of time, is often used as a measure of financial risks."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "Unlike directly predicting stock prices, it is uncontroversial in the field of economics that one can predict a stock’s volatility level using publicly available information.",
+            "location": "1 Introduction",
+            "claim_type": "Minor claim",
+            "exact_quote": "Unlike directly predicting stock prices, it is uncontroversial in the field of economics that one can predict a stock’s volatility level using publicly available information."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "Based on this assumption, a burgeoning body of research, both in finance and computational linguistics, has studied predicting stock volatility using various textual sources, including company disclosed reports, public news articles, company earnings call transcripts, and social media.",
+            "location": "1 Introduction",
+            "claim_type": "Minor claim",
+            "exact_quote": "Based on this assumption, a burgeoning body of research, both in finance and computational linguistics, has studied predicting stock volatility using various textual sources, including company disclosed reports, public news articles, company earnings call transcripts, and social media."
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "Thanks to technological advances, massive amounts of unstructured multimedia data, such as investor conference audio records and CEO public speech videos, have been archived and can be accessed by institutional and individual investors.",
+            "location": "1 Introduction",
+            "claim_type": "Minor claim",
+            "exact_quote": "Thanks to technological advances, massive amounts of unstructured multimedia data, such as investor conference audio records and CEO public speech videos, have been archived and can be accessed by institutional and individual investors."
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "There are anecdotal evidences that CEO’s nonverbal features, such as emotions and voice tones, can also be used to reveal firm’s performance.",
+            "location": "1 Introduction",
+            "claim_type": "Minor claim",
+            "exact_quote": "There are anecdotal evidences that CEO’s nonverbal features, such as emotions and voice tones, can also be used to reveal firm’s performance."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "For example, it has been reported that hedge fund companies hire ex-CIA agents trained in reading nonverbal cues to assess public statements by managers.",
+            "location": "1 Introduction",
+            "claim_type": "Minor claim",
+            "exact_quote": "For example, it has been reported that hedge fund companies hire ex-CIA agents trained in reading nonverbal cues to assess public statements by managers."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "While prior research in speech communication has reported that the vocal cues have the power to strengthen or weaken the verbal message, and vocal cues can reflect speaker’s affective states or emotion, little research has studied the interplay of verbal cues (language) and nonverbal cues (voice) and their impact on the financial markets.",
+            "location": "1 Introduction",
+            "claim_type": "Minor claim",
+            "exact_quote": "While prior research in speech communication has reported that the vocal cues have the power to strengthen or weaken the verbal message, and vocal cues can reflect speaker’s affective states or emotion, little research has studied the interplay of verbal cues (language) and nonverbal cues (voice) and their impact on the financial markets."
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "To fill the gap, we choose a novel multimodal learning setting of company earnings conference call.",
+            "location": "1 Introduction",
+            "claim_type": "Minor claim",
+            "exact_quote": "To fill the gap, we choose a novel multimodal learning setting of company earnings conference call."
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "Earnings conference calls are the periodic conference calls company executives hold with outside investors and analysts to discuss financial results and answer questions raised by analysts.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "Earnings conference calls are the periodic conference calls company executives hold with outside investors and analysts to discuss financial results and answer questions raised by analysts."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "An earnings call consists of two sections: an introduction section and a question-and-answer section.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "An earnings call consists of two sections: an introduction section and a question-and-answer section."
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "During the introduction section, executives such as CEOs and CFOs read forward-looking statements and provide their information and interpretation of their firms performance during the quarter.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "During the introduction section, executives such as CEOs and CFOs read forward-looking statements and provide their information and interpretation of their firms performance during the quarter."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "During the question-and-answer section, analysts have the opportunity to request managers to clarify information and solicit additional information that the management team does not disclose in the introduction section.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "During the question-and-answer section, analysts have the opportunity to request managers to clarify information and solicit additional information that the management team does not disclose in the introduction section."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "The National Investor Relations Institute reports that 92% of companies conduct earnings calls.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "The National Investor Relations Institute reports that 92% of companies conduct earnings calls."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "Institutional and individual investors listen to the earnings call and spot the tones of executives that portend good or bad news for the company.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "Institutional and individual investors listen to the earnings call and spot the tones of executives that portend good or bad news for the company."
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "Company earnings conference call can often result in significant stock price moves.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "Company earnings conference call can often result in significant stock price moves."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "For example, Facebook’s stock price dropped over 20% during its nightmare earnings call (second quarter 2018) when the executives said the company expected a revenue growth slowdown in the years ahead.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "For example, Facebook’s stock price dropped over 20% during its nightmare earnings call (second quarter 2018) when the executives said the company expected a revenue growth slowdown in the years ahead."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "In finance and accounting research, Post Earnings Announcement Drift (PEAD) is a well documented phenomenon that a stock’s abnormal returns drift in the direction of an earnings surprise for several weeks following an earnings announcement.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "In finance and accounting research, Post Earnings Announcement Drift (PEAD) is a well documented phenomenon that a stock’s abnormal returns drift in the direction of an earnings surprise for several weeks following an earnings announcement."
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "Moreover, the finance and accounting literature has shown that the stock price moves are largely due to the market reaction to the earnings announcement.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "Moreover, the finance and accounting literature has shown that the stock price moves are largely due to the market reaction to the earnings announcement."
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "The move is most significant during the earnings conference call when the executives start to take analysts questions.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "The move is most significant during the earnings conference call when the executives start to take analysts questions."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "In our work, we focus on using executive’s verbal and nonverbal cues in conference calls to predict stock price volatility for days following the calls.",
+            "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+            "claim_type": "Minor claim",
+            "exact_quote": "In our work, we focus on using executive’s verbal and nonverbal cues in conference calls to predict stock price volatility for days following the calls."
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "Our work is closely related with the following two lines of research: financial risk prediction with multimedia data: It is a received wisdom in economics and finance that one can predict a stock’s risk using historical information.",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "Our work is closely related with the following two lines of research: financial risk prediction with multimedia data: It is a received wisdom in economics and finance that one can predict a stock’s risk using historical information."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "Various work has studied the problem of financial risk prediction using firm financial reports.",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "Various work has studied the problem of financial risk prediction using firm financial reports."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "A pioneer work (Kogan et al., 2009) shows that simple bag-of-words features in firm annual report (Form 10Ks) combined with historical volatility can simply outperform statistical models that is built upon historical volatility only.",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "A pioneer work (Kogan et al., 2009) shows that simple bag-of-words features in firm annual report (Form 10Ks) combined with historical volatility can simply outperform statistical models that is built upon historical volatility only."
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "Other work (Tsai and Wang, 2014; Nopp and Hanbury, 2015; Rekabsaz et al., 2017; Theil et al., 2018; Wang and Hua, 2014) also proposes different document representation methods to predict stock price volatility.",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "Other work (Tsai and Wang, 2014; Nopp and Hanbury, 2015; Rekabsaz et al., 2017; Theil et al., 2018; Wang and Hua, 2014) also proposes different document representation methods to predict stock price volatility."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "To the best of our knowledge, none of existing NLP research on stock volatility prediction considers the usage of vocal features from audio data, especially the interplay between vocal and verbal features.",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "To the best of our knowledge, none of existing NLP research on stock volatility prediction considers the usage of vocal features from audio data, especially the interplay between vocal and verbal features."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "In finance research, only two studies (Mayew and Venkatachalam, 2012; Hobson et al., 2012) have examined the executive voice in earnings calls.",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "In finance research, only two studies (Mayew and Venkatachalam, 2012; Hobson et al., 2012) have examined the executive voice in earnings calls."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "However, they extract CEO’s affective state from a blackbox third-party audio processing software, the validity of which has been seriously questioned (Lacerda, 2012).",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "However, they extract CEO’s affective state from a blackbox third-party audio processing software, the validity of which has been seriously questioned (Lacerda, 2012)."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "Multimodal learning: Despite our financial domain, our approach is relevant to multimodal learning using text and audio.",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "Multimodal learning: Despite our financial domain, our approach is relevant to multimodal learning using text and audio."
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "Recent studies on speech communication have shown that a speaker’s acoustic features, such as voice pitch, amplitude, and intensity, are highly correlated with the speaker’s emotion.",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "Recent studies on speech communication have shown that a speaker’s acoustic features, such as voice pitch, amplitude, and intensity, are highly correlated with the speaker’s emotion."
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "Multimodal learning has drawn attentions for different applications, such as sentiment analysis, image caption generation, suicide risk detection, crime drama understanding, and human trafficking detection.",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "Multimodal learning has drawn attentions for different applications, such as sentiment analysis, image caption generation, suicide risk detection, crime drama understanding, and human trafficking detection."
+        },
+        {
+            "claim_id": 42,
+            "claim_text": "To the best of our knowledge, this work presents the first multimodal deep learning model using text and audio features for a financial markets application.",
+            "location": "3 Related Work",
+            "claim_type": "Minor claim",
+            "exact_quote": "To the best of our knowledge, this work presents the first multimodal deep learning model using text and audio features for a financial markets application."
+        },
+        {
+            "claim_id": 43,
+            "claim_text": "In this section, we present dataset details.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Major claim",
+            "exact_quote": "In this section, we present dataset details."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": "Conference call transcripts have been extensively studied in prior research. However, there is no existing conference call audio dataset.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Conference call transcripts have been extensively studied in prior research. However, there is no existing conference call audio dataset."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "Therefore, we set up our S&P 500 Earnings Conference Calls dataset by acquiring audio records and text transcripts from the following two sources.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Therefore, we set up our S&P 500 Earnings Conference Calls dataset by acquiring audio records and text transcripts from the following two sources."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "Earnings Call Transcripts. The earnings call transcripts are obtained from the website Seeking Alpha.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Earnings Call Transcripts. The earnings call transcripts are obtained from the website Seeking Alpha."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "The transcripts are well labeled, including the name of speaker (executives and analysts) and speech content.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "The transcripts are well labeled, including the name of speaker (executives and analysts) and speech content."
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "Earnings Call Audio. Given each transcript, we download corresponding audio recording from the website EarningsCast.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Earnings Call Audio. Given each transcript, we download corresponding audio recording from the website EarningsCast."
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "The downloaded audio data does not provide any segmentation or labeling for speakers.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "The downloaded audio data does not provide any segmentation or labeling for speakers."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "It is too coarse to extract audio features at the conference call transcript level, and it is also too difficult to segment audio recordings at word level.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "It is too coarse to extract audio features at the conference call transcript level, and it is also too difficult to segment audio recordings at word level."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "Therefore, we analyze each conference call at sentence level.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Therefore, we analyze each conference call at sentence level."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "That is, we want to represent a conference call as a sequence of sentences with corresponding audio clips.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "That is, we want to represent a conference call as a sequence of sentences with corresponding audio clips."
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "Since conference call normally lasts for about one hour, determining, for each sentence of the transcript, the time interval (in the audio file) containing the spoken text of the sentence is quite challenging.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Since conference call normally lasts for about one hour, determining, for each sentence of the transcript, the time interval (in the audio file) containing the spoken text of the sentence is quite challenging."
+        },
+        {
+            "claim_id": 54,
+            "claim_text": "To tackle this challenge, we propose an Iterative Forced Alignment (IFA) algorithm to align each sentence of the transcript with the audio clip containing the spoken text of the sentence.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "To tackle this challenge, we propose an Iterative Forced Alignment (IFA) algorithm to align each sentence of the transcript with the audio clip containing the spoken text of the sentence."
+        },
+        {
+            "claim_id": 55,
+            "claim_text": "Due to space limit, we present the details of IFA in Appendix.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Due to space limit, we present the details of IFA in Appendix."
+        },
+        {
+            "claim_id": 56,
+            "claim_text": "Furthermore, to avoid interference among different speakers, we select only the sentence made by the most spoken executive (usually the CEO).",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Furthermore, to avoid interference among different speakers, we select only the sentence made by the most spoken executive (usually the CEO)."
+        },
+        {
+            "claim_id": 57,
+            "claim_text": "After the forced alignment step, for each sentence in the conference call transcript, we obtain the sentence text as well as its corresponding audio clip.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "After the forced alignment step, for each sentence in the conference call transcript, we obtain the sentence text as well as its corresponding audio clip."
+        },
+        {
+            "claim_id": 58,
+            "claim_text": "Textual Features We use pre-trained word embeddings and calculate the arithmetic mean of word vector in each sentence as the sentence representation.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Textual Features We use pre-trained word embeddings and calculate the arithmetic mean of word vector in each sentence as the sentence representation."
+        },
+        {
+            "claim_id": 59,
+            "claim_text": "We choose the embedding GloVe-300 pre-trained on Wikipedia and Gigaword 5.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "We choose the embedding GloVe-300 pre-trained on Wikipedia and Gigaword 5."
+        },
+        {
+            "claim_id": 60,
+            "claim_text": "Therefore, each sentence is represented as a 300-dimension vector.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Therefore, each sentence is represented as a 300-dimension vector."
+        },
+        {
+            "claim_id": 61,
+            "claim_text": "Audio Features We use Praat to extract vocal features, such as pitch, intensity, jitter, HNR (Harmonic to Noise Ratio) and etc, from audio recordings.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Audio Features We use Praat to extract vocal features, such as pitch, intensity, jitter, HNR (Harmonic to Noise Ratio) and etc, from audio recordings."
+        },
+        {
+            "claim_id": 62,
+            "claim_text": "A total of 27 vocal features are extracted by Praat.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "A total of 27 vocal features are extracted by Praat."
+        },
+        {
+            "claim_id": 63,
+            "claim_text": "In summary, for each sentence in an earnings conference call, we generate a 300-dimension text vector and a 27-dimension audio vector to represent verbal and vocal features separately.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "In summary, for each sentence in an earnings conference call, we generate a 300-dimension text vector and a 27-dimension audio vector to represent verbal and vocal features separately."
+        },
+        {
+            "claim_id": 64,
+            "claim_text": "Data Statistics We build our dataset by acquiring all S&P 500 companies’ quarterly earnings conference calls in 2017.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Data Statistics We build our dataset by acquiring all S&P 500 companies’ quarterly earnings conference calls in 2017."
+        },
+        {
+            "claim_id": 65,
+            "claim_text": "We choose S&P 500 constituent firms as the target for volatility prediction for reasons of importance and tractability.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "We choose S&P 500 constituent firms as the target for volatility prediction for reasons of importance and tractability."
+        },
+        {
+            "claim_id": 66,
+            "claim_text": "Firms in the S&P 500 index encompass roughly three-quarters of the total U.S. market capitalization.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "Firms in the S&P 500 index encompass roughly three-quarters of the total U.S. market capitalization."
+        },
+        {
+            "claim_id": 67,
+            "claim_text": "A total of 2,243 earnings conference calls are downloaded from Seeking Alpha and EarningsCast.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "A total of 2,243 earnings conference calls are downloaded from Seeking Alpha and EarningsCast."
+        },
+        {
+            "claim_id": 68,
+            "claim_text": "We discard conference calls which text-audio alignment is not done properly, using the abovementioned data processing method.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "We discard conference calls which text-audio alignment is not done properly, using the abovementioned data processing method."
+        },
+        {
+            "claim_id": 69,
+            "claim_text": "The final dataset consists of 576 conference calls, with a total number of 88,829 sentences.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "The final dataset consists of 576 conference calls, with a total number of 88,829 sentences."
+        },
+        {
+            "claim_id": 70,
+            "claim_text": "It can be seen that we discard a large proportion of raw data because the audio-text alignment is very noisy and is prone to errors.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "It can be seen that we discard a large proportion of raw data because the audio-text alignment is very noisy and is prone to errors."
+        },
+        {
+            "claim_id": 71,
+            "claim_text": "We release our processed earnings conference calls dataset for readers who are interested in reproducing the results or designing trading strategy.",
+            "location": "4 Earnings Conference Calls Dataset",
+            "claim_type": "Minor claim",
+            "exact_quote": "We release our processed earnings conference calls dataset for readers who are interested in reproducing the results or designing trading strategy."
+        },
+        {
+            "claim_id": 72,
+            "claim_text": "In this section, we formalize the problem as a supervised machine learning task.",
+            "location": "5 Model",
+            "claim_type": "Major claim",
+            "exact_quote": "In this section, we formalize the problem as a supervised machine learning task."
+        },
+        {
+            "claim_id": 73,
+            "claim_text": "The input data is a company’s earnings conference call verbal (textual) features and corresponding vocal (audio) features; This is mapped to a numerical variable which is the company’s stock price volatility following the conference call.",
+            "location": "5 Model",
+            "claim_type": "Minor claim",
+            "exact_quote": "The input data is a company’s earnings conference call verbal (textual) features and corresponding vocal (audio) features; This is mapped to a numerical variable which is the company’s stock price volatility following the conference call."
+        },
+        {
+            "claim_id": 74,
+            "claim_text": "Prior research (Kogan et al., 2009; Rekabsaz et al., 2017) uses only shallow machine learning model (such as logistic regression) and bag-of-words features to represent financial documents.",
+            "location": "5 Model",
+            "claim_type": "Minor claim",
+            "exact_quote": "Prior research (Kogan et al., 2009; Rekabsaz et al., 2017) uses only shallow machine learning model (such as logistic regression) and bag-of-words features to represent financial documents."
+        },
+        {
+            "claim_id": 75,
+            "claim_text": "In other words, the relation and dependencies among the sentences are largely ignored.",
+            "location": "5 Model",
+            "claim_type": "Minor claim",
+            "exact_quote": "In other words, the relation and dependencies among the sentences are largely ignored."
+        },
+        {
+            "claim_id": 76,
+            "claim_text": "However, every sentence in a conference call is spoken at a distinct time and in a particular order.",
+            "location": "5 Model",
+            "claim_type": "Minor claim",
+            "ex
+
+Raw Evidence:
+```json
+{
+    "evidence_sets": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Predicting financial risks of publicly traded companies is an essential task in financial markets.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "Abstract",
+                    "exact_quote": "Predicting financial risks of publicly traded companies is an essential task in financial markets."
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Prior research has shown that textual information in a firm’s financial statement can be used to predict its stock’s risk level.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "Abstract",
+                    "exact_quote": "Prior research has shown that textual information in a firm’s financial statement can be used to predict its stock’s risk level."
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Nowadays, firm CEOs communicate information not only verbally through press releases and financial reports, but also nonverbally through investor meetings and earnings conference calls.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "Abstract",
+                    "exact_quote": "Nowadays, firm CEOs communicate information not only verbally through press releases and financial reports, but also nonverbally through investor meetings and earnings conference calls."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "There are anecdotal evidences that CEO’s vocal features, such as emotions and voice tones, can reveal the firm’s performance.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "Abstract",
+                    "exact_quote": "There are anecdotal evidences that CEO’s vocal features, such as emotions and voice tones, can reveal the firm’s performance."
+                }
+            ]
+        },
+        {
+            "claim_id": 5,
+            "evidence": [
+                {
+                    "evidence_id": 5,
+                    "evidence_text": "However, how vocal features can be used to predict risk levels, and to what extent, is still unknown.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "Abstract",
+                    "exact_quote": "However, how vocal features can be used to predict risk levels, and to what extent, is still unknown."
+                }
+            ]
+        },
+        {
+            "claim_id": 6,
+            "evidence": [
+                {
+                    "evidence_id": 6,
+                    "evidence_text": "To fill the gap, we obtain earnings call audio recordings and textual transcripts for S&P 500 companies in recent years.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "Abstract",
+                    "exact_quote": "To fill the gap, we obtain earnings call audio recordings and textual transcripts for S&P 500 companies in recent years."
+                }
+            ]
+        },
+        {
+            "claim_id": 7,
+            "evidence": [
+                {
+                    "evidence_id": 7,
+                    "evidence_text": "We propose a multimodal deep regression model (MDRM) that jointly model CEO’s verbal (from text) and vocal (from audio) information in a conference call.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "Abstract",
+                    "exact_quote": "We propose a multimodal deep regression model (MDRM) that jointly model CEO’s verbal (from text) and vocal (from audio) information in a conference call."
+                }
+            ]
+        },
+        {
+            "claim_id": 8,
+            "evidence": [
+                {
+                    "evidence_id": 8,
+                    "evidence_text": "Empirical results show that our model that jointly considers verbal and vocal features achieves significant and substantial prediction error reduction.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "Abstract",
+                    "exact_quote": "Empirical results show that our model that jointly considers verbal and vocal features achieves significant and substantial prediction error reduction."
+                }
+            ]
+        },
+        {
+            "claim_id": 9,
+            "evidence": [
+                {
+                    "evidence_id": 9,
+                    "evidence_text": "We also discuss several interesting findings and the implications to financial markets.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "Abstract",
+                    "exact_quote": "We also discuss several interesting findings and the implications to financial markets."
+                }
+            ]
+        },
+        {
+            "claim_id": 10,
+            "evidence": [
+                {
+                    "evidence_id": 10,
+                    "evidence_text": "The processed earnings conference calls data (text and audio) are released for readers who are interested in reproducing the results or designing trading strategy.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "Abstract",
+                    "exact_quote": "The processed earnings conference calls data (text and audio) are released for readers who are interested in reproducing the results or designing trading strategy."
+                }
+            ]
+        },
+        {
+            "claim_id": 11,
+            "evidence": [
+                {
+                    "evidence_id": 11,
+                    "evidence_text": "Predicting financial risks of publicly traded companies is of great interest to capital market participants.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "1 Introduction",
+                    "exact_quote": "Predicting financial risks of publicly traded companies is of great interest to capital market participants."
+                }
+            ]
+        },
+        {
+            "claim_id": 12,
+            "evidence": [
+                {
+                    "evidence_id": 12,
+                    "evidence_text": "In finance, stock price volatility, which is the standard deviation of a stock’s returns over a period of time, is often used as a measure of financial risks.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "1 Introduction",
+                    "exact_quote": "In finance, stock price volatility, which is the standard deviation of a stock’s returns over a period of time, is often used as a measure of financial risks."
+                }
+            ]
+        },
+        {
+            "claim_id": 13,
+            "evidence": [
+                {
+                    "evidence_id": 13,
+                    "evidence_text": "Unlike directly predicting stock prices, it is uncontroversial in the field of economics that one can predict a stock’s volatility level using publicly available information.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "1 Introduction",
+                    "exact_quote": "Unlike directly predicting stock prices, it is uncontroversial in the field of economics that one can predict a stock’s volatility level using publicly available information."
+                }
+            ]
+        },
+        {
+            "claim_id": 14,
+            "evidence": [
+                {
+                    "evidence_id": 14,
+                    "evidence_text": "Based on this assumption, a burgeoning body of research, both in finance and computational linguistics, has studied predicting stock volatility using various textual sources, including company disclosed reports, public news articles, company earnings call transcripts, and social media.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "1 Introduction",
+                    "exact_quote": "Based on this assumption, a burgeoning body of research, both in finance and computational linguistics, has studied predicting stock volatility using various textual sources, including company disclosed reports, public news articles, company earnings call transcripts, and social media."
+                }
+            ]
+        },
+        {
+            "claim_id": 15,
+            "evidence": [
+                {
+                    "evidence_id": 15,
+                    "evidence_text": "Thanks to technological advances, massive amounts of unstructured multimedia data, such as investor conference audio records and CEO public speech videos, have been archived and can be accessed by institutional and individual investors.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "1 Introduction",
+                    "exact_quote": "Thanks to technological advances, massive amounts of unstructured multimedia data, such as investor conference audio records and CEO public speech videos, have been archived and can be accessed by institutional and individual investors."
+                }
+            ]
+        },
+        {
+            "claim_id": 16,
+            "evidence": [
+                {
+                    "evidence_id": 16,
+                    "evidence_text": "There are anecdotal evidences that CEO’s nonverbal features, such as emotions and voice tones, can also be used to reveal firm’s performance.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "1 Introduction",
+                    "exact_quote": "There are anecdotal evidences that CEO’s nonverbal features, such as emotions and voice tones, can also be used to reveal firm’s performance."
+                }
+            ]
+        },
+        {
+            "claim_id": 17,
+            "evidence": [
+                {
+                    "evidence_id": 17,
+                    "evidence_text": "For example, it has been reported that hedge fund companies hire ex-CIA agents trained in reading nonverbal cues to assess public statements by managers.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "1 Introduction",
+                    "exact_quote": "For example, it has been reported that hedge fund companies hire ex-CIA agents trained in reading nonverbal cues to assess public statements by managers."
+                }
+            ]
+        },
+        {
+            "claim_id": 18,
+            "evidence": [
+                {
+                    "evidence_id": 18,
+                    "evidence_text": "While prior research in speech communication has reported that the vocal cues have the power to strengthen or weaken the verbal message, and vocal cues can reflect speaker’s affective states or emotion, little research has studied the interplay of verbal cues (language) and nonverbal cues (voice) and their impact on the financial markets.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "1 Introduction",
+                    "exact_quote": "While prior research in speech communication has reported that the vocal cues have the power to strengthen or weaken the verbal message, and vocal cues can reflect speaker’s affective states or emotion, little research has studied the interplay of verbal cues (language) and nonverbal cues (voice) and their impact on the financial markets."
+                }
+            ]
+        },
+        {
+            "claim_id": 19,
+            "evidence": [
+                {
+                    "evidence_id": 19,
+                    "evidence_text": "To fill the gap, we choose a novel multimodal learning setting of company earnings conference call.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "1 Introduction",
+                    "exact_quote": "To fill the gap, we choose a novel multimodal learning setting of company earnings conference call."
+                }
+            ]
+        },
+        {
+            "claim_id": 20,
+            "evidence": [
+                {
+                    "evidence_id": 20,
+                    "evidence_text": "Earnings conference calls are the periodic conference calls company executives hold with outside investors and analysts to discuss financial results and answer questions raised by analysts.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "Earnings conference calls are the periodic conference calls company executives hold with outside investors and analysts to discuss financial results and answer questions raised by analysts."
+                }
+            ]
+        },
+        {
+            "claim_id": 21,
+            "evidence": [
+                {
+                    "evidence_id": 21,
+                    "evidence_text": "An earnings call consists of two sections: an introduction section and a question-and-answer section.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "An earnings call consists of two sections: an introduction section and a question-and-answer section."
+                }
+            ]
+        },
+        {
+            "claim_id": 22,
+            "evidence": [
+                {
+                    "evidence_id": 22,
+                    "evidence_text": "During the introduction section, executives such as CEOs and CFOs read forward-looking statements and provide their information and interpretation of their firms performance during the quarter.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "During the introduction section, executives such as CEOs and CFOs read forward-looking statements and provide their information and interpretation of their firms performance during the quarter."
+                }
+            ]
+        },
+        {
+            "claim_id": 23,
+            "evidence": [
+                {
+                    "evidence_id": 23,
+                    "evidence_text": "During the question-and-answer section, analysts have the opportunity to request managers to clarify information and solicit additional information that the management team does not disclose in the introduction section.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "During the question-and-answer section, analysts have the opportunity to request managers to clarify information and solicit additional information that the management team does not disclose in the introduction section."
+                }
+            ]
+        },
+        {
+            "claim_id": 24,
+            "evidence": [
+                {
+                    "evidence_id": 24,
+                    "evidence_text": "The National Investor Relations Institute reports that 92% of companies conduct earnings calls.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "The National Investor Relations Institute reports that 92% of companies conduct earnings calls."
+                }
+            ]
+        },
+        {
+            "claim_id": 25,
+            "evidence": [
+                {
+                    "evidence_id": 25,
+                    "evidence_text": "Institutional and individual investors listen to the earnings call and spot the tones of executives that portend good or bad news for the company.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "Institutional and individual investors listen to the earnings call and spot the tones of executives that portend good or bad news for the company."
+                }
+            ]
+        },
+        {
+            "claim_id": 26,
+            "evidence": [
+                {
+                    "evidence_id": 26,
+                    "evidence_text": "Company earnings conference call can often result in significant stock price moves.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "Company earnings conference call can often result in significant stock price moves."
+                }
+            ]
+        },
+        {
+            "claim_id": 27,
+            "evidence": [
+                {
+                    "evidence_id": 27,
+                    "evidence_text": "For example, Facebook’s stock price dropped over 20% during its nightmare earnings call (second quarter 2018) when the executives said the company expected a revenue growth slowdown in the years ahead.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "For example, Facebook’s stock price dropped over 20% during its nightmare earnings call (second quarter 2018) when the executives said the company expected a revenue growth slowdown in the years ahead."
+                }
+            ]
+        },
+        {
+            "claim_id": 28,
+            "evidence": [
+                {
+                    "evidence_id": 28,
+                    "evidence_text": "In finance and accounting research, Post Earnings Announcement Drift (PEAD) is a well documented phenomenon that a stock’s abnormal returns drift in the direction of an earnings surprise for several weeks following an earnings announcement.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "In finance and accounting research, Post Earnings Announcement Drift (PEAD) is a well documented phenomenon that a stock’s abnormal returns drift in the direction of an earnings surprise for several weeks following an earnings announcement."
+                }
+            ]
+        },
+        {
+            "claim_id": 29,
+            "evidence": [
+                {
+                    "evidence_id": 29,
+                    "evidence_text": "Moreover, the finance and accounting literature has shown that the stock price moves are largely due to the market reaction to the earnings announcement.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "Moreover, the finance and accounting literature has shown that the stock price moves are largely due to the market reaction to the earnings announcement."
+                }
+            ]
+        },
+        {
+            "claim_id": 30,
+            "evidence": [
+                {
+                    "evidence_id": 30,
+                    "evidence_text": "The move is most significant during the earnings conference call when the executives start to take analysts questions.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "The move is most significant during the earnings conference call when the executives start to take analysts questions."
+                }
+            ]
+        },
+        {
+            "claim_id": 31,
+            "evidence": [
+                {
+                    "evidence_id": 31,
+                    "evidence_text": "In our work, we focus on using executive’s verbal and nonverbal cues in conference calls to predict stock price volatility for days following the calls.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "2 Earnings Conference Call and Post Earnings Announcement Drift (PEAD)",
+                    "exact_quote": "In our work, we focus on using executive’s verbal and nonverbal cues in conference calls to predict stock price volatility for days following the calls."
+                }
+            ]
+        },
+        {
+            "claim_id": 32,
+            "evidence": [
+                {
+                    "evidence_id": 32,
+                    "evidence_text": "Our work is closely related with the following two lines of research: financial risk prediction with multimedia data: It is a received wisdom in economics and finance that one can predict a stock’s risk using historical information.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "Our work is closely related with the following two lines of research: financial risk prediction with multimedia data: It is a received wisdom in economics and finance that one can predict a stock’s risk using historical information."
+                }
+            ]
+        },
+        {
+            "claim_id": 33,
+            "evidence": [
+                {
+                    "evidence_id": 33,
+                    "evidence_text": "Various work has studied the problem of financial risk prediction using firm financial reports.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "Various work has studied the problem of financial risk prediction using firm financial reports."
+                }
+            ]
+        },
+        {
+            "claim_id": 34,
+            "evidence": [
+                {
+                    "evidence_id": 34,
+                    "evidence_text": "A pioneer work (Kogan et al., 2009) shows that simple bag-of-words features in firm annual report (Form 10Ks) combined with historical volatility can simply outperform statistical models that is built upon historical volatility only.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "A pioneer work (Kogan et al., 2009) shows that simple bag-of-words features in firm annual report (Form 10Ks) combined with historical volatility can simply outperform statistical models that is built upon historical volatility only."
+                }
+            ]
+        },
+        {
+            "claim_id": 35,
+            "evidence": [
+                {
+                    "evidence_id": 35,
+                    "evidence_text": "Other work (Tsai and Wang, 2014; Nopp and Hanbury, 2015; Rekabsaz et al., 2017; Theil et al., 2018; Wang and Hua, 2014) also proposes different document representation methods to predict stock price volatility.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "Other work (Tsai and Wang, 2014; Nopp and Hanbury, 2015; Rekabsaz et al., 2017; Theil et al., 2018; Wang and Hua, 2014) also proposes different document representation methods to predict stock price volatility."
+                }
+            ]
+        },
+        {
+            "claim_id": 36,
+            "evidence": [
+                {
+                    "evidence_id": 36,
+                    "evidence_text": "To the best of our knowledge, none of existing NLP research on stock volatility prediction considers the usage of vocal features from audio data, especially the interplay between vocal and verbal features.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "To the best of our knowledge, none of existing NLP research on stock volatility prediction considers the usage of vocal features from audio data, especially the interplay between vocal and verbal features."
+                }
+            ]
+        },
+        {
+            "claim_id": 37,
+            "evidence": [
+                {
+                    "evidence_id": 37,
+                    "evidence_text": "In finance research, only two studies (Mayew and Venkatachalam, 2012; Hobson et al., 2012) have examined the executive voice in earnings calls.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "In finance research, only two studies (Mayew and Venkatachalam, 2012; Hobson et al., 2012) have examined the executive voice in earnings calls."
+                }
+            ]
+        },
+        {
+            "claim_id": 38,
+            "evidence": [
+                {
+                    "evidence_id": 38,
+                    "evidence_text": "However, they extract CEO’s affective state from a blackbox third-party audio processing software, the validity of which has been seriously questioned (Lacerda, 2012).",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "However, they extract CEO’s affective state from a blackbox third-party audio processing software, the validity of which has been seriously questioned (Lacerda, 2012)."
+                }
+            ]
+        },
+        {
+            "claim_id": 39,
+            "evidence": [
+                {
+                    "evidence_id": 39,
+                    "evidence_text": "Multimodal learning: Despite our financial domain, our approach is relevant to multimodal learning using text and audio.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "Multimodal learning: Despite our financial domain, our approach is relevant to multimodal learning using text and audio."
+                }
+            ]
+        },
+        {
+            "claim_id": 40,
+            "evidence": [
+                {
+                    "evidence_id": 40,
+                    "evidence_text": "Recent studies on speech communication have shown that a speaker’s acoustic features, such as voice pitch, amplitude, and intensity, are highly correlated with the speaker’s emotion.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "Recent studies on speech communication have shown that a speaker’s acoustic features, such as voice pitch, amplitude, and intensity, are highly correlated with the speaker’s emotion."
+                }
+            ]
+        },
+        {
+            "claim_id": 41,
+            "evidence": [
+                {
+                    "evidence_id": 41,
+                    "evidence_text": "Multimodal learning has drawn attentions for different applications, such as sentiment analysis, image caption generation, suicide risk detection, crime drama understanding, and human trafficking detection.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "Multimodal learning has drawn attentions for different applications, such as sentiment analysis, image caption generation, suicide risk detection, crime drama understanding, and human trafficking detection."
+                }
+            ]
+        },
+        {
+            "claim_id": 42,
+            "evidence": [
+                {
+                    "evidence_id": 42,
+                    "evidence_text": "To the best of our knowledge, this work presents the first multimodal deep learning model using text and audio features for a financial markets application.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "3 Related Work",
+                    "exact_quote": "To the best of our knowledge, this work presents the first multimodal deep learning model using text and audio features for a financial markets application."
+                }
+            ]
+        },
+        {
+            "claim_id": 43,
+            "evidence": [
+                {
+                    "evidence_id": 43,
+                    "evidence_text": "In this section, we present dataset details.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "In this section, we present dataset details."
+                }
+            ]
+        },
+        {
+            "claim_id": 44,
+            "evidence": [
+                {
+                    "evidence_id": 44,
+                    "evidence_text": "Conference call transcripts have been extensively studied in prior research. However, there is no existing conference call audio dataset.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "Conference call transcripts have been extensively studied in prior research. However, there is no existing conference call audio dataset."
+                }
+            ]
+        },
+        {
+            "claim_id": 45,
+            "evidence": [
+                {
+                    "evidence_id": 45,
+                    "evidence_text": "Therefore, we set up our S&P 500 Earnings Conference Calls dataset by acquiring audio records and text transcripts from the following two sources.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "Therefore, we set up our S&P 500 Earnings Conference Calls dataset by acquiring audio records and text transcripts from the following two sources."
+                }
+            ]
+        },
+        {
+            "claim_id": 46,
+            "evidence": [
+                {
+                    "evidence_id": 46,
+                    "evidence_text": "Earnings Call Transcripts. The earnings call transcripts are obtained from the website Seeking Alpha.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "Earnings Call Transcripts. The earnings call transcripts are obtained from the website Seeking Alpha."
+                }
+            ]
+        },
+        {
+            "claim_id": 47,
+            "evidence": [
+                {
+                    "evidence_id": 47,
+                    "evidence_text": "The transcripts are well labeled, including the name of speaker (executives and analysts) and speech content.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "The transcripts are well labeled, including the name of speaker (executives and analysts) and speech content."
+                }
+            ]
+        },
+        {
+            "claim_id": 48,
+            "evidence": [
+                {
+                    "evidence_id": 48,
+                    "evidence_text": "Earnings Call Audio. Given each transcript, we download corresponding audio recording from the website EarningsCast.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "Earnings Call Audio. Given each transcript, we download corresponding audio recording from the website EarningsCast."
+                }
+            ]
+        },
+        {
+            "claim_id": 49,
+            "evidence": [
+                {
+                    "evidence_id": 49,
+                    "evidence_text": "The downloaded audio data does not provide any segmentation or labeling for speakers.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "The downloaded audio data does not provide any segmentation or labeling for speakers."
+                }
+            ]
+        },
+        {
+            "claim_id": 50,
+            "evidence": [
+                {
+                    "evidence_id": 50,
+                    "evidence_text": "It is too coarse to extract audio features at the conference call transcript level, and it is also too difficult to segment audio recordings at word level.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "It is too coarse to extract audio features at the conference call transcript level, and it is also too difficult to segment audio recordings at word level."
+                }
+            ]
+        },
+        {
+            "claim_id": 51,
+            "evidence": [
+                {
+                    "evidence_id": 51,
+                    "evidence_text": "Therefore, we analyze each conference call at sentence level.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "Therefore, we analyze each conference call at sentence level."
+                }
+            ]
+        },
+        {
+            "claim_id": 52,
+            "evidence": [
+                {
+                    "evidence_id": 52,
+                    "evidence_text": "That is, we want to represent a conference call as a sequence of sentences with corresponding audio clips.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "That is, we want to represent a conference call as a sequence of sentences with corresponding audio clips."
+                }
+            ]
+        },
+        {
+            "claim_id": 53,
+            "evidence": [
+                {
+                    "evidence_id": 53,
+                    "evidence_text": "Since conference call normally lasts for about one hour, determining, for each sentence of the transcript, the time interval (in the audio file) containing the spoken text of the sentence is quite challenging.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "Since conference call normally lasts for about one hour, determining, for each sentence of the transcript, the time interval (in the audio file) containing the spoken text of the sentence is quite challenging."
+                }
+            ]
+        },
+        {
+            "claim_id": 54,
+            "evidence": [
+                {
+                    "evidence_id": 54,
+                    "evidence_text": "To tackle this challenge, we propose an Iterative Forced Alignment (IFA) algorithm to align each sentence of the transcript with the audio clip containing the spoken text of the sentence.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "To tackle this challenge, we propose an Iterative Forced Alignment (IFA) algorithm to align each sentence of the transcript with the audio clip containing the spoken text of the sentence."
+                }
+            ]
+        },
+        {
+            "claim_id": 55,
+            "evidence": [
+                {
+                    "evidence_id": 55,
+                    "evidence_text": "Due to space limit, we present the details of IFA in Appendix.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "Due to space limit, we present the details of IFA in Appendix."
+                }
+            ]
+        },
+        {
+            "claim_id": 56,
+            "evidence": [
+                {
+                    "evidence_id": 56,
+                    "evidence_text": "Furthermore, to avoid interference among different speakers, we select only the sentence made by the most spoken executive (usually the CEO).",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "Furthermore, to avoid interference among different speakers, we select only the sentence made by the most spoken executive (usually the CEO)."
+                }
+            ]
+        },
+        {
+            "claim_id": 57,
+            "evidence": [
+                {
+                    "evidence_id": 57,
+                    "evidence_text": "After the forced alignment step, for each sentence in the conference call transcript, we obtain the sentence text as well as its corresponding audio clip.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "After the forced alignment step, for each sentence in the conference call transcript, we obtain the sentence text as well as its corresponding audio clip."
+                }
+            ]
+        },
+        {
+            "claim_id": 58,
+            "evidence": [
+                {
+                    "evidence_id": 58,
+                    "evidence_text": "Textual Features We use pre-trained word embeddings and calculate the arithmetic mean of word vector in each sentence as the sentence representation.",
+                    "strength": "strong",
+                    "limitations": "N/A",
+                    "location": "4 Earnings Conference Calls Dataset",
+                    "exact_quote": "Textual Features We use pre-trained word embeddings and calculate the arithmetic mean of word vector in each sentence as the sentence representation."
+                }
+            ]
+        },
+        {
+            "claim_id": 59,
+            "evidence": [
+                {
+                    "evidence_id": 59,
+                    "evidence_text": "We choose the embedding GloVe-300 pre-trained on Wikipedia and Gigaword 5.",
+                    "str
+
+Structured Conclusions:
+[
+  {
+    "claim_id": 1,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 2,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 3,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 4,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 5,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 6,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 7,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 8,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 9,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 10,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 11,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 12,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 13,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 14,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 15,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 16,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 17,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 18,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 19,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 20,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 21,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 22,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 23,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 24,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 25,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 26,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 27,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 28,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 29,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 30,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 31,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 32,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 33,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 34,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 35,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 36,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 37,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 38,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 39,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 40,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 41,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 42,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 43,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 44,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 45,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 46,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 47,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 48,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 49,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 50,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 51,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 52,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 53,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 54,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 55,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 56,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 57,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 58,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 59,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 60,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 61,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 62,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 63,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 64,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 65,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 66,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 67,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 68,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 69,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 70,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 71,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 72,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 73,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 74,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 75,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 76,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "N/A",
+    "confidence_level": "high"
+  }
+]
+
+
+Execution Times:
+claims_analysis_time: 293.78 seconds
+evidence_analysis_time: 331.66 seconds
+conclusions_analysis_time: 187.39 seconds
+total_execution_time: 814.84 seconds

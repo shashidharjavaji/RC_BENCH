@@ -1,0 +1,66 @@
+Claim 1:
+Type: performance
+Statement: EUREKA achieves human-level performance on reward design across a diverse suite of 29 open-sourced RL environments that include 10 distinct robot morphologies, including quadruped, quadcopter, biped, manipulator, as well as several dexterous hands; see Fig. 1. Without any task-specific prompting or reward templates, EUREKA autonomously generates rewards that outperform expert human rewards on 83% of the tasks and realizes an average normalized improvement of 52%.
+Location: 1 INTRODUCTION
+Exact Quote: EUREKA achieves human-level performance on reward design across a diverse suite of 29 open-sourced RL environments that include 10 distinct robot morphologies, including quadruped, quadcopter, biped, manipulator, as well as several dexterous hands; see Fig. 1. Without any task-specific prompting or reward templates, EUREKA autonomously generates rewards that outperform expert human rewards on 83% of the tasks and realizes an average normalized improvement of 52%.
+
+Evidence:
+- Evidence Text: EUREKA outperforms human rewards. In Figure 4, we report the aggregate results on Dexterity and Isaac. Notably, EUREKA exceeds or performs on par to human level on all Isaac tasks and 15 out of 20 tasks on Dexterity (see App. F for a per-task breakdown). In contrast, L2R, while comparable on low-dimensional tasks (e.g., CartPole, BallBalance), lags significantly behind on high-dimensional tasks. Despite being provided access to some of the same reward components as Human, L2R still underperforms EUREKA after its initial iteration, when both methods have had the same number of reward queries. As expected, L2R’s lack of expressivity severely limits its performance. In contrast, EUREKA generates free-form rewards from scratch without any domain-specific knowledge and performs substantially better. In App. F, we present results on additional evaluation metrics such as interquantile mean (IQM), probability of improvement (Agarwal et al., 2021), and the aggregate RL training curves; on all evaluations, we observe the consistent trend that EUREKA generates the most capable reward functions.
+  Strength: strong
+  Location: 4.3 RESULTS
+  Limitations: None
+  Exact Quote: EUREKA outperforms human rewards. In Figure 4, we report the aggregate results on Dexterity and Isaac. Notably, EUREKA exceeds or performs on par to human level on all Isaac tasks and 15 out of 20 tasks on Dexterity (see App. F for a per-task breakdown). In contrast, L2R, while comparable on low-dimensional tasks (e.g., CartPole, BallBalance), lags significantly behind on high-dimensional tasks. Despite being provided access to some of the same reward components as Human, L2R still underperforms EUREKA after its initial iteration, when both methods have had the same number of reward queries. As expected, L2R’s lack of expressivity severely limits its performance. In contrast, EUREKA generates free-form rewards from scratch without any domain-specific knowledge and performs substantially better. In App. F, we present results on additional evaluation metrics such as interquantile mean (IQM), probability of improvement (Agarwal et al., 2021), and the aggregate RL training curves; on all evaluations, we observe the consistent trend that EUREKA generates the most capable reward functions.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by multiple experimental results showing EUREKA's superior performance over human rewards and L2R across various tasks and environments.
+Key Limitations: None
+
+--------------------------------------------------
+
+Claim 2:
+Type: contribution
+Statement: EUREKA solves dexterous manipulation tasks that were previously not feasible by manual reward engineering. We consider pen spinning, in which a five-finger hand needs to rapidly rotate a pen in pre-defined spinning configurations for as many cycles as possible. Combining EUREKA with curriculum learning, we demonstrate for the first time rapid pen spinning maneuvers on a simulated anthropomorphic Shadow Hand (see Figure 1 bottom).
+Location: 1 INTRODUCTION
+Exact Quote: EUREKA solves dexterous manipulation tasks that were previously not feasible by manual reward engineering. We consider pen spinning, in which a five-finger hand needs to rapidly rotate a pen in pre-defined spinning configurations for as many cycles as possible. Combining EUREKA with curriculum learning, we demonstrate for the first time rapid pen spinning maneuvers on a simulated anthropomorphic Shadow Hand (see Figure 1 bottom).
+
+Evidence:
+- Evidence Text: EUREKA with curriculum learning enables dexterous pen spinning. Finally, we investigate whether EUREKA can be used to solve a truly novel and challenging dexterous task. To this end, we propose pen spinning as a test bed. This task is highly dynamic and requires a Shadow Hand to continuously rotate a pen to achieve some pre-defined spinning patterns for as many cycles as possible; we implement this task on top of the original Shadow Hand environment in Isaac Gym without changes to any physics parameter, ensuring physical realism. We consider a curriculum learning (Bengio et al., 2009) approach to break down the task into manageable components that can be independently solved by EUREKA. Specifically, we first use EUREKA to generate a reward for the task of re-orienting the pen to random target configurations and train a policy using the final EUREKA reward. Then, using this pre-trained policy (Pre-Trained), we fine-tune it using the same EUREKA reward to reach the sequence of pen-spinning configurations (Fine-Tuned). To demonstrate the importance of curriculum learning, we also directly train a policy from scratch on the target task using EUREKA reward without the first-stage pre-training (Scratch). The RL training curves are shown in Figure 7. Eureka fine-tuning quickly adapts the policy to successfully spin the pen for many cycles in a row; see project website for videos. In contrast, neither pre-trained or learning-from-scratch policies can complete even a single cycle of pen spinning.
+  Strength: strong
+  Location: 4.3 RESULTS
+  Limitations: None
+  Exact Quote: EUREKA with curriculum learning enables dexterous pen spinning. Finally, we investigate whether EUREKA can be used to solve a truly novel and challenging dexterous task. To this end, we propose pen spinning as a test bed. This task is highly dynamic and requires a Shadow Hand to continuously rotate a pen to achieve some pre-defined spinning patterns for as many cycles as possible; we implement this task on top of the original Shadow Hand environment in Isaac Gym without changes to any physics parameter, ensuring physical realism. We consider a curriculum learning (Bengio et al., 2009) approach to break down the task into manageable components that can be independently solved by EUREKA. Specifically, we first use EUREKA to generate a reward for the task of re-orienting the pen to random target configurations and train a policy using the final EUREKA reward. Then, using this pre-trained policy (Pre-Trained), we fine-tune it using the same EUREKA reward to reach the sequence of pen-spinning configurations (Fine-Tuned). To demonstrate the importance of curriculum learning, we also directly train a policy from scratch on the target task using EUREKA reward without the first-stage pre-training (Scratch). The RL training curves are shown in Figure 7. Eureka fine-tuning quickly adapts the policy to successfully spin the pen for many cycles in a row; see project website for videos. In contrast, neither pre-trained or learning-from-scratch policies can complete even a single cycle of pen spinning.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by experimental results demonstrating EUREKA's ability to solve dexterous manipulation tasks, including pen spinning, using curriculum learning.
+Key Limitations: None
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: EUREKA enables a new gradient-free in-context learning approach to reinforcement learning from human feedback (RLHF) that can readily incorporate various types of human inputs to generate more performant and human-aligned reward functions.
+Location: 1 INTRODUCTION
+Exact Quote: EUREKA enables a new gradient-free in-context learning approach to reinforcement learning from human feedback (RLHF) that can readily incorporate various types of human inputs to generate more performant and human-aligned reward functions.
+
+Evidence:
+- Evidence Text: EUREKA can improve and benefit from human reward functions. We study whether starting with a human reward function initialization, a common scenario in real-world RL applications, is advantageous for EUREKA. Importantly, incorporating human initialization requires no modification to EUREKA – we can simply substitute the raw human reward function as the output of the first EUREKA iteration. To investigate this, we select several tasks from dexterous skills. Dexterity that differ in the relative performances between the original EUREKA and human rewards. The full results are shown in Figure 8.
+  Strength: strong
+  Location: 4.4 EUREKA FROM HUMAN FEEDBACK
+  Limitations: None
+  Exact Quote: EUREKA can improve and benefit from human reward functions. We study whether starting with a human reward function initialization, a common scenario in real-world RL applications, is advantageous for EUREKA. Importantly, incorporating human initialization requires no modification to EUREKA – we can simply substitute the raw human reward function as the output of the first EUREKA iteration. To investigate this, we select several tasks from dexterous skills. Dexterity that differ in the relative performances between the original EUREKA and human rewards. The full results are shown in Figure 8.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is supported by experimental results demonstrating EUREKA's ability to improve and benefit from human reward functions.
+Key Limitations: None
+
+--------------------------------------------------
+

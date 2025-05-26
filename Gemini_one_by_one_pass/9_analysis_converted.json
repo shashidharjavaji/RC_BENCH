@@ -1,0 +1,140 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "QRNCA is an architecture-agnostic framework capable of identifying query-relevant neurons in contemporary autoregressive LLMs.",
+                "type": "",
+                "location": "Introduction",
+                "exact_quote": "QRNCA is an architecture-agnostic framework capable of identifying query-relevant neurons in contemporary autoregressive LLMs."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "QRNCA is an architecture-agnostic framework capable of identifying query-relevant neurons in contemporary autoregressive LLMs",
+                    "strength": "strong",
+                    "limitations": "assumes that the autoregressive LLMs are query-relevant",
+                    "location": "Introduction, Section 1",
+                    "exact_quote": "QRNCA is an architecture-agnostic framework capable of identifying query-relevant neurons in contemporary autoregressive LLMs."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "",
+                "justification": "",
+                "key_limitations": "",
+                "confidence_level": ""
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "QRNCA can handle long-form text generation tasks effectively.",
+                "type": "",
+                "location": "Introduction",
+                "exact_quote": "To deal with long-form texts, we advocate for the transformation of questions and their corresponding answers into a multiple-choice framework, as illustrated in Figure 1."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Our framework employs the proxy task of multi-choice question answering to deal with long-form texts.",
+                    "strength": "strong",
+                    "limitations": "None stated",
+                    "location": "Section 4.1, Paragraph 2",
+                    "exact_quote": "To deal with long-form texts, we advocate for the transformation of questions and their corresponding answers into a multiple-choice framework, as illustrated in Figure 1. This approach involves the generation of incorrect options by randomly sampling answers within the same domain. Following this, the LLM is prompted to produce only the option letter. Subsequently, we investigate the neurons correlated with the input query."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "",
+                "justification": "",
+                "key_limitations": "",
+                "confidence_level": ""
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "There are visible localized regions in Llama for different domains, particularly within different subject domains.",
+                "type": "",
+                "location": "Results: Are There Localized Regions in LLMs?",
+                "exact_quote": "Figure 4 displays the geographical locations of QR neurons in Llama-2-7B across various academic domains and languages."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Figure 4 displays the geographical locations of QR neurons in Llama-2-7B across various academic domains and languages.",
+                    "strength": "strong",
+                    "limitations": "None stated.",
+                    "location": "Results section, Figure 4",
+                    "exact_quote": "Figure 4 displays the geographical locations of QR neurons in Llama-2-7B across various academic domains and languages."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "",
+                "justification": "",
+                "key_limitations": "",
+                "confidence_level": ""
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Language-specific neurons are more sparsely distributed, indicating that LLMs tend to engage with language-specific neurons at multiple stages of information processing.",
+                "type": "",
+                "location": "Results: Are There Localized Regions in LLMs?",
+                "exact_quote": "Language-specific neurons are more sparsely distributed, indicating that LLMs tend to engage with language-specific neurons at multiple stages of information processing."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Language-specific neurons were found to be more sparsely distributed than domain-specific neurons, which supports the claim that LLMs tend to engage with language-specific neurons at multiple stages of information processing.",
+                    "strength": "strong",
+                    "limitations": "This finding is based on the analysis of neuron distribution patterns in a specific LLM (Llama-2-7B) and may not generalize to other models.",
+                    "location": "Results, Section 5.4",
+                    "exact_quote": "Language-specific neurons are more sparsely distributed, indicating that LLMs tend to engage with language-specific neurons at multiple stages of information processing."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "",
+                "justification": "",
+                "key_limitations": "",
+                "confidence_level": ""
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "QRNCA can be used for knowledge editing and neuron-based prediction.",
+                "type": "",
+                "location": "Potential Applications",
+                "exact_quote": "Apart from using the metric of PCR in Section 5.3, we are also interested in whether the detected QR neurons can be used for knowledge editing."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Apart from using the metric of PCR in Section 5.3, we are also interested in whether the detected QR neurons can be used for knowledge editing. For this goal, we adjust the values of QR neurons by either boosting or suppressing them to determine if we can change the prediction of a query from incorrect to correct or vice versa. Table 5 presents the success rates of knowledge editing on our constructed language datasets. Our observations indicate that QRNCA achieves higher success rates than other baselines.",
+                    "strength": "strong",
+                    "limitations": "None mentioned",
+                    "location": "Section 6.1",
+                    "exact_quote": "Apart from using the metric of PCR in Section 5.3, we are also interested in whether the detected QR neurons can be used for knowledge editing. For this goal, we adjust the values of QR neurons by either boosting or suppressing them to determine if we can change the prediction of a query from incorrect to correct or vice versa. Table 5 presents the success rates of knowledge editing on our constructed language datasets. Our observations indicate that QRNCA achieves higher success rates than other baselines."
+                },
+                {
+                    "evidence_text": "The intuition behind neuron-based prediction is that for a domain-specific question, if the corresponding localized regions are properly activated, the LLM is more likely to generate truthful answers. Otherwise, the LLM may produce hallucinated answers. To this end, we test whether the correct answers to domain-specific questions can be predicted solely based on the activity of the associated neurons. Since we harvest QR neurons for queries in different subject domains, we can group all neurons for a domain to obtain a set of domain-specific neurons. We experiment on a specifically constructed MMLU (Hendrycks et al. 2020) validation set with a different set of questions than those used to determine the QR neurons (see Section B in the SM for details on our experimental strategy). The results are summarised in Table 6. We observe that the accuracy of the neuron-based predictions is very close to the accuracy of the prompt-based method of using the entire model (the used templates are shown in Table A3 in the SM). This suggests that the activity of identified neurons can reflect the model\u2019s reasoning process to some extent. Investigating how this finding could be leveraged in applications like fact-checking and hallucination detection presents a promising line of future work.",
+                    "strength": "strong",
+                    "limitations": "None mentioned",
+                    "location": "Section 6.2",
+                    "exact_quote": "The intuition behind neuron-based prediction is that for a domain-specific question, if the corresponding localized regions are properly activated, the LLM is more likely to generate truthful answers. Otherwise, the LLM may produce hallucinated answers. To this end, we test whether the correct answers to domain-specific questions can be predicted solely based on the activity of the associated neurons. Since we harvest QR neurons for queries in different subject domains, we can group all neurons for a domain to obtain a set of domain-specific neurons. We experiment on a specifically constructed MMLU (Hendrycks et al. 2020) validation set with a different set of questions than those used to determine the QR neurons (see Section B in the SM for details on our experimental strategy). The results are summarised in Table 6. We observe that the accuracy of the neuron-based predictions is very close to the accuracy of the prompt-based method of using the entire model (the used templates are shown in Table A3 in the SM). This suggests that the activity of identified neurons can reflect the model\u2019s reasoning process to some extent. Investigating how this finding could be leveraged in applications like fact-checking and hallucination detection presents a promising line of future work."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": false,
+                "robustness": "",
+                "justification": "",
+                "key_limitations": "",
+                "confidence_level": ""
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "1097.23 seconds",
+        "total_execution_time": "1097.23 seconds"
+    }
+}

@@ -1,0 +1,56 @@
+Claim 1:
+Type: methodology
+Statement: Feed-forward layers in transformer-based language models operate as key-value memories.
+Location: section 1 Introduction
+Exact Quote: We show that feed-forward layers in transformer-based language models operate as key-value memories
+
+Evidence:
+- Evidence Text: Each key correlates with specific human-interpretable input patterns, and each value induces a distribution over the output vocabulary.
+  Strength: strong
+  Location: section 1 Introduction
+  Limitations: Does not quantify the precision of correlation or distribution induction.
+  Exact Quote: We find that each key correlates with a specific set of human-interpretable input patterns, such as n-grams or semantic topics.
+
+- Evidence Text: Lower layers capture shallow patterns, while upper layers learn more semantic ones.
+  Strength: moderate
+  Location: Abstract
+  Limitations: Based on qualitative analysis and human interpretation.
+  Exact Quote: Our experiments show that the learned patterns are human-interpretable, and that lower layers tend to capture shallow patterns, while upper layers learn more semantic ones.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The claim is supported by systematic experiments and qualitative analysis of layer-specific patterns, although the precision of the correlation could be further quantified.
+Key Limitations: The evidence primarily comes from qualitative assessment and lacks a quantitative measure of the effectiveness of pattern detection.
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: The model's output is a composition of distributions from feed-forward layers, refined through residual connections.
+Location: section 7 Discussion and Conclusion
+Exact Quote: The values complement the keys’ input patterns by inducing output distributions that concentrate probability mass on tokens likely to appear immediately after each pattern, particularly in the upper layers.
+
+Evidence:
+- Evidence Text: Output distribution of feed-forward layers is gradually constructed in a bottom-up fashion and refined across the model's layers.
+  Strength: strong
+  Location: section 7 Discussion and Conclusion
+  Limitations: Focuses on model architecture without external validation measures.
+  Exact Quote: the final output distribution is gradually constructed in a bottom-up fashion.
+
+- Evidence Text: A significant number of predictions are determined in lower layers, with more complex decision-making occurring before the final layer.
+  Strength: strong
+  Location: section 5.2 Inter-Layer Prediction Refinement
+  Limitations: Analysis is confined to the internal mechanics of the model, lacking comparison to baseline or alternative mechanisms.
+  Exact Quote: roughly a third of the model’s predictions are determined in the bottom few layers... implying that the majority of “hard” decisions occur before the final layer.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Based on internal model analysis demonstrating how feed-forward layers contribute uniquely to the prediction process, substantiated by figures illustrating predictions refinement.
+Key Limitations: Evaluation is based on the internal model dynamics without comparative analysis to other models or layers.
+
+--------------------------------------------------
+

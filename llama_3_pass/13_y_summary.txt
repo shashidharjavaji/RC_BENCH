@@ -1,0 +1,104 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: Original BERT is underestimated in sentence embeddings due to inappropriate sentence representation methods.
+Location: Introduction
+Type: Novel Finding
+Quote: In this paper, we analyzed the poor performance of original BERT for sentence embeddings, and find original BERT is underestimated in sentence embeddings due to inappropriate sentence representation methods.
+
+Evidence:
+- Table 1 shows the BERT layers in bert-base-uncased and roberta-base significantly harm the sentence embeddings performance.
+  Strength: strong
+  Location: Section 3: Rethinking the Sentence Embeddings of the Original BERT
+  Limitations: Only considers BERT layers' impact on sentence embeddings performance
+  Quote: Table 1: Spearman correlation and sentence anisotropy from static token embeddings averaging and last layer averaging.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Specifically, the analysis focuses on BERT's performance in sentence embeddings, which might not generalize to other NLP tasks.
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: Static token embedding bias and ineffective BERT layers are the main reasons for the poor performance of original BERT in sentence embeddings.
+Location: Section 3: Rethinking the Sentence Embeddings of the Original BERT
+Type: Novel Finding
+Quote: However, we find that anisotropy is not a key factor to inducing poor semantic similarity by examining the relationship between the aniostropy and performance. We think the main reasons are the ineffective BERT layers and static token embedding biases.
+
+Evidence:
+- Observation 2: Embedding biases harms the sentence embeddings performance. Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively.
+  Strength: strong
+  Location: Section 3: Rethinking the Sentence Embeddings of the Original BERT
+  Limitations: Only considers the impact of embedding biases on sentence embeddings performance
+  Quote: Table 3: The influence of static embedding biases in spearman correlation.
+
+- Figure 1 shows the static token embeddings of bert-base-uncased, bert-base-cased, and roberta-base are highly biased by token frequency, subword, and case.
+  Strength: moderate
+  Location: Section 3: Rethinking the Sentence Embeddings of the Original BERT
+  Limitations: Only provides visual evidence of embedding biases
+  Quote: Figure 1: 2D visualization of token embeddings with different biases.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: The analysis relies on the provided tables and figures, which might not represent the full scope of the issue.
+Confidence: high
+
+==================================================
+
+Claim 3:
+Statement: Prompt-based sentence embedding method can effectively utilize the original BERT layers and avoid embedding biases.
+Location: Section 4: Prompt Based Sentence Embeddings
+Type: Novel Method
+Quote: Inspired by Brown et al. (2020), we propose a prompt based sentence method to obtain sentence embeddings. By reformulating the sentence embedding task as the mask language task, we can effectively use original BERT layers by leveraging the large-scale knowledge.
+
+Evidence:
+- Table 5 shows that using templates can substantially improve the results of original BERT on all datasets, and even outperform post-processing methods like BERT-flow and BERT-whitening.
+  Strength: strong
+  Location: Section 5: Experiments
+  Limitations: Only considers the performance of prompt-based method on STS tasks
+  Quote: Table 5: The performance comparison of our unfine-tuned BERT method on STS tasks.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: The effectiveness of the prompt-based method might depend on the quality of the templates used, and the results might not generalize to other templates or datasets.
+Confidence: medium
+
+==================================================
+
+Claim 4:
+Statement: Prompt-based contrastive learning with template denoising can significantly shorten the gap between the unsupervised and supervised methods.
+Location: Section 5: Experiments
+Type: Novel Method
+Quote: Prompt based contrastive learning objective significantly shortens the gap between the unsupervised and supervised methods. It also proves our method can leverage the knowledge of unlabeled data with different templates as positive pairs.
+
+Evidence:
+- Table 6 shows that PromptBERT outperforms other unsupervised and supervised methods, significantly shortening the gap between the two settings.
+  Strength: strong
+  Location: Section 5: Experiments
+  Limitations: Only considers the performance of prompt-based method on STS tasks
+  Quote: Table 6: The performance comparison of our fine-tuned BERT methods on STS tasks.
+
+- Table 8 shows that using different templates with denoising achieves the best and most stable results among three training objectives.
+  Strength: moderate
+  Location: Section 5: Experiments
+  Limitations: Only considers the performance of prompt-based method with template denoising
+  Quote: Table 8: Comparison of different unsupervised training objectives.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: The comparison is based on the provided tables, which might not include all relevant methods or datasets for a comprehensive evaluation.
+Confidence: high
+
+==================================================
+
+
+Execution Times:
+claims_analysis_time: 68.32 seconds
+evidence_analysis_time: 99.88 seconds
+conclusions_analysis_time: 39.79 seconds
+total_execution_time: 210.41 seconds

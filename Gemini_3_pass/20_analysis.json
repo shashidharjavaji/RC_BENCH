@@ -1,0 +1,272 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Codex exhibits predictable qualitative failures from cognitive biases, even in the extreme case when doing so contradicts the type specification in the function signature (return False).",
+                "type": "Result",
+                "location": "Section 3.3.1",
+                "exact_quote": "Codex generates for var in 32%\u201361% of solutions when at least one line of the canonical solution is included, and generates print(var) in 26%\u201344% of solutions."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "For a function with inputs var1 and var2, the associated print-var anchor lines are:",
+                    "strength": "Moderate",
+                    "limitations": "Applies only to print-var anchor lines",
+                    "location": "Section 3.3.2",
+                    "exact_quote": "for var in [var1, var2]:\n  print(var)"
+                },
+                {
+                    "evidence_text": "These results suggest that code generation models can err erroneously rely on irrelevant information in the prompt in predictable ways, even in the extreme case when doing so contradicts the type specification in the function signature (return False).",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 3.3.1",
+                    "exact_quote": "These results suggest that code generation models can err erroneously rely on irrelevant information in the prompt in predictable ways, even in the extreme case when doing so contradicts the type specification in the function signature (return False)."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "Medium",
+                "justification": "",
+                "key_limitations": "Applies only to print-var anchor lines",
+                "confidence_level": "Medium"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Prepending anchor functions consistently lowers Codex and CodeGen's functional accuracies across different number of prompted canonical solution lines.",
+                "type": "Result",
+                "location": "Section 3.3.2",
+                "exact_quote": "We find that prepending the anchor function consistently lowers functional accuracy."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "We report the results of our framing experiments in Table 1.",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 3.3.1",
+                    "exact_quote": "We report the results of our framing experiments in Table 1."
+                },
+                {
+                    "evidence_text": "We find that prepending the anchor function consistently lowers accuracy.",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 3.3.2",
+                    "exact_quote": "We find that prepending the anchor function consistently lowers accuracy."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "High",
+                "justification": "",
+                "key_limitations": "None",
+                "confidence_level": "High"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Codex and CodeGen adjust their solutions towards related solutions, when the solutions are included in the prompt.",
+                "type": "Result",
+                "location": "Section 3.3.2",
+                "exact_quote": "In Figure 4, we see that Codex generates for var in 32%\u201361% of solutions when at least one line of the canonical solution is included, and generates print(var) in 26%\u201344% of solutions. CodeGen\u2019s behavior is qualitatively similar."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "In Figure 4, we see that Codex generates for var in 32%\u201361% of solutions when at least one line of the canonical solution is included, and generates print(var) in 26%\u201344% of solutions. CodeGen\u2019s behavior is qualitatively similar.",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 3.3.2",
+                    "exact_quote": "In Figure 4, we see that Codex generates for var in 32%\u201361% of solutions when at least one line of the canonical solution is included, and generates print(var) in 26%\u201344% of solutions. CodeGen\u2019s behavior is qualitatively similar."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "High",
+                "justification": "",
+                "key_limitations": "None",
+                "confidence_level": "High"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Codex can err by adjusting its output towards related solutions, when the solutions are included in the prompt.",
+                "type": "Conclusion",
+                "location": "Section 3.3.2",
+                "exact_quote": "Our findings suggest that Codex can err by adjusting its output towards related solutions, when the solutions are included in the prompt."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Our findings suggest that Codex can err by adjusting its output towards related solutions, when the solutions are included in the prompt.",
+                    "strength": "Moderate",
+                    "limitations": "Relies on results from Claim 3",
+                    "location": "Section 3.3.2",
+                    "exact_quote": "Our findings suggest that Codex can err by adjusting its output towards related solutions, when the solutions are included in the prompt."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "Medium",
+                "justification": "",
+                "key_limitations": "Relies on results from Claim 3",
+                "confidence_level": "Medium"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Codex frequently generates solutions based on the function name.",
+                "type": "Result",
+                "location": "Section 3.3.4",
+                "exact_quote": "When we request a conflicting function name, Codex\u2019s accuracy drops from 100% to only 4.4%-4.6%. This finding holds whether we request the function name in the docstring, write it in the function signature below the docstring, or write the function name over a simple description on the function."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "When we request a conflicting function name, Codex\u2019s accuracy drops from 100% to only 4.4%-4.6%. This finding holds whether we request the function name in the docstring, write it in the function signature below the docstring, or write the function name over a simple description on the function.",
+                    "strength": "Strong",
+                    "limitations": "Only applies to \"MathEquation\" prompts",
+                    "location": "Section 3.3.4",
+                    "exact_quote": "When we request a conflicting function name, Codex\u2019s accuracy drops from 100% to only 4.4%-4.6%. This finding holds whether we request the function name in the docstring, write it in the function signature below the docstring, or write the function name over a simple description on the function."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "High",
+                "justification": "",
+                "key_limitations": "Only applies to \"MathEquation\" prompts",
+                "confidence_level": "High"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": {
+                "text": "Codex can err by using simple-but-incorrect heuristics to generate solutions.",
+                "type": "Conclusion",
+                "location": "Section 3.3.4",
+                "exact_quote": "Our results indicate that Codex can err by using simple-but-incorrect heuristics to generate solutions."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Our results indicate that Codex can err by using simple-but-incorrect heuristics to generate solutions.",
+                    "strength": "Moderate",
+                    "limitations": "Relies on results from Claim 5",
+                    "location": "Section 3.3.4",
+                    "exact_quote": "Our results indicate that Codex can err by using simple-but-incorrect heuristics to generate solutions."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "Medium",
+                "justification": "",
+                "key_limitations": "Relies on results from Claim 5",
+                "confidence_level": "Medium"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": {
+                "text": "Codex routinely updates its estimate when an anchor is prepended.",
+                "type": "Result",
+                "location": "Section 4",
+                "exact_quote": "We find that GPT-3 routinely updates its estimate when an anchor is prepended, and tends to shift the estimate towards the anchor."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "We find that GPT-3 routinely updates its estimate when an anchor is prepended, and tends to shift the estimate towards the anchor.",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 4",
+                    "exact_quote": "We find that GPT-3 routinely updates its estimate when an anchor is prepended, and tends to shift the estimate towards the anchor."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "High",
+                "justification": "",
+                "key_limitations": "None",
+                "confidence_level": "High"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": {
+                "text": "GPT-3 selects different options based on the framing, and could be a test-bed to identify qualitative human behaviors without running full human studies.",
+                "type": "Conclusion",
+                "location": "Section 4",
+                "exact_quote": "Our results suggest that GPT-3 selects different options based on the framing, and could be a test-bed to identify qualitative human behaviors without running full human studies."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Our results suggest that GPT-3 selects different options based on the framing, and could be a test-bed to identify qualitative human behaviors without running full human studies.",
+                    "strength": "Moderate",
+                    "limitations": "Relies on results from Claim 7",
+                    "location": "Section 4",
+                    "exact_quote": "Our results suggest that GPT-3 selects different options based on the framing, and could be a test-bed to identify qualitative human behaviors without running full human studies."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "Medium",
+                "justification": "",
+                "key_limitations": "Relies on results from Claim 7",
+                "confidence_level": "Medium"
+            }
+        },
+        {
+            "claim_id": 9,
+            "claim": {
+                "text": "Our framework helps us elicit failures of large language models.",
+                "type": "Conclusion",
+                "location": "Section 5",
+                "exact_quote": "In this work, we identify and test for classes of errors that open-ended generation systems can make, using cognitive biases as motivation."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "In this work, we identify and test for classes of errors that open-ended generation systems can make, using cognitive biases as motivation.",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 5",
+                    "exact_quote": "In this work, we identify and test for classes of errors that open-ended generation systems can make, using cognitive biases as motivation."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "High",
+                "justification": "",
+                "key_limitations": "None",
+                "confidence_level": "High"
+            }
+        },
+        {
+            "claim_id": 10,
+            "claim": {
+                "text": "Our framework can preemptively elicit high-impact errors, like erroneous deletions.",
+                "type": "Conclusion",
+                "location": "Section 5",
+                "exact_quote": "Overall, our results demonstrate how our framework can preemptively elicit high-impact errors, like erroneous deletions."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Overall, our results demonstrate how our framework can preemptively elicit high-impact errors, like erroneous deletions.",
+                    "strength": "Moderate",
+                    "limitations": "Relies on results from Claim 9",
+                    "location": "Section 5",
+                    "exact_quote": "Overall, our results demonstrate how our framework can preemptively elicit high-impact errors, like erroneous deletions."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "Medium",
+                "justification": "",
+                "key_limitations": "Relies on results from Claim 9",
+                "confidence_level": "Medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "104.51 seconds",
+        "total_execution_time": "326.25 seconds"
+    }
+}

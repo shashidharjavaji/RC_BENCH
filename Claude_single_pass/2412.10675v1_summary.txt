@@ -1,0 +1,84 @@
+Claim 1:
+Type: result
+Statement: Fine-tuning LLMs solely on planning problems and solutions does not lead to robust planning skills, shown by poor performance on out-of-distribution test sets
+Location: Introduction & Results sections
+Exact Quote: We challenge the claim that fine-tuning LLMs simply on datasets containing problem contexts and reference plans acquire robust planning skills, by demonstrating their failure on OOD test sets.
+
+Evidence:
+- Evidence Text: Performance drop in long planning problems, particularly in BLOCKSWORLD domain
+  Strength: strong
+  Location: Section 4.1
+  Limitations: Limited to specific domains tested
+  Exact Quote: The 'long' test set reveals a significant performance drop, particularly in the NP-hard BLOCKSWORLD domain, where the validity rate falls from 98.5% to 13.5%.
+
+- Evidence Text: Complete failure on unseen and obfuscated domains
+  Strength: strong
+  Location: Section 4.1
+  Limitations: Only tested on two unseen domains
+  Exact Quote: The fine-tuned model utterly failed to perform in the 'unseen' and 'obfuscated' test sets, unable to generate either valid or executable plans.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Multiple test conditions consistently show performance degradation on OOD cases
+Key Limitations: Limited number of domains tested
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Chain-of-thought prompting improves plan executability even if not directly improving validity rates
+Location: Introduction
+Exact Quote: We show that strategies like CoT lead to incremental improvements in plan quality by enhancing plan executability, even if they do not directly increase validity rates.
+
+Evidence:
+- Evidence Text: State CoT improves executability in unseen test set
+  Strength: moderate
+  Location: Section 4.5
+  Limitations: Limited to short plans
+  Exact Quote: State CoT does not improve plan executability within the 'long' test set, yet it significantly enhances performance within the 'unseen' test set (e.g., 100% in row 4)
+
+- Evidence Text: CoT shows highest performance gain with hints
+  Strength: moderate
+  Location: Section 4.6
+  Limitations: Only tested with partial plan hints
+  Exact Quote: the model employing CoT (Goal + State) demonstrates the highest performance gain when provided with the hints. Its validity rate improves dramatically from the lowest (23.8%) to the highest (54.2%) among the compared strategies
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Shows improvements in specific scenarios but effectiveness varies by context
+Key Limitations: Benefits mainly limited to shorter plans and when hints are provided
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: Reinforcement learning with LCCS reward is the most effective strategy for improving planning capabilities
+Location: Introduction & Results
+Exact Quote: RL with our proposed 'LCCS' reward emerges as the most effective strategy. In particular, it improves plan validity by 7% and executability by 9% in longer planning problems.
+
+Evidence:
+- Evidence Text: Performance improvements on long test set
+  Strength: strong
+  Location: Section 4.7
+  Limitations: Tested on limited portion of dataset
+  Exact Quote: RL boosted the validity rate on the 'long' test set from 34.8% to 41.5% (a 6.7% increase) and the executability rate from 42.3% to 53.6% (9.0%)
+
+- Evidence Text: Enabled solving previously unsolvable problems
+  Strength: strong
+  Location: Section 4.7
+  Limitations: Still low absolute performance
+  Exact Quote: it also enabled the model to solve problems in the 'unseen' test set, achieving a 12.5% where it previously failed to generate any valid plans
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Consistent improvements across multiple metrics and test conditions
+Key Limitations: Limited training data used for RL, still relatively low absolute performance
+
+--------------------------------------------------
+

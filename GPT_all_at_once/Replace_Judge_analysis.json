@@ -1,0 +1,90 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Panel of LLm evaluators (PoLL) drawn from different model families outperforms a single large judge",
+                "type": "methodology",
+                "location": "Abstract",
+                "exact_quote": "using a Panel of LLm evaluators (PoLL). Across three distinct judge settings and spanning six different datasets, we find that using a PoLL composed of a larger number of smaller models outperforms a single large judge"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "PoLL has the highest correlation with human judgements across multiple datasets, exhibiting less intra-model bias and being over seven times cheaper.",
+                    "strength": "strong",
+                    "limitations": "Evaluation limited to three settings and a select number of datasets.",
+                    "location": "Abstract/Section 5",
+                    "exact_quote": "using a PoLL composed of a larger number of smaller models outperforms a single large judge, exhibits less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive"
+                },
+                {
+                    "evidence_text": "Experimental results show PoLL led to higher kappa values in judge model performance, indicating better agreement with human judgement.",
+                    "strength": "strong",
+                    "limitations": "Results may not generalize to all types of evaluations or datasets not included in the study.",
+                    "location": "Section 4.1/4.2/Table 1 & 2",
+                    "exact_quote": "In Table 1...PoLL 0.917...In Table 2...PoLL is best correlated with the gold rankings"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "PoLL's advantages are consistently demonstrated across multiple datasets and experimental settings, with quantifiable improvements in correlation to human judgements and reduced costs.",
+                "key_limitations": "Limited evaluation settings and datasets may constrain generalizability of findings.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "GPT-4 can be a weak judge with high variance in performance based on minor prompt changes.",
+                "type": "result",
+                "location": "Section 4.3",
+                "exact_quote": "Based on the observation that GPT-4 was the weakest judge model on our KILT evaluations, we investigated how the model reacts to modifications to its prompt"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "GPT-4's agreement level with human annotators changes significantly based on prompt alterations.",
+                    "strength": "moderate",
+                    "limitations": "The study focuses on GPT-4's performance without exploring the behaviors of other models under similar conditions.",
+                    "location": "Section 4.3/Table 3",
+                    "exact_quote": "These changes bring the agreement level for GPT-4 up to the level of GPT-3.5 when using our few-shot standard prompt, though still below Command-R, Haiku, and PoLL"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Evidence shows clear variability in GPT-4's performance with different prompts, supporting the claim of its variance and relative weakness as a judge under certain conditions.",
+                "key_limitations": "The limited focus on GPT-4 without comparative analysis across models restricts understanding of whether this is a unique or common issue.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "PoLL reduces intra-model scoring bias by pooling judgements across a panel of heterogeneous evaluator models.",
+                "type": "contribution",
+                "location": "Section 4.4",
+                "exact_quote": "One of the biggest motivators for replacing a single large judge with a panel of heterogeneous models is to reduce bias in evaluation"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Figures 3 and 4 demonstrate smaller spread in PoLL's scores and lower bias compared to single judges",
+                    "strength": "strong",
+                    "limitations": "Analysis focused solely on variance and bias, without direct measurement of accuracy or other performance metrics.",
+                    "location": "Section 4.4",
+                    "exact_quote": "We can see how the different judges score different models and how far those predictions deviate from human annotator decisions"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Evidence from specified figures and comparative analysis strongly supports the claim of reduced bias and variance via PoLL.",
+                "key_limitations": "The assessment of reduced bias is primarily comparative, not absolute, and does not account for potential external factors influencing model judgment.",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "69.33 seconds",
+        "total_execution_time": "69.33 seconds"
+    }
+}

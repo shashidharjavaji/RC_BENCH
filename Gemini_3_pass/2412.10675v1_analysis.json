@@ -1,0 +1,118 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Fine-tuning LLMs on datasets consisting solely of problems and corresponding reference plans struggles to foster robust planning skills beyond in-distribution instances.",
+                "type": "Position",
+                "location": "Section 4.7",
+                "exact_quote": "Nonetheless, our research reveals that fine-tuning alone enables LLMs to master complex planning."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Despite the impressive results on in-distribution test sets, our ablation study reveals that none of the strategies examined in this work consistently improves performance in OOD scenarios.",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 4.1",
+                    "exact_quote": ""
+                },
+                {
+                    "evidence_text": "In particular, we observe a remarkable 75.5% score in \u2018unseen\u2019 test set, while the vanilla model only got 20.1%",
+                    "strength": "Moderate",
+                    "limitations": "Only one strategy (permutation) shows improvement in OOD scenarios",
+                    "location": "Section 4.2",
+                    "exact_quote": ""
+                },
+                {
+                    "evidence_text": "We attribute the failure to two factors: 1. Complexity Paradox: Estimating the goal distance adds complexity to the planning process.",
+                    "strength": "Moderate",
+                    "limitations": "Only discusses one of the reasons for failure",
+                    "location": "Section 4.4",
+                    "exact_quote": ""
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "Medium",
+                "justification": "",
+                "key_limitations": "The work primarily focuses on auto-regressive, next-token prediction model. They do not include LLM-modulo based method that leverages external solver to improve performance.",
+                "confidence_level": "Medium"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "RL enhances model performance",
+                "type": "Contribution",
+                "location": "Section 4.7",
+                "exact_quote": "RL notably improves the performance under our end-to-end planning paradigm, especially on longer problems."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "RL notably improves the performance under our end-to-end planning paradigm, especially on longer problems.",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 4.7",
+                    "exact_quote": ""
+                },
+                {
+                    "evidence_text": "Despite the limited training data and suboptimal rewards achieved on this subset, RL boosted the validity rate on the \u2018long\u2019 test set from 34.8% to 41.5% (a 6.7% increase) and the executability rate from 42.3% to 53.6% (9.0%)",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 4.7",
+                    "exact_quote": ""
+                },
+                {
+                    "evidence_text": "Applying RL to the vanilla model led to faster convergence and improved results compared to its application to the model with self-correction skills...",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 4.7",
+                    "exact_quote": ""
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "High",
+                "justification": "",
+                "key_limitations": "The experiment only runs on 10% of the training data.",
+                "confidence_level": "High"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "RL outperforms supervised fine-tuning (SFT) in the end-to-end planning paradigm.",
+                "type": "Contribution",
+                "location": "Section 4.7",
+                "exact_quote": "Applying RL to the vanilla model led to faster convergence and improved results compared to its application to the model with self-correction skills..."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Applying RL to the vanilla model led to faster convergence and improved results compared to its application to the model with self-correction skills...",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 4.7",
+                    "exact_quote": ""
+                },
+                {
+                    "evidence_text": "These results suggest that RL fosters more comprehensive planning skills compared to supervised fine-tuning (SFT), aligning with the findings of Liu et al. (2024).",
+                    "strength": "Strong",
+                    "limitations": "None",
+                    "location": "Section 4.7",
+                    "exact_quote": ""
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "Medium",
+                "justification": "",
+                "key_limitations": "The RL model achieves higher validity rate than supervised fine-tuning, but the difference in the executability rate is not significant. Moreover, when combined with self-correction strategy, the supervised fine-tuning actually outperforms RL in terms of executability rate, although the RL model has higher validity rate. This indicates that the supervised fine-tuning has its own advantages and may be more suitable for optimizing executability.",
+                "confidence_level": "Medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "299.76 seconds",
+        "total_execution_time": "303.75 seconds"
+    }
+}

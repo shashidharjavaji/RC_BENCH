@@ -1,0 +1,318 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": "The ability of an LLM to attribute its generated text is crucial in information-seeking scenarios",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_type": "primary",
+                    "evidence_text": "Best RTR system achieved highest performance on attribution (compared to other architectures) with statistical significance",
+                    "strength": "strong",
+                    "limitations": "Limited to question-answering task specifically",
+                    "location": "Section 5.3 Results",
+                    "exact_quote": "Best RTR achieves the highest performance (p \u226a 10\u207b\u2075, t = 4.55, in comparison with the best non-RTR system)"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Experimental comparison between attributed and non-attributed answers showing importance of attribution validation",
+                    "strength": "moderate",
+                    "location": "Section 5.5 Results",
+                    "limitations": "Analysis focused only on QA task examples",
+                    "exact_quote": "We saw above that best AIS performance did not necessarily go hand-in-hand with best EM accuracy...this makes the 80% accuracy of the system hard to interpret"
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_type": "primary",
+                    "evidence_text": "Human evaluation shows attribution allows verification of answer quality",
+                    "strength": "moderate",
+                    "limitations": "Based on human evaluation which has inherent subjectivity",
+                    "location": "Section 3.3 Discussion",
+                    "exact_quote": "attribution allows either a system developer or user to see the underlying source supporting an answer, and to assess aspects including trustworthiness and nuance"
+                }
+            ],
+            "evidence_locations": [
+                "Section 5.3 Results",
+                "Section 5.5 Results",
+                "Section 3.3 Discussion"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that attribution capability is crucial for LLMs in information-seeking applications, particularly for validating answer quality and enabling both users and developers to assess trustworthiness and nuance of responses",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence shows reasonable robustness through complementary approaches: quantitative performance metrics, human evaluation, and comparative analysis. The statistical significance of RTR performance adds strength to the findings. However, the focus on question-answering somewhat limits broader generalization.",
+                "limitations": "1. Evidence primarily focused on question-answering rather than broader information-seeking scenarios 2. Human evaluation introduces some subjectivity 3. Limited exploration of attribution in other types of information-seeking tasks 4. Methodology focused mainly on English language content",
+                "conclusion_location": "Abstract and Section 3.3"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": "AutoAIS metric correlates strongly with human annotations and is suitable for development",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Strong correlation shown between system AIS and AutoAIS scores with Pearson coefficient of 0.96",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Correlation is at system-level, not instance-level where correlation was much lower and more variable",
+                    "location": "Section 5.5 - Correlation between AIS and EM/AutoAIS",
+                    "exact_quote": "correlation between system AIS and AutoAIS scores is remarkably strong, with a Pearson coefficient of 0.96 (Figure 3). This suggests that AutoAIS is fit-for-purpose as a development metric at the aggregate level"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Instance-level correlation between AutoAIS and human ratings was lower",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Specific correlation values not provided for instance-level analysis",
+                    "location": "Section 5.5",
+                    "exact_quote": "To get a deeper understanding of the correlation, we followed up with an instance-level correlation study where the data series are the per-question ratings for a given system. Correlation was much lower and more variable here."
+                }
+            ],
+            "evidence_locations": [
+                "Section 5.5 - Correlation between AIS and EM/AutoAIS",
+                "Section 5.5"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that AutoAIS is suitable as a development metric due to strong system-level correlation with human annotations, while acknowledging its limitations at the instance level",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence shows robust system-level correlation but weaker instance-level performance. The methodology of comparing against human annotations and calculating correlation coefficients is sound. The stark difference between system and instance level correlations suggests careful validation of the measurement approach.",
+                "limitations": "1. Instance-level correlation values not specifically quantified\n2. Limited explanation of why instance-level correlation is lower\n3. No discussion of potential biases in the AutoAIS system\n4. Lack of detail about how AutoAIS handles edge cases\n5. No cross-validation or external validation reported",
+                "conclusion_location": "Abstract and Section 5.5"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": "Retrieve-then-read architectures achieve the strongest performance on attributed QA but require significant supervision",
+            "claim_location": "Experiments section",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "RTR achieves highest AIS score (71.4%) compared to other architectures, significantly higher than best non-RTR system (p\u226a10^-5)",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to comparison on AIS metric",
+                    "location": "Section 5.3 System Results",
+                    "exact_quote": "Best RTR achieves the highest performance (p\u226a10^-5, t = 4.55, in comparison with the best non-RTR system)"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "RTR systems require large amounts of supervision from NQ training examples",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Specific to NQ dataset supervision",
+                    "location": "Section 5.3 System Results",
+                    "exact_quote": "RTR approaches have the shortcoming that they require relatively large amounts of explicit supervision, for example in the form of NQ examples (an open question is whether RTR systems with much less supervision can be developed)"
+                }
+            ],
+            "evidence_locations": [
+                "Section 5.3 System Results",
+                "Section 5.3 System Results"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that retrieve-then-read (RTR) architectures achieve the best performance on attributed QA tasks but have the significant drawback of requiring large amounts of supervision data in the form of Natural Questions (NQ) training examples.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust, supported by statistical significance testing (p\u226a10^-5) for performance differences and clear documentation of architectural requirements. The methodology appears sound, comparing multiple system architectures under controlled conditions with statistical validation of key findings.",
+                "limitations": "1. Performance comparison limited to AIS metric only\n2. Supervision requirements specifically tied to NQ dataset\n3. No detailed quantification of exactly how much supervision data is required\n4. Limited exploration of potential ways to reduce supervision requirements while maintaining performance",
+                "conclusion_location": "Section 5.3 System Results"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": "AutoAIS correlates strongly with human judgments at system level but not at instance level",
+            "claim_location": "Correlation Analysis section",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "System-level correlation between AIS and AutoAIS scores shows strong Pearson coefficient of 0.96",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only measures system-level correlation",
+                    "location": "Section 5.5 - Correlation between AIS and EM/AutoAIS",
+                    "exact_quote": "correlation between system AIS and AutoAIS scores is remarkably strong, with a Pearson coefficient of 0.96 (Figure 3)"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Instance-level correlation between human and AutoAIS ratings was much lower and more variable",
+                    "strength": "moderate",
+                    "limitations": "Specific correlation values not provided for instance level",
+                    "location": "Section 5.5 - Correlation between AIS and EM/AutoAIS",
+                    "exact_quote": "To get a deeper understanding of the correlation, we followed up with an instance-level correlation study where the data series are the per-question ratings for a given system. Correlation was much lower and more variable here."
+                }
+            ],
+            "evidence_locations": [
+                "Section 5.5 - Correlation between AIS and EM/AutoAIS",
+                "Section 5.5 - Correlation between AIS and EM/AutoAIS"
+            ],
+            "conclusion": {
+                "author_conclusion": "AutoAIS shows strong correlation with human AIS judgments at the system level (0.96 Pearson coefficient) but performs poorly at predicting individual instance-level ratings, suggesting AutoAIS is suitable as a development metric but should be used cautiously for individual predictions",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence demonstrates strong methodological rigor at the system level with quantitative correlation metrics. The disparity between system and instance level correlations is consistently observed. However, the instance-level analysis could be strengthened by providing specific correlation values and more detailed analysis of the variability.",
+                "limitations": "1. Specific correlation values not provided for instance-level analysis\n2. Limited explanation of why correlation varies between system and instance levels\n3. Potential confounding factors in correlation analysis not discussed\n4. No discussion of statistical significance for instance-level findings",
+                "conclusion_location": "Section 5.5 - Correlation between AIS and EM/AutoAIS"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": "Attribution is more difficult in post-hoc settings compared to retrieve-then-read approaches",
+            "claim_location": "System Results section",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Best RTR achieves higher AIS scores compared to Best Post-hoc systems with statistical significance",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to specific model architectures tested",
+                    "location": "Section 5.3 Results",
+                    "exact_quote": "Best RTR achieves the highest performance (p \u226a 10^-5, t = 4.55, in comparison with the best non-RTR system)"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Post-hoc systems perform worse on attribution despite good answer generation",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "location": "Section 5.3 Results",
+                    "limitations": "Specific to tested model configurations",
+                    "exact_quote": "on AIS the best RTR system is significantly better than the best post-hoc system, and this difference carries over to AutoAIS as well. However, since reranking is able to find good attribution passages, this result suggests that attribution is more difficult in a post-hoc setting than in RTR"
+                }
+            ],
+            "evidence_locations": [
+                "Section 5.3 Results",
+                "Section 5.3 Results"
+            ],
+            "conclusion": {
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "conclusion_location": "Location not specified"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": "Exact Match metric has limited correlation with human judgment of answer quality",
+            "claim_location": "System Results section",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Correlation analysis between EM and AIS shows modest Pearson correlation coefficient of 0.45",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Correlation analysis is at system-level only",
+                    "location": "Section 5.5 Correlation between AIS and EM/AutoAIS",
+                    "exact_quote": "Consistent with this, the Pearson correlation coefficient between the system EM and AIS scores is modest, at 0.45 (see Figure 2)"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Examples showing valid answers marked incorrect by EM",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Only qualitative examples, not quantitative analysis",
+                    "location": "Table 4 and Appendix A",
+                    "exact_quote": "We identify three classes of interesting examples that demonstrated the value of AIS over EM: Inexact String Match, Stale reference answer, Multiple valid answers"
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Systems with best AIS scores do not necessarily achieve best EM accuracy",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "No statistical significance reported for this comparison",
+                    "location": "Section 5.3 System Results",
+                    "exact_quote": "The most striking result is that the systems which perform best on AIS do not necessarily achieve the strongest EM accuracy (cf. Tables 2 and 3)"
+                }
+            ],
+            "evidence_locations": [
+                "Section 5.5 Correlation between AIS and EM/AutoAIS",
+                "Table 4 and Appendix A",
+                "Section 5.3 System Results"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that Exact Match (EM) metric has significant limitations as an evaluation metric for question answering systems, showing only modest correlation with human judgments of answer quality and failing to capture valid answer variations.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust and multi-faceted, combining: 1) Statistical correlation analysis between EM and AIS scores, 2) Systematic comparison of system performances across metrics, and 3) Detailed qualitative analysis of specific cases where EM fails. The combination of quantitative and qualitative evidence strengthens the conclusion.",
+                "limitations": "- Correlation analysis is only at system-level, not instance-level\n- Limited quantitative analysis of frequency of EM failure cases\n- No statistical significance testing reported for system performance differences\n- Potential bias in example selection for qualitative analysis\n- No comparison to other potential metrics beyond EM and AIS",
+                "conclusion_location": "Section 5.3 System Results and Section 5.5 Correlation Analysis"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": "Best Low Resource system performs competitively with Best Post-hoc despite using sparse retrieval",
+            "claim_location": "System Results section",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Best Low Resource achieves competitive AIS (48.6%) and AutoAIS (41.9%) scores compared to Best Post-hoc (55.6% AIS, 53.9% AutoAIS) while using only BM25 sparse retrieval",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Small sample size limitations implied by standard error margins",
+                    "location": "Section 5.3 System Results",
+                    "exact_quote": "Best Low Resource performs competitively with Best Post-hoc on AIS and AutoAIS despite using a sparse retrieval. This is promising for more complex information-seeking tasks where it is challenging to provide explicit supervision, and where LLMs have been shows to provide fluent output."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Specific performance numbers from Table 1 showing comparative results",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited comparison of only two specific systems",
+                    "location": "Table 1",
+                    "exact_quote": "Low resource 39.5 41.9 48.6 \u00b1 1.6\nPost-hoc-retrieval + AutoAIS reranking 53.3 - 71.4 \u00b1 1.4"
+                }
+            ],
+            "evidence_locations": [
+                "Section 5.3 System Results",
+                "Table 1"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that the Best Low Resource system achieves competitive performance with Best Post-hoc on attribution metrics despite using simpler sparse retrieval (BM25), suggesting that complex dense retrieval may not always be necessary for reasonable performance.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust, drawing from both empirical performance metrics and comparative system analysis. The use of multiple evaluation metrics (AIS and AutoAIS) and inclusion of standard error margins strengthens the reliability. The performance gap is consistent across metrics, suggesting reliable measurement.",
+                "limitations": "1. Limited comparison between only two specific systems\n2. Standard error margins indicate some uncertainty in exact performance differences\n3. No ablation studies specifically comparing dense vs sparse retrieval impact\n4. 'Competitive' is somewhat subjective and the ~7% AIS gap could be considered significant",
+                "conclusion_location": "Section 5.3 System Results"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": "Dense retrievers outperform sparse retrievers for both RTR and post-hoc systems",
+            "claim_location": "Ablations section",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "RTR dense retrieval outperforms sparse retrieval by 17 points on AIS score",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to comparison on AIS metric",
+                    "location": "Section 5.4 Ablations",
+                    "exact_quote": "In the RTR models, the best dense-retrieval system (RTR-10) outperforms the best sparse-retrieval system (RTR-4) by 17 points AIS (p\u226a10^-13, t = 7.79)"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Post-hoc dense retrievers show statistically significant better performance",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Statistical significance but magnitude of difference not specified",
+                    "location": "Section 5.4 Ablations",
+                    "exact_quote": "Among the post-hoc systems, the dense retrievers also have the edge with the AIS difference between the best systems of each class (Post-6 vs Post-2) being statistically significant (p\u226a0.01, t = 2.91)"
+                }
+            ],
+            "evidence_locations": [
+                "Section 5.4 Ablations",
+                "Section 5.4 Ablations"
+            ],
+            "conclusion": {
+                "author_conclusion": "Dense retrievers demonstrate superior performance compared to sparse retrievers in both retrieve-then-read (RTR) and post-hoc retrieval systems, with particularly strong performance difference in RTR systems",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence exhibits good robustness through: 1) Clear quantification of RTR performance difference (17 points), 2) Statistical significance testing for both architectures, 3) Consistent pattern of dense retriever superiority across different system architectures",
+                "limitations": "1) Magnitude of improvement for post-hoc systems not specified, only statistical significance reported, 2) Limited to AIS metric evaluation, 3) No discussion of computational costs or resource requirements between dense and sparse retrievers, 4) No analysis of why dense retrievers perform better",
+                "conclusion_location": "Section 5.4 Ablations"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "17.33 seconds",
+        "evidence_analysis_time": "66.46 seconds",
+        "conclusions_analysis_time": "73.46 seconds",
+        "total_execution_time": "0.00 seconds"
+    }
+}

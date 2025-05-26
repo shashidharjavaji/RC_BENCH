@@ -1,0 +1,72 @@
+Claim 1:
+Type: contribution
+Statement: Transformer feed-forward layers operate as key-value memories
+Location: Abstract
+Exact Quote: Transformer Feed-Forward Layers Are Key-Value Memories
+
+Evidence:
+- Evidence Text: Experiments show that keys capture human-interpretable input patterns and values induce distributions over the output vocabulary
+  Strength: strong
+  Location: Section 3 and 4
+  Limitations: Limited to the specific transformer model and dataset used
+  Exact Quote: We show that feed-forward layers emulate key-value memories, and provide a set of experiments showing that: (a) keys are correlated with human-interpretable input patterns; (b) values, mostly in the model’s upper layers, induce distributions over the output vocabulary
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence from experiments supports the claim, demonstrating a clear correlation between keys and input patterns, as well as values and output vocabulary distributions
+Key Limitations: Specificity to the transformer model and dataset
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Lower layers tend to capture shallow patterns, while upper layers learn more semantic ones
+Location: Section 3.2
+Exact Quote: Shallow layers detect shallow patterns. Comparing the amount of prefixes associated with shallow patterns and semantic patterns, the lower layers (layers 1-9) are dominated by shallow patterns
+
+Evidence:
+- Evidence Text: Expert annotations of top-25 prefixes retrieved for each key show a shift from shallow to semantic patterns in upper layers
+  Strength: moderate
+  Location: Section 3.2
+  Limitations: Dependent on human annotation quality and sample size
+  Exact Quote: Thus, the top examples triggering each key share clear patterns that humans can recognize
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence supports the claim, but is based on human annotations, which may introduce subjectivity
+Key Limitations: Annotation quality and sample size
+
+--------------------------------------------------
+
+Claim 3:
+Type: contribution
+Statement: The model’s output is formed via an aggregation of key-value memories, refined throughout the layers using residual connections
+Location: Section 5
+Exact Quote: Our findings open important research directions:... the model’s output is formed via an aggregation of these distributions, where by they are first composed to form individual layer outputs, which are then refined throughout the model’s layers using residual connections
+
+Evidence:
+- Evidence Text: Experiments analyzing the behavior of 4,000 randomly-sampled prefixes from the validation set
+  Strength: strong
+  Location: Section 5.1
+  Limitations: Limited to the specific model and dataset used
+  Exact Quote: We first measure the fraction of “active” memories (cells with a non-zero coefficient)
+
+- Evidence Text: Analysis of the residual connection’s role in refining predictions
+  Strength: strong
+  Location: Section 5.2
+  Limitations: Limited to the specific model and dataset used
+  Exact Quote: We hypothesize that the model uses the sequential composition apparatus as a means to refine its prediction from layer to layer
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence from experiments supports the claim, demonstrating a clear process of aggregation and refinement of key-value memories
+Key Limitations: Specificity to the transformer model and dataset
+
+--------------------------------------------------
+

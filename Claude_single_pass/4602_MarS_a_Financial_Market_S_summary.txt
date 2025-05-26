@@ -1,0 +1,84 @@
+Claim 1:
+Type: performance
+Statement: LMM demonstrates strong scalability across data size and model complexity
+Location: Section 2.1.3
+Exact Quote: Our findings indicate that as the size of the data and the model increases, LMM's performance improves significantly, consistent with the scaling laws observed in other foundation models.
+
+Evidence:
+- Evidence Text: Order Model scaling experiments with 32 billion tokens and model sizes from 2M to 1.02B parameters
+  Strength: strong
+  Location: Figure 3 caption
+  Limitations: Limited to 32B tokens due to resource constraints
+  Exact Quote: Order Model: Trained on 32 billion tokens, with model sizes ranging from 2 million to 1.02 billion parameters.
+
+- Evidence Text: Order-Batch Model scaling experiments with 10B tokens and models from 150M to 3B parameters
+  Strength: strong
+  Location: Figure 3 caption
+  Limitations: Limited to 10B tokens, may not represent full market scale
+  Exact Quote: Order-Batch Model: Trained on 10 billion tokens, with model sizes ranging from 150 million to 3 billion parameters.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Comprehensive scaling experiments across multiple model sizes and data scales show consistent performance improvements
+Key Limitations: Current implementation only uses fraction of available market data due to resource constraints
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: MarS successfully replicates key stylized facts from historical market data
+Location: Section 3.1
+Exact Quote: MarS successfully replicates these stylized facts, demonstrating its capability to produce highly realistic market simulations suitable for practical applications.
+
+Evidence:
+- Evidence Text: Demonstration of Aggregational Gaussianity in returns distribution
+  Strength: moderate
+  Location: Figure 5(a)
+  Limitations: Only shown for 1-5 minute intervals
+  Exact Quote: as the interval increases from 1 to 5 minutes, the distribution of log returns becomes more similar to a normal distribution.
+
+- Evidence Text: Replication of absence of autocorrelations in returns
+  Strength: moderate
+  Location: Figure 5(b)
+  Limitations: Limited to short time horizons
+  Exact Quote: the auto-correlation of log returns rapidly decreases with increasing intervals.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Multiple stylized facts are replicated with visual evidence, though quantitative metrics could strengthen the claim
+Key Limitations: Limited to three main stylized facts in main text, though more are mentioned in appendix
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: MarS accurately models market impact following the Square-Root-Law
+Location: Section 3.2
+Exact Quote: We validated these simulations by collecting market impacts from agents with various configurations, confirming that the synthetic data adheres to the Square-Root-Law
+
+Evidence:
+- Evidence Text: Demonstration of TWAP strategy market impact
+  Strength: strong
+  Location: Figure 6a
+  Limitations: Limited to one trading strategy type
+  Exact Quote: during the interval 9:459:50, the agent executes a TWAP strategy, causing observable changes in the subsequent price trajectory
+
+- Evidence Text: Validation against Square-Root-Law
+  Strength: strong
+  Location: Section 3.2
+  Limitations: Not specified if tested across different market conditions
+  Exact Quote: The Square-Root-Law, ∆ ∝ σ√Q/V, is a widely used model for market impact
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Market impact modeling is validated against both empirical strategy execution and theoretical models
+Key Limitations: Testing limited to TWAP strategy, may not generalize to all trading patterns
+
+--------------------------------------------------
+

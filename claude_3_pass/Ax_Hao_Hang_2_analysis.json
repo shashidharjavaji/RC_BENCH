@@ -1,0 +1,160 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Integrated gradients is a new attribution method that requires no modification to original networks and is extremely simple to implement",
+                "location": "Abstract",
+                "type": "Method contribution",
+                "exact_quote": "Our method requires no modification to the original network and is extremely simple to implement; it just needs a few calls to the standard gradient operator."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Implementation requires only gradient calls in a loop",
+                    "strength": "strong",
+                    "limitations": "Implementation details vary by framework",
+                    "location": "Section 5: Computing Integrated Gradients",
+                    "exact_quote": "Notice that the approximation simply involves computing the gradient in a for loop which should be straightforward and efficient in most deep learning frameworks."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Implementation simplicity is relative and may still require technical expertise",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Most known attribution methods do not satisfy two fundamental axioms - Sensitivity and Implementation Invariance",
+                "location": "Abstract",
+                "type": "Finding",
+                "exact_quote": "We identify two fundamental axioms\u2014 Sensitivity and Implementation Invariance that attribution methods ought to satisfy. We show that they are not satisfied by most known attribution methods, which we consider to be a fundamental weakness of those methods."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Specific examples showing violations of axioms by existing methods",
+                    "strength": "strong",
+                    "limitations": "Limited to specific example cases",
+                    "location": "Section 2 and Appendix B",
+                    "exact_quote": "Unfortunately, Deconvolution networks (DeConvNets), and Guided back-propagation violate Sensitivity(a). [...] Methods like DeepLift and LRP break Implementation Invariance"
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Examples focus on specific cases rather than comprehensive analysis of all methods",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Path methods are the only attribution methods that satisfy Implementation Invariance, Sensitivity(b), Linearity, and Completeness",
+                "location": "Section 4.1",
+                "type": "Theoretical result",
+                "exact_quote": "Path methods are the only attribution methods that always satisfy Implementation Invariance, Sensitivity(b), Linearity, and Completeness."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Formal proposition about path methods",
+                    "strength": "strong",
+                    "limitations": "Relies on referenced external proof",
+                    "location": "Section 4.1",
+                    "exact_quote": "Proposition 2. (Theorem 1 (Friedman, 2004)) Path methods are the only attribution methods that always satisfy Implementation Invariance, Sensitivity(b), Linearity, and Completeness."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Relies on theoretical proof that requires mathematical expertise to verify",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Integrated gradients is the unique path method that is symmetry-preserving",
+                "location": "Section 4.2",
+                "type": "Theoretical result",
+                "exact_quote": "Integrated gradients is the unique path method that is symmetry-preserving."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Mathematical proof of uniqueness provided",
+                    "strength": "strong",
+                    "limitations": "None noted",
+                    "location": "Section 4.2 and Appendix A",
+                    "exact_quote": "Theorem 1. Integrated gradients is the unique path method that is symmetry-preserving."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Proof assumes mathematical framework established in paper",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "The integrated gradients method identified an anomaly in the W1N2 architecture related to identical attribution for different atoms",
+                "location": "Section 6.5",
+                "type": "Finding",
+                "exact_quote": "On applying the integrated gradients method to this network, we found that several atoms in the same molecule received identical attribution despite being bonded to different atoms...On investigating the problem further, in the network architecture, the atoms and atom-pair features were not fully convolved."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Description of discovered anomaly in W1N2 architecture",
+                    "strength": "moderate",
+                    "limitations": "Limited technical detail provided",
+                    "location": "Section 6.5",
+                    "exact_quote": "On applying the integrated gradients method to this network, we found that several atoms in the same molecule received identical attribution despite being bonded to different atoms."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Single example of anomaly detection, may not generalize to other architectures",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": {
+                "text": "Integrated gradients can be efficiently approximated via summation with 20 to 300 steps",
+                "location": "Section 5",
+                "type": "Method property",
+                "exact_quote": "In practice, we find that somewhere between 20 and 300 steps are enough to approximate the integral (within 5%)"
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Empirical finding about number of steps needed",
+                    "strength": "moderate",
+                    "limitations": "Specific error threshold not always given",
+                    "location": "Section 5",
+                    "exact_quote": "In practice, we find that somewhere between 20 and 300 steps are enough to approximate the integral (within 5%)"
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Number of steps may vary based on network complexity and desired accuracy",
+                "confidence_level": "medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "16.50 seconds",
+        "evidence_analysis_time": "15.32 seconds",
+        "conclusions_analysis_time": "6.38 seconds",
+        "total_execution_time": "40.82 seconds"
+    }
+}

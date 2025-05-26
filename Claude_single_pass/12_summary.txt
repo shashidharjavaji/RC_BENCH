@@ -1,0 +1,72 @@
+Claim 1:
+Type: performance
+Statement: DocPrompting improves code generation performance across different programming languages and model architectures
+Location: Introduction
+Exact Quote: DocPrompting consistently improves NL-to-code models: DocPrompting improves strong base models such as CodeT5 by 2.85% in pass@1 (52% relative gain) and 4.39% in pass@10 (30% relative gain) in execution-based evaluation on the popular Python CoNaLa benchmark; on a new Bash dataset tldr, DocPrompting improves CodeT5 and GPT-Neo-1.3B by up to absolute 6.9% exact match.
+
+Evidence:
+- Evidence Text: Performance improvements on CoNaLa benchmark
+  Strength: strong
+  Location: Results section 5.2
+  Limitations: Limited to 100 examples for execution-based evaluation
+  Exact Quote: Using DocPrompting improves pass@1 from 5.41% to 8.26% (+2.85%) and pass@10 from 14.31% to 18.70% (+4.39%)
+
+- Evidence Text: Performance improvements on tldr dataset
+  Strength: strong
+  Location: Table 1
+  Limitations: New dataset, needs broader validation
+  Exact Quote: T5+DocPrompting achieves more than twice higher accuracy in predicting the command name, more than 16 charBLEU points on the entire prediction, and almost 9% of absolute exact match gain, compared to the vanilla T5
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Consistent improvements shown across multiple metrics, models and programming languages with statistical significance
+Key Limitations: Execution-based evaluation limited to subset of examples; new dataset needs more validation
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Retrieving documentation provides better performance gains than retrieving examples
+Location: Section 5.1
+Exact Quote: retrieving documentation (DocPrompting) provides much higher gains than retrieving examples (ExPrompting)
+
+Evidence:
+- Evidence Text: Comparative performance on tldr dataset
+  Strength: strong
+  Location: Table 2
+  Limitations: Only compared on tldr dataset
+  Exact Quote: GPT-Neo-125M+DocPrompting achieves CMD Acc of 25.32% vs ExPrompting's 6.68%; GPT-Neo-1.3B+DocPrompting achieves 27.59% vs ExPrompting's 14.01%
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Clear performance difference shown in direct comparison
+Key Limitations: Comparison limited to one dataset and two model sizes
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: Documentation bridges the gap between natural language intent and code terminology
+Location: Section 6.1
+Exact Quote: one of the reasons that retrieving documentation helps generating accurate code is that documentation bridges the gap between the 'intent terminology' and the 'code terminology'
+
+Evidence:
+- Evidence Text: N-gram overlap analysis
+  Strength: moderate
+  Location: Section 6.1/Figure 4
+  Limitations: Correlation doesn't prove causation
+  Exact Quote: adding documentation significantly increases the overlap across n-grams, and increase, for example, the unigram overlap from 12% to 24% in tldr
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Clear increase in terminology overlap shown, though causal relationship not fully proven
+Key Limitations: Analysis is correlational; other factors could explain performance gains
+
+--------------------------------------------------
+

@@ -1,0 +1,152 @@
+Claim 1:
+Type: methodology/result
+Statement: Original BERT layers fail to improve the performance of sentence embeddings.
+Location: Section 3
+Exact Quote: We compare different pre-trained models (bert-base-uncased, bert-base-cased and roberta-base) in combination with different sentence embedding methods (last layer average, averaging of last hidden layer tokens as sentence embeddings and static token embeddings, directly averaging of static token embeddings). We list the spearman correlation and sentence level anisotropy of each combination in Table 1.
+
+Evidence:
+- Evidence Text: Table 1 shows BERT layers in bert-base-uncased and roberta-base significantly harm the sentence embeddings performance.
+  Strength: strong
+  Location: Section 3
+  Limitations: The table only shows the performance of specific models and does not generalize to all possible configurations.
+  Exact Quote: Table 1 shows the BERT layers in bert-base-uncased and roberta-base significantly harm the sentence embeddings performance.
+
+- Evidence Text: Even in bert-base-cased, the gain of BERT layers is trivial with only 0.28 improvement.
+  Strength: moderate
+  Location: Section 3
+  Limitations: The improvement is minimal and may not be significant in practical applications.
+  Exact Quote: Even in bert-base-cased, the gain of BERT layers is trivial with only 0.28 improvement.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence from Table 1 clearly shows that BERT layers do not significantly improve the performance of sentence embeddings.
+Key Limitations: The evidence is limited to specific models and may not generalize to other configurations.
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology/result
+Statement: Static token embeddings are biased by token frequency, subwords in WordPiece, and case sensitivity.
+Location: Section 3
+Exact Quote: We observe that the token embeddings is not only biased by token frequency, but also subwords in WordPiece (Wu et al., 2016) and case sensitive.
+
+Evidence:
+- Evidence Text: The token embeddings can be roughly divided into three regions according to the subword and case biases.
+  Strength: moderate
+  Location: Section 3
+  Limitations: The visualization does not provide quantitative measures of bias.
+  Exact Quote: The token embeddings can be roughly divided into three regions according to the subword and case biases.
+
+- Evidence Text: The static token embeddings of bert-base-uncased are highly anisotropic.
+  Strength: moderate
+  Location: Section 3
+  Limitations: Anisotropy is only one aspect of bias, and other factors may also contribute.
+  Exact Quote: We find only bert-base-uncased’s static token embeddings is highly anisotropic.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence from Table 2 and the visualization supports the claim of bias in static token embeddings.
+Key Limitations: The evidence is limited to specific models and may not generalize to other configurations.
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology/result
+Statement: Prompt-based sentence embeddings can avoid embedding bias and utilize the original BERT layers.
+Location: Section 4
+Exact Quote: By reformulating the sentence embedding task as the mask language task, we can effectively use original BERT layers by leveraging the large-scale knowledge.
+
+Evidence:
+- Evidence Text: Using the hidden vector of [MASK] token as sentence representation.
+  Strength: moderate
+  Location: Section 4.1
+  Limitations: This method may not capture the full context of the sentence.
+  Exact Quote: One method is to use the hidden vector of [MASK] token as sentence representation.
+
+- Evidence Text: The prompt-based method can avoid embedding bias and utilize the original BERT layers.
+  Strength: moderate
+  Location: Section 4
+  Limitations: The effectiveness of this method may depend on the choice of prompts.
+  Exact Quote: Prompt-based method can avoid embedding bias and utilize the original BERT layers.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: The evidence from Section 4 supports the claim that prompt-based sentence embeddings can avoid embedding bias and utilize the original BERT layers.
+Key Limitations: The effectiveness of this method may depend on the choice of prompts.
+
+--------------------------------------------------
+
+Claim 4:
+Type: methodology/result
+Statement: Prompt-based contrastive learning with template denoising significantly shortens the gap between unsupervised and supervised methods.
+Location: Section 5
+Exact Quote: Prompt-based contrastive learning with template denoising significantly shortens the gap between the unsupervised and supervised methods.
+
+Evidence:
+- Evidence Text: The results of fine-tuned BERT are shown in Table 6.
+  Strength: strong
+  Location: Section 5
+  Limitations: The results are limited to specific models and may not generalize to other configurations.
+  Exact Quote: The results of fine-tuned BERT are shown in Table 6.
+
+- Evidence Text: The results of fine-tuned RoBERTa are shown in Table 6.
+  Strength: strong
+  Location: Section 5
+  Limitations: The results are limited to specific models and may not generalize to other configurations.
+  Exact Quote: The results of fine-tuned RoBERTa are shown in Table 6.
+
+- Evidence Text: The results of fine-tuned SRoBERTa are shown in Table 15.
+  Strength: strong
+  Location: Section 5
+  Limitations: The results are limited to specific models and may not generalize to other configurations.
+  Exact Quote: The results of fine-tuned SRoBERTa are shown in Table 15.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence from Tables 6 and 15 supports the claim that prompt-based contrastive learning with template denoising significantly shortens the gap between unsupervised and supervised methods.
+Key Limitations: The results are limited to specific models and may not generalize to other configurations.
+
+--------------------------------------------------
+
+Claim 5:
+Type: performance
+Statement: Prompt-based contrastive learning with template denoising achieves state-of-the-art results in both unsupervised and supervised settings.
+Location: Section 5
+Exact Quote: Our extensive experiments demonstrate the efficiency of our method on STS tasks and transfer tasks.
+
+Evidence:
+- Evidence Text: The results of fine-tuned BERT are shown in Table 6.
+  Strength: strong
+  Location: Section 5
+  Limitations: The results are limited to specific models and may not generalize to other configurations.
+  Exact Quote: The results of fine-tuned BERT are shown in Table 6.
+
+- Evidence Text: The results of fine-tuned RoBERTa are shown in Table 6.
+  Strength: strong
+  Location: Section 5
+  Limitations: The results are limited to specific models and may not generalize to other configurations.
+  Exact Quote: The results of fine-tuned RoBERTa are shown in Table 6.
+
+- Evidence Text: The results of fine-tuned SRoBERTa are shown in Table 15.
+  Strength: strong
+  Location: Section 5
+  Limitations: The results are limited to specific models and may not generalize to other configurations.
+  Exact Quote: The results of fine-tuned SRoBERTa are shown in Table 15.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The evidence from Tables 6 and 15 supports the claim that prompt-based contrastive learning with template denoising achieves state-of-the-art results in both unsupervised and supervised settings.
+Key Limitations: The results are limited to specific models and may not generalize to other configurations.
+
+--------------------------------------------------
+

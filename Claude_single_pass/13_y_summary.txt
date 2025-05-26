@@ -1,0 +1,84 @@
+Claim 1:
+Type: methodology
+Statement: Original BERT's poor performance in sentence embeddings is mainly due to static token embedding bias and ineffective BERT layers rather than anisotropy
+Location: Section 3
+Exact Quote: Following this result, we find original BERT layers actually damage the quality of sentence embeddings. However, if we treat static token embeddings as word embedding, it still yields unsatisfactory results compared to GloVe.
+
+Evidence:
+- Evidence Text: Averaging last layer performs worse than averaging static token embeddings despite being less anisotropic
+  Strength: strong
+  Location: Section 3, Table 1
+  Limitations: Limited to specific BERT variants tested
+  Exact Quote: Table 1 shows the BERT layers in bert-base-uncased and roberta-base significantly harm the sentence embeddings performance.
+
+- Evidence Text: Removing biased tokens improves performance significantly
+  Strength: strong
+  Location: Section 3, Table 3
+  Limitations: Manual removal process may not be optimal
+  Exact Quote: Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Multiple experimental results consistently show that BERT layers harm performance and token biases significantly impact results
+Key Limitations: Analysis limited to specific BERT variants and manual debiasing approach
+
+--------------------------------------------------
+
+Claim 2:
+Type: performance
+Statement: PromptBERT outperforms previous methods in unsupervised sentence embeddings
+Location: Section 5.5
+Exact Quote: Prompt based contrastive learning objective significantly shortens the gap between the unsupervised and supervised methods.
+
+Evidence:
+- Evidence Text: Improvement over SimCSE baseline on STS tasks
+  Strength: strong
+  Location: Abstract
+  Limitations: Limited to specific benchmark tasks
+  Exact Quote: Compared to SimCSE, PromptBert achieves 2.29 and 2.58 points of improvement based on BERT and RoBERTa in the unsupervised setting
+
+- Evidence Text: Detailed performance comparison across multiple models
+  Strength: strong
+  Location: Table 6
+  Limitations: Some variance in results across random seeds
+  Exact Quote: PromptBERTbase 78.54±0.15 vs SimCSE-BERTbase 76.25
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Consistent performance improvements shown across multiple benchmarks and model variants with statistical significance
+Key Limitations: Results limited to specific benchmark tasks and architectures
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: Template denoising improves the quality of sentence embeddings in prompt-based methods
+Location: Section 5.6
+Exact Quote: We observe our method can achieve the best and most stable results among three training objectives.
+
+Evidence:
+- Evidence Text: Comparative results with different training objectives
+  Strength: moderate
+  Location: Table 8
+  Limitations: Limited ablation study
+  Exact Quote: different templates with denoising 78.54±0.15 79.15±0.25
+
+- Evidence Text: Improved token prediction quality
+  Strength: moderate
+  Location: Section 6.1
+  Limitations: Qualitative analysis
+  Exact Quote: We find the template denoising removes the unrelated tokens like 'nothing,no,yes' and helps the model predict more related tokens.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Results show consistent improvements, though ablation study could be more extensive
+Key Limitations: Limited analysis of why denoising works, could benefit from more theoretical justification
+
+--------------------------------------------------
+

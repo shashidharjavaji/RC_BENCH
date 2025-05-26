@@ -1,0 +1,676 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+ For example:
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "The CounterFact dataset struggles to support precise and accurate interpretations of LMs.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "The dataset struggles to support precise and accurate interpretations of LMs."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "The CounterFact dataset contains 510 samples that may correspond to heuristics recall.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "The CounterFact dataset contains 478 samples that may correspond to exact fact recall.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A total of 816 samples in CounterFact are found to have popularity scores above 1000."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "The CounterFact dataset contains 22 samples with negative total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "For the 1209 known CounterFact samples we find 22 samples with negative total effects."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "The CounterFact dataset contains 8 problematic samples with negated queries.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We identify a total of 8 problematic samples in the dataset that contain the word ‘not’ in the query."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "The CounterFact dataset contains 37 samples with low total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A deeper study of the TE values reveal an additional 37 samples for which the perturbation of the query subject decreased the original probability by less than 40%."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "The CounterFact dataset contains 18 samples with negative total effects that potentially correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 18 potentially correspond to prompt bias."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "The CounterFact dataset contains 2 samples with negative total effects that potentially correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 2 potentially correspond to name bias."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "The CounterFact dataset contains 335 samples that correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "The CounterFact dataset contains 155 samples that correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 155 samples correspond to name bias."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "The CounterFact dataset contains 20 samples that correspond to both name and prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 20 samples correspond to both name and prompt bias."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "The CounterFact dataset contains 365 samples with popularity scores below 1000.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find approximately 365 known CounterFact samples with popularity scores below 1000."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "The CounterFact dataset contains 172 samples with popularity scores below 1000 that have been detected by heuristics filters.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find that around 50% of these samples (172 samples) have been detected by our heuristics filters."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "The CounterFact dataset contains 478 samples that may correspond to exact fact recall.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A total of 816 samples in CounterFact are found to have popularity scores above 1000."
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "The CounterFact dataset contains 22 samples with negative total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "For the 1209 known CounterFact samples we find 22 samples with negative total effects."
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "The CounterFact dataset contains 8 problematic samples with negated queries.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We identify a total of 8 problematic samples in the dataset that contain the word ‘not’ in the query."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "The CounterFact dataset contains 37 samples with low total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A deeper study of the TE values reveal an additional 37 samples for which the perturbation of the query subject decreased the original probability by less than 40%."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "The CounterFact dataset contains 18 samples with negative total effects that potentially correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 18 potentially correspond to prompt bias."
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "The CounterFact dataset contains 2 samples with negative total effects that potentially correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 2 potentially correspond to name bias."
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "The CounterFact dataset contains 335 samples that correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "The CounterFact dataset contains 155 samples that correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 155 samples correspond to name bias."
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "The CounterFact dataset contains 20 samples that correspond to both name and prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 20 samples correspond to both name and prompt bias."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "The CounterFact dataset contains 365 samples with popularity scores below 1000.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find approximately 365 known CounterFact samples with popularity scores below 1000."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "The CounterFact dataset contains 172 samples with popularity scores below 1000 that have been detected by heuristics filters.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find that around 50% of these samples (172 samples) have been detected by our heuristics filters."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "The CounterFact dataset contains 478 samples that may correspond to exact fact recall.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A total of 816 samples in CounterFact are found to have popularity scores above 1000."
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "The CounterFact dataset contains 22 samples with negative total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "For the 1209 known CounterFact samples we find 22 samples with negative total effects."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "The CounterFact dataset contains 8 problematic samples with negated queries.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We identify a total of 8 problematic samples in the dataset that contain the word ‘not’ in the query."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "The CounterFact dataset contains 37 samples with low total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A deeper study of the TE values reveal an additional 37 samples for which the perturbation of the query subject decreased the original probability by less than 40%."
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "The CounterFact dataset contains 18 samples with negative total effects that potentially correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 18 potentially correspond to prompt bias."
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "The CounterFact dataset contains 2 samples with negative total effects that potentially correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 2 potentially correspond to name bias."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "The CounterFact dataset contains 335 samples that correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias."
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "The CounterFact dataset contains 155 samples that correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 155 samples correspond to name bias."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "The CounterFact dataset contains 20 samples that correspond to both name and prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 20 samples correspond to both name and prompt bias."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "The CounterFact dataset contains 365 samples with popularity scores below 1000.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find approximately 365 known CounterFact samples with popularity scores below 1000."
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "The CounterFact dataset contains 172 samples with popularity scores below 1000 that have been detected by heuristics filters.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find that around 50% of these samples (172 samples) have been detected by our heuristics filters."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "The CounterFact dataset contains 478 samples that may correspond to exact fact recall.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A total of 816 samples in CounterFact are found to have popularity scores above 1000."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "The CounterFact dataset contains 22 samples with negative total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "For the 1209 known CounterFact samples we find 22 samples with negative total effects."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "The CounterFact dataset contains 8 problematic samples with negated queries.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We identify a total of 8 problematic samples in the dataset that contain the word ‘not’ in the query."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "The CounterFact dataset contains 37 samples with low total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A deeper study of the TE values reveal an additional 37 samples for which the perturbation of the query subject decreased the original probability by less than 40%."
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "The CounterFact dataset contains 18 samples with negative total effects that potentially correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 18 potentially correspond to prompt bias."
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "The CounterFact dataset contains 2 samples with negative total effects that potentially correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 2 potentially correspond to name bias."
+        },
+        {
+            "claim_id": 42,
+            "claim_text": "The CounterFact dataset contains 335 samples that correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias."
+        },
+        {
+            "claim_id": 43,
+            "claim_text": "The CounterFact dataset contains 155 samples that correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 155 samples correspond to name bias."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": "The CounterFact dataset contains 20 samples that correspond to both name and prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 20 samples correspond to both name and prompt bias."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "The CounterFact dataset contains 365 samples with popularity scores below 1000.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find approximately 365 known CounterFact samples with popularity scores below 1000."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "The CounterFact dataset contains 172 samples with popularity scores below 1000 that have been detected by heuristics filters.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find that around 50% of these samples (172 samples) have been detected by our heuristics filters."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "The CounterFact dataset contains 478 samples that may correspond to exact fact recall.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A total of 816 samples in CounterFact are found to have popularity scores above 1000."
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "The CounterFact dataset contains 22 samples with negative total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "For the 1209 known CounterFact samples we find 22 samples with negative total effects."
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "The CounterFact dataset contains 8 problematic samples with negated queries.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We identify a total of 8 problematic samples in the dataset that contain the word ‘not’ in the query."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "The CounterFact dataset contains 37 samples with low total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A deeper study of the TE values reveal an additional 37 samples for which the perturbation of the query subject decreased the original probability by less than 40%."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "The CounterFact dataset contains 18 samples with negative total effects that potentially correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 18 potentially correspond to prompt bias."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "The CounterFact dataset contains 2 samples with negative total effects that potentially correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 2 potentially correspond to name bias."
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "The CounterFact dataset contains 335 samples that correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias."
+        },
+        {
+            "claim_id": 54,
+            "claim_text": "The CounterFact dataset contains 155 samples that correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 155 samples correspond to name bias."
+        },
+        {
+            "claim_id": 55,
+            "claim_text": "The CounterFact dataset contains 20 samples that correspond to both name and prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 20 samples correspond to both name and prompt bias."
+        },
+        {
+            "claim_id": 56,
+            "claim_text": "The CounterFact dataset contains 365 samples with popularity scores below 1000.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find approximately 365 known CounterFact samples with popularity scores below 1000."
+        },
+        {
+            "claim_id": 57,
+            "claim_text": "The CounterFact dataset contains 172 samples with popularity scores below 1000 that have been detected by heuristics filters.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find that around 50% of these samples (172 samples) have been detected by our heuristics filters."
+        },
+        {
+            "claim_id": 58,
+            "claim_text": "The CounterFact dataset contains 478 samples that may correspond to exact fact recall.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A total of 816 samples in CounterFact are found to have popularity scores above 1000."
+        },
+        {
+            "claim_id": 59,
+            "claim_text": "The CounterFact dataset contains 22 samples with negative total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "For the 1209 known CounterFact samples we find 22 samples with negative total effects."
+        },
+        {
+            "claim_id": 60,
+            "claim_text": "The CounterFact dataset contains 8 problematic samples with negated queries.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We identify a total of 8 problematic samples in the dataset that contain the word ‘not’ in the query."
+        },
+        {
+            "claim_id": 61,
+            "claim_text": "The CounterFact dataset contains 37 samples with low total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A deeper study of the TE values reveal an additional 37 samples for which the perturbation of the query subject decreased the original probability by less than 40%."
+        },
+        {
+            "claim_id": 62,
+            "claim_text": "The CounterFact dataset contains 18 samples with negative total effects that potentially correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 18 potentially correspond to prompt bias."
+        },
+        {
+            "claim_id": 63,
+            "claim_text": "The CounterFact dataset contains 2 samples with negative total effects that potentially correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 2 potentially correspond to name bias."
+        },
+        {
+            "claim_id": 64,
+            "claim_text": "The CounterFact dataset contains 335 samples that correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias."
+        },
+        {
+            "claim_id": 65,
+            "claim_text": "The CounterFact dataset contains 155 samples that correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 155 samples correspond to name bias."
+        },
+        {
+            "claim_id": 66,
+            "claim_text": "The CounterFact dataset contains 20 samples that correspond to both name and prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 20 samples correspond to both name and prompt bias."
+        },
+        {
+            "claim_id": 67,
+            "claim_text": "The CounterFact dataset contains 365 samples with popularity scores below 1000.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find approximately 365 known CounterFact samples with popularity scores below 1000."
+        },
+        {
+            "claim_id": 68,
+            "claim_text": "The CounterFact dataset contains 172 samples with popularity scores below 1000 that have been detected by heuristics filters.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find that around 50% of these samples (172 samples) have been detected by our heuristics filters."
+        },
+        {
+            "claim_id": 69,
+            "claim_text": "The CounterFact dataset contains 478 samples that may correspond to exact fact recall.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A total of 816 samples in CounterFact are found to have popularity scores above 1000."
+        },
+        {
+            "claim_id": 70,
+            "claim_text": "The CounterFact dataset contains 22 samples with negative total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "For the 1209 known CounterFact samples we find 22 samples with negative total effects."
+        },
+        {
+            "claim_id": 71,
+            "claim_text": "The CounterFact dataset contains 8 problematic samples with negated queries.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We identify a total of 8 problematic samples in the dataset that contain the word ‘not’ in the query."
+        },
+        {
+            "claim_id": 72,
+            "claim_text": "The CounterFact dataset contains 37 samples with low total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A deeper study of the TE values reveal an additional 37 samples for which the perturbation of the query subject decreased the original probability by less than 40%."
+        },
+        {
+            "claim_id": 73,
+            "claim_text": "The CounterFact dataset contains 18 samples with negative total effects that potentially correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 18 potentially correspond to prompt bias."
+        },
+        {
+            "claim_id": 74,
+            "claim_text": "The CounterFact dataset contains 2 samples with negative total effects that potentially correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 2 potentially correspond to name bias."
+        },
+        {
+            "claim_id": 75,
+            "claim_text": "The CounterFact dataset contains 335 samples that correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias."
+        },
+        {
+            "claim_id": 76,
+            "claim_text": "The CounterFact dataset contains 155 samples that correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 155 samples correspond to name bias."
+        },
+        {
+            "claim_id": 77,
+            "claim_text": "The CounterFact dataset contains 20 samples that correspond to both name and prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 20 samples correspond to both name and prompt bias."
+        },
+        {
+            "claim_id": 78,
+            "claim_text": "The CounterFact dataset contains 365 samples with popularity scores below 1000.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find approximately 365 known CounterFact samples with popularity scores below 1000."
+        },
+        {
+            "claim_id": 79,
+            "claim_text": "The CounterFact dataset contains 172 samples with popularity scores below 1000 that have been detected by heuristics filters.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find that around 50% of these samples (172 samples) have been detected by our heuristics filters."
+        },
+        {
+            "claim_id": 80,
+            "claim_text": "The CounterFact dataset contains 478 samples that may correspond to exact fact recall.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A total of 816 samples in CounterFact are found to have popularity scores above 1000."
+        },
+        {
+            "claim_id": 81,
+            "claim_text": "The CounterFact dataset contains 22 samples with negative total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "For the 1209 known CounterFact samples we find 22 samples with negative total effects."
+        },
+        {
+            "claim_id": 82,
+            "claim_text": "The CounterFact dataset contains 8 problematic samples with negated queries.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We identify a total of 8 problematic samples in the dataset that contain the word ‘not’ in the query."
+        },
+        {
+            "claim_id": 83,
+            "claim_text": "The CounterFact dataset contains 37 samples with low total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A deeper study of the TE values reveal an additional 37 samples for which the perturbation of the query subject decreased the original probability by less than 40%."
+        },
+        {
+            "claim_id": 84,
+            "claim_text": "The CounterFact dataset contains 18 samples with negative total effects that potentially correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 18 potentially correspond to prompt bias."
+        },
+        {
+            "claim_id": 85,
+            "claim_text": "The CounterFact dataset contains 2 samples with negative total effects that potentially correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find 22 samples with negative total effects, of which 2 potentially correspond to name bias."
+        },
+        {
+            "claim_id": 86,
+            "claim_text": "The CounterFact dataset contains 335 samples that correspond to prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias."
+        },
+        {
+            "claim_id": 87,
+            "claim_text": "The CounterFact dataset contains 155 samples that correspond to name bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 155 samples correspond to name bias."
+        },
+        {
+            "claim_id": 88,
+            "claim_text": "The CounterFact dataset contains 20 samples that correspond to both name and prompt bias.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find a total of 510 samples that may correspond to heuristics recall, of which 20 samples correspond to both name and prompt bias."
+        },
+        {
+            "claim_id": 89,
+            "claim_text": "The CounterFact dataset contains 365 samples with popularity scores below 1000.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find approximately 365 known CounterFact samples with popularity scores below 1000."
+        },
+        {
+            "claim_id": 90,
+            "claim_text": "The CounterFact dataset contains 172 samples with popularity scores below 1000 that have been detected by heuristics filters.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We find that around 50% of these samples (172 samples) have been detected by our heuristics filters."
+        },
+        {
+            "claim_id": 91,
+            "claim_text": "The CounterFact dataset contains 478 samples that may correspond to exact fact recall.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A total of 816 samples in CounterFact are found to have popularity scores above 1000."
+        },
+        {
+            "claim_id": 92,
+            "claim_text": "The CounterFact dataset contains 22 samples with negative total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "For the 1209 known CounterFact samples we find 22 samples with negative total effects."
+        },
+        {
+            "claim_id": 93,
+            "claim_text": "The CounterFact dataset contains 8 problematic samples with negated queries.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "We identify a total of 8 problematic samples in the dataset that contain the word ‘not’ in the query."
+        },
+        {
+            "claim_id": 94,
+            "claim_text": "The CounterFact dataset contains 37 samples with low total effects.",
+            "location": "Section F",
+            "claim_type": "Observation",
+            "exact_quote": "A deeper study of the
+
+Raw Evidence:
+
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 349.98 seconds
+evidence_analysis_time: 2.04 seconds
+conclusions_analysis_time: 2.04 seconds
+total_execution_time: 356.80 seconds

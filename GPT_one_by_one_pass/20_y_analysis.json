@@ -1,0 +1,244 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": "Both attention and FFN layers can store knowledge, and important neurons directly contributing to knowledge prediction are in deep layers.",
+            "claim_location": "Abstract/Contribution Summary",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The study confirms that both attention and FFN layers can store knowledge and identifies that all important neurons directly contributing to knowledge prediction are located in deep layers.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The study's conclusions are based on the analysis of six types of knowledge across both attention and FFN layers, which may not cover all possible types of knowledge stored in language models.",
+                    "location": "Results and Discussion sections",
+                    "exact_quote": "Based on our proposed methods, we analyze six types of knowledge in both attention and FFN layers, yielding numerous valuable insights: 1) Both attention and FFN layers can store knowledge, and all important neurons directly contribute to knowledge prediction are in deep layers."
+                }
+            ],
+            "evidence_locations": [
+                "Results and Discussion sections"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors concluded that both attention and FFN layers are capable of storing knowledge and that important neurons directly contributing to knowledge predictions are located in deep layers. They demonstrated this by analyzing six types of knowledge across both layers, showing similar and distinct semantic storage in attention heads and identifying the crucial role of deep-layer neurons, including FFN value neurons and query neurons, in influencing model predictions.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence supports the conclusion robustly through a combination of theoretical analysis, systematic methodology, and empirical evaluation across different knowledge types and model architectures. The use of intervention experiments to evaluate the impact of identified neurons further strengthens the robustness of their findings.",
+                "limitations": "Possible limitations include reliance on specific models (GPT-2 and Llama), which may limit the generalizability of the findings. The study also focuses on a static method for neuron attribution, potentially overlooking dynamic aspects of neuron function during model inference.",
+                "conclusion_location": "Abstract/Contribution Summary ."
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": "Knowledge with similar semantics tends to be stored in the same heads in attention layers.",
+            "claim_location": "Abstract/Contribution Summary",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Based on the analysis of six types of knowledge in both attention and FFN layers, it was found that knowledge with similar semantics tends to be stored in the same heads, while knowledge with distinct semantics is stored in different heads. This supports the claim by providing concrete experimental findings from an analysis of neuron-level storage, demonstrating how specific semantically related knowledge types (e.g., language, country, city) are localized within the same attention heads. Furthermore, the intervention studies which led to significant prediction accuracy drops when manipulating identified knowledge-carrying heads provide a strong causal link between attention head configuration and semantic knowledge storage, showcasing direct support for the claim's assertion.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The evidence is based on a limited set of knowledge types and two specific models (GPT2 and Llama), which might not generalize to all possible semantics or across different model architectures.",
+                    "location": "Results and Discussion, Paragraphs detailing findings on knowledge storage in attention and FFN layers",
+                    "exact_quote": "In attention layers, knowledge with similar semantics (e.g. language, country, city) tends to be stored in the same heads. Knowledge with distinct semantics (e.g. country, color) is stored in different heads."
+                }
+            ],
+            "evidence_locations": [
+                "Results and Discussion, Paragraphs detailing findings on knowledge storage in attention and FFN layers"
+            ],
+            "conclusion": {
+                "author_conclusion": "Knowledge with similar semantics is indeed stored in the same heads in attention layers, substantiated through methodological analysis and empirical evidence showing the clustered storage of semantically similar knowledge and the disparate storage for semantically dissimilar knowledge in different heads.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence supporting the conclusion is robust, utilizing a comprehensive approach that combines neuron-level attribution, layer-level and head-level analyses, and intervention studies. The methodology showing the significant decrease in model performance upon intervening in identified neurons underscores the reliability of the claim.",
+                "limitations": "Limitations include the focus on six specific types of knowledge, potentially excluding other relevant knowledge types. The study's reliance on GPT2 and Llama models may limit the generalizability of the findings to other models. Moreover, the methodological reliance on static approaches for neuron attribution may overlook dynamic aspects of knowledge storage and representation.",
+                "conclusion_location": "Contribution Summary"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": "Intervening on a few neurons significantly influences the final prediction.",
+            "claim_location": "Abstract/Contribution Summary",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "In both GPT2 and Llama models, when intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decrease significantly. Specifically, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama. In contrast, randomly intervening the same number of neurons only decreases 0.22%/0.14%.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results are specific to the model architectures (GPT2 and Llama) tested and may not generalize across different types or configurations of neural networks.",
+                    "location": "Results section",
+                    "exact_quote": "When intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama. In comparison, randomly intervening the same number of neurons only decreases 0.22%/0.14%."
+                }
+            ],
+            "evidence_locations": [
+                "Results section"
+            ],
+            "conclusion": {
+                "author_conclusion": "Intervening on a select few neurons drastically affects the model's final predictions, indicating a significant concentration of predictive capability within a relatively small number of neurons. This conclusion stems from observed dramatic decreases in Mean Reciprocal Rank (MRR) and probability scores upon targeted intervention on top neurons in both GPT2 and Llama models, which far surpassed the effects of random interventions.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The findings are supported by a consistent methodology that accurately identifies neurons with a significant impact on predictive outcomes, further corroborated by comparison with alternative attribution methods and the negligible effects of random interventions. The use of both MRR and probability as metrics provides a comprehensive assessment of the impact on model performance, emphasizing the evidence's strength and reliability.",
+                "limitations": "The analysis might not fully account for the complexity of neural interactions within large models, potentially oversimplifying the nuanced roles of neurons. Furthermore, the study seems to focus on two specific models (GPT2 and Llama), which may not be fully generalizable across different architectures or versions. The methodology's dependence on specific intervention techniques and the chosen metrics for evaluating impact also frames a particular view that may not capture all aspects of neural importance or model behavior.",
+                "conclusion_location": "Appendix C"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": "The proposed static method for neuron-level knowledge attribution achieves the best performance compared to seven other methods.",
+            "claim_location": "Abstract/Contribution Summary",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The proposed method for neuron-level knowledge attribution achieves the best performance compared with seven other methods in identifying important neurons, which is backed by experimental results across multiple metrics.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Experiments are limited to the GPT2-large and Llama-7B models; further research is needed to explore other model behaviors.",
+                    "location": "Section 4.1 Comparison of Attribution Methods & Results and analysis paragraphs",
+                    "exact_quote": "Based on our proposed methods, we analyze six types of knowledge in both attention and FFN layers, yielding numerous valuable insights... Compared with seven static methods, our method achieves the best performance under three metrics... The results of the original model (first line) and eight attribution methods are shown in Table 1. In comparison with the other seven methods, our attribution method (second line) attributes more important neurons, resulting in the most significant reduction across all metrics in both GPT2 and Llama."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.1 Comparison of Attribution Methods & Results and analysis paragraphs"
+            ],
+            "conclusion": {
+                "author_conclusion": "The proposed static method for neuron-level knowledge attribution outperforms seven other static methods in terms of identifying significant neurons that contribute to final model predictions, based on three performance metrics.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is solid, relying on direct quantitative comparison across multiple metrics and models. It employs interventions (zeroing out neuron parameters) to assess the impact of identified neurons, adding to the methodological rigour.",
+                "limitations": "The analysis is limited to GPT2-large and Llama-7B models, and focuses on six types of knowledge within these models, which may not fully generalize to other models or knowledge types. The study explicitly acknowledges these limitations and suggests further research directions.",
+                "conclusion_location": "Abstract/Contribution Summary; Experiment Results; Limitations"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": "The method to identify 'query neurons' activating 'value neurons' contributes to the understanding of LLM mechanisms.",
+            "claim_location": "Abstract/Conclusion",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The study presents a static method to identify 'query neurons' that activate 'value neurons', contributing significant insights into the understanding of knowledge storage mechanisms in LLMs, demonstrated with experiments on GPT2 and Llama models.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The study focuses on six specific types of knowledge and uses static methods. Experiments are only conducted using GPT2-large and Llama-7B models, limiting the generalizability across different models.",
+                    "location": "20_y.pdf: Conclusion section",
+                    "exact_quote": "In this study, we propose a method based on log probability increase to identify the important 'value neurons'. We also develop a method based on inner products to locate the 'query neurons' activating these 'value neurons'. Our method and analysis on six types of knowledge are helpful for exploring and understanding the mechanism of LLMs."
+                }
+            ],
+            "evidence_locations": [
+                "20_y.pdf: Conclusion section"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that their method of identifying 'query neurons' that activate 'value neurons' is effective for understanding the mechanisms of large language models (LLMs). This method, based on log probability increase and inner product calculations, outperforms seven other static methods in identifying crucial neurons for final predictions, providing valuable insights into how knowledge is stored and processed in both the attention and feed-forward network (FFN) layers of LLMs.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust, supported by empirical comparisons, detailed methodological descriptions, and a clear demonstration of effectiveness across multiple metrics. The authors' approach systematically addresses the challenges of neuron-level attribution in LLMs, showing significant improvement over existing methods. However, the reliance on static methods and the focus on two model architectures (GPT2-large and Llama-7B) may limit the generalizability of the findings.",
+                "limitations": "The study's limitations include a focus on a limited set of knowledge types and model architectures, the exclusive use of static methods for neuron-level knowledge attribution, and unrealized potential risks in model manipulation. The authors acknowledge these limitations and propose future research directions, including method comparisons and expansions to other model types.",
+                "conclusion_location": "Conclusion"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": "Methodological limitation in focusing on six specific types of knowledge for neuron-level knowledge attribution.",
+            "claim_location": "Limitations",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The study acknowledges a methodological limitation due to its focus on six specific types of knowledge, implying other significant types of knowledge were not considered. This is a direct acknowledgment of the claim's assertion.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The study's scope is limited to GPT2-large and Llama-7B models and employs static methods for neuron-level knowledge attribution.",
+                    "location": "20_y.pdf - Limitations section",
+                    "exact_quote": "The first limitation of our study is that it focuses on six specific types of knowledge, while other types of knowledge are also important."
+                }
+            ],
+            "evidence_locations": [
+                "20_y.pdf - Limitations section"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors concluded that while their methodology and analysis on six types of knowledge (language, capital, country, color, number, month) provide valuable insights into the knowledge storage mechanisms of LLMs, focusing solely on these six types presents a methodological limitation. They acknowledge the importance of other types of knowledge and the need for comparison across different LLM models using both static and dynamic attribution methods to fully understand neuron-level knowledge attribution.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence presented, including detailed experiments, attribution methods comparison, and analysis of six types of knowledge across attention and FFN layers, highlights the authors' methodological rigor. The experiments demonstrate notable decreases in MRR and probability metrics when intervening on attributed neurons, underscoring the potential effectiveness of static methods in knowledge attribution. However, the acknowledgment of limiting the study to six types of knowledge and specific LLM models points to an area for future research expansion, affecting the robustness of the conclusions.",
+                "limitations": "The study's specific limitations include its focus on only six types of knowledge, the use of GPT2-large and Llama-7B models without broader comparison across different LLM models, and the employment of static methods for neuron-level knowledge attribution. While these constraints are acknowledged by the authors, they also suggest areas for future work, such as incorporating dynamic methods and expanding the scope of knowledge types analyzed.",
+                "conclusion_location": "Limitations"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": "The method's generalizability is uncertain across different models beyond GPT2-large and Llama-7B.",
+            "claim_location": "Limitations",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The study focuses on experiments conducted using GPT2-large and Llama-7B models, asserting the essential comparison of knowledge storage across different models to understand the mechanism of LLMs better.",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "The experiments are limited to only GPT2-large and Llama-7B models, without comparison across a wider range of models.",
+                    "location": "Limitations section",
+                    "exact_quote": "Secondly, our experiments are conducted using GPT2-large and Llama-7B models. It is essential to compare the similarities and differences in knowledge storage across different models."
+                }
+            ],
+            "evidence_locations": [
+                "Limitations section"
+            ],
+            "conclusion": {
+                "author_conclusion": "While the proposed methods show promising results in understanding and attributing knowledge storage within GPT2-large and Llama-7B models, the generalizability of these methods to other models remains uncertain due to the specific focus on only two types of models and six knowledge types. Future research is planned to compare knowledge storage mechanisms across a broader range of models.",
+                "conclusion_justified": false,
+                "robustness_analysis": "The research demonstrates methodological robustness in identifying important neurons and analyzing neuron-level knowledge storage within the context of GPT2-large and Llama-7B models. The comparison to seven other methods and the comprehensive analysis of six types of knowledge support the reliability of the methods. However, the generalizability of these findings to other models is not established due to the exclusive focus on two specific models.",
+                "limitations": "The study's limitations include the focus on six specific types of knowledge and the utilization of static methods for neuron-level knowledge attribution, which may not capture the dynamic aspects of knowledge storage and retrieval in LLMs. The research's applicability to models beyond GPT2-large and Llama-7B is also a significant limitation, as mentioned by the authors.",
+                "conclusion_location": "Limitations"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": "A potential risk is that the method can be used to manipulate model outputs, such as increasing toxicity or bias.",
+            "claim_location": "Limitations",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "The method can identify important neurons, and editing them changes model outputs, specifically increasing toxicity and bias.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Based on experiments with GPT2-large and Llama-7B models on six types of knowledge, may not generalize across all models or knowledge types.",
+                    "location": "Section 6 Limitations & Section 4.1 Comparison of Attribution Methods",
+                    "exact_quote": "A potential risk of our work is that people can utilize our method to identify important neurons and edit them to change the models\u2019 outputs. For instance, if they identify the toxicity neurons and gender bias neurons and increase these neurons\u2019 coefficient scores, the model will be more likely to generate toxicity and gender bias words."
+                }
+            ],
+            "evidence_locations": [
+                "Section 6 Limitations & Section 4.1 Comparison of Attribution Methods"
+            ],
+            "conclusion": {
+                "author_conclusion": "The potential risk of the method enabling people to manipulatively increase model outputs' toxicity or bias is acknowledged, yet it is emphasized that the method's utility for reducing such undesired outputs depends on its application by users.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence discussed concerning the potential to manipulate model outputs specifically through increasing the coefficients of toxicity and bias neurons is compelling in theory but is simultaneously mitigated by the authors' proposition of using the same methodology to attenuate these issues. This theoretical nature of evidence, highlighted by practical applicability considerations, underscores both the strength and the limitation of the method's robustness.",
+                "limitations": "The limitations mainly stem from the method's focus on static analysis and being tested on specific models (GPT2-large and Llama-7B), which may not fully generalize across all types of LLMs. Moreover, the risk associated with misuse of the method for manipulative purposes highlights a critical ethical consideration that requires careful management and guidelines for use.",
+                "conclusion_location": "Limitations"
+            }
+        },
+        {
+            "claim_id": 9,
+            "claim": "Need to compare static methods with other attribution methods like causal mediation analysis for robustness verification.",
+            "claim_location": "Limitations",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Although the study employs static methods for neuron-level knowledge attribution and demonstrates their correctness and robustness, it acknowledges the importance of comparing static methods with other attribution methods, such as causal mediation analysis and gradient-based methods, for future exploration.",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "The study is limited to six specific types of knowledge and experiments conducted only on GPT2-large and Llama-7B models. There is a recognized need to explore comparisons with other attribution methods beyond static ones.",
+                    "location": "Limitations section",
+                    "exact_quote": "Although our experiments demonstrate the correctness and robustness of our designed method, it is also important to compare static methods with other attribution methods, such as causal mediation analysis and gradient-based methods."
+                }
+            ],
+            "evidence_locations": [
+                "Limitations section"
+            ],
+            "conclusion": {
+                "author_conclusion": "The need for comparison between static methods and other attribution approaches like causal mediation analysis is founded on the potential for such comparative analysis to enhance understanding and robustness verification of attribution methods.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is consistent with the authors\u2019 conclusions, illustrating methodological robustness in identifying crucial neurons related to knowledge storage in LLMs. The methodology\u2019s success across different types of knowledge and models supports its reliability, albeit within the tested conditions. The inclusion of metrics like MRR, prob, and logp provides a concrete basis for evaluation.",
+                "limitations": "Specific limitations include the focus on static methods without direct comparison to dynamic or causal methods, the potential applicability only to certain models (GPT2-large, Llama-7B) and types of knowledge, and the absence of broader testing across varied LLM architectures.",
+                "conclusion_location": "Limitations"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "35.25 seconds",
+        "evidence_analysis_time": "148.00 seconds",
+        "conclusions_analysis_time": "201.45 seconds",
+        "total_execution_time": "0.00 seconds"
+    }
+}

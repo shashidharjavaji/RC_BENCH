@@ -1,0 +1,224 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Large language models can err by relying on irrelevant information in the prompt.",
+                "location": "Section 3.3.1",
+                "type": "Novel finding",
+                "exact_quote": "We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Table 1: Results of the framing experiments. We find that adding irrelevant preceding functions consistently lowers functional accuracy, by between 22.3 and 30.5 points for Codex, across the different framing lines we tested. Moreover, both models frequently generate the framing line: 81% of the time for Codex and 70.7% of time for CodeGen, compared to only 4.5% and 0.0% over untransformed prompts respectively.",
+                    "strength": "strong",
+                    "limitations": "Only Codex and CodeGen are tested",
+                    "location": "Section 3.3.1",
+                    "exact_quote": "Table 1: Results of the framing experiments..."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Figure 4: Results of the print-var anchoring experiment. Left. We measure the functional accuracy of Codex (top) and CodeGen (bottom) with no anchor function prepended (baseline acc), the functional accuracy with a print-var anchor function prepended (anchor acc), and find that prepending the anchor function consistently lowers accuracy. Right. We measure the influence of the anchor function on the generated solution by plotting the fraction of generated solutions that contain \u201cfor var in \u201d from the print-var anchor prompt (for var loop), the fraction of generated solutions that include \u201cprint(var) \u201d (prints var), and the fraction of generated solutions that output the anchor function verbatim without additional content (exact copy), as a function of the number of canonical solution lines added to the prompt.",
+                    "strength": "strong",
+                    "limitations": "Only Codex and CodeGen are tested",
+                    "location": "Section 3.3.2",
+                    "exact_quote": "Figure 4: Results of the print-var anchoring experiment..."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 1,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Code generation models can adjust their output towards related solutions when these solutions are included in the prompt.",
+                "location": "Section 3.3.2",
+                "type": "Novel finding",
+                "exact_quote": "We find that elements of anchor function often appear in both models' outputs, suggesting that code generation models adjust their solutions towards related solutions."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Figure 4: Results of the print-var anchoring experiment. Left. We measure the functional accuracy of Codex (top) and CodeGen (bottom) with no anchor function prepended (baseline acc), the functional accuracy with a print-var anchor function prepended (anchor acc), and find that prepending the anchor function consistently lowers accuracy. Right. We measure the influence of the anchor function on the generated solution by plotting the fraction of generated solutions that contain \u201cfor var in \u201d from the print-var anchor prompt (for var loop), the fraction of generated solutions that include \u201cprint(var) \u201d (prints var), and the fraction of generated solutions that output the anchor function verbatim without additional content (exact copy), as a function of the number of canonical solution lines added to the prompt.",
+                    "strength": "strong",
+                    "limitations": "Only Codex and CodeGen are tested",
+                    "location": "Section 3.3.2",
+                    "exact_quote": "Figure 4: Results of the print-var anchoring experiment..."
+                },
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "Figure 5: Left. Availability heuristic example where Codex mixes up the order of operations. The correct function signature (blue), square_sum matches the prompt. However, the incorrect function call (red) instead squares its inputs before summing them.",
+                    "strength": "moderate",
+                    "limitations": "Only Codex is tested",
+                    "location": "Section 3.3.3",
+                    "exact_quote": "Figure 5: Left. Availability heuristic example..."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 2,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Codex can err by outputting solutions to related, frequent prompts in the training set.",
+                "location": "Section 3.3.3",
+                "type": "Novel finding",
+                "exact_quote": "We find that accuracy drops from 50% to only 17% when flipping the order from unary-first to binary-first. Among combinations where flipping the order leads to error, we find that 75% of the binary-first outputs are the unary-first solution."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 5,
+                    "evidence_text": "Figure 5: Left. Availability heuristic example where Codex mixes up the order of operations. The correct function signature (blue), square_sum matches the prompt. However, the incorrect function call (red) instead squares its inputs before summing them.",
+                    "strength": "moderate",
+                    "limitations": "Only Codex is tested",
+                    "location": "Section 3.3.3",
+                    "exact_quote": "Figure 5: Left. Availability heuristic example..."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 3,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Codex can err by using simple-but-incorrect heuristics to generate solutions.",
+                "location": "Section 3.3.4",
+                "type": "Novel finding",
+                "exact_quote": "We find that Codex frequently generates solutions based on the function name, even when the function name is in conflict with the prompt."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 6,
+                    "evidence_text": "Table 2: Results of the attribute substitution experiments. We report accuracy when we do not request a contradictory function name (no name), we request a function name in the docstring (docstring), in the function signature below the docstring (function signature), or above the docstring (name first). Overall, we find that Codex frequently generates solutions based on the function name.",
+                    "strength": "strong",
+                    "limitations": "Only Codex is tested",
+                    "location": "Section 3.3.4",
+                    "exact_quote": "Table 2: Results of the attribute substitution experiments..."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 4,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "GPT-3 can update its estimate when an anchor is prepended, and tends to shift the estimate towards the anchor.",
+                "location": "Section 4",
+                "type": "Novel finding",
+                "exact_quote": "We find that GPT-3 routinely updates its estimate when an anchor is prepended, and tends to shift the estimate towards the anchor, mirroring the behavior of humans."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 7,
+                    "evidence_text": "Table 3: Results of the adaptation of the anchoring study from Jacowitz and Kahneman [1995] on GPT-3. We consider anchors that are 20% and 50% increases and decreases from the ground truth answer, and measure how often GPT-3\u2019s revised prediction does not change, shifts towards / away from the anchor, or is gibberish.",
+                    "strength": "strong",
+                    "limitations": "Only GPT-3 is tested",
+                    "location": "Section 4",
+                    "exact_quote": "Table 3: Results of the adaptation of the anchoring study..."
+                },
+                {
+                    "evidence_id": 8,
+                    "evidence_text": "Table 3: Results of the adaptation of the anchoring study from Jacowitz and Kahneman [1995] on GPT-3. We consider anchors that are 20% and 50% increases and decreases from the ground truth answer, and measure how often GPT-3\u2019s revised prediction does not change, shifts towards / away from the anchor, or is gibberish.",
+                    "strength": "strong",
+                    "limitations": "Only GPT-3 is tested",
+                    "location": "Section 4",
+                    "exact_quote": "Table 3: Results of the adaptation of the anchoring study..."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 5,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": {
+                "text": "GPT-3 can select different options based on the framing of a decision, similar to humans.",
+                "location": "Section 4",
+                "type": "Novel finding",
+                "exact_quote": "We find that GPT-3 qualitatively mirrors humans: it chooses the probabilistic option far more frequently under the 'not save' framing than under the'save framing'."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 9,
+                    "evidence_text": "Table 3: Results of the adaptation of the anchoring study from Jacowitz and Kahneman [1995] on GPT-3. We consider anchors that are 20% and 50% increases and decreases from the ground truth answer, and measure how often GPT-3\u2019s revised prediction does not change, shifts towards / away from the anchor, or is gibberish.",
+                    "strength": "strong",
+                    "limitations": "Only GPT-3 is tested",
+                    "location": "Section 4",
+                    "exact_quote": "Table 3: Results of the adaptation of the anchoring study..."
+                },
+                {
+                    "evidence_id": 10,
+                    "evidence_text": "Figure 6: Left. Example where Codex incorrectly deletes files. We prompt Codex to delete files containing all of statsmodels, plotly, seaborn, and scipy. Codex correctly iterates through all files in the inputted directory (blue), but then incorrectly deletes all files containing statsmodels (red), as attribute substitution suggests.",
+                    "strength": "moderate",
+                    "limitations": "Only Codex is tested",
+                    "location": "Section 5",
+                    "exact_quote": "Figure 6: Left. Example where Codex incorrectly deletes files..."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 6,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": {
+                "text": "The framework can be used to preemptively elicit high-impact errors, such as erroneous deletions.",
+                "location": "Section 5",
+                "type": "Novel finding",
+                "exact_quote": "We find that Codex erroneously deletes files on at least 80% of prompts when the number of package imports is at least three, despite producing a correct output on 90% of prompts when the number of packages is at most two."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 11,
+                    "evidence_text": "Figure 6: Left. Example where Codex incorrectly deletes files. We prompt Codex to delete files containing all of statsmodels, plotly, seaborn, and scipy. Codex correctly iterates through all files in the inputted directory (blue), but then incorrectly deletes all files containing statsmodels (red), as attribute substitution suggests.",
+                    "strength": "moderate",
+                    "limitations": "Only Codex is tested",
+                    "location": "Section 5",
+                    "exact_quote": "Figure 6: Left. Example where Codex incorrectly deletes files..."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 7,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "None",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "112.95 seconds",
+        "evidence_analysis_time": "285.28 seconds",
+        "conclusions_analysis_time": "59.97 seconds",
+        "total_execution_time": "465.15 seconds"
+    }
+}

@@ -1,0 +1,131 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: LLMs do not calculate intermediate steps during implicit reasoning, despite being able to often give correct answers to multi-step problems
+Location: Abstract
+Type: Main finding
+Quote: The results surprisingly indicate that LLMs hardly think about intermediate steps, suggesting they may just rely on experience rather than strict step-by-step reasoning.
+
+Evidence:
+- Probing results show model does not calculate intermediate steps
+  Strength: strong
+  Location: Section 2.2
+  Limitations: Only tested on arithmetic problems, one model type
+  Quote: in generic cases, there is actually not a specific state where the model calculates the results of the intermediate steps, even when it correctly give a answer of the multi-step problem. It actually skips the intermediate steps and come up with the final result directly.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Only tested on arithmetic problems, single model architecture
+Confidence: medium
+
+==================================================
+
+Claim 2:
+Statement: LLMs' implicit reasoning capabilities are unstable and susceptible to small changes
+Location: Abstract
+Type: Secondary finding
+Quote: Moreover, we find LLMs' implicit reasoning capabilities are susceptible and unstable, reaffirming the necessity of explicit CoT to effectively support complex tasks.
+
+Evidence:
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Only tested two types of modifications (reversing and dividing), limited problem types
+Confidence: medium
+
+==================================================
+
+Claim 3:
+Statement: The performance of implicit CoT still lags behind explicit CoT
+Location: Introduction
+Type: Background claim
+Quote: Despite the theoretical appeal of implicit reasoning as a more efficient alternative to traditional CoT methods, empirical evidence suggests the performance of implicit CoT still lag behind explicit CoT.
+
+Evidence:
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Limited to arithmetic problems, single model tested
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: The model only reliably encodes the first and last steps of multi-step problems in its hidden states
+Location: Results section 2.2
+Type: Empirical finding
+Quote: It is clear that the results of the first step and the last step can always be probed successfully in the back layers, indicating the model does memorize the input value (i.e. the result of the first step) and does conceive the final answer (i.e. the result of the last step).
+
+Evidence:
+- Probing accuracy results show only first and last steps are reliably encoded
+  Strength: strong
+  Location: Section 2.2
+  Limitations: Only tested on one model architecture
+  Quote: the results of the first step and the last step can always be probed successfully in the back layers, indicating the model does memorize the input value (i.e. the result of the first step) and does conceive the final answer
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Linear probing may not capture all information, limited to one model architecture
+Confidence: medium
+
+==================================================
+
+Claim 5:
+Statement: LLMs can only perform up to 2-hop reasoning implicitly
+Location: Results section 2.2
+Type: Empirical finding
+Quote: LLMs may have the ability to perform a 2-hop reasoning (the 3-step problem actually only needs 2 hops because the result of the first step is already given) in implicit reasoning, but not at all when there are more steps involved.
+
+Evidence:
+- Second step can be detected but not further steps
+  Strength: moderate
+  Location: Section 2.2
+  Limitations: Limited to arithmetic problems
+  Quote: LLMs may have the ability to perform a 2-hop reasoning (the 3-step problem actually only needs 2 hops because the result of the first step is already given) in implicit reasoning, but not at all when there are more steps involved.
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: Based on probing accuracy which may not capture all reasoning capabilities, limited problem types
+Confidence: medium
+
+==================================================
+
+Claim 6:
+Statement: Slightly modifying problems significantly degrades implicit reasoning performance while explicit reasoning remains perfect
+Location: Results section 2.3
+Type: Empirical finding
+Quote: From the results in Table 1, we can clearly see that, compare to the original problems, the modified problems significantly degrade the performance when using implicit reasoning. While the performance of explicit reasoning is always perfect.
+
+Evidence:
+- Table 1 shows performance comparison between original and modified problems
+  Strength: strong
+  Location: Section 2.3
+  Limitations: Limited problem types tested
+  Quote: compare to the original problems, the modified problems significantly degrade the performance when using implicit reasoning. While the performance of explicit reasoning is always perfect.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Limited types of modifications tested, single model architecture
+Confidence: high
+
+==================================================
+
+Claim 7:
+Statement: Implicit reasoning cannot be on par with explicit reasoning methods because it does not follow a step-by-step process
+Location: Conclusion
+Type: Main conclusion
+Quote: Unlike some previous studies which envisioned implicit reasoning as a substitute for explicit reasoning, implicit reasoning cannot be on par with explicit reasoning methods because it actually does not follow a step-by-step process but just intuitively thinks of the answer, which makes it less reliable.
+
+Evidence:
+Conclusion:
+Justified: False
+Robustness: low
+Limitations: Conclusion extends beyond available evidence, assumes causation from correlation
+Confidence: low
+
+==================================================
+

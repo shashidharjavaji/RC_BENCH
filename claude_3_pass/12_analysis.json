@@ -1,0 +1,135 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "DocPrompting consistently improves NL-to-code models across multiple programming languages and model architectures",
+                "location": "Abstract",
+                "type": "Results/Performance",
+                "exact_quote": "DocPrompting consistently improves NL-to-code models: DocPrompting improves strong base models such as CodeT5 by 2.85% in pass@1 (52% relative gain) and 4.39% in pass@10 (30% relative gain) in execution-based evaluation on the popular Python CoNaLa benchmark; on a new Bash dataset tldr, DocPrompting improves CodeT5 and GPT-Neo-1.3B by up to absolute 6.9% exact match."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Results showing improvements across T5, CodeT5, GPT-Neo and Codex models on both Python and Bash tasks",
+                    "strength": "strong",
+                    "limitations": "Limited to two programming languages and specific benchmarks",
+                    "location": "Results section 5.1-5.2",
+                    "exact_quote": "DocPrompting consistently improves the base models. For example, T5+DocPrompting achieves more than twice higher accuracy in predicting the command name, more than 16 charBLEU points on the entire prediction, and almost 9% of absolute exact match gain, compared to the vanilla T5."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Results vary in magnitude across models; some improvements are modest",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "DocPrompting is the first approach to effectively leverage documentation in code generation models",
+                "location": "Introduction",
+                "type": "Novelty",
+                "exact_quote": "To the best of our knowledge, this is the first demonstration of leveraging documentation in models of code explicitly and effectively."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "No direct evidence proving it is first, only self-claim in introduction",
+                    "strength": "weak",
+                    "limitations": "No comparative analysis with prior documentation approaches",
+                    "location": "Introduction",
+                    "exact_quote": "To the best of our knowledge, this is the first demonstration of leveraging documentation in models of code explicitly and effectively."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": false,
+                "robustness": "low",
+                "limitations": "No systematic literature review or evidence showing it is first",
+                "confidence_level": "low"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "The authors introduce two new benchmarks for retrieval-based code generation",
+                "location": "Introduction",
+                "type": "Contribution",
+                "exact_quote": "we introduce two new benchmarks for retrieval-based code generation: (a) in Bash, we curate a new benchmark by crawling the tldr repository, and constructing the training/development/test splits without overlapping commands; (b) in Python, we re-split the popular CoNaLa benchmark by making every test example contain at least one Python function that is not seen in the training data."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Details of new tldr benchmark and CoNaLa re-split",
+                    "strength": "strong",
+                    "limitations": "One is a re-split rather than entirely new benchmark",
+                    "location": "Section 4",
+                    "exact_quote": "in Bash, we curate a new benchmark by crawling the tldr repository...in Python, we re-split the popular CoNaLa benchmark by making every test example contain at least one Python function that is not seen in the training data."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Re-split of existing dataset rather than fully new dataset for CoNaLa",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "DocPrompting significantly increases the n-gram overlap between input and output compared to retrieving examples",
+                "location": "Section 7",
+                "type": "Results/Analysis",
+                "exact_quote": "retrieving documentation (DocPrompting) provides much higher gains than retrieving examples (ExPrompting)"
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Direct comparison showing higher n-gram overlap with documentation vs examples",
+                    "strength": "strong",
+                    "limitations": "Limited to specific n-gram sizes",
+                    "location": "Section 5.1",
+                    "exact_quote": "retrieving documentation (DocPrompting) provides much higher gains than retrieving examples (ExPrompting)"
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "N-gram overlap is a proxy metric, may not directly translate to code quality",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Documentation helps bridge the gap between natural language intent and code terminology",
+                "location": "Section 6.1",
+                "type": "Finding",
+                "exact_quote": "one of the reasons that retrieving documentation helps generating accurate code is that documentation bridges the gap between the 'intent terminology' and the 'code terminology'"
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Analysis showing increased overlap between input and output terminology",
+                    "strength": "strong",
+                    "limitations": "Only analyzed n-gram overlap metrics",
+                    "location": "Section 6.1",
+                    "exact_quote": "adding documentation significantly increases the overlap across n-grams, and increase, for example, the unigram overlap from 12% to 24% in tldr. That is, one of the reasons that retrieving documentation helps generating accurate code is that documentation bridges the gap between the 'intent terminology' and the 'code terminology'."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Correlation between overlap and performance does not prove causation",
+                "confidence_level": "medium"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "13.08 seconds",
+        "evidence_analysis_time": "15.26 seconds",
+        "conclusions_analysis_time": "10.88 seconds",
+        "total_execution_time": "44.04 seconds"
+    }
+}

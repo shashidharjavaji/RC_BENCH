@@ -1,0 +1,134 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: A static method for neuron-level knowledge attribution in large language models is proposed, achieving superior performance across three metrics compared to seven other methods.
+Location: Abstract
+Type: Methodological Contribution
+Quote: In this paper, we propose a static method for pinpointing significant neurons. Compared to seven other methods, our approach demonstrates superior performance across three metrics.
+
+Evidence:
+- The results of the original model (first line) and eight attribution methods are shown in Table 2. In comparison with the other seven methods, our attribution method (second line) attributes more important neurons, resulting in the most significant reduction across all metrics in both GPT2 and Llama.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: None
+  Quote: Table 2
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Comparison with other methods is limited to the seven methods evaluated
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: The proposed method identifies 'value neurons' that directly contribute to final predictions and 'query neurons' that aid in activating these 'value neurons'.
+Location: Abstract
+Type: Methodological Contribution
+Quote: Additionally, since most static methods typically only identify 'value neurons' directly contributing to the final prediction, we propose a method for identifying 'query neurons' which activate these 'value neurons'.
+
+Evidence:
+- We propose a static method to identify these 'query neurons' based on Eq.1, Eq.5, and Eq.6. Since the fc2 vectors do not change, the coefficient scores are the only varying element in different cases.
+  Strength: strong
+  Location: Section 3.4
+  Limitations: None
+  Quote: Section 3.4
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: None mentioned in the provided text
+Confidence: high
+
+==================================================
+
+Claim 3:
+Statement: The analysis reveals that both attention and FFN layers can store knowledge, with all important neurons directly contributing to knowledge prediction located in deep layers.
+Location: Section 4.2
+Type: Empirical Finding
+Quote: Both attention and FFN layers have ability to store knowledge, and all the top10 layers are in deep layers.
+
+Evidence:
+- Both attention and FFN layers have ability to store knowledge, and all the top10 layers are in deep layers.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None
+  Quote: Table 3 and Table 4
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Analysis is based on the specific models (GPT2 and Llama) and knowledge types evaluated
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: Knowledge with similar semantics tends to be stored in the same heads, while knowledge with distinct semantics is stored in different heads.
+Location: Section 4.2
+Type: Empirical Finding
+Quote: Information with analogous semantics (e.g., language, capital, country) tends to be stored within similar layers/modules.
+
+Evidence:
+- Information with analogous semantics (e.g., language, capital, country) tends to be stored within similar layers/modules.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None
+  Quote: Table 4
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Observation is based on the top layers and heads identified
+Confidence: high
+
+==================================================
+
+Claim 5:
+Statement: Intervening a few 'value neurons' (300) or 'query neurons' (1000) can significantly influence the final prediction.
+Location: Section 4.2
+Type: Empirical Finding
+Quote: When intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+Evidence:
+- When intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None
+  Quote: Table 13
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Intervention is limited to the top neurons identified
+Confidence: high
+
+==================================================
+
+Claim 6:
+Statement: The shallow and medium FFN layers play a crucial role in activating 'value neurons' in attention layers.
+Location: Section 4.2
+Type: Empirical Finding
+Quote: For every knowledge, the shallow and medium FFN layers play larger roles than attention layers in activating 'value neurons'.
+
+Evidence:
+- The shallow and medium FFN layers play a crucial role in activating 'value neurons' in attention layers, as shown in Table 14.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None
+  Quote: Table 14
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: Analysis focuses on the role of shallow and medium FFN layers
+Confidence: high
+
+==================================================
+
+
+Execution Times:
+claims_analysis_time: 105.29 seconds
+evidence_analysis_time: 99.43 seconds
+conclusions_analysis_time: 55.06 seconds
+total_execution_time: 264.18 seconds

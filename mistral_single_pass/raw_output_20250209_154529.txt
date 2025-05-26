@@ -1,0 +1,106 @@
+```json
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Using a Panel of LLm evaluators (PoLL) composed of a larger number of smaller models outperforms a single large judge, exhibits less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive.",
+                "type": "contribution",
+                "location": "Abstract",
+                "exact_quote": "Using a Panel of LLm evaluators (PoLL) composed of a larger number of smaller models outperforms a single large judge, exhibits less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The cost of running our specific instance of PoLL is $1.25/input + $4.25/output, whereas the cost of running GPT-4 Turbo is $10/input + $30/output. Depending on the ratio of input-to-output tokens in a given task, running the entire three model PoLL is seven to eight times less expensive than running a single GPT-4 judge.",
+                    "strength": "strong",
+                    "limitations": "Costs are specific to the instance and may vary with different implementations.",
+                    "location": "Section 4.5",
+                    "exact_quote": "The cost of running our specific instance of PoLL is $1.25/input + $4.25/output, whereas the cost of running GPT-4 Turbo is $10/input + $30/output. Depending on the ratio of input-to-output tokens in a given task, running the entire three model PoLL is seven to eight times less expensive than running a single GPT-4 judge."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The cost comparison is directly stated and supported by specific cost figures.",
+                "key_limitations": "Costs are specific to the instance and may vary with different implementations.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Using an instantiation of PoLL correlates better with human judgements compared to a single large judge (GPT-4), while being over seven times cheaper.",
+                "type": "result",
+                "location": "Section 4.1",
+                "exact_quote": "Using an instantiation of PoLL correlates better with human judgements compared to a single large judge (GPT-4), while being over seven times cheaper."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Table 1 shows how the ratings from different evaluator judges, on different single-hop QA datasets from KILT, correlate with human judgements as measured by κ. We see that overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup.",
+                    "strength": "strong",
+                    "limitations": "The correlation is specific to the datasets and models used in the study.",
+                    "location": "Section 4.1",
+                    "exact_quote": "Table 1 shows how the ratings from different evaluator judges, on different single-hop QA datasets from KILT, correlate with human judgements as measured by κ. We see that overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The correlation is directly stated and supported by specific correlation values.",
+                "key_limitations": "The correlation is specific to the datasets and models used in the study.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "In some scenarios, GPT-4 is a relatively weak judge, exhibiting high variance with minor changes to the prompt.",
+                "type": "performance",
+                "location": "Section 4.3",
+                "exact_quote": "In some scenarios, GPT-4 is a relatively weak judge, exhibiting high variance with minor changes to the prompt."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Table 3 shows how the correlation between GPT-4 and human annotators varies as the prompt changes. In all cases, having in-context examples improves the performance over zero-shot and the most effective strategy is an explicit instruction to the model not to 'overthink' and not to concern itself with the wider factuality of the answers with respect to the outside world.",
+                    "strength": "strong",
+                    "limitations": "The performance is specific to the datasets and models used in the study.",
+                    "location": "Section 4.3",
+                    "exact_quote": "Table 3 shows how the correlation between GPT-4 and human annotators varies as the prompt changes. In all cases, having in-context examples improves the performance over zero-shot and the most effective strategy is an explicit instruction to the model not to 'overthink' and not to concern itself with the wider factuality of the answers with respect to the outside world."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The performance is directly stated and supported by specific correlation values.",
+                "key_limitations": "The performance is specific to the datasets and models used in the study.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Intra-model scoring bias is reduced by pooling judgements across a panel of heterogeneous evaluator models.",
+                "type": "contribution",
+                "location": "Section 4.4",
+                "exact_quote": "Intra-model scoring bias is reduced by pooling judgements across a panel of heterogeneous evaluator models."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Figures 3 and 4 show results on HotPotQA and Bamboogle. We can see how the different judges score different models and how far those predictions deviate from human annotator decisions (the dotted line at 0). We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges. GPT-3.5 has the highest spread, with a standard deviation of 6.1. We also see in Figure 4 that the highest positive delta for each individual model being scored occurs when it is judged by itself.",
+                    "strength": "strong",
+                    "limitations": "The bias reduction is specific to the datasets and models used in the study.",
+                    "location": "Section 4.4",
+                    "exact_quote": "Figures 3 and 4 show results on HotPotQA and Bamboogle. We can see how the different judges score different models and how far those predictions deviate from human annotator decisions (the dotted line at 0). We observe that overall, PoLL has the smallest spread in scores, with a standard deviation of 2.2, compared to EM and individual judges. GPT-3.5 has the highest spread, with a standard deviation of 6.1. We also see in Figure 4 that the highest positive delta for each individual model being scored occurs when it is judged by itself."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The bias reduction is directly stated and supported by specific standard deviation values.",
+                "key_limitations": "The bias reduction is specific to the datasets and models used in the study.",
+                "confidence_level": "high"
+            }
+        }
+    ]
+}
+```

@@ -1,0 +1,185 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "kNN-Prompt slightly outperforms DAPT on CR and MR indicating its effectiveness for domain adaptation without further training.",
+                "location": "Section 5",
+                "type": "Empirical Results",
+                "exact_quote": "kNN-Prompt performs comparably with DAPT. Specifically, kNN-Prompt slightly outperforms DAPT on CR and MR."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "kNN-Prompt slightly outperforms DAPT on CR and MR.",
+                    "strength": "strong",
+                    "limitations": "Comparison focused on CR and MR datasets with specific numerical performance metrics not provided.",
+                    "location": "Section 5",
+                    "exact_quote": "kNN-Prompt slightly outperforms DAPT on CR and MR."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Evidence is based on specific tasks (CR and MR) and might not generalize across all domain adaptation scenarios.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "kNN-Prompt using domain-specific datastores matches or exceeds performance of models after domain-adaptive pretraining (DAPT).",
+                "location": "Section 5",
+                "type": "Empirical Results",
+                "exact_quote": "With a domain-specific datastore corpus, we achieve comparable or better performance to prompting the LM after domain-adaptive pretraining (Gururangan et al., 2020) on that corpus."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "kNN-Prompt performs comparably with DAPT, specifically outperforming DAPT on CR and MR.",
+                    "strength": "strong",
+                    "limitations": "Limited to comparing with DAPT and specific to CR and MR datasets.",
+                    "location": "Section 5",
+                    "exact_quote": "kNN-Prompt performs comparably with DAPT. Specifically, kNN-Prompt slightly outperforms DAPT on CR and MR."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Performance comparison limited to DAPT; other adaptation techniques not considered.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Using domain-specific data improves model performance over a large heterogeneous corpus, suggesting curating task-specific or domain-specific data is effective.",
+                "location": "Section 5",
+                "type": "Empirical Results",
+                "exact_quote": "Using domain-specific data is always better than retrieving from the large heterogeneous corpus."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "Using domain-specific data is always better than retrieving from the large heterogeneous corpus.",
+                    "strength": "strong",
+                    "limitations": "The assertion is broadly made without specifying performance metrics or comparison contexts.",
+                    "location": "Section 6",
+                    "exact_quote": "Using domain-specific data is always better than retrieving from the large heterogeneous corpus."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Lacks comparative analysis with non-domain specific data of similar quantity to evaluate the uniqueness of domain-specific data impact.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Adding kNN and fuzzy verbalizers to LMs provides notable performance improvements, validating the components' contribution to kNN-Prompt's efficacy.",
+                "location": "Section 6",
+                "type": "Component Analysis",
+                "exact_quote": "adding kNN to LM gives trivial improvement (+0.4%), but much greater once we add fuzzy verbalizers on top of them (+10.3%)"
+            },
+            "evidence": [
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "Adding kNN to LM gives trivial improvement (+0.4%), but much greater once we add fuzzy verbalizers on top of them (+10.3%), suggesting their significant contribution.",
+                    "strength": "strong",
+                    "limitations": "Provides quantified improvement but lacks detailed analysis on varying conditions or datasets.",
+                    "location": "Section 6",
+                    "exact_quote": "First, we find that adding kNN to LM gives trivial improvement (+0.4%), but much greater once we add fuzzy verbalizers on top of them (+10.3%)."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Improvement quantification is isolated; lacks insight into how kNN and fuzzy verbalizers interact with other components in complex scenarios.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "Fuzzy verbalizers and PMI scoring are partially additive techniques, enhancing zero-shot prediction capabilities.",
+                "location": "Section 6",
+                "type": "Component Analysis",
+                "exact_quote": "for the base LM, fuzzy verbalizers bring gains (+7.2%) similar to PMI scoring (+8.8%), but the gains are only partially additive when combining the two techniques (+10.9%)."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 5,
+                    "evidence_text": "For the base LM, fuzzy verbalizers bring gains similar to PMI scoring, but the gains are only partially additive when combining the two techniques.",
+                    "strength": "moderate",
+                    "limitations": "Highlights the relationship between techniques but does not delve into why gains are only partially additive.",
+                    "location": "Section 6",
+                    "exact_quote": "Second, we find that for the base LM, fuzzy verbalizers bring gains (+7.2%) similar to PMI scoring (+8.8%), but the gains are only partially additive when combining the two techniques (+10.9%)."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "limitations": "Does not consider cases where PMI and fuzzy verbalizers may negatively interact with other methodologies or data conditions.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": {
+                "text": "Performance increases with the number of retrieved neighbors up to 1024, and settings like temperature 3 are consistently effective across tasks.",
+                "location": "Section 6",
+                "type": "Parameter Analysis",
+                "exact_quote": "performance monotonically improves with the number of neighbors when k is smaller than 1024 and deteriorates after that."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 6,
+                    "evidence_text": "Performance monotonically improves with the number of neighbors when k is smaller than 1024 and deteriorates after that.",
+                    "strength": "strong",
+                    "limitations": "Specific to the number of retrieved neighbors affecting performance, without detailing effects on various types of tasks.",
+                    "location": "Section 6",
+                    "exact_quote": "Performance monotonically improves with the number of neighbors when k is smaller than 1024."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "Specific to the set of tasks and retrieval model configurations used in experiments; more diverse datasets might yield different optimal k values.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": {
+                "text": "The gains of kNN-Prompt scale with retrieval model size, highlighting the benefit of larger models despite computational tradeoffs.",
+                "location": "Section 6",
+                "type": "Scale Analysis",
+                "exact_quote": "The benefits of kNN-Prompt scale with the retriever model size."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 7,
+                    "evidence_text": "Substantial gains as the size of the retriever increases, which hold regardless of inference model size.",
+                    "strength": "strong",
+                    "limitations": "Covers the scaling of retriever size benefits broadly without specific performance metrics.",
+                    "location": "Section 6",
+                    "exact_quote": "We observe substantial gains as the size of the retriever increases, which hold regardless of inference model size."
+                }
+            ],
+            "conclusion": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "limitations": "While highlighting computational tradeoffs, it doesn't sufficiently address how these might limit applicability in real-world scenarios with resource constraints.",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "55.68 seconds",
+        "evidence_analysis_time": "57.59 seconds",
+        "conclusions_analysis_time": "41.82 seconds",
+        "total_execution_time": "155.09 seconds"
+    }
+}

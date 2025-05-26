@@ -1,0 +1,392 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+ For example:
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "LLMs struggle with ambiguity in human communication, leading to misinterpretations, miscommunications, and biased responses.",
+            "location": "Introduction",
+            "claim_type": "Observation",
+            "exact_quote": "LLMs often struggle with the inherent uncertainties of human communication, leading to misinterpretations, miscommunications, and biased responses which weaken their trust and ability to be used for real-world tasks."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "Simple, training-free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks.",
+            "location": "Abstract",
+            "claim_type": "Contribution",
+            "exact_quote": "We demonstrate how simple, training-free, token-level disambiguation methods may be effectively used to improve LLM performance for ambiguous question answering tasks."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "Using open-domain question answering as a test case, we compare off-the-shelf and few-shot LLM performance, focusing on measuring the impact of explicit disambiguation strategies.",
+            "location": "Abstract",
+            "claim_type": "Method",
+            "exact_quote": "Using open-domain question answering as a test case, we compare off-the-shelf and few-shot LLM performance, focusing on measuring the impact of explicit disambiguation strategies."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "Simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Observation",
+            "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Simple training-free prompting methods for disambiguation work well in improving performance.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Interestingly, we see that for both GPT 4o and 4o-mini, using simple disambiguating prompts improves performance over the naive setting, implying that simple prompt-based, training-free approaches may be useful in improving LLM performance for ambiguous queries."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "Fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. “messages”:\n“role”: “user”, “content”: <ambiguous question>, \n“role”: “assistant”, “content”: <ground truth answer>”\nThe GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Observation",
+            "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "Fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. “messages”:\n“role”: “user”, “content”: <ambiguous question>, \n“role”: “assistant”, “content”: <ground truth answer>”\nThe GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Observation",
+            "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "Fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. “messages”:\n“role”: “user”, “content”: <ambiguous question>, \n“role”: “assistant”, “content”: <ground truth answer>”\nThe GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs."
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Observation",
+            "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "Fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. “messages”:\n“role”: “user”, “content”: <ambiguous question>, \n“role”: “assistant”, “content”: <ground truth answer>”\nThe GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Observation",
+            "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "Fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. “messages”:\n“role”: “user”, “content”: <ambiguous question>, \n“role”: “assistant”, “content”: <ground truth answer>”\nThe GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs."
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Observation",
+            "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "Fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. “messages”:\n“role”: “user”, “content”: <ambiguous question>, \n“role”: “assistant”, “content”: <ground truth answer>”\nThe GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Observation",
+            "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "Fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. “messages”:\n“role”: “user”, “content”: <ambiguous question>, \n“role”: “assistant”, “content”: <ground truth answer>”\nThe GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Observation",
+            "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 42,
+            "claim_text": "Fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. “messages”:\n“role”: “user”, “content”: <ambiguous question>, \n“role”: “assistant”, “content”: <ground truth answer>”\nThe GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+        },
+        {
+            "claim_id": 43,
+            "claim_text": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Observation",
+            "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "Fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. “messages”:\n“role”: “user”, “content”: <ambiguous question>, \n“role”: “assistant”, “content”: <ground truth answer>”\nThe GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs."
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "Contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Observation",
+            "exact_quote": "Our results indicate that contextual enrichment has the ability to significantly enhance model disambiguation accuracy, but it is often inaccurate because it tends to add irrelevant context to questions, making them impossible to fix by prompting."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "Simple prompt-based disambiguation techniques may help significantly in improving the performance of the LLM.",
+            "location": "Conclusion and Future Works",
+            "claim_type": "Conclusion",
+            "exact_quote": "Our analysis shows that even though LLMs struggle with ambiguity in prompts, simple training-free prompt-based disambiguation methods may help significantly in improving the performance of the LLM."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "Fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "To evaluate whether small scale fine-tuning helps in improving LLM performance on ambiguous questions, we perform few-shot fine-tuning on GPT 4o-mini. To adapt our model for handling ambiguous questions, we fine-tuned the model using OpenAI’s API. We randomly sampled 50 question-answer pairs from AmbigQA. Each ambiguous question was stored as the prompt for the LLM, with ground truth being stored as the expected response from the LLM. The file was formatted as shown below for the 50 questions. Using this, we initiated a fine-tuning job on OpenAI’s fine-tuning API which returned a model checkpoint. We used this fine-tuned model ID instead of gpt-4o-mini within our baseline prompt configuration. “messages”:\n“role”: “user”, “content”: <ambiguous question>, \n“role”: “assistant”, “content”: <ground truth answer>”\nThe GT Answer Overlap for the 4o-mini model is 0.643 while that for the fine-tuned 4o-mini model is 0.626. Therefore, we see that fine-tuning, at least at this small scale, does not provide any improvement in LLM performance on ambiguous questions."
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs.",
+            "location": "Results and Discussion",
+            "claim_type": "Observation",
+            "exact_quote": "Using a lower temperature value for LLM generation results in reducing the ‘stochasticity’ of the generated text, where the variance is reduced and the generated text is more predictable over multiple runs."
+        },
+        {
+            "claim_id": 54
+
+Raw Evidence:
+
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 305.20 seconds
+evidence_analysis_time: 1.03 seconds
+conclusions_analysis_time: 1.03 seconds
+total_execution_time: 309.01 seconds

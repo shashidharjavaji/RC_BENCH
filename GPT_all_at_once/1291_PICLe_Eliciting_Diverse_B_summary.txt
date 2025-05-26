@@ -1,0 +1,56 @@
+Claim 1:
+Type: result
+Statement: Refining the selection pool improves ICL performance significantly.
+Location: Section 4.3/Results & Section 5/Analyses
+Exact Quote: Refining the selection pool improves ICL performance significantly. In the original experimental settings, none of the ICL methods have access to the labels of examples in the pool; they select examples in a label-agnostic manner and persona SFT is done on all persona statements disregarding the labels.
+
+Evidence:
+- Evidence Text: Action Consistency of the Similarity-based ICL improves from 84.6% to 92.4%. PICLe+ improves PICLe by 5.0% points.
+  Strength: strong
+  Location: Section 4.3/Results
+  Limitations: Results specific to Llama-2
+  Exact Quote: The Action Consistency of the Similarity-based ICL improves from 84.6% to 92.4%. PICLe+ improves PICLe by 5.0% points, achieving the best performance overall (93.1%).
+
+- Evidence Text: Selection refinement significantly improves all ICL methods' performance when evaluated on Llama-2.
+  Strength: strong
+  Location: Section 5/Analyses
+  Limitations: Limited to Llama-2 and positive-labeled statements
+  Exact Quote: Here, we extend the experimental setting to a label-aware setting. Specifically, the ICL baseline methods now select examples from the positive-labeled statements that align with the persona. In Table 2, we observe that this selection pool refinement significantly improves the performance of all ICL methods, when evaluated on Llama-2.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: high
+Justification: Evidence demonstrates a clear benefit from refining the selection pool, especially when using positive-labeled statements. However, assessments are restricted to Llama-2, suggesting the need for more cross-model validations.
+Key Limitations: Does not account for other LLMs beyond Llama-2, and the positive impact of using positive-labeled statements exclusively for refinement might not generalize across different tasks or datasets.
+
+--------------------------------------------------
+
+Claim 2:
+Type: performance
+Statement: PICLe consistently outperforms all baselines on three LLMs with respect to Action Consistency.
+Location: Section 4.3/Results
+Exact Quote: PICLe consistently outperforms all baselines on three LLMs with respect to Action Consistency.
+
+Evidence:
+- Evidence Text: On Llama-2, PICLe achieves an average action consistency of 88.1%, outperforming the strongest baseline similarity.
+  Strength: strong
+  Location: Section 4.3/Results
+  Limitations: Comparison limited to a specific version of Llama-2 with set in-context examples (K = 3).
+  Exact Quote: On Llama-2, PICLe achieves an average action consistency of 88.1%, outperforming the current strongest baseline similarity (84.6%) using the same number of in-context examples (K = 3).
+
+- Evidence Text: Performance improvement on non-RLHF models like Vicuna and GPT-J, increasing action consistency significantly with only three in-context examples.
+  Strength: moderate
+  Location: Section 4.3/Results
+  Limitations: Specific improvements quantified only for Vicuna with a jump from 50.1% to 78.6% on action consistency.
+  Exact Quote: Notably, PICLe improves the performance from 50.1% (base) to 78.6%, with only three in-context examples.
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: The claim is strongly supported by the experimental results across multiple models, showcasing PICLe's superiority in enhancing action consistency. Moreover, the method's effectiveness on non-RLHF models underlines its broad applicability and robustness.
+Key Limitations: The analysis predominantly highlights success rates without detailing potential variances across different personas or comprehensively comparing against all baseline methods.
+
+--------------------------------------------------
+

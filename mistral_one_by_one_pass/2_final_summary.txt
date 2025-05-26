@@ -1,0 +1,549 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+ For example:
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "Larger models are well-calibrated on diverse multiple choice questions.",
+            "location": "Section 2",
+            "claim_type": "Contribution",
+            "exact_quote": "We show that larger models are well-calibrated on diverse multiple choice questions."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "Calibration improves with model size and few-shot prompting.",
+            "location": "Section 2",
+            "claim_type": "Contribution",
+            "exact_quote": "Calibration improves with model size, and it also improves when we pass from zero-shot to few-shot evaluation."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "Replacing an option with ‘none of the above’ reduces accuracy and calibration significantly.",
+            "location": "Section 3.1",
+            "claim_type": "Contribution",
+            "exact_quote": "Replacing an option with ‘none of the above’ reduces accuracy and calibration significantly with our models."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "Models are well-calibrated on True/False tasks.",
+            "location": "Section 3.2",
+            "claim_type": "Contribution",
+            "exact_quote": "The 52B model is very well-calibrated except near the tails, where it is overconfident."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "RLHF policies naively seem miscalibrated, but with a simple temperature adjustment they become fairly well-calibrated on several evaluations.",
+            "location": "Section 3.3",
+            "claim_type": "Contribution",
+            "exact_quote": "Calibration of these models appears to be very poor, but simply adjusting the temperature of their probability distributions to T = 2.5 largely fixes calibration issues for three different evaluations."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Models can self-evaluate whether their own samples are True or False.",
+            "location": "Section 4.1",
+            "claim_type": "Contribution",
+            "exact_quote": "In almost all cases self-evaluation performance improves with model size, and for our 52B models answers labeled with P(True) > 50% are far more likely to be correct as compared to generic responses."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "Showing models many of their own T = 1 samples, along with a single sample to evaluate as True/False, can significantly improve their performance.",
+            "location": "Section 4.2",
+            "claim_type": "Contribution",
+            "exact_quote": "Showing models many of their own T = 1 samples, along with a single sample to evaluate as True/False, can significantly improve their performance."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 42,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 43,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 54,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 55,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 56,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 57,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 58,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 59,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 60,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 61,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 62,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 63,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 64,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 65,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 66,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 67,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 68,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 69,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 70,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 71,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems."
+        },
+        {
+            "claim_id": 72,
+            "claim_text": "We conclude that we only find partial generalization on this task.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We conclude that we only find partial generalization on this task."
+        },
+        {
+            "claim_id": 73,
+            "claim_text": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK).",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We train models with a value head to predict the probability that they can answer a question correctly, which we refer to as P(IK)."
+        },
+        {
+            "claim_id": 74,
+            "claim_text": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find that language models can easily learn to perform well at evaluating P(IK), the probability that they know the answer to a question, on a given distribution."
+        },
+        {
+            "claim_id": 75,
+            "claim_text": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD.",
+            "location": "Section 5.1",
+            "claim_type": "Contribution",
+            "exact_quote": "We find some generalization across tasks, for example from trivia to story completion, math, and code, though models struggle with calibration OOD."
+        },
+        {
+            "claim_id": 76,
+            "claim_text": "We observe some other types of generalization: although P(IK) was only trained on bare questions, it generalizes in such a way that it increases when we provide source materials that address these questions (for trivia) and when we provide hints for math word problems.",
+            "location": "Section 5.1",
+
+
+Raw Evidence:
+
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 327.63 seconds
+evidence_analysis_time: 1.77 seconds
+conclusions_analysis_time: 1.77 seconds
+total_execution_time: 419.51 seconds

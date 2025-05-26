@@ -1,0 +1,600 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: The proposed method demonstrates superior performance across three metrics compared to seven other methods.
+Location: Abstract
+
+Evidence:
+- Evidence Text: Compared with seven other static methods, our proposed method achieves the best performance on three metrics.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The paper does not discuss the performance of the proposed method against gradient-based or causal mediation analysis methods.
+  Exact Quote: Compared with seven other static methods, our proposed method achieves the best performance on three metrics.
+
+- Evidence Text: When intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The results are specific to intervening FFN neurons and may not generalize to other types of neurons or interventions.
+  Exact Quote: When intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+
+- Evidence Text: Intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: The results are specific to intervening the top neurons and may not generalize to other neuron interventions.
+  Exact Quote: Intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+Conclusion:
+  Author's Conclusion: The proposed method outperforms seven other static methods in identifying important neurons in large language models, as evidenced by its superior performance across three metrics.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, with significant reductions in MRR and probability scores for both GPT2 and Llama models, suggesting that the method is effective across different model architectures.
+  Limitations: The study focuses on six specific types of knowledge and two models, which may not generalize to all types of knowledge or models.
+  Location: Abstract
+
+--------------------------------------------------
+
+Claim 2:
+Statement: The proposed method can identify 'value neurons' that directly contribute to the final prediction.
+Location: Abstract
+
+Evidence:
+- Evidence Text: Our method and analysis on six types of knowledge are helpful for exploring and understanding the mechanism of LLMs.
+  Strength: strong
+  Location: Section 5 Conclusion
+  Limitations: The study focuses on six specific types of knowledge, which may not cover all knowledge types.
+  Exact Quote: In this study, we propose a method based on log probability increase to identify the important 'value neurons'. We also develop a method based on inner products to locate the 'query neurons' activating these 'value neurons'. Our method and analysis on six types of knowledge are helpful for exploring and understanding the mechanism of LLMs.
+
+- Evidence Text: We compute the sum of importance score for all neurons, all positive neurons, top100 neurons, and top200 neurons, as illustrated in Table 5.
+  Strength: strong
+  Location: Section 4 Experiments
+  Limitations: The analysis is limited to Llama-7B and GPT2-large models.
+  Exact Quote: For each sentence, we compute the sum of importance score for all neurons, all positive neurons, top100 neurons, and top200 neurons, as illustrated in Table 5.
+
+- Evidence Text: When intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama.
+  Strength: strong
+  Location: Section 4 Experiments
+  Limitations: The intervention approach may not capture all aspects of 'value neurons' contribution.
+  Exact Quote: The MRR decrease (%)/probability decrease (%) when intervening the top200 attention neurons and top100 FFN neurons are shown in Table 13.
+
+Conclusion:
+  Author's Conclusion: The proposed method effectively identifies 'value neurons' that have a direct impact on the final prediction in large language models (LLMs). This is demonstrated through the computation of importance scores for neurons and the subsequent intervention on top neurons, which leads to significant decreases in Mean Reciprocal Rank (MRR) and probability scores.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical results from experiments conducted on two different models, GPT2-large and Llama-7B, showing consistent decreases in performance metrics upon intervention.
+  Limitations: The study focuses on six specific types of knowledge and may not generalize to other types of knowledge or models. Additionally, the methods used are static and may not capture dynamic aspects of neuron contributions.
+  Location: Abstract, Section 4.2
+
+--------------------------------------------------
+
+Claim 3:
+Statement: The proposed method can identify 'query neurons' that aid in activating 'value neurons'.
+Location: Abstract
+
+Evidence:
+- Evidence Text: We also develop a method to identify the 'query neurons' that activate these 'value neurons'. Specifically, we calculate the inner products between the query neurons and value neurons as importance scores.
+  Strength: strong
+  Location: Section 3.4
+  Limitations: The paper does not provide empirical results specifically for the identification of 'query neurons' that activate 'value neurons', but rather describes the methodology for doing so.
+  Exact Quote: Specifically, we calculate the inner products between the query neurons and value neurons as importance scores.
+
+- Evidence Text: When intervening top1000 shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in Llama), shown in Table 7.
+  Strength: moderate
+  Location: Section 5
+  Limitations: This evidence shows the impact of intervening query neurons on model performance, but does not directly confirm their role in activating value neurons.
+  Exact Quote: When intervening top1000 shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in Llama), shown in Table 7.
+
+Conclusion:
+  Author's Conclusion: The proposed method effectively identifies 'query neurons' that are crucial for activating 'value neurons', as demonstrated by the significant decrease in MRR and probability scores when intervening on top1000 shallow neurons.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, given the large sample size and consistent results across different models (GPT2 and Llama).
+  Limitations: The study focuses on specific types of knowledge and models, which may not generalize to all LLMs or knowledge types.
+  Location: Abstract and Section 5
+
+--------------------------------------------------
+
+Claim 4:
+Statement: The proposed method outperforms seven other static methods under three metrics.
+Location: Abstract
+
+Evidence:
+- Evidence Text: Compared with seven other static methods, our method achieves the best performance on three metrics.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The paper does not discuss the performance of the proposed method on different types of knowledge or models beyond GPT2-large and Llama-7B.
+  Exact Quote: Compared with seven other static methods, our method achieves the best performance on three metrics.
+
+- Evidence Text: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The results are specific to intervening on FFN neurons and may not generalize to other types of interventions or models.
+  Exact Quote: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+
+- Evidence Text: Intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: The results are specific to intervening on the top neurons and may not generalize to other types of interventions or models.
+  Exact Quote: Intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+Conclusion:
+  Author's Conclusion: The proposed method for neuron-level knowledge attribution in large language models outperforms seven other static methods based on three evaluation metrics.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it includes quantitative results from experiments on two different models (GPT2-large and Llama-7B) showing significant improvements in MRR and probability decrease metrics.
+  Limitations: The experiments are limited to two specific models and six types of knowledge, which may not generalize to all models or knowledge types.
+  Location: Abstract
+
+--------------------------------------------------
+
+Claim 5:
+Statement: The proposed method locates important neurons in both attention and FFN layers.
+Location: Introduction
+
+Evidence:
+  None
+Conclusion:
+  Author's Conclusion: The proposed method successfully identifies important neurons in both attention and FFN layers of large language models.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on systematic experiments with GPT2-large and Llama-7B models, using a variety of knowledge types and metrics for evaluation.
+  Limitations: The study focuses on six specific types of knowledge and does not explore the method's effectiveness across a broader range of knowledge types or models.
+  Location: Introduction
+
+--------------------------------------------------
+
+Claim 6:
+Statement: The proposed method identifies 'query neurons' that activate 'value neurons'.
+Location: Methodology
+
+Evidence:
+- Evidence Text: We also develop a method to identify the 'query neurons' that activate these 'value neurons'. Specifically, we calculate the inner products between the query neurons and value neurons as importance scores.
+  Strength: strong
+  Location: Section 3.4
+  Limitations: The paper does not provide specific limitations for this method within the provided text.
+  Exact Quote: Specifically, we calculate the inner products between the query neurons and value neurons as importance scores.
+
+Conclusion:
+  Author's Conclusion: The authors developed a method to identify 'query neurons' by calculating the inner products between query neurons and value neurons, using these products as importance scores.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on a quantifiable and reproducible method, which is the calculation of inner products. This approach is grounded in the theoretical framework of the model's architecture, where the activation of neurons can be measured and compared.
+  Limitations: The method assumes that the inner product is a sufficient measure of the importance of the connection between query and value neurons, which may not capture all aspects of their relationship.
+  Location: Methodology
+
+--------------------------------------------------
+
+Claim 7:
+Statement: The proposed method locates important neurons in both attention and FFN layers.
+Location: Methodology
+
+Evidence:
+- Evidence Text: The sum score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None mentioned in the context provided
+  Exact Quote: The sum importance score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons.
+
+- Evidence Text: The MRR and probability score decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama when intervening the top200 attention neurons and top100 FFN neurons.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None mentioned in the context provided
+  Exact Quote: The MRR decrease (%)/probability decrease (%) when intervening the top200 attention neurons and top100 FFN neurons are shown in Table 13.
+
+Conclusion:
+  Author's Conclusion: The proposed method effectively locates important neurons in both attention and FFN layers, as indicated by the similarity in importance scores between top neurons and all neurons, and the significant decrease in MRR and probability scores when intervening on these top neurons.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical results from experiments conducted on two different models, GPT2-large and Llama-7B, which strengthens the claim's validity.
+  Limitations: The experiments focus on specific types of knowledge and models, which may not generalize to all knowledge types or models.
+  Location: Methodology
+
+--------------------------------------------------
+
+Claim 8:
+Statement: The proposed method outperforms seven other static methods under three metrics.
+Location: Methodology
+
+Evidence:
+- Evidence Text: Compared with seven other static methods, our method achieves the best performance on three metrics.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The claim is based on specific metrics and may not generalize to other evaluation criteria.
+  Exact Quote: Compared with seven other static methods, our method achieves the best performance on three metrics.
+
+- Evidence Text: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The evidence is specific to the intervention on ten FFN neurons and may not reflect overall performance.
+  Exact Quote: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+
+- Evidence Text: The MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama when intervening the top200 attention neurons and top100 FFN neurons.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: The evidence is specific to the intervention on the top neurons and may not reflect overall performance.
+  Exact Quote: The MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama when intervening the top200 attention neurons and top100 FFN neurons.
+
+Conclusion:
+  Author's Conclusion: The proposed method for neuron-level knowledge attribution in large language models outperforms seven other static methods based on three evaluation metrics: Mean Reciprocal Rank (MRR), probability of the correct token, and log probability of the correct token.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical results obtained from experiments conducted on two different models, GPT2-large and Llama-7B. The experiments demonstrate consistent performance improvements across both models, which strengthens the claim.
+  Limitations: The experiments are limited to two specific models, and the claim does not address the performance of the proposed method on other types of knowledge or models. The generalizability of the method to other models or knowledge types is not discussed.
+  Location: Methodology
+
+--------------------------------------------------
+
+Claim 9:
+Statement: The proposed method locates important neurons in both attention and FFN layers.
+Location: Experiments
+
+Evidence:
+- Evidence Text: The sum importance score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons.
+  Strength: strong
+  Location: Section 4.2, Neuron-level knowledge storage
+  Limitations: None mentioned in the provided text
+  Exact Quote: The sum importance score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons.
+
+- Evidence Text: The MRR and probability score decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama when intervening the top200 attention neurons and top100 FFN neurons.
+  Strength: strong
+  Location: Section 4.2, Neuron-level knowledge storage
+  Limitations: None mentioned in the provided text
+  Exact Quote: The MRR decrease (%)/probability decrease (%) when intervening the top200 attention neurons and top100 FFN neurons are shown in Table 13.
+
+- Evidence Text: The proposed method can identify the important 'value neurons' in both attention and FFN layers.
+  Strength: strong
+  Location: Section 5, Conclusion
+  Limitations: None mentioned in the provided text
+  Exact Quote: Our method can identify the important 'value neurons' in both attention and FFN layers.
+
+Conclusion:
+  Author's Conclusion: The proposed method effectively locates important neurons within both attention and FFN layers of large language models, as demonstrated by the experimental results.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, given the consistent findings across two different models (GPT2-large and Llama-7B) and the significant impact on model performance when intervening the identified neurons.
+  Limitations: The experiments focus on six specific types of knowledge and two models, which may not generalize to all knowledge types or models.
+  Location: Experiments section
+
+--------------------------------------------------
+
+Claim 10:
+Statement: The proposed method outperforms seven other static methods under three metrics.
+Location: Experiments
+
+Evidence:
+- Evidence Text: Compared with seven other static methods, our method achieves the best performance on three metrics.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The claim is based on the specific dataset and models used in the study, which may not generalize to other datasets or models.
+  Exact Quote: Compared with seven other static methods, our method achieves the best performance on three metrics.
+
+- Evidence Text: When intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The results are specific to the intervention on ten FFN neurons and may vary with different intervention strategies or numbers of neurons.
+  Exact Quote: When intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+
+- Evidence Text: Intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: The results are specific to the intervention on top200 attention neurons and top100 FFN neurons and may vary with different intervention strategies or numbers of neurons.
+  Exact Quote: Intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+Conclusion:
+  Author's Conclusion: The proposed method for neuron-level knowledge attribution in large language models outperforms seven other static methods across three metrics, as demonstrated through experiments.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, showing consistent performance improvements across different models (GPT2 and Llama) and intervention strategies (FFN and attention neurons).
+  Limitations: The experiments focus on specific types of knowledge and models, which may not generalize to all knowledge types or model architectures.
+  Location: Experiments
+
+--------------------------------------------------
+
+Claim 11:
+Statement: Intervening on a few value neurons or query neurons can significantly influence the final prediction.
+Location: Results and analysis
+
+Evidence:
+- Evidence Text: When intervening the top200 attention neurons and top100 FFN neurons for each sentence, both MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+  Strength: strong
+  Location: Section 5.0
+  Limitations: The study focuses on specific types of knowledge and models, and does not explore all possible knowledge types or models.
+  Exact Quote: When intervening the top200 attention neurons and top100 FFN neurons for each sentence, both MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+- Evidence Text: The MRR and probability decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama when intervening the top 200 attention neurons and top100 FFN neurons.
+  Strength: strong
+  Location: Section 5.0
+  Limitations: The study focuses on specific types of knowledge and models, and does not explore all possible knowledge types or models.
+  Exact Quote: The MRR decrease (%)/probability decrease (%) when intervening the top200 attention neurons and top100 FFN neurons are shown in Table 13.
+
+Conclusion:
+  Author's Conclusion: The evidence strongly supports the claim that intervening on a few value neurons or query neurons can significantly influence the final prediction in both GPT2 and Llama models.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on systematic experiments with clear metrics (MRR and probability decrease) and is consistent across two different models (GPT2 and Llama).
+  Limitations: The experiments are limited to two specific models and may not generalize to all transformer-based models. Additionally, the intervention method used may not reflect real-world scenarios where neuron editing might be more complex.
+  Location: Results and analysis
+
+--------------------------------------------------
+
+Claim 12:
+Statement: The proposed method can locate important query neurons in shallow and medium FFN layers.
+Location: Results and analysis
+
+Evidence:
+- Evidence Text: We evaluate which layers have large inner product with top200 attention neurons, shown in Table 14.
+  Strength: strong
+  Location: Section 4.2, subsection 'Important query layers for FFN value neurons.'
+  Limitations: None mentioned
+  Exact Quote: We evaluate which layers have large inner product with top200 attention neurons, shown in Table 14.
+
+- Evidence Text: The shallow and medium FFN layers play larger roles than attention layers.
+  Strength: strong
+  Location: Section 4.2, subsection 'Important query layers for FFN value neurons.'
+  Limitations: None mentioned
+  Exact Quote: For every knowledge, the shallow and medium FFN layers play larger roles than attention layers.
+
+- Evidence Text: Compared Figure 6-7 with Figure 4-5, we find that several attention 'query layers' also contribute to final predictions.
+  Strength: moderate
+  Location: Section 4.2, subsection 'Important query layers for FFN value neurons.'
+  Limitations: None mentioned
+  Exact Quote: Compared Figure 6-7 with Figure 4-5, we find that several attention 'query layers' also contribute to final predictions.
+
+- Evidence Text: The medium-deep attention layers’ neurons are very important, working as both 'value' and 'query'.
+  Strength: strong
+  Location: Section 4.2, subsection 'Important query layers for FFN value neurons.'
+  Limitations: None mentioned
+  Exact Quote: The medium-deep attention layers’ neurons are very important, working as both 'value' and 'query'.
+
+Conclusion:
+  Author's Conclusion: No conclusion available
+  Conclusion Justified: No
+  Robustness: N/A
+  Limitations: N/A
+  Location: Not specified
+
+--------------------------------------------------
+
+Claim 13:
+Statement: The proposed method can locate important 'value neurons' in both attention and FFN layers.
+Location: Results and analysis
+
+Evidence:
+- Evidence Text: The sum importance score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons.
+  Strength: strong
+  Location: Section 4.2, Neuron-level knowledge storage
+  Limitations: None mentioned in the provided text
+  Exact Quote: The sum importance score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons.
+
+- Evidence Text: The MRR and probability score decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama when intervening the top200 attention neurons and top100 FFN neurons.
+  Strength: strong
+  Location: Section 4.2, Neuron-level knowledge storage
+  Limitations: None mentioned in the provided text
+  Exact Quote: The MRR decrease (%)/probability decrease (%) when intervening the top200 attention neurons and top100 FFN neurons are shown in Table 13.
+
+Conclusion:
+  Author's Conclusion: The proposed method effectively identifies important 'value neurons' in both attention and FFN layers of large language models, as demonstrated by the similarity in importance scores between top neurons and all neurons, and the significant decrease in MRR and probability scores when intervening on top neurons.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical results from experiments conducted on two different models, GPT2-large and Llama-7B, which strengthens the generalizability of the findings.
+  Limitations: The experiments are limited to two specific models, and the analysis does not account for other types of knowledge or models.
+  Location: Results and analysis
+
+--------------------------------------------------
+
+Claim 14:
+Statement: The proposed method outperforms seven other static methods under three metrics.
+Location: Results and analysis
+
+Evidence:
+- Evidence Text: Compared with seven other static methods, our method achieves the best performance on three metrics.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The claim is based on the specific dataset and models used in the study, which may not generalize to other datasets or models.
+  Exact Quote: Compared with seven other static methods, our method achieves the best performance on three metrics.
+
+- Evidence Text: When intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The results are specific to the intervention on ten FFN neurons and may vary with different intervention strategies or numbers of neurons.
+  Exact Quote: When intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+
+- Evidence Text: Intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: The results are specific to the intervention on top200 attention neurons and top100 FFN neurons and may vary with different intervention strategies or numbers of neurons.
+  Exact Quote: Intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+Conclusion:
+  Author's Conclusion: The proposed method outperforms seven other static methods under three metrics, as demonstrated by the results showing greater reductions in MRR, probability, and log probability when intervening on neurons identified by the proposed method compared to other methods.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical results from experiments conducted on two different models (GPT2-large and Llama-7B) and covers three different metrics (MRR, probability, and log probability).
+  Limitations: The experiments are limited to two specific models and may not generalize to other models. Additionally, the focus is on six types of knowledge, which may not represent all possible knowledge types.
+  Location: Results and analysis
+
+--------------------------------------------------
+
+Claim 15:
+Statement: The proposed method locates important neurons in both attention and FFN layers.
+Location: Results and analysis
+
+Evidence:
+- Evidence Text: The sum score of top neurons and all neurons in GPT2 are similar to those of all neurons.
+  Strength: strong
+  Location: Section 5.C Neuron-Level Storage in GPT2/Llama
+  Limitations: None mentioned
+  Exact Quote: The sum importance score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons.
+
+- Evidence Text: The MRR decrease (%) / probability decrease (%) when intervening the top200 attention neurons and top100 FFN neurons are shown in Table 13.
+  Strength: strong
+  Location: Section 5.C Neuron-Level Storage in GPT2/Llama
+  Limitations: None mentioned
+  Exact Quote: The MRR score and probability score decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama.
+
+- Evidence Text: We evaluate which layers have large inner product with top200 attention neurons, shown in Table 14.
+  Strength: strong
+  Location: Section 5.D Important Query Layers for Attention Neurons in GPT2/Llama
+  Limitations: None mentioned
+  Exact Quote: For every knowledge, the shallow and medium FFN layers play larger roles than attention layers.
+
+Conclusion:
+  Author's Conclusion: The proposed method effectively locates important neurons in both attention and FFN layers of GPT2 and Llama models, as demonstrated by the similarity in importance scores between top neurons and all neurons, and the significant decrease in MRR and probability scores when intervening on top200 attention neurons and top100 FFN neurons.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on empirical results from experiments conducted on two different models, GPT2 and Llama, which strengthens the claim by showing consistency across models.
+  Limitations: The evidence is limited to only two models, and the analysis does not account for other types of knowledge or models. The method's effectiveness in identifying important neurons for other types of knowledge or in other models remains unexplored.
+  Location: Results and analysis
+
+--------------------------------------------------
+
+Claim 16:
+Statement: The proposed method outperforms seven other static methods under three metrics.
+Location: Results and analysis
+
+Evidence:
+- Evidence Text: Compared with seven other static methods, our method achieves the best performance on three metrics.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The paper does not discuss the performance of the proposed method in comparison with dynamic methods or other non-static approaches.
+  Exact Quote: Compared with seven other static methods, our method achieves the best performance on three metrics.
+
+- Evidence Text: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The results are specific to the intervention of ten FFN neurons and may not generalize to other intervention strategies or model sizes.
+  Exact Quote: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+
+- Evidence Text: Intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: The results are specific to the intervention of top200 attention neurons and top100 FFN neurons and may not generalize to other intervention strategies or model sizes.
+  Exact Quote: Intervening the top200 attention neurons and top100 FFN neurons for each sentence, the MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+Conclusion:
+  Author's Conclusion: The proposed method for neuron-level knowledge attribution in large language models outperforms seven other static methods across three metrics, as demonstrated by the experimental results.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on direct comparisons with multiple established static methods and includes quantitative measures of performance.
+  Limitations: The experiments are limited to two specific models (GPT2-large and Llama-7B) and six types of knowledge, which may not generalize to all models or knowledge types.
+  Location: Results and analysis
+
+--------------------------------------------------
+
+Claim 17:
+Statement: The proposed method locates important neurons in both attention and FFN layers.
+Location: Results and analysis
+
+Evidence:
+- Evidence Text: The sum score of top neurons and all neurons in GPT2 are similar to those of all neurons.
+  Strength: strong
+  Location: Section 5.C Neuron-Level Storage in GPT2/Llama
+  Limitations: The comparison is limited to GPT2 and Llama models.
+  Exact Quote: The sum importance score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons.
+
+- Evidence Text: The MRR decrease (%) / probability decrease (%) when intervening the top200 attention neurons and top100 FFN neurons are shown in Table 13.
+  Strength: strong
+  Location: Section 5.C Neuron-Level Storage in GPT2/Llama
+  Limitations: The comparison is limited to GPT2 and Llama models.
+  Exact Quote: The MRR score and probability score decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama.
+
+- Evidence Text: The sum importance score of top100 FFN neurons is similar to that of all neurons.
+  Strength: strong
+  Location: Section 5.C Neuron-Level Storage in GPT2/Llama
+  Limitations: The comparison is limited to GPT2 and Llama models.
+  Exact Quote: The sum importance score of top100 FFN neurons are similar to those of all neurons.
+
+Conclusion:
+  Author's Conclusion: No conclusion available
+  Conclusion Justified: No
+  Robustness: N/A
+  Limitations: N/A
+  Location: Not specified
+
+--------------------------------------------------
+
+Claim 18:
+Statement: The proposed method outperforms seven other static methods under three metrics.
+Location: Results and analysis
+
+Evidence:
+- Evidence Text: Compared with seven other static methods, our method achieves the best performance on three metrics.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The claim is based on the performance of the method on a specific dataset and model configurations, which may not generalize to all scenarios.
+  Exact Quote: Compared with seven other static methods, our method achieves the best performance on three metrics.
+
+- Evidence Text: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The intervention experiment is limited to ten neurons and may not reflect the overall performance of the method.
+  Exact Quote: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+
+- Evidence Text: Intervening the top200 attention neurons and top100 FFN neurons results in a MRR and probability decreases of 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: The intervention experiment is limited to the top200 attention neurons and top100 FFN neurons, which may not reflect the overall performance of the method.
+  Exact Quote: Intervening the top200 attention neurons and top100 FFN neurons results in a MRR and probability decreases of 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+Conclusion:
+  Author's Conclusion: The proposed method for neuron-level knowledge attribution in large language models outperforms seven other static methods across three metrics, as demonstrated by the experimental results.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on direct comparisons with multiple established static methods and uses two different models (GPT2-large and Llama-7B) for validation.
+  Limitations: The experiments are limited to only two models and specific types of knowledge, which may not generalize across all models and knowledge domains.
+  Location: Results and analysis
+
+--------------------------------------------------
+
+Claim 19:
+Statement: The proposed method locates important neurons in both attention and FFN layers.
+Location: Results and analysis
+
+Evidence:
+- Evidence Text: The sum importance score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None mentioned in the provided text
+  Exact Quote: The sum importance score of top200 attention neurons and top100 FFN neurons are similar to those of all neurons.
+
+- Evidence Text: The MRR and probability score decreases around 91.1%/98.7% in GPT2, and 88.4%/97.1% in Llama when intervening the top200 attention neurons and top100 FFN neurons.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: None mentioned in the provided text
+  Exact Quote: The MRR decrease (%)/probability decrease (%) when intervening the top200 attention neurons and top100 FFN neurons are shown in Table 13.
+
+- Evidence Text: The proposed method can identify the important 'value neurons' in both attention and FFN layers.
+  Strength: strong
+  Location: Section 5
+  Limitations: None mentioned in the provided text
+  Exact Quote: Our method can identify the important 'value neurons' in both attention and FFN layers.
+
+Conclusion:
+  Author's Conclusion: The proposed method effectively locates important neurons within both attention and FFN layers of large language models, as demonstrated by the similarity in importance scores between top neurons and all neurons, and the significant decrease in model performance when intervening on these top neurons.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust, given the consistent findings across two different models (GPT2 and Llama) and the use of multiple performance metrics (MRR and probability scores) to validate the importance of the identified neurons.
+  Limitations: The study primarily focuses on six types of knowledge and may not generalize to other types of knowledge or models. Additionally, the analysis is based on static methods, and comparisons with dynamic methods could provide further insights.
+  Location: Results and analysis
+
+--------------------------------------------------
+
+Claim 20:
+Statement: The proposed method outperforms seven other static methods under three metrics.
+Location: Results and analysis
+
+Evidence:
+- Evidence Text: Compared with seven other static methods, our method achieves the best performance on three metrics.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The claim is based on the specific dataset and models used in the study, and may not generalize to other datasets or models.
+  Exact Quote: Compared with seven other static methods, our method achieves the best performance on three metrics.
+
+- Evidence Text: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+  Strength: strong
+  Location: Section 4.1
+  Limitations: The results are specific to the intervention on ten FFN neurons and may vary with different intervention strategies or numbers of neurons.
+  Exact Quote: When only intervening ten FFN neurons, the probability of the correct knowledge token reduces from 7.1% to 3.4% in GPT2, and from 21.5% to 9.2% in Llama.
+
+- Evidence Text: Intervening the top200 attention neurons and top100 FFN neurons results in a MRR and probability decreases of 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+  Strength: strong
+  Location: Section 4.2
+  Limitations: The results are specific to the intervention on top200 attention neurons and top100 FFN neurons and may vary with different intervention strategies or numbers of neurons.
+  Exact Quote: Intervening the top200 attention neurons and top100 FFN neurons results in a MRR and probability decreases of 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama.
+
+Conclusion:
+  Author's Conclusion: The proposed method for neuron-level knowledge attribution in large language models outperforms seven other static methods across three metrics, as demonstrated by the experimental results.
+  Conclusion Justified: Yes
+  Robustness: The evidence is robust as it is based on direct comparisons with multiple established methods and includes intervention experiments that show significant impact on model predictions.
+  Limitations: The experiments are limited to two specific models (GPT2-large and Llama-7B) and six types of knowledge, which may not generalize to other models or knowledge types.
+  Location: Results and analysis
+
+--------------------------------------------------
+
+Execution Times:
+claims_analysis_time: 750.97 seconds
+evidence_analysis_time: 1649.27 seconds
+conclusions_analysis_time: 2035.31 seconds
+total_execution_time: 4439.86 seconds

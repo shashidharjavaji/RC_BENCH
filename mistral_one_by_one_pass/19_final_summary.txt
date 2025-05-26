@@ -1,0 +1,694 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+ For example:
+```json
+{
+    "claims": [
+        {
+            "claim_id": 1,
+            "claim_text": "Feed-forward layers in transformer-based language models operate as key-value memories.",
+            "location": "Abstract",
+            "claim_type": "Method",
+            "exact_quote": "Feed-forward layers in transformer-based language models operate as key-value memories."
+        },
+        {
+            "claim_id": 2,
+            "claim_text": "The learned patterns are human-interpretable.",
+            "location": "Abstract",
+            "claim_type": "Result",
+            "exact_quote": "The learned patterns are human-interpretable."
+        },
+        {
+            "claim_id": 3,
+            "claim_text": "Lower layers tend to capture shallow patterns, while upper layers learn more semantic ones.",
+            "location": "Abstract",
+            "claim_type": "Result",
+            "exact_quote": "Lower layers tend to capture shallow patterns, while upper layers learn more semantic ones."
+        },
+        {
+            "claim_id": 4,
+            "claim_text": "The values complement the keys’ input patterns by inducing output distributions that concentrate probability mass on tokens likely to appear immediately after each pattern, particularly in the upper layers.",
+            "location": "Abstract",
+            "claim_type": "Result",
+            "exact_quote": "The values complement the keys’ input patterns by inducing output distributions that concentrate probability mass on tokens likely to appear immediately after each pattern, particularly in the upper layers."
+        },
+        {
+            "claim_id": 5,
+            "claim_text": "The output of a feed-forward layer is a composition of its memories, which is subsequently refined throughout the model’s layers via residual connections to produce the final output distribution.",
+            "location": "Abstract",
+            "claim_type": "Result",
+            "exact_quote": "The output of a feed-forward layer is a composition of its memories, which is subsequently refined throughout the model’s layers via residual connections to produce the final output distribution."
+        },
+        {
+            "claim_id": 6,
+            "claim_text": "Feed-forward layers emulate neural memories.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "Feed-forward layers emulate neural memories."
+        },
+        {
+            "claim_id": 7,
+            "claim_text": "The first parameter matrix in the layer corresponds to keys, and the second parameter matrix to values.",
+            "location": "Section 2",
+            "claim_type": "Method",
+            "exact_quote": "The first parameter matrix in the layer corresponds to keys, and the second parameter matrix to values."
+        },
+        {
+            "claim_id": 8,
+            "claim_text": "Each key vector ki captures a particular pattern (or set of patterns) in the input sequence.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "Each key vector ki captures a particular pattern (or set of patterns) in the input sequence."
+        },
+        {
+            "claim_id": 9,
+            "claim_text": "The corresponding value vector vi represents the distribution of tokens that follows said pattern.",
+            "location": "Section 3",
+            "claim_type": "Result",
+            "exact_quote": "The corresponding value vector vi represents the distribution of tokens that follows said pattern."
+        },
+        {
+            "claim_id": 10,
+            "claim_text": "The lower layers (layers 1-9) are dominated by shallow patterns, often with prefixes that share the last word.",
+            "location": "Section 3.2",
+            "claim_type": "Result",
+            "exact_quote": "The lower layers (layers 1-9) are dominated by shallow patterns, often with prefixes that share the last word."
+        },
+        {
+            "claim_id": 11,
+            "claim_text": "The upper layers (layers 10-16) are characterized by more semantic patterns, with prefixes from similar contexts but without clear surface-form similarities.",
+            "location": "Section 3.2",
+            "claim_type": "Result",
+            "exact_quote": "The upper layers (layers 10-16) are characterized by more semantic patterns, with prefixes from similar contexts but without clear surface-form similarities."
+        },
+        {
+            "claim_id": 12,
+            "claim_text": "The model considers the end of an example as more salient than the beginning for predicting the next token.",
+            "location": "Section 3.2",
+            "claim_type": "Result",
+            "exact_quote": "The model considers the end of an example as more salient than the beginning for predicting the next token."
+        },
+        {
+            "claim_id": 13,
+            "claim_text": "The agreement rate between the top-ranked token based on the value vector vi[ℓ][ and the next token of the top-ranked trigger example associated with the key vector k[ℓ]i [ is close to zero in the lower layers (1-10), but starting from layer 11, the agreement rate quickly rises until 3.5%.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "The agreement rate between the top-ranked token based on the value vector vi[ℓ][ and the next token of the top-ranked trigger example associated with the key vector k[ℓ]i [ is close to zero in the lower layers (1-10), but starting from layer 11, the agreement rate quickly rises until 3.5%."
+        },
+        {
+            "claim_id": 14,
+            "claim_text": "The value vector vi[ℓ] can be viewed as a distribution over the output vocabulary.",
+            "location": "Section 4",
+            "claim_type": "Method",
+            "exact_quote": "The value vector vi[ℓ] can be viewed as a distribution over the output vocabulary."
+        },
+        {
+            "claim_id": 15,
+            "claim_text": "The agreement rate is close to zero in the lower layers (1-10), but starting from layer 11, the agreement rate quickly rises until 3.5%.",
+            "location": "Section 4",
+            "claim_type": "Result",
+            "exact_quote": "The agreement rate is close to zero in the lower layers (1-10), but starting from layer 11, the agreement rate quickly rises until 3.5%."
+        },
+        {
+            "claim_id": 16,
+            "claim_text": "The number of active memories drops towards layer 10, which is the same layer in which semantic patterns become more prevalent than shallow patterns.",
+            "location": "Section 5.1",
+            "claim_type": "Result",
+            "exact_quote": "The number of active memories drops towards layer 10, which is the same layer in which semantic patterns become more prevalent than shallow patterns."
+        },
+        {
+            "claim_id": 17,
+            "claim_text": "The layer’s final prediction is different than every one of the memories’ predictions in at least 68% of the examples.",
+            "location": "Section 5.1",
+            "claim_type": "Result",
+            "exact_quote": "The layer’s final prediction is different than every one of the memories’ predictions in at least 68% of the examples."
+        },
+        {
+            "claim_id": 18,
+            "claim_text": "The residual connection r is used to sequentially compose predictions to produce the model’s final output.",
+            "location": "Section 5.2",
+            "claim_type": "Method",
+            "exact_quote": "The residual connection r is used to sequentially compose predictions to produce the model’s final output."
+        },
+        {
+            "claim_id": 19,
+            "claim_text": "The model uses the sequential composition apparatus as a means to refine its prediction from layer to layer.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The model uses the sequential composition apparatus as a means to refine its prediction from layer to layer."
+        },
+        {
+            "claim_id": 20,
+            "claim_text": "The residual’s top prediction matches the model’s output in roughly a third of the model’s predictions.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The residual’s top prediction matches the model’s output in roughly a third of the model’s predictions."
+        },
+        {
+            "claim_id": 21,
+            "claim_text": "The residual’s top prediction changes following its interaction with the feed-forward layer in most examples.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The residual’s top prediction changes following its interaction with the feed-forward layer in most examples."
+        },
+        {
+            "claim_id": 22,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 23,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 24,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 25,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 26,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 27,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 28,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 29,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 30,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 31,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 32,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 33,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 34,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 35,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 36,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 37,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 38,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 39,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 40,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 41,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 42,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 43,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 44,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 45,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 46,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 47,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 48,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 49,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 50,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 51,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 52,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 53,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 54,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 55,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 56,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 57,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 58,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 59,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 60,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 61,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 62,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 63,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 64,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 65,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 66,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 67,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 68,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 69,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 70,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 71,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 72,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 73,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 74,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 75,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 76,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 77,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 78,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 79,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 80,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 81,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 82,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 83,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 84,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 85,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 86,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 87,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 88,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 89,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 90,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 91,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 92,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 93,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a related word in the rest of the cases."
+        },
+        {
+            "claim_id": 94,
+            "claim_text": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer acts as an elimination mechanism to ‘veto’ the top prediction in the residual."
+        },
+        {
+            "claim_id": 95,
+            "claim_text": "The feed-forward layer modifies the residual output in the final layer in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer modifies the residual output in the final layer in most cases."
+        },
+        {
+            "claim_id": 96,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases.",
+            "location": "Section 5.2",
+            "claim_type": "Result",
+            "exact_quote": "The feed-forward layer shifts the residual prediction to a semantically distant word in most cases."
+        },
+        {
+            "claim_id": 97,
+            "claim_text": "The feed-forward layer shifts the residual prediction to a related word in the rest of the
+
+Raw Evidence:
+
+
+Raw Conclusions:
+
+
+Execution Times:
+claims_analysis_time: 308.59 seconds
+evidence_analysis_time: 1.36 seconds
+conclusions_analysis_time: 1.36 seconds
+total_execution_time: 319.28 seconds

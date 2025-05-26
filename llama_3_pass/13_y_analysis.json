@@ -1,0 +1,130 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Original BERT is underestimated in sentence embeddings due to inappropriate sentence representation methods.",
+                "location": "Introduction",
+                "type": "Novel Finding",
+                "exact_quote": "In this paper, we analyzed the poor performance of original BERT for sentence embeddings, and find original BERT is underestimated in sentence embeddings due to inappropriate sentence representation methods."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Table 1 shows the BERT layers in bert-base-uncased and roberta-base significantly harm the sentence embeddings performance.",
+                    "strength": "strong",
+                    "limitations": "Only considers BERT layers' impact on sentence embeddings performance",
+                    "location": "Section 3: Rethinking the Sentence Embeddings of the Original BERT",
+                    "exact_quote": "Table 1: Spearman correlation and sentence anisotropy from static token embeddings averaging and last layer averaging."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 1,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "Specifically, the analysis focuses on BERT's performance in sentence embeddings, which might not generalize to other NLP tasks.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Static token embedding bias and ineffective BERT layers are the main reasons for the poor performance of original BERT in sentence embeddings.",
+                "location": "Section 3: Rethinking the Sentence Embeddings of the Original BERT",
+                "type": "Novel Finding",
+                "exact_quote": "However, we find that anisotropy is not a key factor to inducing poor semantic similarity by examining the relationship between the aniostropy and performance. We think the main reasons are the ineffective BERT layers and static token embedding biases."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Observation 2: Embedding biases harms the sentence embeddings performance. Simply removing a set of tokens, the result can be improved by 9.22, 7.08 and 11.76 respectively.",
+                    "strength": "strong",
+                    "limitations": "Only considers the impact of embedding biases on sentence embeddings performance",
+                    "location": "Section 3: Rethinking the Sentence Embeddings of the Original BERT",
+                    "exact_quote": "Table 3: The influence of static embedding biases in spearman correlation."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Figure 1 shows the static token embeddings of bert-base-uncased, bert-base-cased, and roberta-base are highly biased by token frequency, subword, and case.",
+                    "strength": "moderate",
+                    "limitations": "Only provides visual evidence of embedding biases",
+                    "location": "Section 3: Rethinking the Sentence Embeddings of the Original BERT",
+                    "exact_quote": "Figure 1: 2D visualization of token embeddings with different biases."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 2,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "The analysis relies on the provided tables and figures, which might not represent the full scope of the issue.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Prompt-based sentence embedding method can effectively utilize the original BERT layers and avoid embedding biases.",
+                "location": "Section 4: Prompt Based Sentence Embeddings",
+                "type": "Novel Method",
+                "exact_quote": "Inspired by Brown et al. (2020), we propose a prompt based sentence method to obtain sentence embeddings. By reformulating the sentence embedding task as the mask language task, we can effectively use original BERT layers by leveraging the large-scale knowledge."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Table 5 shows that using templates can substantially improve the results of original BERT on all datasets, and even outperform post-processing methods like BERT-flow and BERT-whitening.",
+                    "strength": "strong",
+                    "limitations": "Only considers the performance of prompt-based method on STS tasks",
+                    "location": "Section 5: Experiments",
+                    "exact_quote": "Table 5: The performance comparison of our unfine-tuned BERT method on STS tasks."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 3,
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "key_limitations": "The effectiveness of the prompt-based method might depend on the quality of the templates used, and the results might not generalize to other templates or datasets.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Prompt-based contrastive learning with template denoising can significantly shorten the gap between the unsupervised and supervised methods.",
+                "location": "Section 5: Experiments",
+                "type": "Novel Method",
+                "exact_quote": "Prompt based contrastive learning objective significantly shortens the gap between the unsupervised and supervised methods. It also proves our method can leverage the knowledge of unlabeled data with different templates as positive pairs."
+            },
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Table 6 shows that PromptBERT outperforms other unsupervised and supervised methods, significantly shortening the gap between the two settings.",
+                    "strength": "strong",
+                    "limitations": "Only considers the performance of prompt-based method on STS tasks",
+                    "location": "Section 5: Experiments",
+                    "exact_quote": "Table 6: The performance comparison of our fine-tuned BERT methods on STS tasks."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Table 8 shows that using different templates with denoising achieves the best and most stable results among three training objectives.",
+                    "strength": "moderate",
+                    "limitations": "Only considers the performance of prompt-based method with template denoising",
+                    "location": "Section 5: Experiments",
+                    "exact_quote": "Table 8: Comparison of different unsupervised training objectives."
+                }
+            ],
+            "conclusion": {
+                "claim_id": 4,
+                "conclusion_justified": true,
+                "robustness": "high",
+                "key_limitations": "The comparison is based on the provided tables, which might not include all relevant methods or datasets for a comprehensive evaluation.",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "68.32 seconds",
+        "evidence_analysis_time": "99.88 seconds",
+        "conclusions_analysis_time": "39.79 seconds",
+        "total_execution_time": "210.41 seconds"
+    }
+}

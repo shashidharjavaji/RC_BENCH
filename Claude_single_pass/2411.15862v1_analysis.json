@@ -1,0 +1,72 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "LLMs hardly calculate intermediate results during implicit reasoning despite being able to provide correct final answers",
+                "type": "result",
+                "location": "Section 2.2",
+                "exact_quote": "there is actually not a specific state where the model calculates the results of the intermediate steps, even when it correctly give a answer of the multi-step problem"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Probing experiments show only first and last step results can be detected in model's hidden states",
+                    "strength": "strong",
+                    "limitations": "Only tested on arithmetic problems, may not generalize to other reasoning tasks",
+                    "location": "Section 2.2",
+                    "exact_quote": "the results of the first step and the last step can always be probed successfully in the back layers...the results of other steps in the middle can hardly be detected"
+                },
+                {
+                    "evidence_text": "Second step shows minimal detectability while later intermediate steps show none",
+                    "strength": "moderate",
+                    "limitations": "Limited to probing with linear classifiers",
+                    "location": "Section 2.2",
+                    "exact_quote": "the result of the second step can barely be probed with a lower accuracy, and the results of other steps in the middle can hardly be detected"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Multiple probing experiments consistently show lack of intermediate step information, though limited to arithmetic problems",
+                "key_limitations": "Analysis relies on linear probing which may miss more complex representations",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Implicit reasoning is less robust than explicit CoT when problems are slightly modified",
+                "type": "result",
+                "location": "Section 2.3",
+                "exact_quote": "compare to the original problems, the modified problems significantly degrade the performance when using implicit reasoning"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Performance drops significantly for reversed and divided problems with implicit reasoning while explicit CoT maintains perfect accuracy",
+                    "strength": "strong",
+                    "limitations": "Limited to two types of modifications",
+                    "location": "Section 2.3/Table 1",
+                    "exact_quote": "original 85.01% -> reverse 70.62%, divide 69.86% (3-step implicit) vs 100% for all explicit cases"
+                },
+                {
+                    "evidence_text": "Performance degradation more severe for 5-step problems",
+                    "strength": "strong",
+                    "limitations": "Only tested up to 5 steps",
+                    "location": "Section 2.3/Table 1",
+                    "exact_quote": "5-step problems: original 53.95% -> reverse 13.71%, divide 37.28% (implicit) vs 100% explicit"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Clear quantitative evidence shows significant performance drops under minor problem modifications for implicit reasoning while explicit CoT remains stable",
+                "key_limitations": "Limited types of modifications tested, specific to arithmetic problems",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "16.98 seconds",
+        "total_execution_time": "17.81 seconds"
+    }
+}

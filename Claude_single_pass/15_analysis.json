@@ -1,0 +1,104 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Chain-of-thought reasoning paths can be elicited from pre-trained LLMs by altering the decoding process without prompting",
+                "type": "contribution",
+                "location": "introduction",
+                "exact_quote": "Our findings reveal that, intriguingly, CoT reasoning paths can be elicited from pre-trained LLMs by simply altering the decoding process."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "CoT paths found in alternative top-k tokens for GSM8K question example",
+                    "strength": "moderate",
+                    "limitations": "Limited to specific example, may not generalize",
+                    "location": "Section 2.1",
+                    "exact_quote": "If Kylar buys 16 glasses, he will pay $60... at k=9: We can calculate the price of 16 glasses by multiplying the price of one glass by 16..."
+                },
+                {
+                    "evidence_text": "Quantitative analysis showing high correlation between CoT paths and confidence",
+                    "strength": "strong",
+                    "limitations": "Limited sample size of 100 questions",
+                    "location": "Section 2.2",
+                    "exact_quote": "among those, if we take the decoding path with the highest answer confidence among the top-10 decoding paths, 88% of them contain CoT paths"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "Multiple examples and quantitative analysis demonstrate the phenomenon, though sample sizes are moderate",
+                "key_limitations": "Limited testing across different types of problems and models",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Model's confidence in final answers increases when a CoT path is present",
+                "type": "result",
+                "location": "Section 2.2",
+                "exact_quote": "Interestingly, upon examining the model's logits, we found that the presence of a CoT path typically leads to a more confident decoding of the final answer"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Delta values showing higher confidence for CoT paths",
+                    "strength": "strong",
+                    "limitations": "Specific to selected examples",
+                    "location": "Table 1",
+                    "exact_quote": "k = 9: We can calculate the price... Kylar needs to pay $64 for 16 glasses. (0.994)"
+                },
+                {
+                    "evidence_text": "Quantitative correlation between confidence and CoT paths",
+                    "strength": "strong",
+                    "limitations": "Limited to GSM8K dataset",
+                    "location": "Section 2.2",
+                    "exact_quote": "88% of them contain CoT paths. This shows an overwhelmingly high correlation between the model's answer confidence and the CoT paths"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Consistent evidence across examples and quantitative analysis",
+                "key_limitations": "Limited to specific datasets and models tested",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "CoT-decoding improves model performance across different model scales and tasks",
+                "type": "performance",
+                "location": "Section 3.1",
+                "exact_quote": "CoT-decoding enhances reasoning across different model scales over the PaLM-2 model family"
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Performance improvements on GSM8K across model scales",
+                    "strength": "strong",
+                    "limitations": "Limited to one model family",
+                    "location": "Figure 4",
+                    "exact_quote": "CoT-decoding consistently yields +10-30% absolute accuracy gains"
+                },
+                {
+                    "evidence_text": "Improvements across multiple model families",
+                    "strength": "strong",
+                    "limitations": "Limited number of tasks tested",
+                    "location": "Figure 3",
+                    "exact_quote": "across three language model families, PaLM-2, Mistral and Gemma, CoT-decoding effectively elicits model's reasoning"
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "Consistent improvements demonstrated across multiple models and tasks with substantial gains",
+                "key_limitations": "Limited to specific benchmark tasks and model families",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "23.92 seconds",
+        "total_execution_time": "28.01 seconds"
+    }
+}

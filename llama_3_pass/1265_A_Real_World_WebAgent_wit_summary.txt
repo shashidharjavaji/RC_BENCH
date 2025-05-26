@@ -1,0 +1,479 @@
+=== Paper Analysis Summary ===
+
+Raw Claims:
+This is a research paper titled "A Real-World WebAgent with Planning, Long Context Understanding, and Program Synthesis". Here's a breakdown of the paper's content:
+
+**Abstract**
+
+* Introduces a web agent system, WebAgent, that combines two large language models (LLMs) for real-world web automation.
+* WebAgent uses HTML-T5 for planning and HTML summarization, and Flan-U-PaLM for grounded program synthesis.
+* The system achieves 70-80% success on real websites via self-experience supervision, outperforming single LLM approaches by over 50%.
+
+**Introduction**
+
+* Discusses the challenges of web automation on real-world websites, including open domainness, limited context length, and lack of inductive bias on HTML.
+* Introduces WebAgent as a solution to these challenges.
+
+**Related Works**
+
+* Web Automation: Discusses prior works on web automation, including reinforcement learning, finetuning, and prompting LLMs.
+* Program Synthesis: Discusses prior works on programming-focused language models and their benchmarks.
+* Document Understanding: Discusses prior works on understanding structural documents, including layout-informed tokens and multimodal tokens.
+
+**WebAgent**
+
+* **Workflow**: Describes the workflow of WebAgent, including:
+	1. User initiates natural language interaction.
+	2. HTML-T5 formulates a sub-instruction and generates related HTML snippets.
+	3. Flan-U-PaLM generates executable Python programs based on the sub-instruction and HTML snippets.
+* **HTML-T5**:
+	+ **Model Architecture**: Describes the architecture of HTML-T5, including local and global attention mechanisms.
+	+ **Pre-Training with Mixture of Long-Span Denoising**: Discusses the pre-training approach for HTML-T5, including the use of a mixture of long-span denoising objectives.
+* **Self-Experience Supervision for Alignment with Real Websites**: Describes the self-experience supervision approach, including instruction templates, scripted planning, and prompted programming.
+* **Grounded Program Synthesis**: Discusses the program synthesis module, including the use of Flan-U-PaLM for conditional code generation.
+
+**Experimental Results**
+
+* **Real-World Web Automation**:
+	+ **Evaluation Methodology**: Describes the evaluation methodology, including the use of real estate, social media, and map websites.
+	+ **Results**: Presents the results, including success rates and scores for WebAgent and baseline models.
+	+ **Error Analysis**: Analyzes the errors, including programming, planning, and summarization errors.
+* **Ablation of HTML-T5**:
+	+ **Models**: Evaluates HTML-T5 on MiniWoB++ and Mind2Web datasets.
+	+ **Architecture and Objective**: Compares the architecture and objective of HTML-T5 with other models.
+
+**Discussion and Limitation**
+
+* **Modular Approach with Specialist Language Models**: Discusses the benefits of dividing web automation into planning, HTML summarization, and code generation, and combining domain-expert language models.
+* **Broad Generalization across the Internet**: Discusses the potential for generalizing WebAgent across the internet with sufficient data.
+* **Feedback for Program Synthesis**: Discusses the challenge of incorporating feedback for program synthesis into larger language models.
+* **Evaluation for Real-world Web Automation**: Discusses the need for automated evaluation with minimal human intervention for scalable development of real-world web agents.
+
+**Conclusion**
+
+* Summarizes the contributions of the paper, including the development of WebAgent and its evaluation on real-world web automation.
+* Highlights the potential of WebAgent for practical deployment on real websites.
+
+**Appendices**
+
+* **A Note for Real-World Evaluation**: Discusses the security and safety aspects of autonomous agents and the evaluation methodology.
+* **B Extended Related Works**: Discusses prior works on document understanding and LLM for task planning.
+* **C Implementation Details of HTML-T5**: Provides implementation details for HTML-T5, including the use of local and global attention mechanisms and pre-training with a mixture of long-span denoising objectives.
+* **D WebAgent Example Flow in Real-Estate Website**: Presents an example flow of WebAgent on a real estate website.
+* **E Real-World Web Automation with Different Generalist LLMS**: Compares the performance of WebAgent with different generalist LLMs.
+* **F WebSRC: Static HTML Comprehension**: Evaluates WebAgent on a static website comprehension benchmark, WebSRC.
+
+Structured Evidence:
+[
+  {
+    "claim_id": 1,
+    "evidence": [
+      {
+        "evidence_id": 1,
+        "evidence_text": "WebAgent achieves around 70-80% success on real websites via self-experience supervision, outperforming single LLM approaches by over 50%.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Abstract",
+        "exact_quote": "WebAgent achieves around 70-80% success on real websites via self-experience supervision, outperforming single LLM approaches by over 50%."
+      },
+      {
+        "evidence_id": 2,
+        "evidence_text": "WebAgent significantly outperforms baselines with Flan-T5-XL or GPT-4 across task/website/domain generalization, increasing element accuracy by 5-8%, operation F1 by 6-8%, and step success rate by 4-8%.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.2",
+        "exact_quote": "HTML-T5 significantly outperforms baselines with Flan-T5-XL or GPT-4 across task/website/domain generalization, increasing element accuracy by 5-8%, operation F1 by 6-8%, and step success rate by 4-8%."
+      },
+      {
+        "evidence_id": 3,
+        "evidence_text": "WebAgent achieves best 65% success and 87.6% score on real-estate, 70% success and 85.8% score on social-media, and 80% success and 93.8% score on map, significantly outperforming single LLM approach by over 50%.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.1",
+        "exact_quote": "Table 1 shows that by leveraging planning and summarization language model modules, WebAgent achieves best 65% success and 87.6% score on real-estate, 70% success and 85.8% score on social-media, and 80% success and 93.8% score on map, significantly outperforming single LLM approach by over 50%."
+      }
+    ]
+  },
+  {
+    "claim_id": 2,
+    "evidence": [
+      {
+        "evidence_id": 4,
+        "evidence_text": "HTML-T5 outperforms other models, including LongT5-Base and Flan-T5-XL, on MiniWoB++ with an average success rate of 57.0%.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section 4.2",
+        "exact_quote": "Table 3: Average success rate of MiniWoB++ with 56 tasks. We use 12K demonstrations and compare HTML-T5 among supervised-finetuned methods."
+      },
+      {
+        "evidence_id": 5,
+        "evidence_text": "WebAgent enhances the performance from both single generalist and specialist LLMs, and shows competitive results with strong baselines on WebSRC.",
+        "strength": "strong",
+        "limitations": "None",
+        "location": "Section F",
+        "exact_quote": "Table 6: Evaluation on WebSRC (Chen et al., 2021b) with dev set. WebAgent, our collaborative LLMs, enhances the performance from both single generalist (Flan-U-PaLM) or specialist LLMs (HTML-T5)."
+      }
+    ]
+  }
+]
+
+Structured Conclusions:
+[
+  {
+    "claim_id": 1,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 2,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 3,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 4,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 5,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 6,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 7,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 8,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 9,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 10,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 11,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 12,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 13,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 14,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 15,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 16,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 17,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 18,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 19,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 20,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 21,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 22,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 23,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 24,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 25,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 26,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 27,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 28,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 29,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 30,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 31,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 32,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 33,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 34,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 35,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 36,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 37,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 38,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 39,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 40,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 41,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 42,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 43,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 44,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 45,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 46,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 47,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 48,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 49,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  },
+  {
+    "claim_id": 50,
+    "conclusion_justified": true,
+    "robustness": "high",
+    "key_limitations": "None",
+    "confidence_level": "high"
+  }
+]
+
+
+Execution Times:
+claims_analysis_time: 148.56 seconds
+evidence_analysis_time: 131.25 seconds
+conclusions_analysis_time: 390.94 seconds
+total_execution_time: 674.87 seconds

@@ -1,0 +1,72 @@
+Claim 1:
+Type: performance
+Statement: DPR outperforms BM25 by a large margin on passage retrieval for open-domain QA
+Location: Section 5.1
+Exact Quote: DPR performs consistently better than BM25 on all datasets. The gap is especially large when k is small (e.g., 78.4% vs. 59.1% for top-20 accuracy on Natural Questions)
+
+Evidence:
+- Evidence Text: Top-20 retrieval accuracy comparison across datasets
+  Strength: strong
+  Location: Table 2
+  Limitations: Limited to 5 QA datasets, may not generalize to all domains
+  Exact Quote: Top-20 retrieval accuracy: NQ (78.4% vs 59.1%), TriviaQA (79.4% vs 66.9%), WQ (73.2% vs 55.0%), TREC (79.8% vs 70.9%)
+
+- Evidence Text: Exception case of SQuAD dataset
+  Strength: moderate
+  Location: Section 5.1
+  Limitations: Explains limitation of method for certain types of questions
+  Exact Quote: The lower performance on SQuAD is due to two reasons: First, the annotators wrote questions after seeing the passage... Second, the data was collected from only 500+ Wikipedia articles
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Consistent superior performance shown across multiple datasets with substantial margins, with reasonable explanation for the exception case
+Key Limitations: Performance advantage may not hold for questions with high lexical overlap with passages
+
+--------------------------------------------------
+
+Claim 2:
+Type: methodology
+Statement: DPR can be trained effectively with a small number of question-passage pairs
+Location: Section 5.2
+Exact Quote: a dense passage retriever trained using only 1,000 examples already outperforms BM25
+
+Evidence:
+- Evidence Text: Performance with varying training data size
+  Strength: strong
+  Location: Figure 1
+  Limitations: Only tested on Natural Questions dataset
+  Exact Quote: Figure 1 illustrates the top-k retrieval accuracy with respect to different numbers of training examples, measured on the development set of Natural Questions
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Clear demonstration of effectiveness with small training set, supported by empirical results
+Key Limitations: Only demonstrated on one dataset, may vary for different domains/question types
+
+--------------------------------------------------
+
+Claim 3:
+Type: methodology
+Statement: In-batch negative training provides substantial improvement over standard training
+Location: Section 5.2
+Exact Quote: using a similar configuration (7 gold negative passages), in-batch negative training improves the results substantially
+
+Evidence:
+- Evidence Text: Comparative results of different training schemes
+  Strength: strong
+  Location: Table 3
+  Limitations: Limited to specific batch sizes and configurations tested
+  Exact Quote: Gold passages with standard training: 42.6/63.1/78.3 (Top-5/20/100), Gold passages with in-batch training: 51.1/69.1/80.8
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Clear performance improvement demonstrated through controlled comparison
+Key Limitations: Impact may vary with different batch sizes and training configurations
+
+--------------------------------------------------
+

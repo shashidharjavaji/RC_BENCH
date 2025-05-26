@@ -1,0 +1,143 @@
+=== Paper Analysis Summary ===
+
+Claim 1:
+Statement: The authors propose a method for creating model-specific PRISM datasets with samples that represent each of the identified prediction scenarios.
+Location: Section 3
+Type: Methodological contribution
+Quote: We develop PRISM datasets for GPT-2 XL, Llama 2 7B and Llama 2 13B, and use them to test the prediction scenario sensitivity of an influential interpretability method, causal tracing (CT).
+
+Evidence:
+- We develop PRISM datasets for GPT-2 XL, Llama 2 7B and Llama 2 13B, and use them to test the prediction scenario sensitivity of an influential interpretability method, causal tracing (CT).
+  Strength: strong
+  Location: Section 3
+  Limitations: None
+  Quote: We develop PRISM datasets for GPT-2 XL, Llama 2 7B and Llama 2 13B, and use them to test the prediction scenario sensitivity of an influential interpretability method, causal tracing (CT).
+
+- Table 1: Statistics for the PRISM datasets for each LM considered in our study.
+  Strength: moderate
+  Location: Section 3
+  Limitations: Only provides statistics, not direct evidence
+  Quote: GPT-2 XL Llama 2 7B Llama 2 13B Scenario #samples (#fact tuples) #samples (#fact tuples) #samples (#fact tuples) Generic LM 1000 (-) 1000 (-) 1000 (-) Guesswork 3282 (3181) 2917 (2846) 2822 (2220) Heuristics 8352 (1868) 8414 (1960) 9224 (2062) Exact fact 1322 (191) 5481 (580) 5995 (601)
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: dataset specificity, model dependence
+Confidence: high
+
+==================================================
+
+Claim 2:
+Statement: The authors identify four prediction scenarios that are fundamentally different and of differing reliability: exact fact recall, heuristics recall, guesswork, and generic language modeling.
+Location: Section 5
+Type: Theoretical contribution
+Quote: We identify four prediction scenarios that are fundamentally different and of differing reliability. These are exact fact recall, heuristics recall, guesswork, and generic language modeling.
+
+Evidence:
+- We identify four prediction scenarios that are fundamentally different and of differing reliability: exact fact recall, heuristics recall, guesswork, and generic language modeling.
+  Strength: strong
+  Location: Section 1
+  Limitations: None
+  Quote: We identify four prediction scenarios that are fundamentally different and of differing reliability: exact fact recall, heuristics recall, guesswork, and generic language modeling.
+
+- Figure 1: Prediction scenarios and corresponding prompt completion examples.
+  Strength: moderate
+  Location: Section 1
+  Limitations: Only provides a visual representation, not direct evidence
+  Quote: Figure 1: Prediction scenarios and corresponding prompt completion examples.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: scenario definition, reliability
+Confidence: high
+
+==================================================
+
+Claim 3:
+Statement: The authors find that different prediction scenarios yield distinct CT results if studied in isolation, but CT results are not representative of the dataset as a whole if it contains examples of different prediction scenarios.
+Location: Section 4.2
+Type: Empirical finding
+Quote: Consequently, CT results are not representative of the dataset as a whole if it contains examples of different prediction scenarios. Our results highlight the importance of studying different prediction scenarios in isolation and provide a method for doing this.
+
+Evidence:
+- Figure 3: CT results for PRISM GPT-2 XL data. 1000 samples for each scenario in isolation. As well as 1000 combined samples (330 exact fact recall, 340 heuristics recall, 330 guesswork).
+  Strength: strong
+  Location: Section 4
+  Limitations: Only provides results for GPT-2 XL
+  Quote: Figure 3: CT results for PRISM GPT-2 XL data. 1000 samples for each scenario in isolation. As well as 1000 combined samples (330 exact fact recall, 340 heuristics recall, 330 guesswork).
+
+- We find that different prediction scenarios yield distinct CT results if studied in isolation, but CT results are not representative of the dataset as a whole if it contains examples of different prediction scenarios.
+  Strength: moderate
+  Location: Section 4
+  Limitations: None
+  Quote: We find that different prediction scenarios yield distinct CT results if studied in isolation, but CT results are not representative of the dataset as a whole if it contains examples of different prediction scenarios.
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: dataset composition, scenario representation
+Confidence: high
+
+==================================================
+
+Claim 4:
+Statement: The authors' analysis of the CounterFact dataset reveals samples likely to correspond to heuristics recall, and a significant number of samples with low popularity scores, indicating potential issues with the dataset.
+Location: Appendix F
+Type: Empirical finding
+Quote: We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias, 155 to name bias and 20 to both name and prompt bias.
+
+Evidence:
+- We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias, 155 to name bias and 20 to both name and prompt bias.
+  Strength: strong
+  Location: Appendix F.1
+  Limitations: Only provides results for the CounterFact dataset
+  Quote: We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias, 155 to name bias and 20 to both name and prompt bias.
+
+- Table 10: The popularity scores for the known CounterFact samples.
+  Strength: moderate
+  Location: Appendix F.1
+  Limitations: Only provides statistics, not direct evidence
+  Quote: Popularity score # of samples (0, 100] 61 (100, 1000] 304 (1000, 10000) 379 (10000, 1176235) 437
+
+Conclusion:
+Justified: True
+Robustness: medium
+Limitations: dataset size, sample representation
+Confidence: medium
+
+==================================================
+
+Claim 5:
+Statement: The authors propose a method for detecting heuristics using three filters: lexical overlap, name bias, and prompt bias.
+Location: Section D.5
+Type: Methodological contribution
+Quote: Our detection of heuristics is based on 3 filters: Lexical overlap, Name bias, and Prompt bias.
+
+Evidence:
+- Our detection of heuristics is based on 3 filters: lexical overlap, name bias, and prompt bias.
+  Strength: strong
+  Location: Section 3.2
+  Limitations: None
+  Quote: Our detection of heuristics is based on 3 filters: lexical overlap, name bias, and prompt bias.
+
+- Table 4: Subject substitutions used for constructing prompts to detect prompt bias.
+  Strength: moderate
+  Location: Appendix D.5
+  Limitations: Only provides examples of subject substitutions
+  Quote: Relation Subject substitutions P19 [He, She] P20 [He, She] P27 [He, She] P101 [He, She] P495 [It] P740 [It, The organisation] P1376 [It, The city]
+
+Conclusion:
+Justified: True
+Robustness: high
+Limitations: filter effectiveness, dataset coverage
+Confidence: high
+
+==================================================
+
+
+Execution Times:
+claims_analysis_time: 89.18 seconds
+evidence_analysis_time: 212.64 seconds
+conclusions_analysis_time: 46.49 seconds
+total_execution_time: 351.06 seconds

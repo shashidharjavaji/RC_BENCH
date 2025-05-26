@@ -1,0 +1,392 @@
+{
+    "claims": {
+        "claims": [
+            {
+                "claim_id": 1,
+                "claim_text": "Retrieval-augmented language models show only marginal improvements in zero-shot end-task accuracy compared to non-retrieval models",
+                "location": "Abstract",
+                "claim_type": "Finding/Result",
+                "exact_quote": "Retrieval-augmented language models (LMs) use non-parametric memory to substantially outperform their non-retrieval counterparts on perplexity-based evaluations, but it is an open question whether they achieve similar gains in few- and zero-shot end-task accuracy."
+            },
+            {
+                "claim_id": 2,
+                "claim_text": "kNN-Prompt with GPT-2 large yields significant performance improvements of 13.4% absolute improvement over base LM across nine diverse end-tasks",
+                "location": "Abstract",
+                "claim_type": "Result",
+                "exact_quote": "Across nine diverse end-tasks, using kNN-Prompt with GPT-2 large yields significant performance boosts over strong zero-shot baselines (13.4% absolute improvement over the base LM on average)."
+            },
+            {
+                "claim_id": 3,
+                "claim_text": "kNN-Prompt is effective for domain adaptation without additional training",
+                "location": "Abstract",
+                "claim_type": "Finding",
+                "exact_quote": "kNN-Prompt is effective for domain adaptation with no further training, and gains increase with the size of the retrieval model"
+            },
+            {
+                "claim_id": 4,
+                "claim_text": "The challenge of low verbalizer token coverage limits effectiveness of kNN-LM for end tasks",
+                "location": "Introduction",
+                "claim_type": "Finding",
+                "exact_quote": "across the datasets we test, an output label receives nonzero probability under the kNN distribution only 44.2% of the time"
+            },
+            {
+                "claim_id": 5,
+                "claim_text": "Fuzzy verbalizers are essential for leveraging the kNN distribution effectively",
+                "location": "Introduction",
+                "claim_type": "Finding",
+                "exact_quote": "fuzzy verbalizers are essential for leveraging the kNN distribution, the benefits of retrieval increase with retrieval model size"
+            },
+            {
+                "claim_id": 6,
+                "claim_text": "Small domain-specific datastores can yield sizeable performance gains compared to large generic datastores",
+                "location": "Introduction",
+                "claim_type": "Finding",
+                "exact_quote": "even relatively small datastores can yield sizeable performance gains if they are tailored to the domain or task"
+            },
+            {
+                "claim_id": 7,
+                "claim_text": "kNN-Prompt consistently outperforms baselines in few-shot settings",
+                "location": "Experimental Results",
+                "claim_type": "Result",
+                "exact_quote": "We find that kNN-Prompt consistently outperform baselines, demonstrating that kNN-Prompt is applicable to the few-shot setting as well"
+            },
+            {
+                "claim_id": 8,
+                "claim_text": "kNN-Prompt performs comparably to domain-adaptive pretraining without requiring additional training",
+                "location": "Domain Adaptation Results",
+                "claim_type": "Result",
+                "exact_quote": "kNN-Prompt performs comparably with DAPT. Specifically, kNN-Prompt slightly outperforms DAPT on CR and MR"
+            },
+            {
+                "claim_id": 9,
+                "claim_text": "Task-specific datastore retrieval performs better than domain-specific or heterogeneous corpus retrieval for a fixed number of tokens",
+                "location": "Domain Adaptation Results",
+                "claim_type": "Finding",
+                "exact_quote": "For a fixed number of tokens, retrieving from a task-specific datastore is best. Furthermore, token-for-token, adding task-specific data leads to more gains than domain-specific data, which in turn is better than our heterogeneous corpus"
+            }
+        ]
+    },
+    "evidence": [
+        {
+            "claim_id": 1,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "kNN-LM alone yields only 0.4% average improvement over base LM across tasks",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to GPT-2 family models and specific set of tasks tested",
+                    "location": "Section 4: Experimental Results, paragraph 2",
+                    "exact_quote": "Interestingly, the kNN-LM alone yields a fairly small improvement over the base LM (about 0.4% on average)."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Results table shows kNN-LM achieves only small gains over base LM across tasks",
+                    "strength": "strong",
+                    "limitations": "Limited to specific tasks and models tested",
+                    "location": "Table 2 and Section 4",
+                    "exact_quote": "LM achieves 56.2% average accuracy while kNN-LM achieves 56.6% average accuracy across tasks"
+                }
+            ]
+        },
+        {
+            "claim_id": 2,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Table 2 shows zero-shot results across 9 tasks comparing kNN-Prompt to baselines, with kNN-Prompt achieving 69.6% average accuracy compared to base LM's 56.2%, representing a 13.4% absolute improvement",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results are specifically for zero-shot setting only",
+                    "location": "Section 4: Experimental Results, Table 2",
+                    "exact_quote": "kNN-Prompt outperforms all baselines in all tasks, improving over the base LM by 13.4% on average."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Detailed ablation results in Table 5 showing full kNN-Prompt model achieves +13.4% improvement over base LM",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Ablation study on model components",
+                    "location": "Section 6: Analysis, Table 5",
+                    "exact_quote": "LM+kNN+Fuzzy+PMI (kNN-Prompt) 69.6 +13.4"
+                }
+            ]
+        },
+        {
+            "claim_id": 3,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "kNN-Prompt performs comparably with DAPT (Domain-Adaptive Pre-Training) on domain adaptation tasks, slightly outperforming DAPT on CR and MR datasets without requiring additional training",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to three specific tasks (CR, HYP, MR)",
+                    "location": "Section 5: kNN-Prompt for Domain Adaptation",
+                    "exact_quote": "As shown in Table 4, kNN-Prompt performs comparably with DAPT. Specifically, kNN-Prompt slightly outperforms DAPT on CR and MR. These results indicate that kNN-Prompt is an effective method for domain adaptation. Critically, unlike DAPT, kNN-Prompt does not require further training"
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Domain-specific datastores show better performance than general datastores with less data",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only demonstrated on CR dataset",
+                    "location": "Section 5: kNN-Prompt for Domain Adaptation",
+                    "exact_quote": "Using domain-specific data is always better than retrieving from the large heterogeneous corpus. For example, for CR, using 6M tokens of domain-specific data outperforms using our 465M token heterogeneous corpus."
+                }
+            ]
+        },
+        {
+            "claim_id": 4,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Across all tasks, an output label receives nonzero probability under the kNN distribution in kNN-LM only 45.8% of the time. With fuzzy verbalizers, this increases to 78%.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to the specific tasks evaluated in the study",
+                    "location": "Section 6: Analysis",
+                    "exact_quote": "Indeed, we find that across all tasks, an output label receives nonzero probability under the kNN distribution in kNN-LM only 45.8% of the time. With fuzzy verbalizers, this increases to 78%."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Adding kNN to LM gives only 0.4% improvement, but much greater (+10.3%) once fuzzy verbalizers are added to address the coverage issue",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results are averaged across tasks",
+                    "location": "Section 6: Analysis",
+                    "exact_quote": "First, we find that adding kNN to LM gives trivial improvement (+0.4%), but much greater once we add fuzzy verbalizers on top of them (+10.3%), exceeding the contribution of the two components independently (with fuzzy verbalizers alone at +7.2%)"
+                }
+            ]
+        },
+        {
+            "claim_id": 5,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Adding kNN to LM gives trivial improvement (+0.4%), but much greater once fuzzy verbalizers are added (+10.3%), exceeding the contribution of the components independently",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Results are from ablation studies only",
+                    "location": "Section 6 Analysis - Model ablations",
+                    "exact_quote": "First, we find that adding kNN to LM gives trivial improvement (+0.4%), but much greater once we add fuzzy verbalizers on top of them (+10.3%), exceeding the contribution of the two components independently (with fuzzy verbalizers alone at +7.2%)."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Fuzzy verbalizers significantly increase the probability coverage of output labels under kNN distribution from 45.8% to 78%",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Does not directly show impact on final performance",
+                    "location": "Section 6 Analysis - Model ablations",
+                    "exact_quote": "Indeed, we find that across all tasks, an output label receives nonzero probability under the kNN distribution in kNN-LM only 45.8% of the time. With fuzzy verbalizers, this increases to 78%."
+                }
+            ]
+        },
+        {
+            "claim_id": 6,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "For CR task, using 6M tokens of domain-specific data outperforms using 465M token heterogeneous corpus",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only demonstrated for CR task specifically",
+                    "location": "Section 5 - Effect of datastore distribution and size",
+                    "exact_quote": "For example, for CR, using 6M tokens of domain-specific data outperforms using our 465M token heterogeneous corpus."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Domain and task-specific data provides better performance per token than heterogeneous corpus",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Based on experiments with CR and MR tasks only",
+                    "location": "Section 5 - Effect of datastore distribution and size",
+                    "exact_quote": "For a fixed number of tokens, retrieving from a task-specific datastore is best. Furthermore, token-for-token, adding task-specific data leads to more gains than domain-specific data, which in turn is better than our heterogeneous corpus."
+                }
+            ]
+        },
+        {
+            "claim_id": 7,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Results from few-shot experiments across 3 tasks showing kNN-Prompt outperforms baselines",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Limited to only 3 tasks (CR, HYP, MR) with 4 examples; High variance in results indicated by standard deviations",
+                    "location": "Section 4 - Few-shot inference",
+                    "exact_quote": "For a subset of tasks, we additionally compare to a few-shot setting where we prepend four examples uniformly sampled from the training data to the input (Table 3). The demonstration examples are converted to prompt and verbalizer format. We report the mean accuracy and standard deviation with 4 different random seeds. We find that kNN-Prompt consistently outperform baselines, demonstrating that kNN-Prompt is applicable to the few-shot setting as well."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Quantitative results from Table 3 showing kNN-Prompt performance",
+                    "strength": "moderate",
+                    "limitations": "Small improvements in some cases; High standard deviations",
+                    "location": "Table 3",
+                    "exact_quote": "CR: kNN-prompt 80.5\u00b11.7 vs LM 79.5\u00b14.1, HYP: kNN-prompt 57.1\u00b11.1 vs LM 56.7\u00b10.5, MR: kNN-prompt 79.4\u00b11.5 vs LM 78.2\u00b11.4"
+                }
+            ]
+        },
+        {
+            "claim_id": 8,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "kNN-Prompt performs similarly or better than DAPT on CR and MR tasks while requiring no additional training",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to three specific tasks (CR, HYP, MR)",
+                    "location": "Section 5: kNN-Prompt for Domain Adaptation",
+                    "exact_quote": "As shown in Table 4, kNN-Prompt performs comparably with DAPT. Specifically, kNN-Prompt slightly outperforms DAPT on CR and MR. These results indicate that kNN-Prompt is an effective method for domain adaptation. Critically, unlike DAPT, kNN-Prompt does not require further training, which is more practical and efficient for adapting very large LMs."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_type": "primary",
+                    "evidence_text": "Quantitative comparison between kNN-Prompt and DAPT performance",
+                    "strength": "strong",
+                    "limitations": "Results only shown for three classification tasks",
+                    "location": "Table 4",
+                    "exact_quote": "CR: kNN-prompt 84.3 vs DAPT 84.1, HYP: kNN-prompt 60.0 vs DAPT 61.1, MR: kNN-prompt 78.2 vs DAPT 77.8"
+                }
+            ]
+        },
+        {
+            "claim_id": 9,
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Figure 3 shows performance comparisons across different datastore types, demonstrating that token-for-token, task-specific data leads to better gains than domain-specific data, which in turn performs better than the heterogeneous corpus",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only demonstrated on CR and MR tasks",
+                    "location": "Section 5: kNN-Prompt for Domain Adaptation",
+                    "exact_quote": "For a fixed number of tokens, retrieving from a task-specific datastore is best. Furthermore, token-for-token, adding task-specific data leads to more gains than domain-specific data, which in turn is better than our heterogeneous corpus."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Small task-specific datastores outperform much larger heterogeneous datastores",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Only demonstrated on CR task",
+                    "location": "Section 5: kNN-Prompt for Domain Adaptation",
+                    "exact_quote": "For example, for CR, using 6M tokens of domain-specific data outperforms using our 465M token heterogeneous corpus."
+                }
+            ]
+        }
+    ],
+    "conclusions": {
+        "conclusions": [
+            {
+                "claim_id": 1,
+                "author_conclusion": "The authors conclude that basic retrieval-augmented language models (kNN-LM) show only marginal improvements in zero-shot performance without additional enhancements like fuzzy verbalizers and PMI calibration",
+                "conclusion_justified": true,
+                "justification_explanation": "The evidence strongly supports this conclusion through both quantitative results (0.4% average improvement) and consistent findings across multiple tasks. The experimental results clearly demonstrate that kNN-LM alone provides minimal benefits compared to the base language model.",
+                "robustness_analysis": "The evidence is robust, coming from systematic empirical evaluation across multiple tasks with clear metrics. The consistency of results across different tasks and the precise quantification of improvements (0.4%) strengthen the reliability of the findings. The experimental methodology appears sound with appropriate comparisons to baselines.",
+                "limitations": "- Limited to GPT-2 family models\n- Specific set of tasks tested may not generalize to all scenarios\n- Potential impact of hyperparameter choices not fully explored\n- Limited exploration of why basic kNN-LM shows minimal improvements\n- Results may not extend to other model architectures or retrieval mechanisms",
+                "location": "Abstract and Section 4: Experimental Results",
+                "evidence_alignment": "The evidence strongly aligns with the conclusion. Both the quantitative results table and explicit statement of 0.4% improvement directly support the claim of marginal improvements. The consistency between different pieces of evidence strengthens this alignment.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 2,
+                "author_conclusion": "The authors conclude that kNN-Prompt with GPT-2 large achieves significant performance improvements of 13.4% absolute improvement over the base language model across nine diverse tasks in zero-shot settings",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is well-justified through comprehensive empirical evidence presented in both the main results (Table 2) and ablation studies (Table 5). The improvement of 13.4% is consistently reported and verified through multiple experimental analyses, with detailed breakdowns across different tasks and model components.",
+                "robustness_analysis": "The evidence is robust for several reasons: 1) Results are demonstrated across 9 diverse tasks, showing consistency across different domains, 2) The improvement is validated through both overall performance comparison and detailed ablation studies, 3) The methodology includes appropriate baselines and controlled comparisons.",
+                "limitations": "1) Results are specific to zero-shot settings only, 2) Limited to GPT-2 large model family, 3) Computational overhead from kNN retrieval not fully addressed, 4) Performance gains may vary across different tasks and domains",
+                "location": "Abstract, Section 4 (Experimental Results), Section 6 (Analysis)",
+                "evidence_alignment": "The evidence strongly aligns with the conclusion through multiple consistent measurements and detailed analysis. Both the main results table and ablation studies independently verify the 13.4% improvement claim with specific performance breakdowns.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 3,
+                "author_conclusion": "The authors conclude that kNN-Prompt is an effective method for domain adaptation that does not require additional training, performing comparably or better than domain-adaptive pretraining (DAPT) while being more practical and efficient for adapting large language models",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is justified by empirical evidence showing comparable or better performance against DAPT on multiple tasks, along with demonstrations that domain-specific datastores outperform general datastores even with less data. The direct comparison with DAPT provides strong validation for the claim.",
+                "robustness_analysis": "The evidence demonstrates reasonable robustness through: 1) Direct comparative evaluation against an established baseline (DAPT), 2) Testing across multiple tasks (CR, HYP, MR), and 3) Analysis of datastore size and composition effects. The methodology of comparing against DAPT provides a strong validation framework.",
+                "limitations": "1) Limited evaluation on only three specific tasks (CR, HYP, MR), 2) Some findings about datastore effectiveness are demonstrated on only one task (CR), 3) No discussion of computational costs or memory requirements for storing different datastore sizes, 4) Lack of comparison with other domain adaptation methods beyond DAPT",
+                "location": "Section 5: kNN-Prompt for Domain Adaptation",
+                "evidence_alignment": "The evidence directly supports the core claim about effectiveness and no-training benefits through empirical results. The demonstrated performance advantages of domain-specific datastores further strengthen the domain adaptation capabilities claim.",
+                "confidence_level": "medium"
+            },
+            {
+                "claim_id": 4,
+                "author_conclusion": "The base kNN-LM approach has limited effectiveness for end tasks due to poor coverage of verbalizer tokens, with only 45.8% of output labels receiving nonzero probability under the kNN distribution. This limitation can be substantially addressed through fuzzy verbalizers, which increase coverage to 78% and improve performance significantly.",
+                "conclusion_justified": true,
+                "justification_explanation": "The evidence strongly supports this conclusion through clear quantitative metrics showing both the limitation (45.8% coverage) and the improvement with fuzzy verbalizers (78% coverage). The performance improvement from 0.4% to 10.3% when adding fuzzy verbalizers provides additional strong empirical support for the conclusion.",
+                "robustness_analysis": "The evidence is robust as it provides both direct coverage measurements and performance impacts. The consistency between coverage improvements and performance gains strengthens the reliability. The analysis includes concrete metrics across multiple tasks, though specific task-level details are not provided.",
+                "limitations": "1. Results are averaged across tasks, potentially masking task-specific variations\n2. The study only examines one type of retrieval-augmented LM (kNN-LM)\n3. Limited exploration of alternative solutions beyond fuzzy verbalizers\n4. Coverage metrics may not fully explain all factors affecting performance",
+                "location": "Introduction and Section 6 (Analysis)",
+                "evidence_alignment": "The evidence directly aligns with and supports the conclusion. The quantitative measurements of both the problem (low coverage) and the solution (improved coverage with fuzzy verbalizers) provide clear support for the authors' claims.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 5,
+                "author_conclusion": "The authors conclude that fuzzy verbalizers are essential for effectively leveraging the kNN distribution in their model, substantially improving performance compared to using kNN alone",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is justified by strong empirical evidence showing both direct performance improvements (+10.3% when adding fuzzy verbalizers to kNN vs just +0.4% for kNN alone) and significant increases in label coverage (45.8% to 78%). The ablation studies provide clear quantitative support for the essential role of fuzzy verbalizers.",
+                "robustness_analysis": "The evidence is robust in that it provides both direct performance metrics and mechanistic explanation (label coverage). The ablation methodology allows for isolation of the fuzzy verbalizer effect. The large magnitude of improvement and consistent findings across multiple metrics strengthen the reliability of the conclusion.",
+                "limitations": "- Ablation studies alone form the primary evidence base\n- No direct comparison to alternative approaches for improving kNN distribution coverage\n- Limited exploration of why fuzzy verbalizers work better than alternatives\n- Performance results may be task-dependent though this isn't fully explored",
+                "location": "Introduction and Section 6 (Analysis)",
+                "evidence_alignment": "The evidence strongly aligns with and supports the conclusion. The ablation results demonstrate both the necessity of fuzzy verbalizers (poor performance without them) and their effectiveness (substantial gains when added). The coverage analysis provides a clear mechanistic explanation for the improvements.",
+                "confidence_level": "high"
+            },
+            {
+                "claim_id": 6,
+                "author_conclusion": "The authors conclude that smaller domain-specific datastores can be more effective than much larger heterogeneous datastores, suggesting that careful curation of task-relevant data may be preferable to simply increasing datastore size.",
+                "conclusion_justified": true,
+                "justification_explanation": "The conclusion is justified by clear empirical evidence showing that a small domain-specific datastore (6M tokens) outperformed a much larger heterogeneous datastore (465M tokens) on the CR task, and that per-token performance was better for domain and task-specific data compared to heterogeneous data.",
+                "robustness_analysis": "The evidence is strong but somewhat limited in scope. The quantitative comparison between 6M vs 465M tokens provides clear numerical support, and the consistent pattern of domain/task-specific data outperforming heterogeneous data strengthens the finding. However, the experiments focus primarily on CR and MR tasks, which limits generalizability.",
+                "limitations": "- Evidence is primarily from just two tasks (CR and MR)\n- No statistical significance testing reported\n- Limited exploration of different domain-specific datastore sizes\n- No analysis of computational efficiency tradeoffs\n- Lack of investigation across a broader range of domains and tasks",
+                "location": "Introduction and Section 5",
+                "evidence_alignment": "The evidence directly supports the conclusion through clear empirical demonstrations. Both pieces of evidence show consistent results favoring domain-specific datastores, though the scope is limited to specific tasks.",
+                "confidence_level": "medium"
+            },
+            {
+                "claim_id": 7,
+                "author_conclusion": "The authors conclude that kNN-Prompt consistently outperforms baseline methods in few-shot settings across tested tasks, though the improvements are modest and variable.",
+                "conclusion_justified": false,
+                "justification_explanation": "While the evidence shows kNN-Prompt does outperform baselines, the claim of 'consistent' outperformance is too strong given the limited scope (only 3 tasks), high variance in results, and relatively small improvements in some cases. The evidence is not comprehensive enough to support such a broad conclusion.",
+                "robustness_analysis": "The evidence has several weaknesses: 1) Limited to only 3 tasks, 2) Small sample size of 4 examples per task, 3) High standard deviations indicating inconsistent performance, 4) No statistical significance testing reported. The experimental setup appears sound but the scope is too narrow to support broad claims about consistent performance.",
+                "limitations": "- Only tested on 3 tasks (CR, HYP, MR)\n- Small number of examples (4) per task\n- High variance in results indicated by standard deviations\n- No statistical significance testing\n- No analysis of performance across different domains or task types\n- Limited exploration of how performance varies with different few-shot examples",
+                "location": "Section 4 - Few-shot inference",
+                "evidence_alignment": "The evidence shows positive but variable performance improvements, which only partially aligns with the stronger claim of 'consistent' outperformance. The high standard deviations and limited task coverage suggest less consistency than claimed.",
+                "confidence_level": "low"
+            },
+            {
+                "claim_id": 8,
+                "author_conclusion": "No conclusion available",
+                "conclusion_justified": false,
+                "justification_explanation": "Analysis not available",
+                "robustness_analysis": "No robustness analysis available",
+                "limitations": "No limitations analysis available",
+                "location": "Location not specified",
+                "evidence_alignment": "No alignment analysis available",
+                "confidence_level": "low"
+            },
+            {
+                "claim_id": 9,
+                "author_conclusion": "The authors conclude that task-specific datastore retrieval provides better performance than domain-specific or heterogeneous corpus retrieval when comparing equal numbers of tokens, with domain-specific data performing better than heterogeneous data",
+                "conclusion_justified": true,
+                "justification_explanation": "The evidence directly demonstrates through empirical results in Figure 3 that task-specific datastores consistently outperform domain-specific and heterogeneous datastores when controlling for token count. This is further supported by specific examples showing small task-specific datastores outperforming much larger heterogeneous ones.",
+                "robustness_analysis": "The evidence is methodologically sound, showing direct performance comparisons across different datastore types while controlling for token count. The results are consistent across the tested tasks (CR and MR) and the findings align logically with the expectation that more task-relevant data would be more beneficial.",
+                "limitations": "- Results are only demonstrated on two tasks (CR and MR)\n- Limited discussion of statistical significance\n- No discussion of potential confounding variables\n- Lack of evidence from other model architectures or domains\n- No exploration of potential drawbacks or tradeoffs of using task-specific datastores",
+                "location": "Section 5: kNN-Prompt for Domain Adaptation",
+                "evidence_alignment": "The evidence strongly aligns with the conclusion through direct empirical demonstration. The performance curves in Figure 3 clearly show the hierarchy of effectiveness (task-specific > domain-specific > heterogeneous) and the results are consistent across tested tasks.",
+                "confidence_level": "medium"
+            }
+        ],
+        "analysis_metadata": {
+            "total_claims_analyzed": 9,
+            "claims_with_conclusions": 9,
+            "analysis_timestamp": "2025-02-03 20:11:09.925748"
+        }
+    },
+    "execution_times": {
+        "claims_analysis_time": "18.40 seconds",
+        "evidence_analysis_time": "72.17 seconds",
+        "conclusions_analysis_time": "91.51 seconds",
+        "total_execution_time": "0.00 seconds"
+    }
+}

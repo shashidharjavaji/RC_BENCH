@@ -1,0 +1,154 @@
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Axiomatic Attribution is a technique that can be used to assign the prediction of a deep network to its input features.",
+                "type": "major",
+                "location": "Abstract",
+                "exact_quote": "We study the problem of attributing the prediction of a deep _network to its input features, a problem previously studied by several other works. We identify two fundamental axioms\u2014 _Sensitivity and Implementation Invariance that_attribution methods ought to satisfy. We show that they are not satisfied by most known attribution methods, which we consider to be a fundamental weakness of those methods. We use the axioms to guide the design of a new attribution method called Integrated Gradients. Our method requires no modification to the original network and is extremely simple to implement; it just needs a few calls to the standard gradient operator. We apply this method to a couple of image models, a couple of text models and a chemistry model, demonstrating its ability to debug networks, to extract rules from a network, and to enable users to engage with models better."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Axiomatic Attribution for Deep Networks is a technique that can be used to assign the prediction of a deep network to its input features.",
+                    "strength": "strong",
+                    "limitations": "",
+                    "location": "Abstract",
+                    "exact_quote": ""
+                },
+                {
+                    "evidence_text": "We study the problem of attributing the prediction of a deep network to its input features, a problem previously studied by several other works.",
+                    "strength": "strong",
+                    "limitations": "",
+                    "location": "Section 1",
+                    "exact_quote": ""
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "",
+                "key_limitations": "",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Axiomatic Attribution satisfies Implementation Invariance because it is based only on the gradients of the function represented by the network that do not depend on the implementation.",
+                "type": "major",
+                "location": "Section 3",
+                "exact_quote": "It is undesirable that attributions differ for such reasons.Axiomatic Attribution satisfies Implementation Invariance because it is based only on the gradients of the function represented by the network. Specifically, notice that gradients are invariant to implementation. In fact, the chain-rule for gradients \u2202 f\u2202g \u2205\u22c5\u2202fg\u2202h \u2202h is essen- \u22c5\u2202h tially about implementation invariance. To see this, think of g and f as the input and output of a system, and h being some implementation detail of the system. The gradient of output f to input g can be computed either directly by _\u2202f\u2202g_ \u22c5, ignoring the intermediate function h (implementation detail), or by invoking the chain rule via h. This is exactly how backpropagation works."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Unlike previously proposed methods, integrated gradients do not need any instrumentation of the network, and can be computed easily using a few calls to the gradient operation, allowing even novice practitioners to easily apply the technique.",
+                    "strength": "strong",
+                    "limitations": "",
+                    "location": "Section 1",
+                    "exact_quote": ""
+                },
+                {
+                    "evidence_text": "Implementation Invariance, i.e., the attributions are always identical for two functionally equivalent networks.",
+                    "strength": "moderate",
+                    "limitations": "Does not provide details on how Implementation Invariance is achieved.",
+                    "location": "Section 2.2",
+                    "exact_quote": ""
+                },
+                {
+                    "evidence_text": "Integrated gradients satisfy Implementation Invariance since they are based only on the gradients of the function represented by the network.",
+                    "strength": "moderate",
+                    "limitations": "Does not provide details on how gradients relate to Implementation Invariance.",
+                    "location": "Remark 2",
+                    "exact_quote": ""
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "",
+                "key_limitations": "",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Sensitivity cannot be satisfied by most previous methods.",
+                "type": "major",
+                "location": "Section 2.1",
+                "exact_quote": "Gradients violate Sensitivity(a): For a concrete example, consider a one variable, one ReLU network, f(x) = 1 \u2212ReLU(1 \u2212 x). Suppose the baseline is x = 0 and the input is \u2212x = 2. The function changes from 0 to 1, but because f becomes flat at x = 1, the gradient method gives attribution of 0 to x. Intuitively, gradients break Sensitivity because the prediction function may flatten at the input and thus have zero gradient despite the function value at the input being different from that at the baseline. This phenomenon has been reported in previous work (Shrikumar et al., 2016)."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Unfortunately most previous methods do not satisfy one of the two axioms.",
+                    "strength": "strong",
+                    "limitations": "",
+                    "location": "Section 2",
+                    "exact_quote": ""
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "",
+                "key_limitations": "",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "Integrated Gradients satisfies Sensitivity because Completeness implies Sensitivity.",
+                "type": "major",
+                "location": "Section 3",
+                "exact_quote": "This is formalized by the proposition below, which instantiates the fundamental theorem of calculus for path integrals.Proposition 1. If F : R[n] \u2192 R is differentiable almost everywhere [1] then \u2211[n]i=1[Integrated Grads]i[(][x][) =][ F] [(][x][)][ \u2212] _[F]_ [(][x][\u2032][)]For most deep networks, it is possible to choose a baseline such that the prediction at the baseline is near zero (F (x[\u2032]) \u2248 0). (For image models, the black image base- line indeed satisfies this property.) In such cases, there is an intepretation of the resulting attributions that ignores the baseline and amounts to distributing the output to the individual input features."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Completeness implies Sensivity(a)",
+                    "strength": "strong",
+                    "limitations": "",
+                    "location": "Remark 2",
+                    "exact_quote": ""
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "",
+                "key_limitations": "",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": {
+                "text": "The integrated gradients method is unique among the different path methods that satisfy certain desirable axioms.",
+                "type": "major",
+                "location": "Section 4.2",
+                "exact_quote": "We now justify the selection of the integrated gradients method in two steps. First, we identify a class of methods called Path methods that generalize integrated gradients. We discuss that path methods are the only methods to satisfy certain desirable axioms. Second, we argue why integrated gradients is somehow canonical among the different path methods.Theorem 1. Integrated gradients is the unique path method that is symmetry-preserving."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Integrated gradients is the unique path method that is symmetry-preserving.",
+                    "strength": "strong",
+                    "limitations": "",
+                    "location": "Theorem 1",
+                    "exact_quote": ""
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "",
+                "key_limitations": "",
+                "confidence_level": "high"
+            }
+        }
+    ],
+    "execution_times": {
+        "single_pass_analysis_time": "62.96 seconds",
+        "total_execution_time": "174.79 seconds"
+    }
+}

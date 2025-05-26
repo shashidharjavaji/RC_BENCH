@@ -1,0 +1,106 @@
+```json
+{
+    "analysis": [
+        {
+            "claim_id": 1,
+            "claim": {
+                "text": "Feed-forward layers in transformer-based language models operate as key-value memories.",
+                "type": "contribution",
+                "location": "Abstract",
+                "exact_quote": "Feed-forward layers in transformer-based language models operate as key-value memories."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The first parameter matrix in the layer corresponds to keys, and the second parameter matrix to values.",
+                    "strength": "strong",
+                    "limitations": "The claim is based on a theoretical observation and does not provide experimental evidence.",
+                    "location": "Section 2",
+                    "exact_quote": "Comparing equations 1 and 2 shows that feedforward layers are almost identical to key-value neural memories; the only difference is that neural memory uses softmax as the non-linearity f ( ), while the canonical transformer does not use a normalizing function in the feed-forward layer."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The claim is supported by a theoretical observation and is further validated by experimental results in the paper.",
+                "key_limitations": "The claim is based on a theoretical observation and does not provide experimental evidence.",
+                "confidence_level": "medium"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": {
+                "text": "Each key in feed-forward layers captures a specific set of human-interpretable input patterns.",
+                "type": "result",
+                "location": "Section 3",
+                "exact_quote": "We posit that the key vectors K in feed-forward layers act as pattern detectors over the input sequence, where each individual key vector ki corresponds to a specific pattern over the input prefix x1,..., xj."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "Experts were able to identify at least one pattern for every key, with an average of 3.6 identified patterns per key.",
+                    "strength": "strong",
+                    "limitations": "The claim is based on human annotation and may be subject to bias.",
+                    "location": "Section 3.2",
+                    "exact_quote": "Experts were able to identify at least one pattern for every key, with an average of 3.6 identified patterns per key."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by human annotation and experimental results.",
+                "key_limitations": "The claim is based on human annotation and may be subject to bias.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": {
+                "text": "Values in the upper layers tend to assign higher probability to the next token of examples triggering the corresponding keys.",
+                "type": "result",
+                "location": "Section 4",
+                "exact_quote": "When viewed as distributions over the output vocabulary, values in the upper layers tend to assign higher probability to the next token of examples triggering the corresponding keys."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The agreement rate between the top-ranked token based on the value vector vi[ℓ] and the next token of the top-ranked trigger example associated with the key vector k[ℓ]i is close to zero in the lower layers but starts to rise in the upper layers.",
+                    "strength": "strong",
+                    "limitations": "The claim is based on experimental results and may be subject to variability in the dataset.",
+                    "location": "Section 4",
+                    "exact_quote": "The agreement rate is close to zero in the lower layers (1-10), but starting from layer 11, the agreement rate quickly rises until 3.5%, showing higher agreement between keys and values on the identity of the top-ranked token."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "high",
+                "justification": "The claim is supported by experimental results and statistical analysis.",
+                "key_limitations": "The claim is based on experimental results and may be subject to variability in the dataset.",
+                "confidence_level": "high"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": {
+                "text": "The model’s output is formed via an aggregation of these distributions, where they are first composed to form individual layer outputs, which are then refined throughout the model’s layers using residual connections.",
+                "type": "contribution",
+                "location": "Section 5",
+                "exact_quote": "The model’s output is formed via an aggregation of these distributions, where they are first composed to form individual layer outputs, which are then refined throughout the model’s layers using residual connections."
+            },
+            "evidence": [
+                {
+                    "evidence_text": "The residual connection r is used to sequentially compose predictions to produce the model’s final output.",
+                    "strength": "strong",
+                    "limitations": "The claim is based on a theoretical observation and does not provide experimental evidence.",
+                    "location": "Section 5.2",
+                    "exact_quote": "While a single feed-forward layer composes its memories in parallel, a multi-layer model uses the residual connection r to sequentially compose predictions to produce the model’s final output."
+                }
+            ],
+            "evaluation": {
+                "conclusion_justified": true,
+                "robustness": "medium",
+                "justification": "The claim is supported by a theoretical observation and is further validated by experimental results in the paper.",
+                "key_limitations": "The claim is based on a theoretical observation and does not provide experimental evidence.",
+                "confidence_level": "medium"
+            }
+        }
+    ]
+}
+```

@@ -1,0 +1,324 @@
+{
+    "paper_analysis": [
+        {
+            "claim_id": 1,
+            "claim": "Evaluating LLMs with a Panel of LLm evaluators (PoLL) outperforms a single large judge and reduces intra-model bias while being more cost-effective.",
+            "claim_location": "Abstract",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Using a Panel of LLM evaluators (PoLL) composed of a larger number of smaller models outperforms a single large judge, exhibits less intra-model bias, and is over seven times less expensive.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Further work needed to see how broadly applicable the method is, for example, in math or reasoning evaluations.",
+                    "location": "Abstract & Section 5 Conclusions and Limitations",
+                    "exact_quote": "Across three distinct judge settings and spanning six different datasets, we find that using a PoLL composed of a larger number of smaller models outperforms a single large judge, exhibits less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "PoLL's correlation with human judgments is stronger across multiple tasks, showing effective performance evaluation of LLMs.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Investigated only three evaluator settings and a limited number of judges and panel compositions.",
+                    "location": "Sections 4.1 Correlation to Human Judgements & 4.2 Rank Correlation on Chatbot Arena",
+                    "exact_quote": "Overall, PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup."
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "PoLL methodology's ability to reduce intra-model bias and cost while maintaining performance aligns with the claim, supported by experimental results and comparison against conventional single large model evaluation methods.",
+                    "evidence_type": "secondary",
+                    "strength": "moderate",
+                    "limitations": "Specific configurations and ideal panel compositions for different types of evaluations remain to be explored.",
+                    "location": "Sections 4.4 Judge Bias and Consistency & 4.5 Cost and Latency",
+                    "exact_quote": "PoLL has the smallest spread in scores, indicating reduced intra-model bias, and is seven to eight times less expensive than running a single GPT-4 judge."
+                }
+            ],
+            "evidence_locations": [
+                "Abstract & Section 5 Conclusions and Limitations",
+                "Sections 4.1 Correlation to Human Judgements & 4.2 Rank Correlation on Chatbot Arena",
+                "Sections 4.4 Judge Bias and Consistency & 4.5 Cost and Latency"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that evaluating LLMs with a Panel of LLm evaluators (PoLL) is superior in reducing intra-model bias, aligning better with human judgment, and achieving cost-effectiveness compared to using a single large judge like GPT-4.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is derived from comprehensive experiments spanning various datasets and evaluator setups, showing a consistent advantage of PoLL over a single large judge. The methodology appears solid, utilizing both qualitative assessments and quantitative metrics like Cohen's \u03ba.",
+                "limitations": "The study is limited to three evaluator settings and a specific subset of models. Its applicability to more diverse or complex evaluation scenarios, such as math or reasoning tasks, remains to be tested.",
+                "conclusion_location": "Conclusions and Limitations sections"
+            }
+        },
+        {
+            "claim_id": 2,
+            "claim": "Using PoLL correlates better with human judgments compared to GPT-4 and reduces evaluation costs significantly.",
+            "claim_location": "Introduction",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "A Panel of LLM evaluators (PoLL), incorporating diverse model families, exhibits a stronger correlation with human judgments over GPT-4 across various tasks and significantly lowers evaluation costs.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Experiments were conducted in specific settings (single-hop QA, multi-hop QA, and Chatbot Arena), limiting broader applicability without further research.",
+                    "location": "Section 4.1 Correlation to Human Judgements & 4.2 Rank Correlation on Chatbot Arena and Section 4.5 Cost and Latency",
+                    "exact_quote": "using an instantiation of PoLL correlates better with human judgments compared to a single large judge (GPT-4), while being over seven times cheaper. PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.1 Correlation to Human Judgements & 4.2 Rank Correlation on Chatbot Arena and Section 4.5 Cost and Latency"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors conclude that PoLL, a Panel of LLM Evaluators, not only outperforms a single large model like GPT-4 in terms of correlating with human judgments but also offers a cost-effective and less biased alternative. They demonstrate that PoLL achieves better alignment with human evaluative standards across multiple datasets and settings while significantly reducing evaluation costs.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence supporting the conclusion appears robust and methodologically sound. The authors employ multiple datasets, comparison metrics (such as Cohen's kappa for reliability), and diverse settings (single-hop QA, multi-hop QA, Chatbot Arena) to assess the effectiveness and reliability of PoLL. Furthermore, they address potential biases by including a range of models within PoLL, thus mitigating intra-model bias. Their systematic approach to examining evaluation costs adds an additional layer of practicality to their findings.",
+                "limitations": "While the study presents compelling evidence in favor of PoLL, there are acknowledged limitations. The authors point out the limited scope of evaluator settings and panel compositions tested. Additionally, there's an acknowledgment that further research is needed to explore the applicability of PoLL across other evaluative contexts, such as mathematical reasoning or tasks where language models traditionally struggle. This suggests that while the current evidence is strong within its examined scope, the generalizability of PoLL as a universal evaluator remains tentative.",
+                "conclusion_location": "Sections 4.1, 4.2, and 4.5, and Conclusion and Limitations of Replace_Judge.pdf"
+            }
+        },
+        {
+            "claim_id": 3,
+            "claim": "Traditional QA metrics often lead to false positive and false negative evaluations due to simplistic methods.",
+            "claim_location": "Introduction",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Simplistic QA metrics commonly fail to analyze the intended property of interest, leading to both false positive failures (e.g., superfluous token overlap) and more commonly false negatives due to an incomplete set of gold reference answers (e.g., date format differences).",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The examples provided focus on specific types of errors without quantitative analysis of the overall impact.",
+                    "location": "Replace_Judge.pdf, Page 2, 1st paragraph",
+                    "exact_quote": "However, these simplistic methods commonly fail to analyze the intended property of interest. QA metrics, for example, invariably lead to both false positive failures (e.g. superfluous token overlap) and more commonly false negatives due to an incomplete set of gold reference answers (e.g. date format differences1, inclusion of middle initial in person\u2019s name, etc.)."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Experimental results indicate that model-based scoring methods often correlate better with human judgments than traditional heuristic metrics like EM, offering an alternative that potentially addresses the flaws of traditional QA metrics.",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "The evidence references broad correlations from previous work without specific experimental results from this paper.",
+                    "location": "Replace_Judge.pdf, Page 2, 2nd paragraph",
+                    "exact_quote": "Prior work has shown that model-based scoring methods often correlate better with human judgements than heuristic metrics like EM (Bohnet et al., 2022; Zheng et al., 2024) and that strong evaluator models generalize well across different tasks (Huang et al., 2024)."
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "In detailed experiments across three settings (single-hop QA, multi-hop QA, and Chatbot Arena), the paper demonstrates alternatives such as PoLL that correlate better with human judgments and exhibit reduced intra-model scoring bias, directly addressing the limitations of traditional QA metrics.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Experimental settings are limited to specific models and datasets, which may limit the generalizability of the findings.",
+                    "location": "Replace_Judge.pdf, Page 7, Section 4 Results",
+                    "exact_quote": "We find that using a PoLL composed of a larger number of smaller models outperforms a single large judge, exhibits less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive."
+                }
+            ],
+            "evidence_locations": [
+                "Replace_Judge.pdf, Page 2, 1st paragraph",
+                "Replace_Judge.pdf, Page 2, 2nd paragraph",
+                "Replace_Judge.pdf, Page 7, Section 4 Results"
+            ],
+            "conclusion": {
+                "author_conclusion": "The evidence points to limitations of traditional QA metrics, like exact match (EM) and token level F1, which fail to capture nuanced aspects of answers, leading to both false positives and false negatives. The authors advocate for more sophisticated methods, such as using a panel of language models for evaluation, which have shown better correlation with human judgments and reduced biases.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence is robust, drawn from experimental comparisons across multiple datasets and settings. It details methodological strengths like improved evaluation accuracy, bias reduction, and cost-effectiveness, ensuring a broad and reliable support for the conclusion.",
+                "limitations": "However, limitations such as the experimental scope confined to select datasets and the potential for unexplored biases in panel-selected LLMs suggest areas for future research. There's also an acknowledgment of larger, universally capable models being slow and costly, and the method's applicability across all task types remains to be fully validated.",
+                "conclusion_location": "Introduction and Sections 4.1, 4.3, 4.4"
+            }
+        },
+        {
+            "claim_id": 4,
+            "claim": "Model-based scoring methods correlate better with human judgments than traditional heuristic metrics.",
+            "claim_location": "Introduction",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Using a Panel of LLm evaluators (PoLL) correlates better with human judgments compared to a single large judge (GPT-4), while being over seven times cheaper.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Experiment limited to three specific judge settings and a constrained number of judges and panel compositions.",
+                    "location": "Section 4.1 Correlation to Human Judgements & Section 4.2 Rank Correlation on Chatbot Arena",
+                    "exact_quote": "We show that using an instantiation of PoLL correlates better with human judgements compared to a single large judge (GPT-4), while being over seven times cheaper."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "PoLL presented the strongest correlation across various tasks in evaluating single-hop QA datasets from KILT, outperforming GPT-4 and other evaluators.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Findings are based on specific datasets (KILT: NQ, TQA, HPQA) and may need further validation across broader types of tasks.",
+                    "location": "Section 4.1 Correlation to Human Judgements",
+                    "exact_quote": "PoLL has the strongest correlation across various tasks, while GPT-4 is one of the weaker evaluators on this particular task setup."
+                },
+                {
+                    "evidence_id": 3,
+                    "evidence_text": "In the Chatbot Arena Hard benchmark, PoLL's model rankings correlated better with the ground truth human judgment, particularly at the top of the ranked list.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Analysis mainly focused on top-ranked models in a single hard subset of the Arena benchmark, highlighting a potential limitation in the scope of tested scenarios.",
+                    "location": "Section 4.2 Rank Correlation on Chatbot Arena & Figure 2 Rankings of model performance",
+                    "exact_quote": "PoLL is best correlated with the gold rankings, particularly at the top of the ranked list as shown in Figure 2."
+                },
+                {
+                    "evidence_id": 4,
+                    "evidence_text": "Judgment variance analysis revealed that GPT-4 exhibited the most significant variance with minor prompt modifications, indicating it to be a relatively weaker judge.",
+                    "evidence_type": "primary",
+                    "strength": "moderate",
+                    "limitations": "Conclusions regarding GPT-4's performance variance derive from observations in specific task setups (KILT evaluations) and prompt modification scenarios.",
+                    "location": "Section 4.3 Judgement Variance by Prompt Changes",
+                    "exact_quote": "GPT-4 was the weakest judge model on our KILT evaluations... the correlation between GPT-4 and human annotators varies as the prompt changes."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.1 Correlation to Human Judgements & Section 4.2 Rank Correlation on Chatbot Arena",
+                "Section 4.1 Correlation to Human Judgements",
+                "Section 4.2 Rank Correlation on Chatbot Arena & Figure 2 Rankings of model performance",
+                "Section 4.3 Judgement Variance by Prompt Changes"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors concluded that a Panel of LLM Evaluators (PoLL), utilizing multiple smaller models, performs better in correlating with human judgments across various tasks and datasets than singular large models like GPT-4. They highlighted PoLL's reduced bias, cost-effectiveness, and generalizability over diverse evaluation settings as key advantages.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The evidence supporting the conclusion is robust, covering a variety of datasets and metrics that collectively demonstrate PoLL's effectiveness over traditional singular large models. The methodological approach, including a diverse array of LLM evaluators and comprehensive statistical analysis, underpins the reliability of the findings.",
+                "limitations": "The study acknowledges its own limitations, including the restricted scope of evaluator settings and panel compositions examined. It suggests the need for further exploration in other areas, such as math or reasoning evaluations, and the selection process for including models within PoLL for optimal performance metrics.",
+                "conclusion_location": "Conclusions and Limitations sections"
+            }
+        },
+        {
+            "claim_id": 5,
+            "claim": "PoLL introduces a method to score LLM generations based on a panel of multiple evaluator models, aiming to reduce intra-model bias.",
+            "claim_location": "Methods - Panel of LLM Evaluators",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "PoLL constructs a judgement panel from three models across different families and experiments with different voting functions to aggregate scores, showing consistent high correlation with human judgments across tasks and datasets.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to three evaluator settings and a finite set of models; further work is required to test the broader applicability and optimization of panel selection.",
+                    "location": "Sections 3.1, 3.3, 4.1, 4.2",
+                    "exact_quote": "In our experiments, We construct a PoLL from three models being drawn from three disparate model families (Command R, Haiku, and GPT-3.5). We consider two different voting functions for aggregating scores across the judges. For QA datasets, we use max voting, as all judgements are binary [correct, incorrect]. For Chatbot Arena we instead use average pooling because judgements are scores ranging from 1-5 and a three judge panel often does not produce a clear majority decision."
+                }
+            ],
+            "evidence_locations": [
+                "Sections 3.1, 3.3, 4.1, 4.2"
+            ],
+            "conclusion": {
+                "author_conclusion": "The use of a Panel of LLM Evaluators (PoLL) effectively mitigates intra-model bias and provides a reliable and cost-efficient alternative to using a single large model for evaluating LLM generations.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The robustness of the conclusion is supported by comprehensive experiments across multiple datasets and settings, showing consistent reduction in intra-model bias and a significant correlation with human evaluations. Various methodological strengths, such as diverse model selection and comparative analysis with human judges, further attest to the reliability of the evidence.",
+                "limitations": "The research is limited by its experimental scope, covering only three evaluator settings and a limited number of judges and panel compositions. The methodology's applicability to tasks requiring complex reasoning or specific knowledge remains untested.",
+                "conclusion_location": "Conclusions and Limitations"
+            }
+        },
+        {
+            "claim_id": 6,
+            "claim": "PoLL's composition from disparate model families reduces the scoring biases observed with single evaluator models.",
+            "claim_location": "Experimental Settings - PoLL Composition and Voting",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "PoLL's use of disparate model families correlates better with human judgments compared to a single large judge like GPT-4, reducing intra-model scoring bias.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Investigated only limited evaluator settings and panel compositions; further research needed for broader applicability.",
+                    "location": "Results section & Tables 1, 2",
+                    "exact_quote": "We show that using an instantiation of PoLL correlates better with human judgements compared to a single large judge (GPT-4), while being over seven times cheaper; Intra-model scoring bias is reduced by pooling judgements across a panel of heterogeneous evaluator models."
+                },
+                {
+                    "evidence_id": 2,
+                    "evidence_text": "Experimental results show PoLL's effectiveness in reducing intra-model bias through analysis of model rankings on Chatbot Arena Hard and accuracy changes across multiple datasets, demonstrating improved correlation with human judgments.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Experiment covered three evaluator settings and a limited number of judges, suggesting potential need for examination across a wider range of tasks.",
+                    "location": "Judge Bias and Consistency section & Figures 2, 3, 4",
+                    "exact_quote": "We find that PoLL rankings correlate better with the ground truth, particularly at the top of the ranked list...intra-model bias as the GPT-4 judge ranks another GPT-4 variant in position 2, higher than its actual position 4...overall, PoLL has the smallest spread in scores..."
+                }
+            ],
+            "evidence_locations": [
+                "Results section & Tables 1, 2",
+                "Judge Bias and Consistency section & Figures 2, 3, 4"
+            ],
+            "conclusion": {
+                "author_conclusion": "PoLL, by leveraging multiple models from different families for evaluation, consistently reduces intra-model bias, achieves better alignment with human judgments, and is more cost-effective compared to using a single large model like GPT-4.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The breadth of datasets and scenarios examined, along with the comparison to human judgments and cost metrics, offer a solid foundation for the claim's robustness. The use of disparate model families in PoLL introduces diversity in evaluation, which is effectively shown to reduce intra-model bias.",
+                "limitations": "Limitations include the restricted range of datasets and evaluation scenarios, indicating the need for further testing across more varied tasks. The study also acknowledges the dynamic nature of model performances and costs, suggesting the ongoing evolution of models could impact PoLL's effectiveness and efficiency over time.",
+                "conclusion_location": "Conclusions and Limitations"
+            }
+        },
+        {
+            "claim_id": 7,
+            "claim": "PoLL achieves a higher kappa correlation with human judgments on multi-hop QA tasks compared to individual LLM evaluators.",
+            "claim_location": "Additional Results - Multi-hop QA",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "PoLL achieves higher kappa values on multi-hop QA tasks such as HotPotQA and Bamboogle, showing stronger agreement with human judgments compared to individual judge models, including GPT-4.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "Limited to experimental settings and specific datasets included in the study.",
+                    "location": "Section A.2.1 Multi-hop QA, Table 5 & 6",
+                    "exact_quote": "Table 5: Kappa values for various chatbot models on Bamboogle... Total 0.762 0.846 0.885 0.898 0.896... Table 6: Kappa values for various chatbot models on multihop HotPotQA... Total 0.773 0.827 0.886 0.849 0.871."
+                }
+            ],
+            "evidence_locations": [
+                "Section A.2.1 Multi-hop QA, Table 5 & 6"
+            ],
+            "conclusion": {
+                "author_conclusion": "The authors concluded that PoLL significantly outperforms individual large language model (LLM) evaluators in achieving higher kappa correlation with human judgments on multi-hop QA tasks, showcasing its effectiveness in capturing human-like evaluation of answers across various models.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The strength and reliability of the evidence stem from a comprehensive experimental setup covering multiple datasets and evaluators, highlighting PoLL's superior correlation with human judgments. The methodological rigor, including the use of multi-hop QA tasks and diverse evaluators in PoLL, underpins the robustness of the findings.",
+                "limitations": "The analysis primarily touched upon a limited scope of evaluators and datasets, leaving room for exploring PoLL's applicability across broader linguistic tasks and judge panels. Furthermore, the evaluation could have been enhanced with a more extensive investigation into the specific components of PoLL that contribute most significantly to its effectiveness.",
+                "conclusion_location": "Additional Results - Multi-hop QA"
+            }
+        },
+        {
+            "claim_id": 8,
+            "claim": "On Chatbot Arena Hard, PoLL, using average pooling, provides scores that correlate with human judgments.",
+            "claim_location": "Additional Results - Arena Hard Scores",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "PoLL rankings on Chatbot Arena Hard correlate better with ground truth, showcasing less intra-model bias compared to GPT-4.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "The evaluation focused on three settings and a limited number of judges and panel compositions; further investigations are needed to generalize methods across broader scenarios.",
+                    "location": "Results section & Discussion on Experiment Settings and Limitations",
+                    "exact_quote": "In Figure 2, we assessed the model rankings produced on Chatbot Arena Hard by PoLL as compared to the GPT-4 judge from the original work. The 'gold' ranking appears on the diagonal and represents the rankings from the original Chatbot Arena ELO. We find that PoLL rankings correlate better with the ground truth, particularly at the top of the ranked list. We can clearly observe intra-model bias as the GPT-4 judge ranks another GPT-4 variant in position 2, higher than its actual position 4, which is in line with previous works that have also observed GPT-4\u2019s preference for its own generations."
+                }
+            ],
+            "evidence_locations": [
+                "Results section & Discussion on Experiment Settings and Limitations"
+            ],
+            "conclusion": {
+                "author_conclusion": "PoLL, when compared to single large judge models like GPT-4, displays a superior ability to correlate with human judgments on Chatbot Arena Hard while using average pooling methods.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The methodology utilized showcases significant methodological strength through the diversification of evaluative models within PoLL, reducing intra-model bias and enhancing reliability across varied tasks. The consistent high correlation of PoLL scores with human judgment across multiple settings underlines the robustness of the findings.",
+                "limitations": "Limitations include a focus on only three evaluator settings and a select number of models, suggesting further exploration is needed across broader contexts and evaluative models to fully ascertain the method's versatility. Additionally, questions surrounding the optimal panel selection for PoLL highlight an area for further research.",
+                "conclusion_location": "Sections 4.1, 4.2, and Conclusions and Limitations in Replace_Judge.pdf."
+            }
+        },
+        {
+            "claim_id": 9,
+            "claim": "Different prompt adjustments can significantly improve the alignment of GPT-4's evaluations with human judgments.",
+            "claim_location": "Introduction - Evaluating Generative Language Models",
+            "evidence": [
+                {
+                    "evidence_id": 1,
+                    "evidence_text": "Research findings indicate varying GPT-4 correlations with human judgments in response to prompt modifications, notably including a strategy that significantly enhances agreement levels.",
+                    "evidence_type": "primary",
+                    "strength": "strong",
+                    "limitations": "While GPT-4's agreement level rises near to that of GPT-3.5 with certain prompt adjustments, it remains below other models tested.",
+                    "location": "Section 4.3 Judgement Variance by Prompt Changes",
+                    "exact_quote": "Based on the observation that GPT-4 was the weakest judge model on our KILT evaluations, we investigated how the model reacts to modifications to its prompt... These changes bring the agreement level for GPT-4 up to the level of GPT-3.5 when using our few-shot standard prompt, though still below Command-R, Haiku, and PoLL."
+                }
+            ],
+            "evidence_locations": [
+                "Section 4.3 Judgement Variance by Prompt Changes"
+            ],
+            "conclusion": {
+                "author_conclusion": "Using a Panel of LLM evaluators (PoLL) instead of a single large judge like GPT-4 results in better alignment with human judgments across various tasks, reducing intra-model bias, and is more cost-effective.",
+                "conclusion_justified": true,
+                "robustness_analysis": "The research incorporates multiple datasets, varying tasks, and a diverse composition of evaluators to test the PoLL configuration extensively. Adjustments to GPT-4 prompts that directly increased performance underline the importance and impact of prompt engineering.",
+                "limitations": "The study acknowledges its limitation due to investigating only three evaluator settings, a limited number of judges, and panel compositions. The broad applicability of the PoLL method outside these scopes remains unconfirmed, indicating a need for further research, especially in tasks where LLMs typically struggle.",
+                "conclusion_location": "Conclusions and Limitations"
+            }
+        }
+    ],
+    "execution_times": {
+        "claims_analysis_time": "48.20 seconds",
+        "evidence_analysis_time": "201.04 seconds",
+        "conclusions_analysis_time": "196.85 seconds",
+        "total_execution_time": "0.00 seconds"
+    }
+}

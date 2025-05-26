@@ -1,0 +1,84 @@
+Claim 1:
+Type: methodology
+Statement: CounterFact dataset mixes different prediction scenarios and contains problematic samples, making it unsuitable for precise LM interpretations
+Location: Section 3
+Exact Quote: This is motivated by an inspection of the 1,209 samples from CounterFact which reveals 510 samples likely to rely on heuristics and 365 samples to have a low popularity scores and thus be unlikely to have been memorized
+
+Evidence:
+- Evidence Text: 510 samples found to potentially correspond to heuristics
+  Strength: strong
+  Location: Appendix F.1
+  Limitations: Heuristics detection may not be perfect
+  Exact Quote: We find a total of 510 samples that may correspond to heuristics recall, of which 335 samples correspond to prompt bias, 155 to name bias and 20 to both name and prompt bias
+
+- Evidence Text: 365 samples with low popularity unlikely to be memorized
+  Strength: moderate
+  Location: Appendix F.1
+  Limitations: Popularity is a proxy for memorization
+  Exact Quote: We find approximately 365 known CounterFact samples with popularity scores below 1000. These are unlikely to have been memorized by the model
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Multiple analyses with quantitative evidence show mixing of scenarios and problematic samples
+Key Limitations: Heuristics detection methods may miss some cases
+
+--------------------------------------------------
+
+Claim 2:
+Type: result
+Statement: Different prediction scenarios yield fundamentally different causal tracing results when analyzed in isolation
+Location: Section 4.2
+Exact Quote: We find that different prediction scenarios yield distinct CT results if studied in isolation
+
+Evidence:
+- Evidence Text: Exact fact recall shows clear peak in last subject token, mid layer MLPs
+  Strength: strong
+  Location: Section 4.2
+  Limitations: Limited to specific models tested
+  Exact Quote: Exact fact recall results Figure 3d show a clear peak in AIE in (last subject token, mid layer) MLP states and all other states (last token, other subject tokens) reduce in relative effect
+
+- Evidence Text: Other scenarios show different patterns
+  Strength: strong
+  Location: Section 4.2
+  Limitations: Some overlap between patterns
+  Exact Quote: This is fundamentally different from the other scenarios, where this state is either found to have a low AIE or to have comparatively the same importance as other states
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: high
+Confidence Level: high
+Justification: Clear visualization and quantitative evidence shows distinct patterns
+Key Limitations: Results specific to tested models and architectures
+
+--------------------------------------------------
+
+Claim 3:
+Type: result
+Statement: Aggregated causal tracing results are dominated by exact fact recall samples
+Location: Section 4.2
+Exact Quote: This indicates that model interpretations over samples mixing prediction scenarios are misleading as they may be dominated by the characteristics of the exact fact recall scenario
+
+Evidence:
+- Evidence Text: Combined plot reproduces exact fact recall pattern
+  Strength: strong
+  Location: Section 4.2
+  Limitations: Tested on limited number of models
+  Exact Quote: The combined plot of exact fact recall, heuristics recall, and guesswork samples in Figure 3e generally reproduces the same CT results as observed in previous work
+
+- Evidence Text: Normalized results show weaker dominance
+  Strength: moderate
+  Location: Appendix G
+  Limitations: Normalization approach has limitations
+  Exact Quote: For the normalized results we find that equal weights for all evaluated samples yield a slightly different pattern compared to the non-normalized results, with a weaker peak for the last subject token
+
+Evaluation:
+Conclusion Justified: Yes
+Robustness: medium
+Confidence Level: medium
+Justification: Multiple analyses support the claim though normalization shows some nuance
+Key Limitations: Limited model testing and normalization approach limitations
+
+--------------------------------------------------
+
