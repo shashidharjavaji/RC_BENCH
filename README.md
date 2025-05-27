@@ -4,6 +4,37 @@ Repository for RC_BENCH project
 
 ![](Results/figures/architecture.png)
 
+## Repo Structure
+
+RC_BENCH/
+│
+├── Code/                                   # All scripts and Jupyter notebooks
+│   ├── .DS_Store                           # System file (can be ignored)
+│   ├── 3_open_models_combined_3_prompts.py # Script: combines 3 open models using 3 prompts
+│   ├── 3_open_models_combined_all_at_once.py # Script: combines 3 open models, runs all at once
+│   ├── 3_open_models_combined_one_by_one.py # Script: combines 3 open models, runs one by one
+│   ├── Annotation_tool_v1.py               # Main annotation tool script (version 1)
+│   ├── RC_Claude.ipynb                     # Jupyter notebook for RC_Claude model analysis
+│   ├── RC_GPT.ipynb                        # Jupyter notebook for RC_GPT model analysis
+│   ├── RC_Gemini.ipynb                     # Jupyter notebook for RC_Gemini model analysis
+│
+├── Data/                                   # All input data files
+│   ├── .DS_Store                           # System file (can be ignored)
+│   └── all_papers/                         # Directory: collection of PDF papers for annotation
+│
+├── Results/                                # All outputs, annotations, and figures
+│   ├── .DS_Store                           # System file (can be ignored)
+│   ├── All models Outputs/                 # Model output files (claims, evidence, conclusions, etc.)
+│   ├── Statistics/                         # Aggregated results/statistics (merged or processed)
+│   ├── all_annotations/                    # Annotated results from the tool
+│   ├── all_inter_annotations/              # Intermediate or cross-annotator results
+│   └── figures/                            # All figures/plots for results and tool screenshots
+│
+├── .env                                    # API keys and secrets (not tracked, see .gitignore)
+├── .gitignore                              # Should include .env, .DS_Store, and other files to ignore
+├── README.md                               # General project documentation
+├── ANNOTATION_TOOL.md                      # Documentation for the annotation tool
+
 ## 📝 Annotator Guidelines
 
 ### Task Description
