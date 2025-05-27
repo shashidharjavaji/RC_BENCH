@@ -2,7 +2,7 @@
 # 📊 RC_BENCH
 Repository for RC_BENCH project
 
-![](figures/architecture.png)
+![](Results/figures/architecture.png)
 
 ## 📝 Annotator Guidelines
 
