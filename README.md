@@ -80,6 +80,12 @@ Each annotation should be formatted as follows:
 
 ## 📁 Folders and Files Description 
 
+### 📚 Dataset
+
+- 100 peer‑reviewed AI/ML papers (2024) – diverse sub‑fields, ≤20 pages, low math density.
+
+
+
 For each model in `{Gemini, Claude, GPT}`, the following folder structure is maintained:
 
 ### 📂 `{model}_3_prompts/`
