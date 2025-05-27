@@ -107,9 +107,9 @@ project/
 
 
 ## 📈 Results
-![](figures/precision_recall_scatter_improved.png)
+![](Results/figures/precision_recall_scatter_improved.png)
 
-![](figures/Sentence_dist_analysis.png)
+![](Results/figures/Sentence_dist_analysis.png)
 
 
 ## 💻 Installation
