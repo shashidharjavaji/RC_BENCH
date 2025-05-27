@@ -2,6 +2,17 @@
 # 📊 RC_BENCH
 Repository for RC_BENCH project
 
+**Paper Title:**  
+#### “Can AI Validate Science? Benchmarking LLMs for Accurate Scientific Claim → Evidence Reasoning” 
+
+---
+
+## 🎯 Mission
+
+Provide a transparent benchmark (**CLAIM‑BENCH**) and reproducible code for evaluating long‑context LLMs on sentence‑level claim evidence identification for scientific reasoning.
+
+---
+
 ![](Results/figures/architecture.png)
 
 ## 📁 Repo Structure
