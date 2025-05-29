@@ -1,8 +1,72 @@
 
-# 📊 RC_BENCH
-Repository for RC_BENCH project
+# 📊 CLAIM_BENCH
+Repository for CLAIM_BENCH project
 
-![](figures/architecture.png)
+**Paper Title:**  
+#### “Can AI Validate Science? Benchmarking LLMs for Accurate Scientific Claim → Evidence Reasoning” 
+
+---
+
+## 🎯 Mission
+
+Provide a transparent benchmark (**CLAIM‑BENCH**) and reproducible code for evaluating long‑context LLMs on sentence‑level claim evidence identification for scientific reasoning.
+
+---
+
+## 📑 Abstract
+--- 
+
+Large language models (LLMs) are increasingly being used for complex research tasks such as literature review, idea generation, and scientific paper analysis, yet their ability to truly understand and process the intricate relationships within complex research papers—such as the logical links between claims and supporting evidence—remains largely unexplored.
+
+In this study, we present **CLAIM-BENCH**, a comprehensive benchmark for evaluating LLMs' capabilities in scientific claim-evidence extraction and validation, a task that reflects deeper comprehension of scientific argumentation. We systematically compare three approaches, inspired by divide and conquer strategies, across six diverse LLMs, highlighting model-specific strengths and weaknesses in scientific comprehension.
+
+Through evaluation involving over 300 claim-evidence pairs across multiple research domains, we reveal significant limitations in LLMs' ability to process complex scientific content. Our results demonstrate that closed-source models like GPT-4 and Claude consistently outperform open-source counterparts in precision and recall across claim-evidence identification tasks. Furthermore, strategically designed three-pass and one-by-one prompting approaches significantly improve LLMs' abilities to accurately link dispersed evidence with claims, although this comes at increased computational cost.
+
+**CLAIM-BENCH** sets a new standard for evaluating scientific comprehension in LLMs, offering both a diagnostic tool and a path forward for building systems capable of deeper, more reliable reasoning across full-length papers.
+
+ ---
+ 
+## Different strategies
+
+![](Results/figures/architecture.png)
+
+---
+
+## 📁 Repo Structure
+
+```text
+RC_BENCH/
+│
+├── Code/                                           # All scripts and Jupyter notebooks
+│   ├── .DS_Store                                  # System file (can be ignored)
+│   ├── 3_open_models_combined_3_prompts.py        # Script: combines 3 open models using 3 prompts
+│   ├── 3_open_models_combined_all_at_once.py      # Script: combines 3 open models, runs all at once
+│   ├── 3_open_models_combined_one_by_one.py       # Script: combines 3 open models, runs one by one
+│   ├── Annotation_tool_v1.py                      # Main annotation tool script (version 1)
+│   ├── RC_Claude.ipynb                            # Jupyter notebook for RC_Claude model analysis
+│   ├── RC_GPT.ipynb                               # Jupyter notebook for RC_GPT model analysis
+│   └── RC_Gemini.ipynb                            # Jupyter notebook for RC_Gemini model analysis
+│
+├── Data/                                           # All input data files
+│   ├── .DS_Store                                  # System file (can be ignored)
+│   └── all_papers/                                # Directory: collection of PDF papers for annotation
+│
+├── Results/                                        # All outputs, annotations, and figures
+│   ├── .DS_Store                                  # System file (can be ignored)
+│   ├── All models Outputs/                        # Model output files (claims, evidence, conclusions, etc.)
+│   ├── Statistics/                                # Aggregated results/statistics (merged or processed)
+│   ├── all_annotations/                           # Annotated results from the tool
+│   ├── all_inter_annotations/                     # Intermediate or cross-annotator results
+│   └── figures/                                   # All figures/plots for results and tool screenshots
+│
+├── .env                                           # API keys and secrets (not tracked, see .gitignore)
+├── .gitignore                                     # Should include .env, .DS_Store, and other files to ignore
+├── README.md                                      # General project documentation
+└── ANNOTATION_TOOL.md                             # Documentation for the annotation tool
+```
+
+--- 
+
 
 ## 📝 Annotator Guidelines
 
@@ -46,75 +110,18 @@ Each annotation should be formatted as follows:
 }
 ```
 
-## 📁 Folders and Files Description 
-
-For each model in `{Gemini, Claude, GPT}`, the following folder structure is maintained:
-
-### 📂 `{model}_3_prompts/`
-- Contains outputs from the 3-prompts code execution
-- Each prompt runs independently for claims, evidence, and conclusions
-
-### 📂 `{model}_one_by_one/`
-- Houses outputs from iterative building process:
-  1. Get all claims first
-  2. For each claim, fetch corresponding evidence
-  3. For each claim-evidence pair, generate conclusion
-
-### 📂 `{model}_all_at_one/`
-- Stores outputs from single-prompt execution
-- All tasks (claims, evidence, conclusions) processed in one go
-
-```
-project/
-├── {model}_3_prompts/
-├── {model}_one_by_one/
-└── {model}_all_at_one/
-```
-
-*Note: Replace `{model}` with Gemini, Claude, or GPT accordingly.*
-
-
-# 🖊️ Annotation tool README
-
-# PDF Annotation Tool
-
-A desktop application for annotating PDF documents with claims and corresponding evidence. This tool allows users to select text from PDF documents, organize them into claims and evidence pairs, and save the annotations in a structured JSON format.
-
-
-![](figures/annotation_tool_screenshot.png)
-## ✨ Features
-
-- **📄 PDF Viewing**
-  - Load and view PDF documents
-  - Smooth scrolling and navigation
-  - Zoom controls (buttons and keyboard shortcuts)
-  - Automatic fit-to-width functionality
-
-- **✏️ Text Selection**
-  - Click and drag to select text
-  - Multiple selections can be combined
-  - Preview and edit selected text
-  - Clear selection option
-
-- **📝 Annotation Management**
-  - Create claims from selected text
-  - Add multiple pieces of evidence for each claim
-  - Clear organization of claims and their corresponding evidence
-  - Visual hierarchy for better understanding
-
-- **🎨 User-Friendly Interface**
-  - Intuitive controls
-  - Visual feedback for actions
-  - Status bar messages
-  - Keyboard shortcuts
-
 
 ## 📈 Results
-![](figures/precision_recall_scatter_improved.png)
-
-![](figures/Sentence_dist_analysis.png)
+![](Results/figures/precision_recall_scatter_improved.png)
 
 
+**Figure 2:**  
+Precision vs. Recall for claim (solid markers) and evidence (transparent markers) identification across models and strategies (shapes: Single-Pass •, Three-Pass ▲, One-by-One ■). Models show higher precision for claims, higher recall for evidence, with most results below F1 = 0.7.
+
+![](Results/figures/Sentence_dist_analysis.png)
+
+**Figure 7:**  
+Aggregated statistics of the sentence_gap metric Count, Max, Mean, and Variance (Var)—for each model under the three prompting strategies (Three-Pass, One-pass, and One-by-One). Larger counts and wider gaps (e.g., Claude and LLaMA exceeding 2,200-sentence links in One-by-One) reflect broader retrieval, whereas smaller models such as Mistral keep distances short and variance low. “N/A” indicates the model-strategy combination was not executed.
 ## 💻 Installation
 
 ### Prerequisites
