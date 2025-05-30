@@ -12,7 +12,7 @@ import traceback
 import re
 
 
-os.environ["HUGGING_FACE_HUB_TOKEN"] = "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"
+os.environ["HUGGING_FACE_HUB_TOKEN"] = "Hugging_Face_Token"
 
 # Global model selection
 SELECTED_MODEL = "phi"  # Options: "mistral", "llama", "phi"
