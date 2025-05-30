@@ -15,7 +15,7 @@ import os
 from huggingface_hub import login
 
 # Method 1: Set token directly in code
-os.environ["HUGGING_FACE_HUB_TOKEN"] = "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"
+os.environ["HUGGING_FACE_HUB_TOKEN"] = "Hugging_Face_Token"
 
 # Global variable for model selection
 SELECTED_MODEL = "llama"  # Change this to "llama" or "phi"
