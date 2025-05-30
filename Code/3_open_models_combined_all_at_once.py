@@ -11,7 +11,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndB
 from vllm import LLM, SamplingParams
 
 # Set HuggingFace token
-os.environ["HUGGING_FACE_HUB_TOKEN"] = "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"
+os.environ["HUGGING_FACE_HUB_TOKEN"] = "Hugging_Face_Token"
 
 # Global variable for model selection
 SELECTED_MODEL = "llama"  # Change to "llama" or "phi"
